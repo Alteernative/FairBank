@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
-import { BsBank2 } from 'react-icons/bs';
 
 // Creating cookies object
 const cookies = new Cookies();
@@ -164,14 +163,9 @@ const App = () => {
       </div>
     );
   }
-
-  // returned UI
   return (
     <div className="container mt-3">
-      <section className="flex h-screen items-center justify-center space-x-3">
-        <BsBank2 className="size-10" />
-        <h1 className="text-5xl font-bold">FairBank</h1>
-      </section>
+      <h1>React Cookie Auth</h1>
       <p>You are logged in!</p>
       <button className="btn btn-primary mr-2" onClick={whoami}>
         WhoAmI
@@ -182,6 +176,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;
