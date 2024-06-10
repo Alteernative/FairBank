@@ -43,7 +43,7 @@ const App = () => {
     getSession();
   }, []);
 
-  // Who Am I method
+  // Who Am I method to check who is logged in
   const whoami = () => {
     fetch("/api/whoami/", {
       headers: {
@@ -69,6 +69,7 @@ const App = () => {
     setState({ ...state, username: event.target.value });
   };
 
+  // Check if response is valid
   const isResponseOk = (response: Response) => {
     if (response.status >= 200 && response.status <= 299) {
       return response.json();
@@ -84,9 +85,11 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        //Unique token value for client 
         "X-CSRFToken": cookies.get("csrftoken"),
       },
       credentials: "same-origin",
+      // Send username and password 
       body: JSON.stringify({
         username: state.username,
         password: state.password,
