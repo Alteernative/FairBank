@@ -38,6 +38,7 @@ const App = () => {
       });
   };
 
+  // Use the useEffect hook to call the getSession
   useEffect(() => {
     getSession();
   }, []);
@@ -59,6 +60,7 @@ const App = () => {
       });
   };
 
+  // Handle input change for password and username
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, password: event.target.value });
   };
@@ -123,6 +125,7 @@ const App = () => {
   };
 
   if (!state.isAuthenticated) {
+    // Display login form if not authenticated
     return (
       <div className="container mt-3">
         <h1>React Cookie Auth</h1>
@@ -162,7 +165,8 @@ const App = () => {
         </form>
       </div>
     );
-  }
+  } else
+  // Display logged in message and buttons if authenticated
   return (
     <div className="container mt-3">
       <h1>React Cookie Auth</h1>
