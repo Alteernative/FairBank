@@ -1,3 +1,3 @@
-### FairBanks
+### FairBank
 
 Une application web de gestion de compte bancaire.
