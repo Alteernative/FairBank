@@ -84,12 +84,13 @@ const App = () => {
     fetch("/api/login/", {
       method: "POST",
       headers: {
+        // Send JSON data
         "Content-Type": "application/json",
-        //Unique token value for client 
+        //Include CSRF token from cookies for security 
         "X-CSRFToken": cookies.get("csrftoken"),
       },
       credentials: "same-origin",
-      // Send username and password 
+      // Send username and password from state
       body: JSON.stringify({
         username: state.username,
         password: state.password,
@@ -101,6 +102,7 @@ const App = () => {
         setState({
           ...state,
           isAuthenticated: true,
+          // Clear the fields
           username: "",
           password: "",
           error: "",
@@ -169,6 +171,7 @@ const App = () => {
       </div>
     );
   } else
+  
   // Display logged in message and buttons if authenticated
   return (
     <div className="container mt-3">
