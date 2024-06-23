@@ -73,7 +73,13 @@ export default function App() {
             </Layout>
           }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={
+          <Layout>
+            <Dashboard />
+          </Layout>
+
+          } 
+        />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
