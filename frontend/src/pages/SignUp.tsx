@@ -10,8 +10,42 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
+import AxiosInstance from "../components/AxiosInstance.tsx";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 export default function Home() {
+
+
+  const {  handleSubmit, register } = useForm();
+  const navigate = useNavigate();
+const submission = (data) => {
+    console.log(data);
+    AxiosInstance.post('register/', {
+      email: data.email,
+      password: data.password,
+      first_name: data.first_name,
+      last_name: data.last_name,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(() => {
+      console.log("registered successfully");
+      navigate(`/connexion`);
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error('Error response:', error.response);
+      }
+    });
+  };
+
+
+
   return (
     <section className="flex h-screen">
       <aside className="flex flex-1 flex-col gap-24">
@@ -41,35 +75,47 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             {/* <form onSubmit={handleFormSubmit()}> */}
-            <form>
-              <div className="flex flex-col gap-2">
+            <form onSubmit={handleSubmit(submission)}>
+                <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="name">Nom</Label>
-                  <Input type="text" id="name" placeholder="Nom" required />
+                  <Input type="text"
+                         id="last_name"
+                         placeholder="Nom"
+                         {...register("last_name")}
+                         required
+                  />
                   <Label htmlFor="prenom">Prenom</Label>
-                  <Input type="text" id="prenom" placeholder="Prenom" required />
+                  <Input type="text"
+                         id="first_name"
+                         placeholder="Prenom"
+                         required
+                          {...register("first_name")}
+                  />
                   <Label htmlFor="email">Courriel</Label>
                   <Input
                     type="email"
                     id="email"
                     placeholder="nom@exemple.com"
                     required
+                    {...register("email")}
                   />
                   <Label htmlFor="password">Mot de passe</Label>
                   <Input
                     type="password"
                     id="password"
                     placeholder="•••••••••"
+                    {...register("password")}
                     required
                   />
                   <Label htmlFor="password">Confirmer le mot de passe</Label>
                   <Input
                     type="password"
-                    id="repassword"
+                    id="repassword2"
                     placeholder="•••••••••"
                     required
                   />
-                  <Button type="button" className="mt-2">
+                  <Button type="submit" className="mt-2">
                     Se connecter avec l'email
                   </Button>
                 </div>
