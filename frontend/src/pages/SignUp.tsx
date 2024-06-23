@@ -45,7 +45,6 @@ const submission = (data) => {
   };
 
 
-
   return (
     <section className="flex h-screen">
       <aside className="flex flex-1 flex-col gap-24">
@@ -68,7 +67,7 @@ const submission = (data) => {
         {/* <Card className="w-96 h-[25rem] mt-52"> */}
         <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">S'incrire</CardTitle>
+            <CardTitle className="text-2xl text-center">Ouvrir un Compte Courant</CardTitle>
             <CardDescription className="text-center">
               Entrer votre email ci-dessous pour créer votre compte
             </CardDescription>
