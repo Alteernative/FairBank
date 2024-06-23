@@ -49,8 +49,6 @@ export default function Dashboard() {
         ) : (
           <p>Loading data...</p>
         )}
-        {/* logout tmp button here to test function*/}
-        <Button type={"button"} onClick={logoutUser}>Log out user</Button>
       </div>
     </>
   );
