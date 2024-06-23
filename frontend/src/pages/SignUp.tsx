@@ -46,6 +46,8 @@ export default function Home() {
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="name">Nom</Label>
                   <Input type="text" id="name" placeholder="Nom" required />
+                  <Label htmlFor="prenom">Prenom</Label>
+                  <Input type="text" id="prenom" placeholder="Prenom" required />
                   <Label htmlFor="email">Courriel</Label>
                   <Input
                     type="email"
