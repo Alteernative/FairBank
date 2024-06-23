@@ -68,6 +68,7 @@ class RegisterViewset(viewsets.ViewSet):
                 "email": user.email,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
+                "balance": user.balance,
             }
             return Response(user_data)
         else:
@@ -82,5 +83,7 @@ class UserViewset(viewsets.ViewSet):
     def list(self, request):
         queryset = User.objects.all()
         serializer = self.serializer_class(queryset, many=True)
+        print("Serialized User Data:", serializer.data)
+
         return Response(serializer.data)
 
