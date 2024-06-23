@@ -9,8 +9,49 @@ import {
 import { Input } from "@/components/ui/input";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
+import AxiosInstance from "../components/AxiosInstance.tsx";
+import {React, useState} from "react";
 
 export default function Home() {
+
+    const { handleSubmit, register, control } = useForm();
+    const navigate = useNavigate();
+    const [showMessage, setShowMessage] = useState(false);
+
+    const submission = (data) => {
+        console.log('Form Data:', data);  // Log the form data being submitted
+
+        AxiosInstance.post('login/', {
+            email: data.email,
+            password: data.password,
+        })
+        .then((response) => {
+            console.log('Response from server:', response);
+
+            if (response && response.data && response.data.token) {
+                localStorage.setItem('Token', response.data.token);
+                console.log("we logged in :) ")
+                navigate('/Dashboard');
+            } else {
+                console.log('Invalid response structure:', response);
+                setShowMessage(true);
+            }
+        })
+        .catch((error) => {
+            setShowMessage(true);
+            console.error('Error during login:', error);
+
+            if (error.response) {
+                console.error('Error response:', error.response);
+            } else if (error.request) {
+                console.error('Error request:', error.request);
+            } else {
+                console.error('Error message:', error.message);
+            }
+        });
+    };
   return (
     <section className="flex h-screen">
       <aside className="flex flex-1 flex-col gap-24">
@@ -39,22 +80,24 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleSubmit(submission)}>
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-3">
                   <Input
                     type="email"
                     id="email"
                     placeholder="nom@exemple.com"
+                    {...register("email")}
                     required
                   />
                   <Input
                     type="password"
                     id="password"
                     placeholder="•••••••••"
+                    {...register("password")}
                     required
                   />
-                  <Button type="button" className="mt-2">
+                  <Button type="submit" className="mt-2">
                     S'identifier
                   </Button>
                 </div>
