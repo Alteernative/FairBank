@@ -49,7 +49,7 @@ export default function FAQPage() {
             4. Mon compte est verrouillé. Que dois-je faire pour y avoir accès à nouveau?
           </AccordionTrigger>
           <AccordionContent>
-            Pour déverrouiller votre compte, veuillez communiquer avec l’équipe du Service à la clientèle de FairBank au 1-XXX-XXX-XXXX ou par courriel à fairbank@gmail.com
+            Pour déverrouiller votre compte, veuillez communiquer avec l’équipe du Service à la clientèle de FairBank au 1-800-123-4567 ou par courriel à contact@fairbank.com
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item5" className="p-4">

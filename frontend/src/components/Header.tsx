@@ -41,6 +41,15 @@ export default function Header() {
                 À Propos
               </Link>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link
+                to="/faq"
+                className="text-primary font-semibold hover:text-primary/50 transition-all duration-250"
+              >
+                FAQ
+              </Link>
+            </NavigationMenuItem>
+
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex items-center">
