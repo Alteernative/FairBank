@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import {React, useState} from "react";
+import {useState} from "react";
 
 export default function Home() {
 
@@ -21,18 +21,14 @@ export default function Home() {
     const [showMessage, setShowMessage] = useState(false);
 
     const submission = (data) => {
-        console.log('Form Data:', data);  // Log the form data being submitted
 
         AxiosInstance.post('login/', {
             email: data.email,
             password: data.password,
         })
         .then((response) => {
-            console.log('Response from server:', response);
-
             if (response && response.data && response.data.token) {
                 localStorage.setItem('Token', response.data.token);
-                console.log("we logged in :) ")
                 navigate('/Dashboard');
             } else {
                 console.log('Invalid response structure:', response);
@@ -41,14 +37,8 @@ export default function Home() {
         })
         .catch((error) => {
             setShowMessage(true);
-            console.error('Error during login:', error);
-
             if (error.response) {
                 console.error('Error response:', error.response);
-            } else if (error.request) {
-                console.error('Error request:', error.request);
-            } else {
-                console.error('Error message:', error.message);
             }
         });
     };
