@@ -82,13 +82,17 @@ export default function Header() {
         </NavigationMenu>
         <div className="flex items-center">
           {isAuthenticated? (
-
-            <Button
+            <><Button
+              variant={"ghost"}
+              className="rounded-3xl font-semibold hover:bg-primary/10"
+            >
+              <Link to={"/dashboard"}>Dashboard</Link>
+            </Button><Button
               variant={"default"} className="rounded-3xl ms-2"
               onClick={logoutUser}
             >
               Logout
-            </Button>
+            </Button></>
           ) : (
             <>
               <Button
