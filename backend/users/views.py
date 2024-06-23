@@ -66,7 +66,8 @@ class RegisterViewset(viewsets.ViewSet):
             user = serializer.save()
             user_data = {
                 "email": user.email,
-                "balance": user.balance,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
             }
             return Response(user_data)
         else:
