@@ -1,7 +1,24 @@
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import {useEffect, useState} from "react";
+import {Button} from "@/components/ui/button.tsx";
+import {useNavigate} from "react-router-dom";
 
 export default function Dashboard() {
+
+  const navigate = useNavigate();
+  const logoutUser = () => {
+
+    console.log("we clicked logout")
+    AxiosInstance.post(`logoutall/`, {}).then(
+      () => {
+
+        localStorage.removeItem("Token")
+        navigate('/')
+        console.log("Log out successfull")
+      }
+    )
+
+  }
 
     const [myData, setMyData] = useState([]);
 
@@ -31,6 +48,8 @@ export default function Dashboard() {
         ) : (
           <p>Loading data...</p>
         )}
+        {/* logout tmp button here to test function*/}
+        <Button type={"button"} onClick={logoutUser}>Log out user</Button>
       </div>
     </>
   );
