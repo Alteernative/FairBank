@@ -96,12 +96,57 @@ export default function UserPanel() {
             <p className="text-sm mt-2">Envoyer</p>
           </div> */}
 
-          <div className="text-center">
+          <Dialog>
+            <DialogTrigger>
+              <Button variant={"outline"} className="rounded-full size-14">
+                <FaHandHoldingDollar className="size-4" />
+              </Button>
+              <p className="text-sm mt-2">Demander</p>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Demander des fonds</DialogTitle>
+                <DialogDescription>
+                  Veuillez entrer le montant à demander, ainsi que le courriel
+                  du destinataire.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Montant
+                  </Label>
+                  <Input
+                    id="amount"
+                    // onInput={handleInput}
+                    defaultValue=""
+                    placeholder="$100.00"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="username" className="text-right">
+                    Courriel
+                  </Label>
+                  <Input
+                    id="username"
+                    defaultValue=""
+                    placeholder="destinataire@email.com"
+                    className="col-span-3"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit">Demander</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          {/* <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
               <FaHandHoldingDollar className="size-4" />
             </Button>
             <p className="text-sm mt-2">Demander</p>
-          </div>
+          </div> */}
 
           <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
