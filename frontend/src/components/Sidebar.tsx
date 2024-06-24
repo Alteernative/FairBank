@@ -76,7 +76,7 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <div className="mt-auto mb-5 flex flex-col gap-2">
+      <div className="mt-auto mb-5 flex flex-col gap-5">
         <Link to={"/dashboard/help"}>
           <Button
             variant={isActive("/dashboard/help") ? "default" : "ghost"}
@@ -95,14 +95,14 @@ export default function Sidebar() {
             Paramètres
           </Button>
         </Link>
-          <Button
-            variant={"destructive"}
-            onClick={handleLogout}
-            className="flex items-center gap-2 w-full justify-start"
-          >
-            <FaSignOutAlt />
-            Se déconnecter
-          </Button>
+        <Button
+          variant={"destructive"}
+          onClick={handleLogout}
+          className="flex items-center gap-2 w-full justify-start"
+        >
+          <FaSignOutAlt />
+          Se déconnecter
+        </Button>
       </div>
     </section>
   );
