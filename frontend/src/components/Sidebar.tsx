@@ -20,7 +20,7 @@ export default function Sidebar() {
         localStorage.removeItem("Token");
         setTimeout(() => {
           navigate("/");
-        }, 1000);
+        }, 500);
         console.log("Logout successful");
       })
       .catch((error) => {
@@ -95,7 +95,6 @@ export default function Sidebar() {
             Paramètres
           </Button>
         </Link>
-        <Link to={"/"}>
           <Button
             variant={"destructive"}
             onClick={handleLogout}
@@ -104,7 +103,6 @@ export default function Sidebar() {
             <FaSignOutAlt />
             Se déconnecter
           </Button>
-        </Link>
       </div>
     </section>
   );
