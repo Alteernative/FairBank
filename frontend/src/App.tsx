@@ -14,8 +14,6 @@ import DashboardOverview from "./pages/DashboardOverview";
 import DashboardExchangeRates from "./pages/DashboardExchangeRates";
 import DashboardHelp from "./pages/DashboardHelp";
 import DashboardSettings from "./pages/DashboardSettings";
-import tmpTransactionTest from "./pages/TmpTransactionTest.tsx";
-import TmpTransactionTest from "./pages/TmpTransactionTest.tsx";
 export default function App() {
   return (
     <Router>
@@ -92,13 +90,6 @@ export default function App() {
             <DashboardLayout>
               <DashboardHelp />
             </DashboardLayout>
-          }
-        />
-          <Route
-          path="/TmpTransactionTest"
-          element={
-            <TmpTransactionTest/>
-
           }
         />
         <Route
