@@ -16,6 +16,12 @@ import {
   FaEllipsisVertical,
 } from "react-icons/fa6";
 
+type UserData = {
+  firstname: string;
+  lastname: string;
+  plan: string;
+};
+
 type Activity = {
   name: string;
   date: string;
@@ -23,13 +29,19 @@ type Activity = {
   isPositive: boolean;
 };
 
-// Exemples -> Fetch les deux denrnieres transactions (nom, date, amount, isPositive)
+// Exemple -> Fetch the user data
+const user: UserData = {
+  firstname: "Jacques",
+  lastname: "Berger",
+  plan: "VIP",
+};
+// Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
 ];
 
-export default function UserPanel() {
+export default function UserPanel({ firstname, lastname, plan }: UserData) {
   return (
     // <section className="border border-cyan-500 w-3/12 flex items-center flex-col px-3 justify-between">
     <section className="w-3/12 flex items-center flex-col px-3 justify-between h-screen">
@@ -40,8 +52,8 @@ export default function UserPanel() {
           className="rounded-full size-20"
         />
         {/* Replace Name and Plan with props: {user_name}, {user_plan} */}
-        <h2 className="text-base">Name</h2>
-        <h3 className="text-sm">Plan</h3>
+        <h2 className="text-base">{`${user.firstname} ${user.lastname}`}</h2>
+        <h3 className="text-sm">{user.plan}</h3>
 
         <div className="flex mt-7 items-center justify-around w-full">
           <Dialog>
@@ -159,7 +171,7 @@ export default function UserPanel() {
 
       <img
         // src="/MasterCard1.svg"
-        src="/cards/regular/1/Visa.svg"
+        src="/cards/vip/1/MasterCard.svg"
         alt="Image of the user's bank card"
         className="p-5"
       />
