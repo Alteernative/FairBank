@@ -101,12 +101,6 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          {/* <div className="text-center">
-            <Button variant={"outline"} className="rounded-full size-14">
-              <FaMoneyBillTransfer className="size-4" />
-            </Button>
-            <p className="text-sm mt-2">Envoyer</p>
-          </div> */}
 
           <Dialog>
             <DialogTrigger>
@@ -153,12 +147,6 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          {/* <div className="text-center">
-            <Button variant={"outline"} className="rounded-full size-14">
-              <FaHandHoldingDollar className="size-4" />
-            </Button>
-            <p className="text-sm mt-2">Demander</p>
-          </div> */}
 
           <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
