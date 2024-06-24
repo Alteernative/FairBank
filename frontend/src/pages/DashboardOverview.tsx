@@ -1,23 +1,8 @@
-import AxiosInstance from "../components/AxiosInstance.tsx";
-import { useEffect, useState } from "react";
-import formatCurrency from "../utils/formatCurrency.ts";
+import formatCurrency from "@/utils/formatCurrency.ts";
+import { useUserContext } from "@/components/UserContext";
 
 export default function DashboardOverview() {
-  const [userData, setUserData] = useState([]);
-
-  const fetchUserData = () => {
-    AxiosInstance.get("users/")
-      .then((res) => {
-        setUserData(res.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  const { user } = useUserContext();
 
   return (
     // <main className="border border-green-500 w-7/12 px-10 h-screen">
@@ -25,7 +10,7 @@ export default function DashboardOverview() {
       <h1 className="text-6xl font-jomhuria mb-10">Overview</h1>
       <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-2 row-span-1 bg-white p-4 shadow rounded-lg">
-          <h2>Balance: {formatCurrency(userData.balance)}</h2>
+          <h2>Balance: {formatCurrency(user.balance)}</h2>
         </div>
 
         <div className="col-span-1 row-span-1 bg-white p-4 shadow rounded-lg">
