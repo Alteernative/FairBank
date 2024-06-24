@@ -19,6 +19,7 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useUserContext } from "./UserContext";
+import { Link } from "react-router-dom";
 
 type Activity = {
   name: string;
@@ -53,7 +54,7 @@ export default function UserPanel() {
       {
         //  sender: data.sender,
         //push dans cette diag aussi l'email de l'user pour envoyer
-        sender: "super@email.com",
+        sender: user.email,
         receiver: data.receiver,
         amount: parseFloat(data.amount),
       },
@@ -74,14 +75,13 @@ export default function UserPanel() {
 
   return (
     // <section className="border border-cyan-500 w-3/12 flex items-center flex-col px-3 justify-between">
-    <section className="w-3/12 flex items-center flex-col px-3 justify-between h-screen">
+    <section className="w-3/12 flex items-center flex-col px-3 justify-between h-full">
       <div className="flex flex-col items-center gap-3 pt-3 w-full">
         <img
           src="https://placehold.co/100"
           alt="User Profile Image"
           className="rounded-full size-20"
         />
-        {/* Replace Name and Plan with props: {user_name}, {user_plan} */}
         <h2 className="text-base">{`${user.first_name} ${user.last_name}`}</h2>
         <h3 className="text-sm">{user.plan}</h3>
 
@@ -130,7 +130,7 @@ export default function UserPanel() {
                   </div>
                 </div>
                 <DialogFooter>
-                  <Button type="submit">Envoyereaaaaa</Button>
+                  <Button type="submit">Envoyer</Button>
                 </DialogFooter>
               </form>
             </DialogContent>
@@ -183,16 +183,17 @@ export default function UserPanel() {
           </Dialog>
 
           <div className="text-center">
-            <Button variant={"outline"} className="rounded-full size-14">
-              <FaEllipsisVertical className="size-4" />
-            </Button>
+            <Link to={"/user/settings"}>
+              <Button variant={"outline"} className="rounded-full size-14">
+                <FaEllipsisVertical className="size-4" />
+              </Button>
+            </Link>
             <p className="text-sm mt-2">Autres</p>
           </div>
         </div>
       </div>
 
       <img
-        // src="/MasterCard1.svg"
         src="/cards/vip/1/MasterCard.svg"
         alt="Image of the user's bank card"
         className="p-5"
