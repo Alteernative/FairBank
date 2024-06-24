@@ -7,41 +7,38 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import {useState} from "react";
+import { useState } from "react";
 
 export default function Home() {
+  const { handleSubmit, register, control } = useForm();
+  const navigate = useNavigate();
+  const [showMessage, setShowMessage] = useState(false);
 
-    const { handleSubmit, register, control } = useForm();
-    const navigate = useNavigate();
-    const [showMessage, setShowMessage] = useState(false);
-
-    const submission = (data) => {
-
-        AxiosInstance.post('login/', {
-            email: data.email,
-            password: data.password,
-        })
-        .then((response) => {
-            if (response && response.data && response.data.token) {
-                localStorage.setItem('Token', response.data.token);
-                navigate('/Dashboard');
-            } else {
-                console.log('Invalid response structure:', response);
-                setShowMessage(true);
-            }
-        })
-        .catch((error) => {
-            setShowMessage(true);
-            if (error.response) {
-                console.error('Error response:', error.response);
-            }
-        });
-    };
+  const submission = (data) => {
+    AxiosInstance.post("login/", {
+      email: data.email,
+      password: data.password,
+    })
+      .then((response) => {
+        if (response && response.data && response.data.token) {
+          localStorage.setItem("Token", response.data.token);
+          navigate("/dashboard");
+        } else {
+          console.log("Invalid response structure:", response);
+          setShowMessage(true);
+        }
+      })
+      .catch((error) => {
+        setShowMessage(true);
+        if (error.response) {
+          console.error("Error response:", error.response);
+        }
+      });
+  };
   return (
     <section className="flex h-screen">
       <aside className="flex flex-1 flex-col gap-24">
@@ -91,20 +88,6 @@ export default function Home() {
                     S'identifier
                   </Button>
                 </div>
-                {/* <div className="relative my-5">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                      Ou continuer avec
-                    </span>
-                  </div>
-                </div>
-                <Button variant={"outline"} type="button">
-                  <FaGoogle className="mr-2 h-4 w-4" />
-                  Google
-                </Button> */}
               </div>
             </form>
           </CardContent>

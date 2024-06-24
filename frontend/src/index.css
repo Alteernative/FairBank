@@ -92,7 +92,7 @@ body {
     rgb(255, 255, 255) 10%,
     rgba(170, 241, 206, 0.904) 100%
   ); */
-  background-color: rgb(250, 250, 250);
+  /* background-color: rgb(250, 250, 250); */
   backdrop-filter: blur(10px);
   min-height: 100vh; /* Ensure the body covers the full viewport height */
   margin: 0; /* Remove default margin */

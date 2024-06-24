@@ -1,38 +1,34 @@
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import {useEffect, useState} from "react";
-import {Button} from "@/components/ui/button.tsx";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-
   const navigate = useNavigate();
   const logoutUser = () => {
+    console.log("we clicked logout");
+    AxiosInstance.post(`logoutall/`, {}).then(() => {
+      localStorage.removeItem("Token");
+      navigate("/");
+      console.log("Log out successfull");
+    });
+  };
 
-    console.log("we clicked logout")
-    AxiosInstance.post(`logoutall/`, {}).then(
-      () => {
+  const [myData, setMyData] = useState([]);
+  console.log(myData);
+  const GetData = () => {
+    AxiosInstance.get("users/")
+      .then((res) => {
+        setMyData(res.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  };
 
-        localStorage.removeItem("Token")
-        navigate('/')
-        console.log("Log out successfull")
-      }
-    )
-  }
-
-    const [myData, setMyData] = useState([]);
-    console.log(myData)
-    const GetData = () => {
-        AxiosInstance.get('users/').then((res) => {
-            setMyData(res.data);
-        }).catch((error) => {
-            console.error("There was an error fetching the data!", error);
-        });
-    }
-
-    useEffect(() => {
-        GetData();
-    }, []);
-
+  useEffect(() => {
+    GetData();
+  }, []);
 
   return (
     <>

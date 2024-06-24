@@ -8,42 +8,42 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import {Simulate} from "react-dom/test-utils";
+import { Simulate } from "react-dom/test-utils";
 import error = Simulate.error;
 
 export default function Home() {
-
-
-  const {  handleSubmit, register } = useForm();
+  const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
-const submission = (data) => {
+  const submission = (data) => {
     console.log(data);
-    AxiosInstance.post('register/', {
-      email: data.email,
-      password: data.password,
-      first_name: data.first_name,
-      last_name: data.last_name,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
+    AxiosInstance.post(
+      "register/",
+      {
+        email: data.email,
+        password: data.password,
+        first_name: data.first_name,
+        last_name: data.last_name,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    })
-    .then(() => {
-      console.log("registered successfully");
-      navigate(`/connexion`);
-    })
-    .catch((error) => {
-      if (error.response) {
-        console.error('Error response:', error.response);
-      }
-    });
+    )
+      .then(() => {
+        console.log("registered successfully");
+        navigate(`/connexion`);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error response:", error.response);
+        }
+      });
   };
-
 
   return (
     <section className="flex h-screen">
@@ -67,7 +67,9 @@ const submission = (data) => {
         {/* <Card className="w-96 h-[25rem] mt-52"> */}
         <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">Ouvrir un Compte Courant</CardTitle>
+            <CardTitle className="text-2xl text-center">
+              Ouvrir un Compte Courant
+            </CardTitle>
             <CardDescription className="text-center">
               Entrer votre email ci-dessous pour créer votre compte
             </CardDescription>
@@ -75,21 +77,23 @@ const submission = (data) => {
           <CardContent>
             {/* <form onSubmit={handleFormSubmit()}> */}
             <form onSubmit={handleSubmit(submission)}>
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-3">
-                  <Label htmlFor="name">Nom</Label>
-                  <Input type="text"
-                         id="last_name"
-                         placeholder="Nom"
-                         {...register("last_name")}
-                         required
-                  />
                   <Label htmlFor="prenom">Prenom</Label>
-                  <Input type="text"
-                         id="first_name"
-                         placeholder="Prenom"
-                         required
-                          {...register("first_name")}
+                  <Input
+                    type="text"
+                    id="first_name"
+                    placeholder="Prenom"
+                    required
+                    {...register("first_name")}
+                  />
+                  <Label htmlFor="name">Nom</Label>
+                  <Input
+                    type="text"
+                    id="last_name"
+                    placeholder="Nom"
+                    {...register("last_name")}
+                    required
                   />
                   <Label htmlFor="email">Courriel</Label>
                   <Input
@@ -118,20 +122,6 @@ const submission = (data) => {
                     Se connecter avec l'email
                   </Button>
                 </div>
-                {/* <div className="relative my-5">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                      Ou continuer avec
-                    </span>
-                  </div>
-                </div>
-                <Button variant={"outline"} type="button">
-                  <FaGoogle className="mr-2 h-4 w-4" />
-                  Google
-                </Button> */}
               </div>
             </form>
           </CardContent>
