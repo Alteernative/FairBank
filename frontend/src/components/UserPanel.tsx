@@ -1,4 +1,15 @@
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   FaMoneyBillTransfer,
   FaHandHoldingDollar,
@@ -33,18 +44,65 @@ export default function UserPanel() {
         <h3 className="text-sm">Plan</h3>
 
         <div className="flex mt-7 items-center justify-around w-full">
-          <div className="text-center">
+          <Dialog>
+            <DialogTrigger>
+              <Button variant={"outline"} className="rounded-full size-14">
+                <FaMoneyBillTransfer className="size-4" />
+              </Button>
+              <p className="text-sm mt-2">Envoyer</p>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Envoyer des fonds</DialogTitle>
+                <DialogDescription>
+                  Veuillez entrer le montant à envoyer, ainsi que le courriel du
+                  destinataire.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Montant
+                  </Label>
+                  <Input
+                    id="amount"
+                    // onInput={handleInput}
+                    defaultValue=""
+                    placeholder="$100.00"
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="username" className="text-right">
+                    Courriel
+                  </Label>
+                  <Input
+                    id="username"
+                    defaultValue=""
+                    placeholder="destinataire@email.com"
+                    className="col-span-3"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button type="submit">Envoyer</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          {/* <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
               <FaMoneyBillTransfer className="size-4" />
             </Button>
             <p className="text-sm mt-2">Envoyer</p>
-          </div>
+          </div> */}
+
           <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
               <FaHandHoldingDollar className="size-4" />
             </Button>
             <p className="text-sm mt-2">Demander</p>
           </div>
+
           <div className="text-center">
             <Button variant={"outline"} className="rounded-full size-14">
               <FaEllipsisVertical className="size-4" />
@@ -56,7 +114,7 @@ export default function UserPanel() {
 
       <img
         // src="/MasterCard1.svg"
-        src="/MasterCard1.svg"
+        src="/cards/regular/1/Visa.svg"
         alt="Image of the user's bank card"
         className="p-5"
       />
