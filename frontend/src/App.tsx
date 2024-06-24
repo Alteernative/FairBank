@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
 import FAQPage from "./pages/FAQPage";
+import Politiques from "./pages/Politiques";
 import DashboardLayout from "./pages/DashboardLayout";
 import DashboardOverview from "./pages/DashboardOverview";
 import DashboardExchangeRates from "./pages/DashboardExchangeRates";
@@ -58,6 +59,14 @@ export default function App() {
           element={
             <Layout>
               <FAQPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/politiques"
+          element={
+            <Layout>
+              <Politiques />
             </Layout>
           }
         />

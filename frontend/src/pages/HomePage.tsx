@@ -97,7 +97,7 @@ function Reviews() {
             <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
               <CardHeader className="flex flex-col items-center cursor-default">
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/50" />
+                  <AvatarImage src="/woman1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Jacqueline Bergeron</h2>
@@ -110,7 +110,7 @@ function Reviews() {
             <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
               <CardHeader className="flex flex-col items-center cursor-default">
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/50" />
+                  <AvatarImage src="/man3.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Antoine Augustin</h2>
@@ -123,7 +123,7 @@ function Reviews() {
             <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
               <CardHeader className="flex flex-col items-center cursor-default">
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/50" />
+                  <AvatarImage src="/man2.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Gigi Jordan</h2>
@@ -136,7 +136,7 @@ function Reviews() {
             <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
               <CardHeader className="flex flex-col items-center cursor-default">
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/50" />
+                  <AvatarImage src="/man4.png" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Charles Bisonette</h2>
@@ -149,7 +149,7 @@ function Reviews() {
             <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
               <CardHeader className="flex flex-col items-center cursor-default">
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/50" />
+                  <AvatarImage src="/man1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Émile Paquette</h2>

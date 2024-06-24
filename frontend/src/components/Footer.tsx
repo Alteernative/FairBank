@@ -80,6 +80,9 @@ export default function Footer() {
             <Button variant="link">
               <Link to={"/faq"}>FAQ</Link>
             </Button>
+            <Button variant="link">
+              <Link to={"/politiques"}>Confidentialité et sécurité</Link>
+            </Button>
           </div>
         </section>
         {/* Right */}

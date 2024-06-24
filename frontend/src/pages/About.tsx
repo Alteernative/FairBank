@@ -1,13 +1,22 @@
 export default function Apropos() {
   return (
     <>
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-2">Notre Mission</h2>
-        <p className="text-gray-700">Contribuer à la réussite des nos clients et à la prospérité des collectivités. <br />
-          Nous nous engageons à offrir des services bancaires efficaces en assurant la sécurité de vos données pour que vous puissiez investir dans votre futur.</p>
+      <section className="py-12">
+        <div className="container mx-auto text-center">
+          <div className="flex justify-center">
+            <img src="/company.svg" alt="" className="w-2/5 h-auto" />
+          </div>
+          <h1 className="text-5xl font-bold mb-8">Qui est Fairbank?</h1>
+        </div>
       </section>
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-2">Nos Valeurs</h2>
+
+      <section className="mb-4">
+        <h1 className="text-4xl font-bold mb-10">Notre Mission</h1>
+        <p> Contribuer à la réussite des nos clients en leur offrant des services bancaires de qualité et en les aidant à atteindre leurs objectifs financiers. </p>
+        <p> Nous nous engageons à offrir des services bancaires efficaces en assurant la sécurité de vos données pour que vous puissiez investir dans votre futur. </p>
+
+        <h1 className="text-4xl font-bold mb-10"></h1>
+        <h2 className="text-4xl font-bold mb-10">Nos Valeurs</h2>
         <ul className="list-disc pl-6">
           <li><strong>Transparence:</strong> Maintenir une communication claire et ouverte avec nos clients.</li>
           <li><strong>Innovation:</strong> Continuellement améliorer nos services pour répondre aux besoins changeants de nos utilisateurs.</li>
