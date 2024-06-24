@@ -5,15 +5,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class TransactionSerializer(serializers.ModelSerializer):
-    sender = serializers.StringRelatedField()
-    receiver = serializers.StringRelatedField()
-
-    class Meta:
-        model = Transaction
-        fields = ['id', 'sender', 'receiver', 'amount', 'date']
-
-
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
@@ -37,6 +28,15 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+class  TransactionSerializer(serializers.ModelSerializer):
+    sender = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+    receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+
+    class Meta:
+        model = Transaction
+        fields = ('id', 'sender', 'receiver', 'amount', 'date')
+
+
 class UserWithTransactionsSerializer(serializers.ModelSerializer):
     sent_transactions = TransactionSerializer(many=True, read_only=True)
     received_transactions = TransactionSerializer(many=True, read_only=True)
@@ -44,3 +44,33 @@ class UserWithTransactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'username', 'balance', 'sent_transactions', 'received_transactions']
+
+
+class CreateTransactionSerializer(serializers.ModelSerializer):
+    sender = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+    receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+
+    class Meta:
+        model = Transaction
+        fields = ['sender', 'receiver', 'amount']
+
+    def validate(self, data):
+        sender = data.get('sender')
+        receiver = data.get('receiver')
+        amount = data.get('amount')
+
+        if sender == receiver:
+            raise serializers.ValidationError("Sender and receiver must be different users.")
+
+        if not User.objects.filter(email=receiver.email).exists():
+            raise serializers.ValidationError("Receiver does not exist.")
+
+        if amount < 0:
+            raise serializers.ValidationError("Can't send negative amount.")
+
+        if sender.balance < amount:
+            raise serializers.ValidationError("Insufficient balance.")
+
+
+
+        return data

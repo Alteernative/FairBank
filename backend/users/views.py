@@ -5,6 +5,7 @@ from .models import *
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model, authenticate
 from knox.models import AuthToken
+from rest_framework import status
 
 User = get_user_model()
 
@@ -41,6 +42,9 @@ class LoginViewset(viewsets.ViewSet):
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
                 }
+
+                print("User Data:", user_data)
+
                 return Response(
 
                     {
@@ -77,7 +81,7 @@ class RegisterViewset(viewsets.ViewSet):
 
 class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
-   # queryset = User.objects.all()
+    # queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
     def list(self, request):
@@ -87,4 +91,25 @@ class UserViewset(viewsets.ViewSet):
         print("Serialized User Data:", serializer.data)
 
         return Response(serializer.data)
+
+
+class TransactionViewset(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return CreateTransactionSerializer
+        return TransactionSerializer
+
+    def create(self, request, *args, **kwargs):
+        print("Received data:", request.data)
+        serializer = self.get_serializer_class()(data=request.data)
+        if serializer.is_valid():
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            print("Validation errors:", serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
