@@ -16,14 +16,9 @@ import {
   FaEllipsisVertical,
 } from "react-icons/fa6";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import {useForm} from "react-hook-form";
-import {useState} from "react";
-
-type UserData = {
-  firstname: string;
-  lastname: string;
-  plan: string;
-};
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useUserContext } from "./UserContext";
 
 type Activity = {
   name: string;
@@ -32,22 +27,18 @@ type Activity = {
   isPositive: boolean;
 };
 
-// Exemple -> Fetch the user data
-const user: UserData = {
-  firstname: "Jacques",
-  lastname: "Berger",
-  plan: "VIP",
-};
 // Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
 ];
 
-export default function UserPanel({ firstname, lastname, plan }: UserData) {
+// export default function UserPanel({ firstname, lastname, plan }: UserProps) {
+export default function UserPanel() {
+  const { user } = useUserContext();
 
-  const {handleSubmit, register} = useForm();
-  const [isTransactionSent, setTransaction] = useState(false)
+  const { handleSubmit, register } = useForm();
+  const [isTransactionSent, setTransaction] = useState(false);
 
   const submission = (data) => {
     // Log the data being sent
@@ -57,28 +48,29 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
       amount: parseFloat(data.amount),
     });
 
-     AxiosInstance.post('transactions/', {
-     //  sender: data.sender,
-     //push dans cette diag aussi l'email de l'user pour envoyer
-       sender: 'super@email.com',
-       receiver: data.receiver,
-       amount: parseFloat(data.amount),
-     }, {
-       headers: {
-         'Content-Type': 'application/json',
-       }
-     })
-       .then(response => {
-         console.log("Transaction successful:", response.data);
-         // navigate(`/transactions`);
-       })
-       .catch(error => {
-         console.error('Error:', error.message);
-       });
+    AxiosInstance.post(
+      "transactions/",
+      {
+        //  sender: data.sender,
+        //push dans cette diag aussi l'email de l'user pour envoyer
+        sender: "super@email.com",
+        receiver: data.receiver,
+        amount: parseFloat(data.amount),
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        console.log("Transaction successful:", response.data);
+        // navigate(`/transactions`);
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+      });
   };
-
-
-
 
   return (
     // <section className="border border-cyan-500 w-3/12 flex items-center flex-col px-3 justify-between">
@@ -90,7 +82,7 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
           className="rounded-full size-20"
         />
         {/* Replace Name and Plan with props: {user_name}, {user_plan} */}
-        <h2 className="text-base">{`${user.firstname} ${user.lastname}`}</h2>
+        <h2 className="text-base">{`${user.first_name} ${user.last_name}`}</h2>
         <h3 className="text-sm">{user.plan}</h3>
 
         <div className="flex mt-7 items-center justify-around w-full">
@@ -103,12 +95,11 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <form onSubmit={handleSubmit(submission)}>
-
                 <DialogHeader>
                   <DialogTitle>Envoyer des fonds</DialogTitle>
                   <DialogDescription>
-                    Veuillez entrer le montant à envoyer, ainsi que le courriel du
-                    destinataire.
+                    Veuillez entrer le montant à envoyer, ainsi que le courriel
+                    du destinataire.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -122,7 +113,7 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
                       defaultValue=""
                       placeholder="$100.00"
                       className="col-span-3"
-                      {...register('amount', {required: true})}
+                      {...register("amount", { required: true })}
                     />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
@@ -134,19 +125,18 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
                       defaultValue=""
                       placeholder="destinataire@email.com"
                       className="col-span-3"
-                      {...register('receiver', {required: true})}
+                      {...register("receiver", { required: true })}
                     />
                   </div>
                 </div>
                 <DialogFooter>
                   <Button type="submit">Envoyereaaaaa</Button>
                 </DialogFooter>
-                     </form>
+              </form>
             </DialogContent>
+          </Dialog>
 
-        </Dialog>
-
-        <Dialog>
+          <Dialog>
             <DialogTrigger>
               <Button variant={"outline"} className="rounded-full size-14">
                 <FaHandHoldingDollar className="size-4" />
