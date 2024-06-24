@@ -14,7 +14,7 @@ import AxiosInstance from "../components/AxiosInstance.tsx";
 import { useState } from "react";
 
 export default function Home() {
-  const { handleSubmit, register, control } = useForm();
+  const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
   const [showMessage, setShowMessage] = useState(false);
 
