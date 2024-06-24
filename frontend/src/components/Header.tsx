@@ -86,14 +86,14 @@ export default function Header() {
               variant={"ghost"}
               className="rounded-3xl font-semibold hover:bg-primary/10"
             >
-              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={"/dashboard"}>Tableau de bord</Link>
             </Button>
             <Button
               variant={"default"}
               className="rounded-3xl ms-2"
               onClick={logoutUser}
             >
-              Logout
+              Déconnecter
             </Button>
           </>
         ) : (
