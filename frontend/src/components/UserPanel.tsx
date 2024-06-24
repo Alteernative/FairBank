@@ -15,6 +15,9 @@ import {
   FaHandHoldingDollar,
   FaEllipsisVertical,
 } from "react-icons/fa6";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
+import {useForm} from "react-hook-form";
+import {useState} from "react";
 
 type UserData = {
   firstname: string;
@@ -42,6 +45,41 @@ const activities: Activity[] = [
 ];
 
 export default function UserPanel({ firstname, lastname, plan }: UserData) {
+
+  const {handleSubmit, register} = useForm();
+  const [isTransactionSent, setTransaction] = useState(false)
+
+  const submission = (data) => {
+    // Log the data being sent
+    console.log("Data being sent:", {
+      sender: data.sender,
+      receiver: data.receiver,
+      amount: parseFloat(data.amount),
+    });
+
+     AxiosInstance.post('transactions/', {
+     //  sender: data.sender,
+     //push dans cette diag aussi l'email de l'user pour envoyer
+       sender: 'super@email.com',
+       receiver: data.receiver,
+       amount: parseFloat(data.amount),
+     }, {
+       headers: {
+         'Content-Type': 'application/json',
+       }
+     })
+       .then(response => {
+         console.log("Transaction successful:", response.data);
+         // navigate(`/transactions`);
+       })
+       .catch(error => {
+         console.error('Error:', error.message);
+       });
+  };
+
+
+
+
   return (
     // <section className="border border-cyan-500 w-3/12 flex items-center flex-col px-3 justify-between">
     <section className="w-3/12 flex items-center flex-col px-3 justify-between h-screen">
@@ -64,45 +102,51 @@ export default function UserPanel({ firstname, lastname, plan }: UserData) {
               <p className="text-sm mt-2">Envoyer</p>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Envoyer des fonds</DialogTitle>
-                <DialogDescription>
-                  Veuillez entrer le montant à envoyer, ainsi que le courriel du
-                  destinataire.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Montant
-                  </Label>
-                  <Input
-                    id="amount"
-                    // onInput={handleInput}
-                    defaultValue=""
-                    placeholder="$100.00"
-                    className="col-span-3"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Courriel
-                  </Label>
-                  <Input
-                    id="username"
-                    defaultValue=""
-                    placeholder="destinataire@email.com"
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button type="submit">Envoyer</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+              <form onSubmit={handleSubmit(submission)}>
 
-          <Dialog>
+                <DialogHeader>
+                  <DialogTitle>Envoyer des fonds</DialogTitle>
+                  <DialogDescription>
+                    Veuillez entrer le montant à envoyer, ainsi que le courriel du
+                    destinataire.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Montant
+                    </Label>
+                    <Input
+                      id="amount"
+                      // onInput={handleInput}
+                      defaultValue=""
+                      placeholder="$100.00"
+                      className="col-span-3"
+                      {...register('amount', {required: true})}
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="username" className="text-right">
+                      Courriel
+                    </Label>
+                    <Input
+                      id="username"
+                      defaultValue=""
+                      placeholder="destinataire@email.com"
+                      className="col-span-3"
+                      {...register('receiver', {required: true})}
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit">Envoyereaaaaa</Button>
+                </DialogFooter>
+                     </form>
+            </DialogContent>
+
+        </Dialog>
+
+        <Dialog>
             <DialogTrigger>
               <Button variant={"outline"} className="rounded-full size-14">
                 <FaHandHoldingDollar className="size-4" />
