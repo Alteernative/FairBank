@@ -6,7 +6,7 @@ export default function DashboardOverview() {
 
   return (
     // <main className="border border-green-500 w-7/12 px-10 h-screen">
-    <main className="w-7/12 px-10 h-screen shadow-lg rounded-lg">
+    <main className="w-7/12 px-10 shadow-lg rounded-lg h-full">
       <h1 className="text-6xl font-jomhuria mb-10">Overview</h1>
       <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-2 row-span-1 bg-white p-4 shadow rounded-lg">
