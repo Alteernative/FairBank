@@ -28,7 +28,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class  TransactionSerializer(serializers.ModelSerializer):
+class TransactionSerializer(serializers.ModelSerializer):
     sender = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
     receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
 
@@ -43,7 +43,7 @@ class UserWithTransactionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'username', 'balance', 'sent_transactions', 'received_transactions']
+        fields = ['email', 'first_name', 'last_name', 'balance', 'id', 'sent_transactions', 'received_transactions']
 
 
 class CreateTransactionSerializer(serializers.ModelSerializer):
@@ -70,7 +70,5 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
 
         if sender.balance < amount:
             raise serializers.ValidationError("Insufficient balance.")
-
-
 
         return data

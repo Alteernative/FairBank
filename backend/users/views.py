@@ -38,11 +38,12 @@ class LoginViewset(viewsets.ViewSet):
 
                 user_data = {
                     "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
                 }
-
                 print("User Data:", user_data)
 
                 return Response(
