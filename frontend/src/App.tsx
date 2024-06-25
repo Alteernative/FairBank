@@ -14,6 +14,12 @@ import DashboardOverview from "./pages/DashboardOverview";
 import DashboardExchangeRates from "./pages/DashboardExchangeRates";
 import DashboardHelp from "./pages/DashboardHelp";
 import DashboardSettings from "./pages/DashboardSettings";
+import DashboardTransactions from "./pages/DashboardTransactions";
+import DashboardComparePlans from "./pages/DashboardComparePlans";
+import UserProfileSettings from "./pages/UserProfileSettings";
+// import tmpTransactionTest from "./pages/TmpTransactionTest.tsx";
+// import TmpTransactionTest from "./pages/TmpTransactionTest.tsx";
+
 export default function App() {
   return (
     <Router>
@@ -77,6 +83,22 @@ export default function App() {
           }
         />
         <Route
+          path="/dashboard/transactions"
+          element={
+            <DashboardLayout>
+              <DashboardTransactions />
+            </DashboardLayout>
+          }
+        />
+        <Route
+          path="/dashboard/compare-plans"
+          element={
+            <DashboardLayout>
+              <DashboardComparePlans />
+            </DashboardLayout>
+          }
+        />
+        <Route
           path="/dashboard/exchange-rates"
           element={
             <DashboardLayout>
@@ -92,6 +114,7 @@ export default function App() {
             </DashboardLayout>
           }
         />
+        {/* <Route path="/TmpTransactionTest" element={<TmpTransactionTest />} /> */}
         <Route
           path="/dashboard/settings"
           element={
@@ -100,6 +123,7 @@ export default function App() {
             </DashboardLayout>
           }
         />
+        <Route path="/user/settings" element={<UserProfileSettings />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
