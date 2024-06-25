@@ -29,8 +29,7 @@ export default function Sidebar() {
   };
 
   return (
-    // <section className="border border-fuchsia-500 w-2/12 flex flex-col items-center h-screen">
-    <section className="w-2/12 flex flex-col items-center h-screen">
+    <section className="w-2/12 flex flex-col items-center h-full">
       <Link to={"/"}>
         <h1 className="text-6xl font-jomhuria">FairBank</h1>
       </Link>
@@ -39,25 +38,25 @@ export default function Sidebar() {
         <Link to={"/dashboard"}>
           <Button
             variant={isActive("/dashboard") ? "default" : "ghost"}
-            className="flex items-center w-full gap-2 justify-start"
+            className="flex items-center gap-2 w-full justify-start"
           >
             <PiCirclesFourFill />
             Overview
           </Button>
         </Link>
-        <Link to={"/services"}>
+        <Link to={"/dashboard/transactions"}>
           <Button
             variant={isActive("/services") ? "default" : "ghost"}
-            className="flex items-center w-full gap-2 justify-start"
+            className="flex items-center gap-2 w-full justify-start"
           >
             <IoDocumentTextOutline />
             Transactions
           </Button>
         </Link>
-        <Link to={"/compare-plans"}>
+        <Link to={"/dashboard/compare-plans"}>
           <Button
             variant={isActive("/compare-plans") ? "default" : "ghost"}
-            className="flex items-center w-full gap-2 justify-start"
+            className="flex items-center gap-2 w-full justify-start"
           >
             <MdCompareArrows />
             Comparer les plans
@@ -68,7 +67,7 @@ export default function Sidebar() {
             variant={
               isActive("/dashboard/exchange-rates") ? "default" : "ghost"
             }
-            className="flex items-center w-full gap-2 justify-start"
+            className="flex items-center gap-2 w-full justify-start"
           >
             <BsCurrencyExchange />
             Taux de change
@@ -76,7 +75,7 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <div className="mt-auto mb-5 flex flex-col gap-5">
+      <div className="flex flex-col mt-auto mb-5 gap-5">
         <Link to={"/dashboard/help"}>
           <Button
             variant={isActive("/dashboard/help") ? "default" : "ghost"}
