@@ -10,6 +10,7 @@ type User = {
   email: string;
   plan: string;
   balance: number;
+  id: number;
 };
 
 type UserContextProps = {
@@ -28,6 +29,7 @@ const defaultUser: User = {
   // plan: "",
   plan: "Unknown",
   balance: 0,
+  id:0,
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
