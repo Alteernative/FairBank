@@ -25,7 +25,8 @@ const defaultUser: User = {
   first_name: "Loading",
   last_name: "User",
   email: "",
-  plan: "",
+  // plan: "",
+  plan: "Unknown",
   balance: 0,
 };
 
