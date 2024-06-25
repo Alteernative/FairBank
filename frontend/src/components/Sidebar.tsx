@@ -46,7 +46,7 @@ export default function Sidebar() {
         </Link>
         <Link to={"/dashboard/transactions"}>
           <Button
-            variant={isActive("/services") ? "default" : "ghost"}
+            variant={isActive("/dashboard/transactions") ? "default" : "ghost"}
             className="flex items-center gap-2 w-full justify-start"
           >
             <IoDocumentTextOutline />
@@ -55,7 +55,7 @@ export default function Sidebar() {
         </Link>
         <Link to={"/dashboard/compare-plans"}>
           <Button
-            variant={isActive("/compare-plans") ? "default" : "ghost"}
+            variant={isActive("/dashboard/compare-plans") ? "default" : "ghost"}
             className="flex items-center gap-2 w-full justify-start"
           >
             <MdCompareArrows />
