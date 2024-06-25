@@ -60,7 +60,11 @@ export default function UserPanel() {
         console.log("Transaction successful:", response.data);
         setNotification("Transaction envoyée avec succès!");
         setDialogOpen(false); // Fermer boite envoi
-        setTimeout(() => setNotification(""), 2000); // 2 sec pour clear message
+        setTimeout(() => {
+          setNotification("")
+          window.location.reload()
+        }, 500); // 2 sec pour clear message
+
       })
       .catch((error) => {
         console.error("Error:", error.message);
