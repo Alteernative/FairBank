@@ -27,9 +27,9 @@ const defaultUser: User = {
   last_name: "User",
   email: "",
   // plan: "",
-  plan: "Unknown",
+  plan: "Régulier",
   balance: 0,
-  id:0,
+  id: 0,
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
