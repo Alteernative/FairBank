@@ -1,6 +1,6 @@
 import formatCurrency from "@/utils/formatCurrency.ts";
 import { useUserContext } from "@/components/UserContext";
-
+import DashboardGraph from "@/pages/DashboardGraph.tsx";
 export default function DashboardOverview() {
   const { user } = useUserContext();
 
@@ -17,8 +17,8 @@ export default function DashboardOverview() {
           <h2>Credit Score/Graph</h2>
         </div>
 
-        <div className="col-span-2 row-span-3 bg-white p-4 shadow rounded-lg">
-          <h2>Balance Graph</h2>
+        <div className="col-span-2 row-span-3 bg-white p-4 shadow rounded-lg w-full h-full">
+          <DashboardGraph/>
         </div>
 
         <div className="col-span-1 row-span-3 bg-white p-4 shadow rounded-lg">

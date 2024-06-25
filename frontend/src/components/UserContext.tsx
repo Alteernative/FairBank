@@ -43,7 +43,7 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
     AxiosInstance.get("users/")
       .then((res) => {
         // DEBUG:
-        console.log("Fetched user data:", res.data);
+      //  console.log("Fetched user data:", res.data);
 
         setUser(res.data);
       })
