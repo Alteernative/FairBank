@@ -69,6 +69,9 @@ export default function UserPanel() {
     )
       .then((response) => {
         console.log("Transaction successful:", response.data);
+        // TODO: remove forced reload on this page after transaction
+        // TODO: Update dynamicly the balance and graph
+        window.location.reload();
         // navigate(`/transactions`);
       })
       .catch((error) => {
