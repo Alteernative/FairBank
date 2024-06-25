@@ -71,11 +71,13 @@ export default function UserPanel() {
         console.log("Transaction successful:", response.data);
         // TODO: remove forced reload on this page after transaction
         // TODO: Update dynamicly the balance and graph
+        toast.success("Les fonds ont été envoyer.");
         window.location.reload();
         // navigate(`/transactions`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
+        toast.error("Les fonds n'ont pas été envoyer.");
       });
   };
 
@@ -141,14 +143,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button
-                        type="submit"
-                        onClick={() =>
-                          toast.success("Les fonds ont été envoyer.")
-                        }
-                      >
-                        Envoyer
-                      </Button>
+                      <Button type="submit">Envoyer</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
