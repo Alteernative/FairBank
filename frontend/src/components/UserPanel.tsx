@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaMoneyBillTransfer, FaHandHoldingDollar, FaEllipsisVertical } from "react-icons/fa6";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -125,7 +126,9 @@ export default function UserPanel() {
                   </div>
                 </div>
                 <DialogFooter>
-                  <Button type="submit">Envoyer</Button>
+                  <DialogClose asChild>
+                    <Button type="submit">Envoyer</Button>
+                  </DialogClose>
                 </DialogFooter>
               </form>
             </DialogContent>
@@ -170,7 +173,9 @@ export default function UserPanel() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit">Demander</Button>
+                <DialogClose asChild>
+                  <Button type="submit">Demander</Button>
+                </DialogClose>
               </DialogFooter>
             </DialogContent>
           </Dialog>
