@@ -74,6 +74,7 @@ export default function Home() {
                   id="email"
                   placeholder="nom@exemple.com"
                   {...register("email")}
+                  autoFocus
                   required
                 />
                 <Input
