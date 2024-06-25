@@ -82,16 +82,25 @@ class RegisterViewset(viewsets.ViewSet):
 
 class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
-    # queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
     def list(self, request):
-        # queryset = User.objects.all()
         user = request.user
         serializer = UserWithTransactionsSerializer(user)
-        print("Serialized User Data:", serializer.data)
-
         return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TransactionViewset(viewsets.ModelViewSet):
@@ -113,4 +122,3 @@ class TransactionViewset(viewsets.ModelViewSet):
         else:
             print("Validation errors:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
