@@ -1,15 +1,15 @@
-import {Button} from "@/components/ui/button";
-import {Link, useNavigate} from "react-router-dom";
-import {useUserContext} from "@/components/UserContext.tsx";
+import { Button } from "@/components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "@/components/UserContext.tsx";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
-import {Label} from "@/components/ui/label.tsx";
-import {Input} from "@/components/ui/input.tsx";
-import {useForm} from "react-hook-form";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { Label } from "@/components/ui/label.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { useForm } from "react-hook-form";
 
 export default function UserProfileSettings() {
-  const {user} = useUserContext();
-  const {handleSubmit, register, setValue} = useForm();
+  const { user } = useUserContext();
+  const { handleSubmit, register, setValue } = useForm();
   const navigate = useNavigate();
 
   // Initialize form values with user context data
@@ -54,12 +54,12 @@ export default function UserProfileSettings() {
 
   return (
     <section className="flex h-full">
-      <aside className="flex-1 flex flex-col items-center justify-center gap-8">
-        <Link to={"/"} className="mt-7 ml-8">
+      <aside className="flex-1 flex flex-col items-center justify-center gap-8 mt-7">
+        <Link to={"/"} >
           <h1 className="text-6xl font-jomhuria">FairBank</h1>
         </Link>
         <div className="flex items-center justify-center h-full">
-          <img src="/reset-logo.svg" alt="Sign in image" className="h-full"/>
+          <img src="/reset-logo.svg" alt="Sign in image" className="h-full ml-60 mt-60"/>
         </div>
       </aside>
       <section className="flex flex-1 justify-around w-60 bg-white mt">
