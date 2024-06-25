@@ -35,7 +35,8 @@ function Hero() {
     <section className="flex items-center justify-around">
       <div className="flex flex-col gap-5 flex-1 items-start justify-center">
         <h2 className="font-bold text-5xl">
-          L'intérêt de votre banque ?<br />
+          L'intérêt de votre banque&nbsp;?
+          <br />
           Votre bien-être financier.
         </h2>
         <h3 className="text-2xl">

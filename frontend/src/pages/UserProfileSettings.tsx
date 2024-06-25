@@ -2,7 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "@/components/UserContext.tsx";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useForm } from "react-hook-form";
@@ -18,7 +24,6 @@ export default function UserProfileSettings() {
   setValue("email", user.email);
   setValue("id", user.id);
 
-
   const modifyUser = (data) => {
     console.log(data);
 
@@ -29,13 +34,12 @@ export default function UserProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        navigate('/dashboard')
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.error("Error updating user:", error);
       });
   };
-
 
   const updatePassword = (data) => {
     console.log(data);
@@ -44,8 +48,8 @@ export default function UserProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        localStorage.removeItem("Token")
-        navigate('/connexion')
+        localStorage.removeItem("Token");
+        navigate("/connexion");
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -55,14 +59,14 @@ export default function UserProfileSettings() {
   return (
     <section className="flex h-full">
       <aside className="flex-1 flex flex-col items-center justify-center gap-8 mt-7">
-        <Link to={"/"} >
+        <Link to={"/"}>
           <h1 className="text-6xl font-jomhuria">FairBank</h1>
         </Link>
         <div className="flex items-center justify-center h-full">
-          <img src="/reset-logo.svg" alt="Sign in image" className="h-full ml-60 mt-60"/>
+          <img src="/reset-logo.svg" alt="Sign in image" className="h-full" />
         </div>
       </aside>
-      <section className="flex flex-1 justify-around w-60 bg-white mt">
+      <section className="flex flex-1 w-60 bg-white items-center justify-center">
         <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
@@ -131,7 +135,6 @@ export default function UserProfileSettings() {
                 </div>
               </div>
             </form>
-
           </CardContent>
         </Card>
       </section>
