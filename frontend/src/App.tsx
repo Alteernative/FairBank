@@ -17,11 +17,6 @@ import DashboardSettings from "./pages/DashboardSettings";
 import DashboardTransactions from "./pages/DashboardTransactions";
 import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
-<<<<<<< HEAD
-// import tmpTransactionTest from "./pages/TmpTransactionTest.tsx";
-// import TmpTransactionTest from "./pages/TmpTransactionTest.tsx";
-=======
->>>>>>> feature/dashboard
 
 export default function App() {
   return (
@@ -117,10 +112,6 @@ export default function App() {
             </DashboardLayout>
           }
         />
-<<<<<<< HEAD
-        {/* <Route path="/TmpTransactionTest" element={<TmpTransactionTest />} /> */}
-=======
->>>>>>> feature/dashboard
         <Route
           path="/dashboard/settings"
           element={
