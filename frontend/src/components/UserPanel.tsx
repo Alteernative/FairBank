@@ -193,7 +193,7 @@ export default function UserPanel() {
       )}
 
       <img
-        src="/cards/vip/1/MasterCard.svg"
+        src="/cards/regular/1/MasterCard.svg"
         alt="Image of the user's bank card"
         className="p-5"
       />
