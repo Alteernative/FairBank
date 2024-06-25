@@ -41,13 +41,13 @@ export default function Home() {
   };
   return (
     <section className="flex h-screen">
-      <aside className="flex flex-1 flex-col gap-24">
+      <aside className="flex flex-1 flex-col gap-24 h-full">
         <Link to={"/"} className="flex mt-7 ml-8 items-center">
           {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" />
           <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
           <h1 className="text-6xl font-jomhuria">FairBank</h1>
         </Link>
-        <div className="w-full px-10">
+        <div className="flex w-full items-center justify-center">
           <img src="/login.svg" alt="Sign in image" />
         </div>
       </aside>
@@ -69,25 +69,24 @@ export default function Home() {
           <CardContent>
             <form onSubmit={handleSubmit(submission)}>
               <div className="flex flex-col gap-2">
-                <div className="flex flex-col gap-3">
-                  <Input
-                    type="email"
-                    id="email"
-                    placeholder="nom@exemple.com"
-                    {...register("email")}
-                    required
-                  />
-                  <Input
-                    type="password"
-                    id="password"
-                    placeholder="•••••••••"
-                    {...register("password")}
-                    required
-                  />
-                  <Button type="submit" className="mt-2">
-                    S'identifier
-                  </Button>
-                </div>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="nom@exemple.com"
+                  {...register("email")}
+                  autoFocus
+                  required
+                />
+                <Input
+                  type="password"
+                  id="password"
+                  placeholder="•••••••••"
+                  {...register("password")}
+                  required
+                />
+                <Button type="submit" className="mt-2">
+                  S'identifier
+                </Button>
               </div>
             </form>
           </CardContent>

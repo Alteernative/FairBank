@@ -67,7 +67,7 @@ export default function Footer() {
         {/* Middle */}
         <section className="flex flex-col flex-1 text-center">
           <h3 className="text-lg font-semibold cursor-default">Plan du site</h3>
-          <div className="flex flex-col pt-5 gap-5">
+          <div className="flex flex-col pt-5 gap-2">
             <Button variant="link">
               <Link to={"/particuliers"}>Particuliers</Link>
             </Button>
@@ -90,14 +90,17 @@ export default function Footer() {
           <h3 className="text-lg font-semibold cursor-default">
             Contactez-nous
           </h3>
-          <Input id="name" placeholder="Nom" className="w-10/12  bg-white/70" />
+          <Input id="name" placeholder="Nom" className="w-5/6  bg-white/70" />
           <Input
             type="email"
             placeholder="Email"
-            className="w-10/12  bg-white/70"
+            className="w-5/6  bg-white/70"
           />
-          <Textarea placeholder="Message" className="h-20  bg-white/70" />
-          <Button>Soumettre</Button>
+          <Textarea
+            placeholder="Message"
+            className="h-20 bg-white/70 resize-none"
+          />
+          <Button className="mt-2">Soumettre</Button>
         </section>
       </section>
       <p className="cursor-default">
