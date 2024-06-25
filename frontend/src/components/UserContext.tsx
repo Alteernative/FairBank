@@ -30,6 +30,8 @@ const defaultUser: User = {
   plan: "Régulier",
   balance: 0,
   id: 0,
+  sent_transactions :  [],
+  received_transactions : []
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);

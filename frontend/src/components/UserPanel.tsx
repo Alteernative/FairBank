@@ -72,7 +72,7 @@ export default function UserPanel() {
         // TODO: remove forced reload on this page after transaction
         // TODO: Update dynamicly the balance and graph
         toast.success("Les fonds ont été envoyer.");
-        window.location.reload();
+        setTimeout( () => {window.location.reload()},3000)
         // navigate(`/transactions`);
       })
       .catch((error) => {

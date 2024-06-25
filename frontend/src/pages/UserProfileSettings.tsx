@@ -98,6 +98,7 @@ export default function UserProfileSettings() {
                   <Input
                     type="email"
                     id="email"
+                    disabled
                     {...register("email")}
                     required
                   />
@@ -113,7 +114,7 @@ export default function UserProfileSettings() {
             <form onSubmit={handleSubmit(updatePassword)}>
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col gap-3">
-                  <Label htmlFor="email">Password</Label>
+                  <Label htmlFor="email">Mot de passe</Label>
                   <Input
                     type="password"
                     id="passowrd"
@@ -121,7 +122,7 @@ export default function UserProfileSettings() {
                     required
                   />
 
-                  <Label htmlFor="email">Confirm password</Label>
+                  <Label htmlFor="email">Confirmer le mot de passe</Label>
                   <Input
                     type="password"
                     id="passowrd2"

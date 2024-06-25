@@ -68,7 +68,7 @@ export default function Home() {
         <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
-              Ouvrir un Compte Courant
+              Ouvrir un compte membre
             </CardTitle>
             <CardDescription className="text-center">
               Entrer votre email ci-dessous pour créer votre compte
@@ -119,7 +119,7 @@ export default function Home() {
                     required
                   />
                   <Button type="submit" className="mt-2">
-                    Se connecter avec l'email
+                    S'inscrire
                   </Button>
                 </div>
               </div>

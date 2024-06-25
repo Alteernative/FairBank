@@ -51,9 +51,9 @@ export default function DashboardGraph() {
 
       transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       //  console.log(transactions)
-      console.log("the sorted transaction is ", transactions)
-      console.log("the user is ", user)
-      console.log("the balance is ", user.balance)
+      // console.log("the sorted transaction is ", transactions)
+      // console.log("the user is ", user)
+      // console.log("the balance is ", user.balance)
 
       let currentBalance = user.balance;
 
@@ -61,7 +61,7 @@ export default function DashboardGraph() {
       const balanceDataPoints: number[] = [];
 
       balanceDataPoints.push(user.balance);
-      balanceDataLabels.push(transactions.length + 1);
+      balanceDataLabels.push(0);
       transactions.forEach((transaction, index) => {
         const amount = parseFloat(transaction.amount);
         if (transaction.type === 'received') {
@@ -73,7 +73,7 @@ export default function DashboardGraph() {
         balanceDataPoints.unshift(currentBalance);
 
       });
-
+      balanceDataLabels.reverse()
       setBalanceData({
         labels: balanceDataLabels,
         datasets: [
@@ -116,7 +116,7 @@ export default function DashboardGraph() {
     }
   };
 
-  console.log(balanceData)
+  // console.log(balanceData)
   return (
 
     <Line options={options} data={balanceData}/>

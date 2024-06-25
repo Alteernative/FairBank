@@ -1,12 +1,12 @@
 export default function Apropos() {
   return (
-    <>
+    <div className={'mb-60'}>
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
             <img src="/company.svg" alt="" className="w-2/5 h-auto" />
           </div>
-          <h1 className="text-5xl font-bold mb-8">Qui est Fairbank?</h1>
+          <h1 className="text-6xl mb-14 font-jomhuria text-primary">Qui est Fairbank?</h1>
         </div>
       </section>
 
@@ -24,6 +24,6 @@ export default function Apropos() {
           <li><strong>Intégrité :</strong> Respecter les normes mises en place par gouvernement pour la réglementation et supervision des comptes.</li>
         </ul>
       </section>
-    </>
+    </div>
   )
 }

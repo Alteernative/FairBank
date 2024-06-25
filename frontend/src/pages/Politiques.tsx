@@ -1,6 +1,6 @@
 export default function Politiques() {
     return (
-        <>
+        <div className={'mb-60'}>
             <section className="flex mt-0 items-center">
                 <div className="flex flex-1 items-center justify-center">
                     <img src="/security.svg" alt="" className="w-1/3 h-auto" />
@@ -42,6 +42,6 @@ export default function Politiques() {
                     <li>FairBank doit permettre à toute personne qui en fait la demande d’accéder rapidement aux renseignements personnels la concernant, qui sont contenus dans des dossiers qui relèvent de l’institution</li>
                 </ul>
             </section>
-        </>
+        </div>
     )
 }

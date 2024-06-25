@@ -1,14 +1,24 @@
-import { FaMoneyCheckAlt, FaExchangeAlt, FaWallet, FaDollarSign, FaChartLine, FaPiggyBank, FaReceipt, FaMoneyBillWave } from 'react-icons/fa';
+import {
+  FaMoneyCheckAlt,
+  FaExchangeAlt,
+  FaWallet,
+  FaDollarSign,
+  FaChartLine,
+  FaPiggyBank,
+  FaReceipt,
+  FaMoneyBillWave,
+  FaLock
+} from 'react-icons/fa';
 
 export default function Services() {
   return (
-    <>
+    <div className={'mb-60'}>
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
             <img src="/services.svg" alt="" className="w-1/3 h-auto mb-8" />
           </div>
-          <h1 className="text-5xl font-bold mb-8">Services Offerts</h1>
+          <h1 className="text-6xl mb-14 font-jomhuria text-primary">Services Offerts</h1>
         </div>
       </section>
 
@@ -62,9 +72,14 @@ export default function Services() {
             <h2 className="text-2xl font-semibold mb-2">Tableau de bord personnalisé</h2>
             <p>Tableau de bord avec statistiques pour suivre vos dépenses et revenus.</p>
           </div>
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <FaLock className="text-green-600 text-4xl mb-4" />
+            <h2 className="text-2xl font-semibold mb-2">Securite garantie</h2>
+            <p>Fairbank utilise une encryption des données avancées pour la protection des données personnelles.</p>
+          </div>
 
         </div>
       </section>
-    </>
+    </div>
   );
 }
