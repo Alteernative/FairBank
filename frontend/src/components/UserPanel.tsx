@@ -211,12 +211,17 @@ export default function UserPanel() {
           </div>
         </div>
 
-        <img
-          // src="/cards/regular/1/MasterCard.svg"
-          src="/MasterCard1.svg"
-          alt="Image of the user's bank card"
-          className="p-5"
-        />
+        <div className="relative">
+          <img
+            // src="/cards/regular/1/MasterCard.svg"
+            src="/MasterCard1.svg"
+            alt="Image of the user's bank card"
+            className="p-3"
+          />
+          <p className="absolute bottom-[2.3vw] left-[2.3vw] font-semibold text-white text-[1.1vw]">
+            {user.first_name} {user.last_name}
+          </p>
+        </div>
 
         <div className="w-full mb-5">
           <h2 className="font-semibold">Activités récentes</h2>
