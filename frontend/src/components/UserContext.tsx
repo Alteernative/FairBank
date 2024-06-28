@@ -27,9 +27,11 @@ const defaultUser: User = {
   last_name: "User",
   email: "",
   // plan: "",
-  plan: "Unknown",
+  plan: "Régulier",
   balance: 0,
-  id:0,
+  id: 0,
+  sent_transactions: [],
+  received_transactions: [],
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -43,7 +45,7 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
     AxiosInstance.get("users/")
       .then((res) => {
         // DEBUG:
-        console.log("Fetched user data:", res.data);
+        //  console.log("Fetched user data:", res.data);
 
         setUser(res.data);
       })

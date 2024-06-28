@@ -29,16 +29,16 @@ export default function Sidebar() {
   };
 
   return (
-    <section className="w-2/12 flex flex-col items-center h-full">
+    <section className="flex h-full w-2/12 flex-col items-center">
       <Link to={"/"}>
-        <h1 className="text-6xl font-jomhuria">FairBank</h1>
+        <h1 className="font-jomhuria text-6xl">FairBank</h1>
       </Link>
 
-      <div className="flex flex-col gap-5 mt-10">
+      <div className="mt-10 flex flex-col gap-5">
         <Link to={"/dashboard"}>
           <Button
             variant={isActive("/dashboard") ? "default" : "ghost"}
-            className="flex items-center gap-2 w-full justify-start"
+            className="flex w-full items-center justify-start gap-2"
           >
             <PiCirclesFourFill />
             Overview
@@ -46,8 +46,8 @@ export default function Sidebar() {
         </Link>
         <Link to={"/dashboard/transactions"}>
           <Button
-            variant={isActive("/services") ? "default" : "ghost"}
-            className="flex items-center gap-2 w-full justify-start"
+            variant={isActive("/dashboard/transactions") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
           >
             <IoDocumentTextOutline />
             Transactions
@@ -55,8 +55,8 @@ export default function Sidebar() {
         </Link>
         <Link to={"/dashboard/compare-plans"}>
           <Button
-            variant={isActive("/compare-plans") ? "default" : "ghost"}
-            className="flex items-center gap-2 w-full justify-start"
+            variant={isActive("/dashboard/compare-plans") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
           >
             <MdCompareArrows />
             Comparer les plans
@@ -67,7 +67,7 @@ export default function Sidebar() {
             variant={
               isActive("/dashboard/exchange-rates") ? "default" : "ghost"
             }
-            className="flex items-center gap-2 w-full justify-start"
+            className="flex w-full items-center justify-start gap-2"
           >
             <BsCurrencyExchange />
             Taux de change
@@ -75,11 +75,11 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <div className="flex flex-col mt-auto mb-5 gap-5">
+      <div className="mb-5 mt-auto flex flex-col gap-5">
         <Link to={"/dashboard/help"}>
           <Button
             variant={isActive("/dashboard/help") ? "default" : "ghost"}
-            className="flex items-center gap-2 w-full justify-start"
+            className="flex w-full items-center justify-start gap-2"
           >
             <FaRegQuestionCircle />
             Aide
@@ -88,7 +88,7 @@ export default function Sidebar() {
         <Link to={"/dashboard/settings"}>
           <Button
             variant={isActive("/dashboard/settings") ? "default" : "ghost"}
-            className="flex items-center gap-2 w-full justify-start"
+            className="flex w-full items-center justify-start gap-2"
           >
             <FaCog />
             Paramètres
@@ -97,7 +97,7 @@ export default function Sidebar() {
         <Button
           variant={"destructive"}
           onClick={handleLogout}
-          className="flex items-center gap-2 w-full justify-start"
+          className="flex w-full items-center justify-start gap-2"
         >
           <FaSignOutAlt />
           Se déconnecter
