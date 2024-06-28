@@ -5,7 +5,7 @@ import { UserContextProvider } from "@/components/UserContext.tsx";
 // export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (
-    <section className="flex w-full py-7 h-screen">
+    <section className="flex h-screen w-full py-7">
       <UserContextProvider>
         <Sidebar />
         {children}

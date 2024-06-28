@@ -33,16 +33,16 @@ export default function Home() {
 function Hero() {
   return (
     <section className="flex items-center justify-around">
-      <div className="flex flex-col gap-5 flex-1 items-start justify-center">
-        <h2 className="font-bold text-5xl">
-          L'intérêt de votre banque&nbsp;?
+      <div className="flex flex-1 flex-col items-start justify-center gap-5">
+        <h2 className="text-5xl font-bold">
+          L'intérêt de notre banque&nbsp;?
           <br />
           Votre bien-être financier.
         </h2>
         <h3 className="text-2xl">
           Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
         </h3>
-        <Button variant={"default"} size={"lg"} className="rounded-3xl w-6/12">
+        <Button variant={"default"} size={"lg"} className="w-6/12 rounded-3xl">
           <Link to={"/inscription"}>Devenir membre</Link>
         </Button>
       </div>
@@ -55,9 +55,9 @@ function Hero() {
 
 function Sponsors() {
   return (
-    <section className="flex flex-col text-center mt-24 opacity-70">
+    <section className="mt-24 flex flex-col text-center opacity-70">
       <h3 className="font-semibold">Magasinez dans vos boutiques préférées</h3>
-      <div className="flex items-center justify-around w-full">
+      <div className="flex w-full items-center justify-around">
         <IconContext.Provider value={{ size: "50px" }}>
           <FaApple />
           <FaAmazon />
@@ -74,11 +74,11 @@ function Sponsors() {
 
 function About() {
   return (
-    <section className="flex mt-24 items-center">
+    <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-center justify-center">
         <img src="/about_us.svg" alt="" />
       </div>
-      <div className="flex flex-col flex-1 items-start justify-center">
+      <div className="flex flex-1 flex-col items-start justify-center">
         <h2 className="text-2xl font-bold">Faites Valoir Vos Avoirs</h2>
         <p>
           Nous nous engageons à offrir des services bancaires efficaces pour
@@ -95,8 +95,8 @@ function About() {
 
 function CallToAction() {
   return (
-    <section className="flex mt-24 items-center">
-      <div className="flex flex-col flex-1 items-start justify-center">
+    <section className="mt-24 flex items-center">
+      <div className="flex flex-1 flex-col items-start justify-center">
         <h2 className="text-2xl font-semibold">
           Obtenez les services bancaires que vous méritez!
         </h2>
@@ -116,13 +116,13 @@ function CallToAction() {
 
 function Reviews() {
   return (
-    <section className="flex flex-col items-center justify-center my-20 mx-10">
-      <h2 className="text-lg font-bold mb-3 opacity-70">Avis de nos membres</h2>
+    <section className="mx-10 my-20 flex flex-col items-center justify-center">
+      <h2 className="mb-3 text-lg font-bold opacity-70">Avis de nos membres</h2>
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
-              <CardHeader className="flex flex-col items-center cursor-default">
+            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+              <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/woman1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
@@ -137,8 +137,8 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
-              <CardHeader className="flex flex-col items-center cursor-default">
+            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+              <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/man3.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
@@ -152,8 +152,8 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
-              <CardHeader className="flex flex-col items-center cursor-default">
+            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+              <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/man2.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
@@ -167,8 +167,8 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
-              <CardHeader className="flex flex-col items-center cursor-default">
+            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+              <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/man4.png" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
@@ -182,8 +182,8 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex flex-col h-80 items-center p-6  bg-white/70">
-              <CardHeader className="flex flex-col items-center cursor-default">
+            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+              <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/man1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>

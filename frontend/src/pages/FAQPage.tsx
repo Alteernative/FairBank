@@ -4,15 +4,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 
 export default function FAQPage() {
   return (
-    <section className="my-20 flex items-center justify-center flex-col">
-      <h1 className="text-6xl mb-14 font-jomhuria text-primary">FAQ</h1>
+    <section className="my-20 flex flex-col items-center justify-center">
+      <h1 className="mb-14 font-jomhuria text-6xl text-primary">FAQ</h1>
       <Accordion
         type="single"
         collapsible
-        className="w-2/3 bg-white p-3 rounded-md mb-20"
+        className="mb-20 w-2/3 rounded-md bg-white p-3"
       >
         <AccordionItem value="item1" className="p-4">
           <AccordionTrigger className="text-lg">
@@ -20,9 +21,9 @@ export default function FAQPage() {
           </AccordionTrigger>
           <AccordionContent>
             Rien de plus simple! Vous pouvez ouvrir un compte en visitant{" "}
-            <a href="http://localhost:5173/inscription">
+            <Link to={"/inscription"} className="hover:underline">
               fairbank.com/inscription
-            </a>{" "}
+            </Link>{" "}
             et en présentant une demande en ligne.
           </AccordionContent>
         </AccordionItem>
@@ -31,17 +32,17 @@ export default function FAQPage() {
             2. Qui peut ouvrir un compte à FairBank?
           </AccordionTrigger>
           <AccordionContent>
-            Chaque client de FairBank doit :
-            <ul className="list-disc ml-4">
+            Chaque client chez FairBank doit :
+            <ul className="ml-4 mt-1 list-disc">
               <li>Être des résidents canadiens;</li>
               <li>
-                Avoir atteint l’âge de la majorité dans leur province (18 ou 19
-                ans, selon l’endroit où ils vivent);
+                Avoir atteint l'âge de la majorité dans leur province (18 ou 19
+                ans, selon l'endroit où ils vivent);
               </li>
-              <li>Posséder un numéro d’assurance sociale.</li>
+              <li>Posséder un numéro d'assurance sociale.</li>
             </ul>
             <p className="mt-4">
-              Remarque : pour vous inscrire en ligne, un numéro de téléphone
+              Remarque : Pour vous inscrire en ligne, un numéro de téléphone
               mobile canadien est requis.
             </p>
           </AccordionContent>
@@ -51,7 +52,7 @@ export default function FAQPage() {
             3. Les dépôts directs ont-ils une période de retenue?
           </AccordionTrigger>
           <AccordionContent>
-            Non, vos fonds sont disponibles dès qu’ils sont déposés.
+            Non, vos fonds sont disponibles dès qu'ils sont déposés.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item4" className="p-4">
@@ -60,7 +61,7 @@ export default function FAQPage() {
             nouveau?
           </AccordionTrigger>
           <AccordionContent>
-            Pour déverrouiller votre compte, veuillez communiquer avec l’équipe
+            Pour déverrouiller votre compte, veuillez communiquer avec l'équipe
             du Service à la clientèle de FairBank au 1-800-123-4567 ou par
             courriel à contact@fairbank.com
           </AccordionContent>
@@ -100,12 +101,12 @@ export default function FAQPage() {
         </AccordionItem>
         <AccordionItem value="item8" className="p-4">
           <AccordionTrigger className="text-lg">
-            8. Puis-je profiter des services de FairBank si je vis à l’extérieur
+            8. Puis-je profiter des services de FairBank si je vis à l'extérieur
             du Canada?
           </AccordionTrigger>
           <AccordionContent>
-            Vous pouvez continuer d’accéder à votre compte actuel pendant que
-            vous voyagez à l’extérieur du Canada. Toutefois, tous les titulaires
+            Vous pouvez continuer d'accéder à votre compte actuel pendant que
+            vous voyagez à l'extérieur du Canada. Toutefois, tous les titulaires
             de comptes de la Banque EQ doivent être des résidents canadiens pour
             pouvoir conserver leur compte.
           </AccordionContent>
@@ -116,15 +117,15 @@ export default function FAQPage() {
           </AccordionTrigger>
           <AccordionContent>
             Vous pouvez utiliser votre carte partout où les cartes Visa sont
-            acceptées, tant au Canada qu’à l’étranger.
+            acceptées, tant au Canada qu'à l'étranger.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item10" className="p-4">
           <AccordionTrigger className="text-lg">
-            10. Où puis-je trouver mes feuillets d’impôt?
+            10. Où puis-je trouver mes feuillets d'impôt?
           </AccordionTrigger>
           <AccordionContent>
-            Une fois que vous avez ouvert une session, naviguez jusqu’à l’onglet
+            Une fois que vous avez ouvert une session, naviguez jusqu'à l'onglet
             « Mes comptes » pour télécharger l'historique de nos transactions.
           </AccordionContent>
         </AccordionItem>

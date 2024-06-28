@@ -37,18 +37,18 @@ export default function Header() {
   };
 
   return (
-    <header className="flex justify-between items-center mt-7">
+    <header className="mt-7 flex items-center justify-between">
       <Link to="/" className="flex items-center">
         {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" />
           <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
-        <h1 className="text-6xl font-jomhuria text-primary">FairBank</h1>
+        <h1 className="font-jomhuria text-6xl text-primary">FairBank</h1>
       </Link>
       <NavigationMenu>
         <NavigationMenuList className="gap-5">
           <NavigationMenuItem>
             <Link
               to="/particuliers"
-              className="text-primary font-semibold hover:text-primary/50 transition-all duration-250"
+              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
             >
               Particuliers
             </Link>
@@ -56,7 +56,7 @@ export default function Header() {
           <NavigationMenuItem>
             <Link
               to="/services"
-              className="text-primary font-semibold hover:text-primary/50 transition-all duration-250"
+              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
             >
               Services
             </Link>
@@ -64,7 +64,7 @@ export default function Header() {
           <NavigationMenuItem>
             <Link
               to="/apropos"
-              className="text-primary font-semibold hover:text-primary/50 transition-all duration-250"
+              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
             >
               À Propos
             </Link>
@@ -72,7 +72,7 @@ export default function Header() {
           <NavigationMenuItem>
             <Link
               to="/faq"
-              className="text-primary font-semibold hover:text-primary/50 transition-all duration-250"
+              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
             >
               FAQ
             </Link>
@@ -90,7 +90,7 @@ export default function Header() {
             </Button>
             <Button
               variant={"default"}
-              className="rounded-3xl ms-2"
+              className="ms-2 rounded-3xl"
               onClick={logoutUser}
             >
               Déconnecter
@@ -104,7 +104,7 @@ export default function Header() {
             >
               <Link to={"/connexion"}>Se connecter</Link>
             </Button>
-            <Button variant={"default"} className="rounded-3xl ms-2">
+            <Button variant={"default"} className="ms-2 rounded-3xl">
               <Link to={"/inscription"}>Devenir membre</Link>
             </Button>
           </>

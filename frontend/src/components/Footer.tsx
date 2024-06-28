@@ -14,17 +14,17 @@ import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center mt-10 mb-3 gap-7">
+    <footer className="mb-3 mt-10 flex flex-col items-center gap-7">
       {/* Top footer */}
-      <section className="flex justify-between w-full max-w-screen-xl">
+      <section className="flex w-full max-w-screen-xl justify-between">
         {/* Left */}
-        <section className="flex flex-col flex-1">
+        <section className="flex flex-1 flex-col">
           {/* <div className="flex mb-1 cursor-default">
             <img src="/logo_no_bg.png" alt="logo du site" className="w-7"/>
             <h2 className="text-xl font-semibold">FairBank</h2>
           </div> */}
           <div className="cursor-default">
-            <h1 className="text-6xl font-jomhuria">FairBank</h1>
+            <h1 className="font-jomhuria text-6xl">FairBank</h1>
             <p>Banque différente, avenir&nbsp;différent.</p>
           </div>
           <section className="mt-10">
@@ -46,7 +46,7 @@ export default function Footer() {
           </section>
 
           {/* Socials */}
-          <section className="flex mt-auto gap-3 py-2">
+          <section className="mt-auto flex gap-3 py-2">
             <a href="https://facebook.com">
               <FaFacebookF className="cursor-pointer hover:opacity-70" />
             </a>
@@ -65,9 +65,9 @@ export default function Footer() {
           </section>
         </section>
         {/* Middle */}
-        <section className="flex flex-col flex-1 text-center">
-          <h3 className="text-lg font-semibold cursor-default">Plan du site</h3>
-          <div className="flex flex-col pt-5 gap-2">
+        <section className="flex flex-1 flex-col text-center">
+          <h3 className="cursor-default text-lg font-semibold">Plan du site</h3>
+          <div className="flex flex-col gap-2 pt-5">
             <Button variant="link">
               <Link to={"/particuliers"}>Particuliers</Link>
             </Button>
@@ -86,8 +86,8 @@ export default function Footer() {
           </div>
         </section>
         {/* Right */}
-        <section className="flex flex-col flex-1 text-center gap-2">
-          <h3 className="text-lg font-semibold cursor-default">
+        <section className="flex flex-1 flex-col gap-2 text-center">
+          <h3 className="cursor-default text-lg font-semibold">
             Contactez-nous
           </h3>
           <Input id="name" placeholder="Nom" className="w-5/6  bg-white/70" />
@@ -98,7 +98,7 @@ export default function Footer() {
           />
           <Textarea
             placeholder="Message"
-            className="h-20 bg-white/70 resize-none"
+            className="h-20 resize-none bg-white/70"
           />
           <Button className="mt-2">Soumettre</Button>
         </section>
