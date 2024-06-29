@@ -32,9 +32,13 @@ class LoginViewset(viewsets.ViewSet):
                 # receive all transactions sent and received
                 sent_transactions = Transaction.objects.filter(sender=user)
                 received_transactions = Transaction.objects.filter(receiver=user)
+                pending_transactions_sender = PendingTrasactions.objects.filter(sender=user)
+                pending_transactions_receiver = PendingTrasactions.objects.filter(receiver=user)
 
                 sent_serializer = TransactionSerializer(sent_transactions, many=True)
                 received_serializer = TransactionSerializer(received_transactions, many=True)
+                sender_pending_serializer = PendingTransactionSerializer(pending_transactions_sender, many=True)
+                receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
 
                 user_data = {
                     "email": user.email,
@@ -43,7 +47,10 @@ class LoginViewset(viewsets.ViewSet):
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
+                    "sender_pending_transactions": sender_pending_serializer.data,
+                    "receiver_pending_transactions": receiver_pending_serializer.data
                 }
+
                 print("User Data:", user_data)
 
                 return Response(
