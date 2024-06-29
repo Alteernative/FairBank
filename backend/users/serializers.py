@@ -82,3 +82,13 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Insufficient balance.")
 
         return data
+
+
+class PendingTransactionSerializer(serializers.ModelSerializer):
+    sender = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+    receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+
+    class Meta:
+        model = Transaction
+        fields = ('id', 'sender', 'receiver', 'amount', 'date', 'status')
+
