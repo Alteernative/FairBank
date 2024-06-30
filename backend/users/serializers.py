@@ -89,6 +89,6 @@ class PendingTransactionSerializer(serializers.ModelSerializer):
     receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
 
     class Meta:
-        model = Transaction
+        model = PendingTrasactions
         fields = ('id', 'sender', 'receiver', 'amount', 'date', 'status')
 
