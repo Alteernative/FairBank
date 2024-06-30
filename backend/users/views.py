@@ -129,3 +129,18 @@ class TransactionViewset(viewsets.ModelViewSet):
         else:
             print("Validation errors:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RequestTransactionViewset(viewsets.ModelViewSet):
+    queryset = PendingTrasactions.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = PendingTransactionSerializer
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print("the serializer is ", serializer)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

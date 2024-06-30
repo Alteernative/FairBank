@@ -109,7 +109,11 @@ class Transaction(models.Model):
 class PendingTrasactions(models.Model):
     sender = models.ForeignKey(CustomUser, related_name='pending_sent_transactions', on_delete=models.CASCADE)
     receiver = models.ForeignKey(CustomUser, related_name='pending_received_transactions', on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, default='pending')
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateTimeField(auto_now_add=True)
 
