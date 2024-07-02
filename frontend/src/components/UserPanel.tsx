@@ -117,9 +117,9 @@ export default function UserPanel() {
         console.log("Transaction successful:", response.data);
         toast.success("Les fonds ont été demandé.");
         setTimeout(() => {
-          //window.location.reload();
+          window.location.reload();
         }, 3000);
-        // navigate(`/transactions`);
+        // navigate(`/dashboard`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
@@ -138,6 +138,9 @@ export default function UserPanel() {
       amount: transaction.amount,
     })
       .then((transaction) => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
         console.log("Update successful:", transaction);
       })
       .catch((error) => {
