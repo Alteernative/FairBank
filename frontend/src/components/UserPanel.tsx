@@ -279,17 +279,24 @@ export default function UserPanel() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative my-4 hidden lg:block">
           <img
-            // src="/cards/regular/1/MasterCard.svg"
-            src="/MasterCard1.svg"
+            src="/cards/horizontal/regular/1/Visa.svg"
             alt="Image of the user's bank card"
             draggable="false"
             className="p-3"
           />
-          <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-semibold text-white">
+          <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-medium text-white">
             {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
+        </div>
+        <div className="relative my-4 lg:hidden">
+          <img
+            src="/cards/vertical/regular/1/Visa.svg"
+            alt="Image of the user's bank card"
+            draggable="false"
+            className="p-3"
+          />
         </div>
 
         <div className="mb-5 w-full">
