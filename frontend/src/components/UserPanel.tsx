@@ -282,6 +282,7 @@ export default function UserPanel() {
             // src="/cards/regular/1/MasterCard.svg"
             src="/MasterCard1.svg"
             alt="Image of the user's bank card"
+            draggable="false"
             className="p-3"
           />
           <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-semibold text-white">
