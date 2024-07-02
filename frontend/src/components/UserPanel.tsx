@@ -331,7 +331,7 @@ export default function UserPanel() {
                       onClick={() =>
                         updateTransactionStatus(transaction, "rejected")
                       }
-                      className="rounded bg-green-500 px-2 py-1 text-white"
+                      className="rounded bg-red-500 px-2 py-1 text-white"
                     >
                       X
                     </button>
