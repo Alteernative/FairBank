@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import formatDate from "@/utils/formatDate.ts";
+
 import {
   Dialog,
   DialogClose,
@@ -23,6 +25,7 @@ import { useState } from "react";
 import { useUserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import { log10 } from "chart.js/helpers";
 
 type Activity = {
   name: string;
@@ -30,7 +33,15 @@ type Activity = {
   amount: string;
   isPositive: boolean;
 };
-
+interface Transaction {
+  id: number;
+  sender: string;
+  receiver: string;
+  amount: string;
+  date: string;
+  status: string;
+  // Add other properties if needed
+}
 // Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
@@ -41,7 +52,9 @@ const activities: Activity[] = [
 export default function UserPanel() {
   const { user } = useUserContext();
 
-  const { handleSubmit, register } = useForm();
+  const sendForm = useForm();
+  const requestForm = useForm();
+
   const [isTransactionSent, setTransaction] = useState(false);
 
   const submission = (data) => {
@@ -83,32 +96,71 @@ export default function UserPanel() {
       });
   };
 
+  const requestTransfer = (data) => {
+    AxiosInstance.post(
+      "request/",
+      {
+        //  sender: data.sender,
+        //push dans cette diag aussi l'email de l'user pour envoyer
+        sender: data.sender,
+        receiver: user.email,
+        amount: parseFloat(data.amount),
+        // status: "pending",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        console.log("Transaction successful:", response.data);
+        toast.success("Les fonds ont été demandé.");
+        setTimeout(() => {
+          //window.location.reload();
+        }, 3000);
+        // navigate(`/transactions`);
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+        toast.error("Les fonds n'ont pas été demandé.");
+      });
+  };
+
+  const acceptTransfert = (transaction: Transaction) => {
+    console.log("clicked here");
+    AxiosInstance.put(`request/${transaction.id}/`, { status: "accepted" })
+      .then((response) => {
+        console.log("Update successful:", transaction);
+        // navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
+  };
+
+  console.log(user);
+
   return (
-    // <section className="border border-cyan-500 w-3/12 flex items-center flex-col px-3 justify-between">
     <>
-      <section className="w-3/12 flex items-center flex-col px-3 justify-between h-full">
-        <div className="flex flex-col items-center gap-3 pt-3 w-full">
-          {/* TODO: Replace the icon with the user image */}
-          {/* <img
-            src="https://placehold.co/100"
-            alt="User Profile Image"
-            className="rounded-full size-20"
-          /> */}
+      <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
+        <div className="flex w-full flex-col items-center gap-3 pt-3">
           <FaRegCircleUser className="size-16" />
           <h2 className="text-base">{`${user.first_name} ${user.last_name}`}</h2>
-          {/* <h3 className="text-sm">{user.plan}</h3> */}
           <h3 className="text-sm">Régulier</h3>
 
-          <div className="flex mt-7 items-center justify-around w-full">
+          <div className="mt-7 flex w-full items-center justify-around">
             <Dialog>
-              <DialogTrigger>
-                <Button variant={"outline"} className="rounded-full size-14">
-                  <FaMoneyBillTransfer className="size-4" />
-                </Button>
-                <p className="text-sm mt-2">Envoyer</p>
+              <DialogTrigger asChild>
+                <div>
+                  <Button variant={"outline"} className="size-14 rounded-full">
+                    <FaMoneyBillTransfer className="size-4" />
+                  </Button>
+                  <p className="mt-2 text-sm">Envoyer</p>
+                </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={handleSubmit(submission)}>
+                <form onSubmit={sendForm.handleSubmit(submission)}>
                   <DialogHeader>
                     <DialogTitle>Envoyer des fonds</DialogTitle>
                     <DialogDescription>
@@ -127,7 +179,7 @@ export default function UserPanel() {
                         defaultValue=""
                         placeholder="$100.00"
                         className="col-span-3"
-                        {...register("amount", { required: true })}
+                        {...sendForm.register("amount", { required: true })}
                       />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -139,7 +191,7 @@ export default function UserPanel() {
                         defaultValue=""
                         placeholder="destinataire@email.com"
                         className="col-span-3"
-                        {...register("receiver", { required: true })}
+                        {...sendForm.register("receiver", { required: true })}
                       />
                     </div>
                   </div>
@@ -153,60 +205,66 @@ export default function UserPanel() {
             </Dialog>
 
             <Dialog>
-              <DialogTrigger>
-                <Button variant={"outline"} className="rounded-full size-14">
-                  <FaHandHoldingDollar className="size-4" />
-                </Button>
-                <p className="text-sm mt-2">Demander</p>
+              <DialogTrigger asChild>
+                <div>
+                  <Button variant={"outline"} className="size-14 rounded-full">
+                    <FaHandHoldingDollar className="size-4" />
+                  </Button>
+                  <p className="mt-2 text-sm">Demander</p>
+                </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>Demander des fonds</DialogTitle>
-                  <DialogDescription>
-                    Veuillez entrer le montant à demander, ainsi que le courriel
-                    du destinataire.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                      Montant
-                    </Label>
-                    <Input
-                      id="amount"
-                      // onInput={handleInput}
-                      defaultValue=""
-                      placeholder="$100.00"
-                      className="col-span-3"
-                    />
+                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
+                  <DialogHeader>
+                    <DialogTitle>Demander des fonds</DialogTitle>
+                    <DialogDescription>
+                      Veuillez entrer le montant à demander, ainsi que le
+                      courriel du destinataire.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="name" className="text-right">
+                        Montant
+                      </Label>
+                      <Input
+                        id="amount"
+                        // onInput={handleInput}
+                        defaultValue=""
+                        placeholder="$100.00"
+                        className="col-span-3"
+                        {...requestForm.register("amount", { required: true })}
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="username" className="text-right">
+                        Courriel
+                      </Label>
+                      <Input
+                        id="sender"
+                        defaultValue=""
+                        placeholder="destinataire@email.com"
+                        className="col-span-3"
+                        {...requestForm.register("sender", { required: true })}
+                      />
+                    </div>
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="username" className="text-right">
-                      Courriel
-                    </Label>
-                    <Input
-                      id="username"
-                      defaultValue=""
-                      placeholder="destinataire@email.com"
-                      className="col-span-3"
-                    />
-                  </div>
-                </div>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button type="submit">Demander</Button>
-                  </DialogClose>
-                </DialogFooter>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button type="submit">Envoyer</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </form>
               </DialogContent>
             </Dialog>
 
             <div className="text-center">
               <Link to={"/user/settings"}>
-                <Button variant={"outline"} className="rounded-full size-14">
+                <Button variant={"outline"} className="size-14 rounded-full">
                   <FaEllipsisVertical className="size-4" />
                 </Button>
               </Link>
-              <p className="text-sm mt-2">Autres</p>
+              <p className="mt-2 text-sm">Autres</p>
             </div>
           </div>
         </div>
@@ -218,16 +276,16 @@ export default function UserPanel() {
             alt="Image of the user's bank card"
             className="p-3"
           />
-          <p className="absolute bottom-[2.3vw] left-[2.3vw] font-semibold text-white text-[1.1vw]">
+          <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-semibold text-white">
             {user.first_name} {user.last_name}
           </p>
         </div>
 
-        <div className="w-full mb-5">
+        <div className="mb-5 w-full">
           <h2 className="font-semibold">Activités récentes</h2>
-          <div className="space-y-2 p-2 bg-white rounded-lg shadow">
+          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
             {activities.map((activity, index) => (
-              <div key={index} className="flex justify-between items-center">
+              <div key={index} className="flex items-center justify-between">
                 <div>
                   <p className="text-base">{activity.name}</p>
                   <p className="text-sm text-gray-500">{activity.date}</p>
@@ -239,6 +297,62 @@ export default function UserPanel() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+        <div className="mb-5 w-full">
+          <h2 className="font-semibold">Activités a accepter</h2>
+          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
+            {user?.pending_sender_transactions?.map(
+              (transaction: Transaction, index: number) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div>
+                    <p className="text-base">{transaction.receiver}</p>
+                    <p className="text-sm text-gray-500">
+                      {formatDate(transaction.date)}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => acceptTransfert(transaction)}
+                      className="rounded bg-green-500 px-2 py-1 text-white"
+                    >
+                      V
+                    </button>
+                  </div>
+                  <p className="font-medium text-gray-700">
+                    {transaction.amount}
+                  </p>
+                  <p className="font-medium text-blue-500">
+                    {transaction.status}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+
+        <div className="mb-5 w-full">
+          <h2 className="font-semibold">
+            Activités en attente d'acceptation de l'autre
+          </h2>
+          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
+            {user?.pending_received_transactions?.map(
+              (transaction: Transaction, index: number) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div>
+                    <p className="text-base">{transaction.sender}</p>
+                    <p className="text-sm text-gray-500">
+                      {formatDate(transaction.date)}
+                    </p>
+                  </div>
+                  <p className="font-medium text-gray-700">
+                    {transaction.amount}
+                  </p>
+                  <p className="font-medium text-blue-500">
+                    {transaction.status}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
       </section>
