@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import formatDate from "@/utils/formatDate.ts";
-
 import {
   Dialog,
   DialogClose,
@@ -20,7 +19,7 @@ import {
   FaRegCircleUser,
 } from "react-icons/fa6";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useUserContext } from "./UserContext";
 import { Link } from "react-router-dom";
@@ -50,14 +49,13 @@ const activities: Activity[] = [
 
 // export default function UserPanel({ firstname, lastname, plan }: UserProps) {
 export default function UserPanel() {
-  const { user } = useUserContext();
-
+  const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
 
   const [isTransactionSent, setTransaction] = useState(false);
 
-  const submission = (data) => {
+  const submission = (data: FieldValues) => {
     // Log the data being sent
     console.log("Data being sent:", {
       sender: data.sender,
@@ -85,10 +83,11 @@ export default function UserPanel() {
         // TODO: remove forced reload on this page after transaction
         // TODO: Update dynamicly the balance and graph
         toast.success("Les fonds ont été envoyés.");
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-        // navigate(`/transactions`);
+        const updateUser = {
+          ...user,
+          balance: user.balance - data.amount,
+        };
+        setUser(updateUser);
       })
       .catch((error) => {
         console.error("Error:", error.message);
@@ -96,7 +95,7 @@ export default function UserPanel() {
       });
   };
 
-  const requestTransfer = (data) => {
+  const requestTransfer = (data: FieldValues) => {
     AxiosInstance.post(
       "request/",
       {
