@@ -25,6 +25,8 @@ import { useUserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { log10 } from "chart.js/helpers";
+import formatCurrency from "@/utils/formatCurrency";
+import capitalize from "@/utils/capitalize";
 
 type Activity = {
   name: string;
@@ -36,7 +38,7 @@ interface Transaction {
   id: number;
   sender: string;
   receiver: string;
-  amount: string;
+  amount: number;
   date: string;
   status: string;
   // Add other properties if needed
@@ -154,7 +156,7 @@ export default function UserPanel() {
       <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
         <div className="flex w-full flex-col items-center gap-3 pt-3">
           <FaRegCircleUser className="size-16" />
-          <h2 className="text-base">{`${user.first_name} ${user.last_name}`}</h2>
+          <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <h3 className="text-sm">Régulier</h3>
 
           <div className="mt-7 flex w-full items-center justify-around">
@@ -286,7 +288,7 @@ export default function UserPanel() {
             className="p-3"
           />
           <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-semibold text-white">
-            {user.first_name} {user.last_name}
+            {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
         </div>
 
@@ -366,7 +368,7 @@ export default function UserPanel() {
                     </p>
                   </div>
                   <p className="font-medium text-gray-700">
-                    {transaction.amount}
+                    {formatCurrency(transaction.amount)}
                   </p>
                   <p className="font-medium text-blue-500">
                     {transaction.status === "pending"
