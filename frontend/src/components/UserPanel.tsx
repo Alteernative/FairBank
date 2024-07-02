@@ -127,15 +127,21 @@ export default function UserPanel() {
       });
   };
 
-  const acceptTransfert = (transaction: Transaction) => {
-    console.log("clicked here");
-    AxiosInstance.put(`request/${transaction.id}/`, { status: "accepted" })
-      .then((response) => {
+  const updateTransactionStatus = (
+    transaction: Transaction,
+    status: string
+  ) => {
+    AxiosInstance.put(`request/${transaction.id}/`, {
+      status: status,
+      sender: transaction.sender,
+      receiver: transaction.receiver,
+      amount: transaction.amount,
+    })
+      .then((transaction) => {
         console.log("Update successful:", transaction);
-        // navigate("/dashboard");
       })
       .catch((error) => {
-        console.error("Error updating user:", error);
+        console.error("Error updating transaction:", error.response.data);
       });
   };
 
@@ -312,10 +318,22 @@ export default function UserPanel() {
                     </p>
                     <button
                       type="button"
-                      onClick={() => acceptTransfert(transaction)}
+                      onClick={() =>
+                        updateTransactionStatus(transaction, "accepted")
+                      }
                       className="rounded bg-green-500 px-2 py-1 text-white"
                     >
                       V
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        updateTransactionStatus(transaction, "rejected")
+                      }
+                      className="rounded bg-green-500 px-2 py-1 text-white"
+                    >
+                      X
                     </button>
                   </div>
                   <p className="font-medium text-gray-700">
@@ -348,7 +366,9 @@ export default function UserPanel() {
                     {transaction.amount}
                   </p>
                   <p className="font-medium text-blue-500">
-                    {transaction.status}
+                    {transaction.status === "pending"
+                      ? "en attente"
+                      : transaction.status}
                   </p>
                 </div>
               )
