@@ -381,7 +381,7 @@ export default function UserPanel() {
           </div>
         </div>
       </section>
-      <Toaster richColors closeButton />
+      <Toaster richColors />
     </>
   );
 }
