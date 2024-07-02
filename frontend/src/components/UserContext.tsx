@@ -5,6 +5,8 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 type User = {
   // firstname: string;
   // lastname: string;
+  pending_sender_transactions: [];
+  pending_received_transactions: [];
   first_name: string;
   last_name: string;
   email: string;
@@ -46,7 +48,6 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((res) => {
         // DEBUG:
         //  console.log("Fetched user data:", res.data);
-
         setUser(res.data);
       })
       .catch((error) => {
