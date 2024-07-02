@@ -47,11 +47,9 @@ class LoginViewset(viewsets.ViewSet):
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
-                    "sender_pending_transactions": sender_pending_serializer.data,
-                    "receiver_pending_transactions": receiver_pending_serializer.data
+                    "pending_sender_transactions": sender_pending_serializer.data,
+                    "pending_received_transactions": receiver_pending_serializer.data
                 }
-
-                print("User Data:", user_data)
 
                 return Response(
 
@@ -143,4 +141,10 @@ class RequestTransactionViewset(viewsets.ModelViewSet):
             print("the serializer is ", serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
+            print("Validation errors:", serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk=None):
+        print("Received a PUT request")
+        print("Request data:", request.data)
+        return Response({"message": "PUT request received"}, status=status.HTTP_200_OK)
