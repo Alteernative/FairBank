@@ -106,12 +106,13 @@ class Transaction(models.Model):
         super().save(*args, **kwargs)
 
 
-class PendingTrasactions(models.Model):
+class PendingTransactions(models.Model):
     sender = models.ForeignKey(CustomUser, related_name='pending_sender_transactions', on_delete=models.CASCADE)
     receiver = models.ForeignKey(CustomUser, related_name='pending_received_transactions', on_delete=models.CASCADE)
     STATUS_CHOICES = [
         ('pending', 'pending'),
         ('accepted', 'accepted'),
+        ('rejected', 'rejected')
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
