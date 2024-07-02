@@ -1,5 +1,4 @@
-import formatCurrency from "@/utils/formatCurrency.ts";
-import { useUserContext } from "@/components/UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
 import CountUp from "react-countup";
 
@@ -13,7 +12,6 @@ export default function DashboardOverview() {
       <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-2 row-span-1 rounded-lg bg-white p-4 shadow">
           <h2 className="mb-3 font-bold">Balance</h2>
-          {/* <h3 className={'text-4xl'}>{formatCurrency(user.balance)}</h3> */}
           <CountUp
             start={0}
             end={user.balance}
@@ -37,8 +35,6 @@ export default function DashboardOverview() {
         </div>
 
         <div className="col-span-3 row-span-1 rounded-lg bg-white p-4 shadow">
-          {/* 200 -> Nombre total de transactions du client */}
-          {/* <h2>Transactions {totalTransaction}</p> */}
           <h2>
             Transactions :{" "}
             {user.sent_transactions.length + user.received_transactions.length}
