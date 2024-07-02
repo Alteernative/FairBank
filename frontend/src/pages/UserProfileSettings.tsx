@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "@/components/UserContext.tsx";
+import { useUserContext } from "@/contexts/UserContext";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import {
   Card,
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 export default function UserProfileSettings() {
   const { user } = useUserContext();
@@ -24,7 +24,7 @@ export default function UserProfileSettings() {
   setValue("email", user.email);
   setValue("id", user.id);
 
-  const modifyUser = (data) => {
+  const modifyUser = (data: FieldValues) => {
     console.log(data);
 
     AxiosInstance.put(`users/${user.id}/`, {
@@ -41,7 +41,7 @@ export default function UserProfileSettings() {
       });
   };
 
-  const updatePassword = (data) => {
+  const updatePassword = (data: FieldValues) => {
     console.log(data);
     AxiosInstance.put(`users/${user.id}/`, {
       password: data.password,
@@ -58,18 +58,18 @@ export default function UserProfileSettings() {
 
   return (
     <section className="flex h-full">
-      <aside className="flex-1 flex flex-col items-center justify-center gap-8 mt-7">
+      <aside className="mt-7 flex flex-1 flex-col items-center justify-center gap-8">
         <Link to={"/"}>
-          <h1 className="text-6xl font-jomhuria">FairBank</h1>
+          <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
-        <div className="flex items-center justify-center h-full">
+        <div className="flex h-full items-center justify-center">
           <img src="/reset-logo.svg" alt="Sign in image" className="h-full" />
         </div>
       </aside>
-      <section className="flex flex-1 w-60 bg-white items-center justify-center">
-        <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
+      <section className="flex w-60 flex-1 items-center justify-center bg-white">
+        <Card className="mt-52 h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">
+            <CardTitle className="text-center text-2xl">
               Modifier les informations personnelles
             </CardTitle>
             <CardDescription className="text-center">

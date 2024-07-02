@@ -17,7 +17,7 @@ import DashboardSettings from "./pages/DashboardSettings";
 import DashboardTransactions from "./pages/DashboardTransactions";
 import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
-import {UserContextProvider} from "@/components/UserContext.tsx";
+import { UserContextProvider } from "@/contexts/UserContext";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
 
 export default function App() {
@@ -131,11 +131,14 @@ export default function App() {
             </UserContextProvider>
           }
         />
-        <Route path="/user/settings" element={
-          <UserContextProvider>
-            <UserProfileSettings />
-          </UserContextProvider>
-        } />
+        <Route
+          path="/user/settings"
+          element={
+            <UserContextProvider>
+              <UserProfileSettings />
+            </UserContextProvider>
+          }
+        />
 
         <Route path="*" element={<NoPage />} />
       </Routes>

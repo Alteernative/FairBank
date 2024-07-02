@@ -21,7 +21,7 @@ import {
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
-import { useUserContext } from "./UserContext";
+import { useUserContext } from "@/contexts/UserContext";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { log10 } from "chart.js/helpers";
