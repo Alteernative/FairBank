@@ -52,13 +52,21 @@ class PendingTransactionSerializer(serializers.ModelSerializer):
     receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
 
     class Meta:
-        model = PendingTrasactions
+        model = PendingTransactions
         fields = ('id', 'sender', 'receiver', 'amount', 'date', 'status')
 
     def validate(self, data):
         sender = data.get('sender')
         receiver = data.get('receiver')
         amount = data.get('amount')
+        status = data.get('status')
+
+        if self.instance:
+            current_status = self.instance.status
+            if current_status == 'rejected' and status == 'rejected':
+                raise serializers.ValidationError("Can't reject an already rejected transaction.")
+            if current_status == 'accepted' and status == 'accepted':
+                raise serializers.ValidationError("Can't accepte an already accepted transaction.")
 
         if sender == receiver:
             raise serializers.ValidationError("Sender and receiver must be different users.")
@@ -75,7 +83,9 @@ class PendingTransactionSerializer(serializers.ModelSerializer):
         return data
 
     def update(self, instance, validated_data):
-        print("Print inside serializer", instance)
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+        return instance
 
 
 class UserWithTransactionsSerializer(serializers.ModelSerializer):
