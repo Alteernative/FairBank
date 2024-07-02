@@ -1,18 +1,15 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 
-// TODO: Change first_name -> firstname & last_name -> lastname (SignUp.tsx, Backend(user/ -> views, serializers, ?))
 type User = {
-  // firstname: string;
-  // lastname: string;
-  pending_sender_transactions: [];
-  pending_received_transactions: [];
+  id: number;
   first_name: string;
   last_name: string;
   email: string;
   plan: string;
   balance: number;
-  id: number;
+  pending_sender_transactions: [];
+  pending_received_transactions: [];
 };
 
 type UserContextProps = {
@@ -20,18 +17,13 @@ type UserContextProps = {
   setUser: React.Dispatch<React.SetStateAction<User>>;
 };
 
-// Prevents have to set the type to either `user: User | null` in UserContextProps
-// TODO: Change first_name -> firstname & last_name -> lastname (SignUp.tsx, Backend(user/ -> views, serializers, ?))
 const defaultUser: User = {
-  // firstname: "Loading",
-  // lastname: "User",
-  first_name: "Loading",
-  last_name: "User",
-  email: "",
-  // plan: "",
-  plan: "Régulier",
-  balance: 0,
   id: 0,
+  first_name: "",
+  last_name: "",
+  email: "",
+  plan: "",
+  balance: 0,
   sent_transactions: [],
   received_transactions: [],
 };
@@ -46,8 +38,6 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     AxiosInstance.get("users/")
       .then((res) => {
-        // DEBUG:
-        //  console.log("Fetched user data:", res.data);
         setUser(res.data);
       })
       .catch((error) => {
