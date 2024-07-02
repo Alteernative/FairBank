@@ -15,9 +15,9 @@ export default function DashboardOverview() {
           <h2 className="mb-3 font-bold">Balance</h2>
           {/* <h3 className={'text-4xl'}>{formatCurrency(user.balance)}</h3> */}
           <CountUp
+            start={0}
             end={user.balance}
-            // end={1509815.56}
-            duration={3}
+            duration={2}
             prefix="$"
             decimals={2}
             className="font-jomhuria text-6xl"
