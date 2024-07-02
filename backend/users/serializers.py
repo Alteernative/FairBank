@@ -47,13 +47,59 @@ class TransactionSerializer(serializers.ModelSerializer):
         fields = ('id', 'sender', 'receiver', 'amount', 'date')
 
 
+class PendingTransactionSerializer(serializers.ModelSerializer):
+    sender = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+    receiver = serializers.SlugRelatedField(slug_field='email', queryset=User.objects.all())
+
+    class Meta:
+        model = PendingTransactions
+        fields = ('id', 'sender', 'receiver', 'amount', 'date', 'status')
+
+    def validate(self, data):
+        sender = data.get('sender')
+        receiver = data.get('receiver')
+        amount = data.get('amount')
+        status = data.get('status')
+
+        if self.instance:
+            current_status = self.instance.status
+            if current_status == 'rejected' and status == 'rejected':
+                raise serializers.ValidationError("Can't reject an already rejected transaction.")
+            if current_status == 'accepted' and status == 'accepted':
+                raise serializers.ValidationError("Can't accepte an already accepted transaction.")
+
+        if sender == receiver:
+            raise serializers.ValidationError("Sender and receiver must be different users.")
+
+        if not User.objects.filter(email=sender.email).exists():
+            raise serializers.ValidationError("Receiver does not exist.")
+
+        if amount < 0:
+            raise serializers.ValidationError("Can't send negative amount.")
+
+        if sender.balance < amount:
+            raise serializers.ValidationError("Insufficient balance.")
+
+        return data
+
+    def update(self, instance, validated_data):
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+        return instance
+
+
 class UserWithTransactionsSerializer(serializers.ModelSerializer):
     sent_transactions = TransactionSerializer(many=True, read_only=True)
     received_transactions = TransactionSerializer(many=True, read_only=True)
+    pending_received_transactions = PendingTransactionSerializer(many=True, read_only=True)
+    pending_sender_transactions = PendingTransactionSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'balance', 'id', 'sent_transactions', 'received_transactions']
+        fields = ['email', 'first_name', 'last_name',
+                  'balance', 'id', 'sent_transactions',
+                  'received_transactions', 'pending_received_transactions',
+                  'pending_sender_transactions']
 
 
 class CreateTransactionSerializer(serializers.ModelSerializer):

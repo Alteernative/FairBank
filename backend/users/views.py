@@ -32,9 +32,13 @@ class LoginViewset(viewsets.ViewSet):
                 # receive all transactions sent and received
                 sent_transactions = Transaction.objects.filter(sender=user)
                 received_transactions = Transaction.objects.filter(receiver=user)
+                pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
+                pending_transactions_receiver = PendingTransactions.objects.filter(receiver=user, status='pending')
 
                 sent_serializer = TransactionSerializer(sent_transactions, many=True)
                 received_serializer = TransactionSerializer(received_transactions, many=True)
+                sender_pending_serializer = PendingTransactionSerializer(pending_transactions_sender, many=True)
+                receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
 
                 user_data = {
                     "email": user.email,
@@ -43,8 +47,9 @@ class LoginViewset(viewsets.ViewSet):
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
+                    "pending_sender_transactions": sender_pending_serializer.data,
+                    "pending_received_transactions": receiver_pending_serializer.data
                 }
-                print("User Data:", user_data)
 
                 return Response(
 
@@ -87,8 +92,29 @@ class UserViewset(viewsets.ViewSet):
 
     def list(self, request):
         user = request.user
-        serializer = UserWithTransactionsSerializer(user)
-        return Response(serializer.data)
+
+        sent_transactions = Transaction.objects.filter(sender=user)
+        received_transactions = Transaction.objects.filter(receiver=user)
+        pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
+        pending_transactions_receiver = PendingTransactions.objects.filter(receiver=user, status='pending')
+
+        sent_serializer = TransactionSerializer(sent_transactions, many=True)
+        received_serializer = TransactionSerializer(received_transactions, many=True)
+        sender_pending_serializer = PendingTransactionSerializer(pending_transactions_sender, many=True)
+        receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
+
+        user_data = {
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "balance": user.balance,
+            "sent_transactions": sent_serializer.data,
+            "received_transactions": received_serializer.data,
+            "pending_sender_transactions": sender_pending_serializer.data,
+            "pending_received_transactions": receiver_pending_serializer.data
+        }
+
+        return Response(user_data)
 
     def update(self, request, pk=None):
         try:
@@ -96,7 +122,7 @@ class UserViewset(viewsets.ViewSet):
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = self.serializer_class(user, data=request.data, partial=True)
+        serializer = RegisterSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -122,3 +148,41 @@ class TransactionViewset(viewsets.ModelViewSet):
         else:
             print("Validation errors:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RequestTransactionViewset(viewsets.ModelViewSet):
+    queryset = PendingTransactions.objects.filter(status='pending')
+    permission_classes = [permissions.AllowAny]
+    serializer_class = PendingTransactionSerializer
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print("Validation errors:", serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk=None):
+        print("The primary key is : ", pk)
+        try:
+            pending_transaction = PendingTransactions.objects.get(pk=pk)
+        except PendingTransactions.DoesNotExist:
+            return Response({'error': 'Transaction not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(pending_transaction, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated_status = serializer.validated_data.get('status')
+            if updated_status == 'accepted':
+                # Create a new transaction
+                transaction = Transaction(
+                    sender=pending_transaction.sender,
+                    receiver=pending_transaction.receiver,
+                    amount=pending_transaction.amount,
+                )
+                transaction.save()
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

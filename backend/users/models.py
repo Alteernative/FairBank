@@ -104,3 +104,23 @@ class Transaction(models.Model):
             self.sender.save()
             self.receiver.save()
         super().save(*args, **kwargs)
+
+
+class PendingTransactions(models.Model):
+    sender = models.ForeignKey(CustomUser, related_name='pending_sender_transactions', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(CustomUser, related_name='pending_received_transactions', on_delete=models.CASCADE)
+    STATUS_CHOICES = [
+        ('pending', 'pending'),
+        ('accepted', 'accepted'),
+        ('rejected', 'rejected')
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return (f'Transaction from {self.sender} to {self.receiver} for {self.amount} on {self.date} with status '
+                f'{self.status}')
+
+
+
