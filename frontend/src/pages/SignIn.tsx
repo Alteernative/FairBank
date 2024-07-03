@@ -11,9 +11,10 @@ import { Link } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import { SignInSchema } from "@/schemas/UserSchema";
+import { signInSchema } from "@/schemas/UserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
 
 export default function Home() {
   const {
@@ -21,7 +22,7 @@ export default function Home() {
     register,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(SignInSchema),
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -82,10 +83,17 @@ export default function Home() {
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
-                <Input
+                {/* <Input
                   type="email"
                   id="email"
                   placeholder="nom@exemple.com"
+                  {...register("email")}
+                  autoFocus
+                /> */}
+                <FloatingLabelInput
+                  type="email"
+                  id="email"
+                  label="Courriel"
                   {...register("email")}
                   autoFocus
                 />
@@ -96,10 +104,16 @@ export default function Home() {
                   </span>
                 )}
 
-                <Input
+                {/* <Input
                   type="password"
                   id="password"
                   placeholder="••••••••"
+                  {...register("password")}
+                /> */}
+                <FloatingLabelInput
+                  type="password"
+                  id="password"
+                  label="Mot de passe"
                   {...register("password")}
                 />
                 {errors.password && (
