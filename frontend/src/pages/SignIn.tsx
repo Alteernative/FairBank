@@ -8,17 +8,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import { useState } from "react";
 
 export default function Home() {
   const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
-  const [showMessage, setShowMessage] = useState(false);
 
-  const submission = (data) => {
+  const submission = (data: FieldValues) => {
     AxiosInstance.post("login/", {
       email: data.email,
       password: data.password,
@@ -29,39 +27,40 @@ export default function Home() {
           navigate("/dashboard");
         } else {
           console.log("Invalid response structure:", response);
-          setShowMessage(true);
         }
       })
       .catch((error) => {
-        setShowMessage(true);
         if (error.response) {
           console.error("Error response:", error.response);
         }
       });
   };
+
   return (
     <section className="flex h-screen">
-      <aside className="flex flex-1 flex-col gap-24 h-full">
-        <Link to={"/"} className="flex mt-7 ml-8 items-center">
-          {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" />
-          <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
-          <h1 className="text-6xl font-jomhuria">FairBank</h1>
+      <aside className="hidden flex-1 flex-col gap-24 lg:flex">
+        <Link to={"/"} className="ml-8 mt-7 flex items-center">
+          <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
         <div className="flex w-full items-center justify-center">
           <img src="/login.svg" alt="Sign in image" />
         </div>
       </aside>
-      {/* <section className="flex flex-1 justify-center w-80 bg-green-50"> */}
-      <section className="flex flex-1 justify-center w-80 bg-white">
-        <div className="absolute top-0 right-0 m-5">
-          <Link to={"/inscription"}>
-            <Button variant={"ghost"}>Devenir membre</Button>
-          </Link>
-        </div>
-        {/* <Card className="w-96 h-[25rem] mt-52"> */}
-        <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
+
+      <main className="flex w-80 flex-1 justify-center bg-white">
+        <Button
+          asChild
+          variant={"ghost"}
+          className="absolute right-0 top-0 m-5"
+        >
+          <Link to={"/inscription"}>Devenir membre</Link>
+        </Button>
+        <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
+          <Link to={"/"}>FairBank</Link>
+        </h1>
+        <Card className="mt-52 h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">Se connecter</CardTitle>
+            <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
             <CardDescription className="text-center">
               Entrer votre email et votre mot de passe pour vous connecter.
             </CardDescription>
@@ -91,7 +90,7 @@ export default function Home() {
             </form>
           </CardContent>
         </Card>
-      </section>
+      </main>
     </section>
   );
 }
