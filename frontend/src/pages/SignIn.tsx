@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +15,16 @@ import { signInSchema } from "@/schemas/UserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox.tsx";
 
 export default function Home() {
+  const [passwordType, setPasswordType] = useState("password");
+
+  // TODO: Replace the checkbox with eye icons
+  // const [passwordEye, setPasswordEye] = useState();
+
   const {
     handleSubmit,
     register,
@@ -30,6 +38,13 @@ export default function Home() {
   });
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+    } else {
+      setPasswordType("password");
+    }
+  };
   const onSubmit = (data: FieldValues) => {
     AxiosInstance.post("login/", {
       email: data.email,
@@ -110,18 +125,32 @@ export default function Home() {
                   placeholder="••••••••"
                   {...register("password")}
                 /> */}
-                <FloatingLabelInput
-                  type="password"
-                  id="password"
-                  label="Mot de passe"
-                  {...register("password")}
-                />
+                <div>
+                  <FloatingLabelInput
+                    type={passwordType}
+                    id="password"
+                    label="Mot de passe"
+                    {...register("password")}
+                  />
+                  {/* <span>
+                    <IoEye onClick={handleClick} />
+                  </span> */}
+                </div>
                 {errors.password && (
                   <span className="flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
                     {errors.password.message}
                   </span>
                 )}
+                <div className="flex items-center gap-2">
+                  <Checkbox id="show-password" onClick={handleClick} />
+                  <label
+                    htmlFor="show-password"
+                    className="text-sm font-medium"
+                  >
+                    Afficher le mot de passe
+                  </label>
+                </div>
                 <Button type="submit" className="mt-2">
                   S'identifier
                 </Button>
