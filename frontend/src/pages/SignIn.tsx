@@ -67,13 +67,15 @@ export default function Home() {
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden flex-1 flex-col gap-24 lg:flex">
+      <aside className="hidden w-full flex-1 flex-col lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
-        <div className="flex w-full items-center justify-center">
-          <img src="/login.svg" alt="Sign in image" />
-        </div>
+        <img
+          src="/login.svg"
+          alt="Sign in image"
+          className="my-auto w-full content-center overflow-hidden"
+        />
       </aside>
 
       <main className="flex w-80 flex-1 justify-center bg-white">
