@@ -218,18 +218,17 @@ export default function Home() {
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden flex-1 flex-col gap-24 md:flex">
+      <aside className="hidden w-full flex-1 flex-col lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
-          {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" /> */}
-          {/* <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
-        <div className="w-full px-10">
-          <img src="/login.svg" alt="Sign in image" />
-        </div>
+        <img
+          src="/login.svg"
+          alt="Sign in image"
+          className="my-auto w-full content-center overflow-hidden"
+        />
       </aside>
-      {/* <section className="flex flex-1 justify-center w-80 bg-green-50"> */}
-      <section className="flex w-80 flex-1 justify-center bg-white">
+      <main className="flex w-80 flex-1 justify-center bg-white">
         <Button
           asChild
           variant={"ghost"}
@@ -237,13 +236,12 @@ export default function Home() {
         >
           <Link to={"/connexion"}>Se connecter</Link>
         </Button>
-        <h1 className="absolute left-7 top-7 font-jomhuria text-6xl md:hidden">
+        <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
           <Link to={"/"}>FairBank</Link>
         </h1>
-        {/* <Card className="w-96 h-[25rem] mt-52"> */}
         {step}
         {currentStepIndex > 0 && <Button onClick={back}>Back</Button>}
-      </section>
+      </main>
     </section>
   );
 }
