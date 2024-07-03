@@ -11,12 +11,25 @@ import { Link } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
+import { SignInSchema } from "@/schemas/UserSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FaCircleExclamation } from "react-icons/fa6";
 
 export default function Home() {
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(SignInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
   const navigate = useNavigate();
 
-  const submission = (data: FieldValues) => {
+  const onSubmit = (data: FieldValues) => {
     AxiosInstance.post("login/", {
       email: data.email,
       password: data.password,
@@ -58,6 +71,7 @@ export default function Home() {
         <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
           <Link to={"/"}>FairBank</Link>
         </h1>
+
         <Card className="mt-52 h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
@@ -66,23 +80,34 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(submission)}>
-              <div className="flex flex-col gap-2">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col gap-4">
                 <Input
                   type="email"
                   id="email"
                   placeholder="nom@exemple.com"
                   {...register("email")}
                   autoFocus
-                  required
                 />
+                {errors.email && (
+                  <span className="flex items-center gap-1 text-xs text-destructive">
+                    <FaCircleExclamation />
+                    {errors.email.message}
+                  </span>
+                )}
+
                 <Input
                   type="password"
                   id="password"
-                  placeholder="•••••••••"
+                  placeholder="••••••••"
                   {...register("password")}
-                  required
                 />
+                {errors.password && (
+                  <span className="flex items-center gap-1 text-xs text-destructive">
+                    <FaCircleExclamation />
+                    {errors.password.message}
+                  </span>
+                )}
                 <Button type="submit" className="mt-2">
                   S'identifier
                 </Button>
