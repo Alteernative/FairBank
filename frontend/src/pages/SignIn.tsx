@@ -78,7 +78,7 @@ export default function Home() {
         />
       </aside>
 
-      <main className="flex w-80 flex-1 justify-center bg-white">
+      <main className="flex w-80 flex-1 items-center justify-center bg-white">
         <Button
           asChild
           variant={"ghost"}
@@ -90,7 +90,7 @@ export default function Home() {
           <Link to={"/"}>FairBank</Link>
         </h1>
 
-        <Card className="mt-52 h-[25rem] w-96 border-none shadow-none">
+        <Card className="h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
             <CardDescription className="text-center">
