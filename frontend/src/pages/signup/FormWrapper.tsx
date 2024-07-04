@@ -19,7 +19,7 @@ export default function FormWrapper({
   children,
 }: FormWrapperProps) {
   return (
-    <Card className="mt-52 h-[25rem] w-96 border-none shadow-none">
+    <Card className="h-[25rem] w-96 border-none shadow-none">
       <CardHeader>
         <CardTitle className="text-center text-2xl">{title}</CardTitle>
         <CardDescription className="text-center">{description}</CardDescription>

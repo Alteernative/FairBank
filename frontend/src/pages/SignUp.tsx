@@ -228,7 +228,7 @@ export default function Home() {
           className="my-auto w-full content-center overflow-hidden"
         />
       </aside>
-      <main className="flex w-80 flex-1 justify-center bg-white">
+      <main className="flex w-80 flex-1 items-center justify-center bg-white">
         <Button
           asChild
           variant={"ghost"}
