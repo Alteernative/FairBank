@@ -17,14 +17,10 @@ import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox.tsx";
+// import { Checkbox } from "@/components/ui/checkbox.tsx";
 
 export default function Home() {
   const [passwordType, setPasswordType] = useState("password");
-
-  // TODO: Replace the checkbox with eye icons
-  // const [passwordEye, setPasswordEye] = useState();
-
   const {
     handleSubmit,
     register,
@@ -105,6 +101,7 @@ export default function Home() {
                   id="email"
                   label="Courriel"
                   {...register("email")}
+                  className="h-12"
                   autoFocus
                 />
                 {errors.email && (
@@ -119,13 +116,13 @@ export default function Home() {
                     id="password"
                     label="Mot de passe"
                     {...register("password")}
-                    className="pr-11"
+                    className="h-12 pr-11"
                   />
                   <Button
                     type="button"
                     variant={"ghost"}
                     size={"icon"}
-                    className="absolute right-3 top-1 size-7 select-none rounded-full"
+                    className="absolute right-3 top-2.5 size-7 select-none rounded-full"
                     onClick={handleClick}
                   >
                     {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
@@ -149,6 +146,7 @@ export default function Home() {
                   </label>
                 </div> */}
                 <Button type="submit" className="mt-2 select-none">
+                  {/* <Button type="submit" className="mt-2 h-12 select-none"> */}
                   S'identifier
                 </Button>
               </div>
