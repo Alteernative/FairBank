@@ -15,7 +15,7 @@ import { signInSchema } from "@/schemas/UserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox.tsx";
 
@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden w-full flex-1 flex-col lg:flex">
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
@@ -100,13 +100,6 @@ export default function Home() {
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
-                {/* <Input
-                  type="email"
-                  id="email"
-                  placeholder="nom@exemple.com"
-                  {...register("email")}
-                  autoFocus
-                /> */}
                 <FloatingLabelInput
                   type="email"
                   id="email"
@@ -120,23 +113,23 @@ export default function Home() {
                     {errors.email.message}
                   </span>
                 )}
-
-                {/* <Input
-                  type="password"
-                  id="password"
-                  placeholder="••••••••"
-                  {...register("password")}
-                /> */}
-                <div>
+                <div className="relative">
                   <FloatingLabelInput
                     type={passwordType}
                     id="password"
                     label="Mot de passe"
                     {...register("password")}
+                    className="pr-11"
                   />
-                  {/* <span>
-                    <IoEye onClick={handleClick} />
-                  </span> */}
+                  <Button
+                    type="button"
+                    variant={"ghost"}
+                    size={"icon"}
+                    className="absolute right-3 top-1 size-7 select-none rounded-full"
+                    onClick={handleClick}
+                  >
+                    {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+                  </Button>
                 </div>
                 {errors.password && (
                   <span className="flex items-center gap-1 text-xs text-destructive">
@@ -144,7 +137,9 @@ export default function Home() {
                     {errors.password.message}
                   </span>
                 )}
-                <div className="flex items-center gap-2">
+
+                {/* Checkbox Show/Hide password */}
+                {/* <div className="flex items-center gap-2">
                   <Checkbox id="show-password" onClick={handleClick} />
                   <label
                     htmlFor="show-password"
@@ -152,8 +147,8 @@ export default function Home() {
                   >
                     Afficher le mot de passe
                   </label>
-                </div>
-                <Button type="submit" className="mt-2">
+                </div> */}
+                <Button type="submit" className="mt-2 select-none">
                   S'identifier
                 </Button>
               </div>
