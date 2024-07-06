@@ -42,9 +42,11 @@ function Hero() {
         <h3 className="text-2xl">
           Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
         </h3>
-        <Button variant={"default"} size={"lg"} className="w-6/12 rounded-3xl">
-          <Link to={"/inscription"}>Devenir membre</Link>
-        </Button>
+        <Link to={"/inscription"} className="w-6/12">
+          <Button variant={"default"} size={"lg"} className="w-full rounded-3xl">
+            Devenir membre
+          </Button>
+        </Link>
       </div>
       <div className="flex flex-1 items-center justify-center">
         <img src="/hero.svg" alt="Card image" />
