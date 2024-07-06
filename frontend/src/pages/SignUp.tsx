@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import { Simulate } from "react-dom/test-utils";
@@ -18,8 +19,17 @@ import error = Simulate.error;
 export default function Home() {
   const { handleSubmit, register } = useForm();
   const navigate = useNavigate();
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+
   const submission = (data) => {
     console.log(data);
+
+    if (data.password !== data.passwordCheck) {
+      console.error("Passwords do not match");
+      setPasswordMismatch(true);
+      return;
+    }
+
     AxiosInstance.post(
       "register/",
       {
@@ -111,13 +121,16 @@ export default function Home() {
                     {...register("password")}
                     required
                   />
-                  <Label htmlFor="password">Confirmer le mot de passe</Label>
+                  <Label htmlFor="passwordCheck">Confirmer le mot de passe</Label>
                   <Input
                     type="password"
-                    id="repassword2"
+                    id="passwordCheck"
                     placeholder="•••••••••"
+                    {...register("passwordCheck")}
+                    className={passwordMismatch ? "border-red-500" : ""}
                     required
                   />
+                  {passwordMismatch && (<p className="text-red-500 text-sm">Veuillez entrer des mot de passe correspondants</p>)}
                   <Button type="submit" className="mt-2">
                     S'inscrire
                   </Button>
