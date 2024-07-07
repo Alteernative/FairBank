@@ -19,7 +19,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 // import { Checkbox } from "@/components/ui/checkbox.tsx";
 
-export default function Home() {
+export default function SignIn() {
   const [passwordType, setPasswordType] = useState("password");
   const {
     handleSubmit,
