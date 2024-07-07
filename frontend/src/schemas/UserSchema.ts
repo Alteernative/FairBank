@@ -5,7 +5,7 @@ export const signInSchema = z.object({
     message: "Adresse courriel invalide.",
   }),
 
-  // Error message when password is invalid
+  // TODO: Error message when password is invalid => Fetch password based on the email
   password: z.string({
     message: "Mot de passe invalide.",
   }),
