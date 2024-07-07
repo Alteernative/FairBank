@@ -15,7 +15,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const methods = useForm({
-    resolver: zodResolver(signUpSchema),
+    // resolver: zodResolver(signUpSchema),
   });
 
   const onSubmit = (data: FieldValues) => {
