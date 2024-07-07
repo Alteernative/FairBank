@@ -105,7 +105,7 @@ export default function Home() {
                   autoFocus
                 />
                 {errors.email && (
-                  <span className="flex items-center gap-1 text-xs text-destructive">
+                  <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
                     {errors.email.message}
                   </span>
@@ -116,17 +116,19 @@ export default function Home() {
                     id="password"
                     label="Mot de passe"
                     {...register("password")}
-                    className="h-12 pr-11"
+                    className="h-12 pr-12"
                   />
-                  <Button
-                    type="button"
-                    variant={"ghost"}
-                    size={"icon"}
-                    className="absolute right-3 top-2.5 size-7 select-none rounded-full"
-                    onClick={handleClick}
-                  >
-                    {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
-                  </Button>
+                  <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                    <Button
+                      type="button"
+                      variant={"ghost"}
+                      size={"icon"}
+                      className="size-7 select-none rounded-full"
+                      onClick={handleClick}
+                    >
+                      {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+                    </Button>
+                  </span>
                 </div>
                 {errors.password && (
                   <span className="flex items-center gap-1 text-xs text-destructive">
