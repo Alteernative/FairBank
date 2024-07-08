@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
-import { signInSchema } from "@/schemas/UserSchema";
+import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
