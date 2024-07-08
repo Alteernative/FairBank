@@ -3,7 +3,7 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema } from "@/schemas/UserSchema.ts";
+import { signUpSchema } from "@/schemas/SignUpSchema.ts";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
@@ -13,18 +13,23 @@ import UserForm from "./signup/UserForm.tsx";
 // TODO: Add toast is the sign up is confirmed
 export default function SignUp() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
+  const stepSchema = signUpSchema(step);
   const methods = useForm({
-    // resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(stepSchema),
   });
 
   const onSubmit = (data: FieldValues) => {
+    const allData = { ...formData, ...data };
+    setFormData(allData);
+
     // if (step < 4) {
     if (step < 3) {
       setStep(step + 1);
     } else {
-      console.log(data);
-      AxiosInstance.post("register/", data, {
+      console.log(allData);
+      AxiosInstance.post("register/", allData, {
         headers: {
           "Content-Type": "application/json",
         },

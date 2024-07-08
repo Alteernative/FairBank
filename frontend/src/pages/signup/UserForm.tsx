@@ -1,8 +1,9 @@
 import { useFormContext } from "react-hook-form";
 import StepWrapper from "./StepWrapper";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
+import { FaCircleExclamation } from "react-icons/fa6";
 
-export default function UserForm({ isLastStep }) {
+export default function UserForm({ isLastStep }: { isLastStep: boolean }) {
   const {
     register,
     formState: { errors },
@@ -22,6 +23,12 @@ export default function UserForm({ isLastStep }) {
           className="h-12"
           {...register("first_name")}
         />
+        {errors.first_name && (
+          <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+            <FaCircleExclamation />
+            {errors.first_name.message && String(errors.first_name.message)}
+          </span>
+        )}
         <FloatingLabelInput
           type="text"
           id="last_name"
@@ -29,7 +36,27 @@ export default function UserForm({ isLastStep }) {
           {...register("last_name")}
           className="h-12"
         />
-        <FloatingLabelInput type="text" id="age" label="Âge" className="h-12" />
+        {errors.last_name && (
+          <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+            <FaCircleExclamation />
+            {errors.last_name.message && String(errors.last_name.message)}
+          </span>
+        )}
+
+        {/* TODO: Replace with birthday selector */}
+        {/* <FloatingLabelInput
+          type="text"
+          id="age"
+          label="Âge"
+          {...register("birthday")}
+          className="h-12"
+        />
+        {errors.age && (
+          <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+            <FaCircleExclamation />
+            {errors.age.message && String(errors.age.message)}
+          </span>
+        )} */}
       </section>
     </StepWrapper>
   );

@@ -56,8 +56,9 @@ export default function PasswordForm() {
         <div className="relative">
           <FloatingLabelInput
             type={passwordType}
-            id="rePassword"
+            id="re_password"
             label="Confirmer"
+            {...register("re_password")}
             className="h-12 pr-11"
           />
           <span className="absolute right-3 top-0 flex h-full items-center justify-center">
@@ -72,20 +73,12 @@ export default function PasswordForm() {
             </Button>
           </span>
         </div>
-        {errors.rePassword && (
+        {errors.re_password && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
             <FaCircleExclamation />
-            {errors.rePassword.message && String(errors.rePassword.message)}
+            {errors.re_password.message && String(errors.re_password.message)}
           </span>
         )}
-
-        {/* Checkbox Show/Hide password */}
-        {/* <div className="flex items-center gap-2">
-          <Checkbox id="show-password" onClick={handleClick} />
-          <label htmlFor="show-password" className="text-sm font-medium">
-            Afficher le mot de passe
-          </label>
-        </div> */}
       </section>
     </StepWrapper>
   );
