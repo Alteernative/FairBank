@@ -6,19 +6,42 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
+import { signInSchema } from "@/schemas/SignInSchema.ts";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FaCircleExclamation } from "react-icons/fa6";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
+// import { Checkbox } from "@/components/ui/checkbox.tsx";
 
-export default function Home() {
-  const { handleSubmit, register } = useForm();
+export default function SignIn() {
+  const [passwordType, setPasswordType] = useState("password");
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
   const navigate = useNavigate();
-  const [showMessage, setShowMessage] = useState(false);
 
-  const submission = (data) => {
+  const handleClick = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+    } else {
+      setPasswordType("password");
+    }
+  };
+  const onSubmit = (data: FieldValues) => {
     AxiosInstance.post("login/", {
       email: data.email,
       password: data.password,
@@ -29,69 +52,110 @@ export default function Home() {
           navigate("/dashboard");
         } else {
           console.log("Invalid response structure:", response);
-          setShowMessage(true);
         }
       })
       .catch((error) => {
-        setShowMessage(true);
         if (error.response) {
           console.error("Error response:", error.response);
         }
       });
   };
+
   return (
     <section className="flex h-screen">
-      <aside className="flex flex-1 flex-col gap-24 h-full">
-        <Link to={"/"} className="flex mt-7 ml-8 items-center">
-          {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" />
-          <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
-          <h1 className="text-6xl font-jomhuria">FairBank</h1>
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] lg:flex">
+        <Link to={"/"} className="ml-8 mt-7 flex items-center">
+          <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
-        <div className="flex w-full items-center justify-center">
-          <img src="/login.svg" alt="Sign in image" />
-        </div>
+        <img
+          src="/login.svg"
+          alt="Sign in image"
+          className="my-auto w-full content-center overflow-hidden"
+        />
       </aside>
-      {/* <section className="flex flex-1 justify-center w-80 bg-green-50"> */}
-      <section className="flex flex-1 justify-center w-80 bg-white">
-        <div className="absolute top-0 right-0 m-5">
-          <Link to={"/inscription"}>
-            <Button variant={"ghost"}>Devenir membre</Button>
-          </Link>
-        </div>
-        {/* <Card className="w-96 h-[25rem] mt-52"> */}
-        <Card className="w-96 h-[25rem] mt-52 border-none shadow-none">
+
+      <main className="flex w-80 flex-1 items-center justify-center bg-white">
+        <Button
+          asChild
+          variant={"ghost"}
+          className="absolute right-0 top-0 m-5"
+        >
+          <Link to={"/inscription"}>Devenir membre</Link>
+        </Button>
+        <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
+          <Link to={"/"}>FairBank</Link>
+        </h1>
+
+        <Card className="h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">Se connecter</CardTitle>
+            <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
             <CardDescription className="text-center">
               Entrer votre email et votre mot de passe pour vous connecter.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(submission)}>
-              <div className="flex flex-col gap-2">
-                <Input
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col gap-4">
+                <FloatingLabelInput
                   type="email"
                   id="email"
-                  placeholder="nom@exemple.com"
+                  label="Courriel"
                   {...register("email")}
+                  className="h-12"
                   autoFocus
-                  required
                 />
-                <Input
-                  type="password"
-                  id="password"
-                  placeholder="•••••••••"
-                  {...register("password")}
-                  required
-                />
-                <Button type="submit" className="mt-2">
+                {errors.email && (
+                  <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+                    <FaCircleExclamation />
+                    {errors.email.message}
+                  </span>
+                )}
+                <div className="relative">
+                  <FloatingLabelInput
+                    type={passwordType}
+                    id="password"
+                    label="Mot de passe"
+                    {...register("password")}
+                    className="h-12 pr-12"
+                  />
+                  <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                    <Button
+                      type="button"
+                      variant={"ghost"}
+                      size={"icon"}
+                      className="size-7 select-none rounded-full"
+                      onClick={handleClick}
+                    >
+                      {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+                    </Button>
+                  </span>
+                </div>
+                {errors.password && (
+                  <span className="flex items-center gap-1 text-xs text-destructive">
+                    <FaCircleExclamation />
+                    {errors.password.message}
+                  </span>
+                )}
+
+                {/* Checkbox Show/Hide password */}
+                {/* <div className="flex items-center gap-2">
+                  <Checkbox id="show-password" onClick={handleClick} />
+                  <label
+                    htmlFor="show-password"
+                    className="text-sm font-medium"
+                  >
+                    Afficher le mot de passe
+                  </label>
+                </div> */}
+                <Button type="submit" className="mt-2 select-none">
+                  {/* <Button type="submit" className="mt-2 h-12 select-none"> */}
                   S'identifier
                 </Button>
               </div>
             </form>
           </CardContent>
         </Card>
-      </section>
+      </main>
     </section>
   );
 }
