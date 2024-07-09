@@ -14,7 +14,7 @@ export default function Particuliers() {
             <img src="/choix.svg" alt="" className="mb-8 h-auto w-1/4" />
           </div>
           <h1 className="mb-4 font-jomhuria text-6xl text-primary">
-            Types de comptes bancaires
+            Commencez gratuitement ou selon vos besoins!
           </h1>
         </div>
       </section>
