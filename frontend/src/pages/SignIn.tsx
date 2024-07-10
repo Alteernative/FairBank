@@ -30,8 +30,10 @@ export default function SignIn() {
     register,
     formState: { errors },
     setError,
+    clearErrors,
   } = useForm({
     resolver: zodResolver(signInSchema),
+    mode: "all",
     defaultValues: {
       email: "",
       password: "",
@@ -67,13 +69,20 @@ export default function SignIn() {
           console.error("Errors data:", responseErrorData);
 
           if (responseErrorData.error) {
+            // if (responseErrorData.error === "Invalid credentials") {
+            //   const errorMessage = "Email ou mot de passe invalide.";
+            //   setError("email", {
+            //     type: "server",
+            //     message: errorMessage,
+            //   });
+            //   setError("password", {
+            //     type: "server",
+            //     message: errorMessage,
+            //   });
+            // }
             if (responseErrorData.error === "Invalid credentials") {
               const errorMessage = "Email ou mot de passe invalide.";
-              setError("email", {
-                type: "server",
-                message: errorMessage,
-              });
-              setError("password", {
+              setError("root", {
                 type: "server",
                 message: errorMessage,
               });
@@ -119,12 +128,17 @@ export default function SignIn() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <FloatingLabelInput
-                  type="email"
+                  // type="email"
+                  type="text"
                   id="email"
                   label="Courriel"
                   {...register("email")}
                   className="h-12"
                   autoFocus
+                  onChange={() => {
+                    clearErrors("email");
+                    clearErrors("root");
+                  }}
                 />
 
                 {errors.email && errors.email?.type !== "server" && (
@@ -141,6 +155,10 @@ export default function SignIn() {
                     label="Mot de passe"
                     {...register("password")}
                     className="h-12 pr-12"
+                    onChange={() => {
+                      clearErrors("password");
+                      clearErrors("root");
+                    }}
                   />
                   <span className="absolute right-3 top-0 flex h-full items-center justify-center">
                     <Button
@@ -162,14 +180,11 @@ export default function SignIn() {
                   </span>
                 )}
 
-                {(errors.email?.type === "server" ||
-                  errors.password?.type === "server") && (
+                {errors.root && (
                   <Alert variant={"destructive"}>
                     <FaTriangleExclamation className="size-4" />
                     <AlertTitle>Erreur</AlertTitle>
-                    <AlertDescription>
-                      {errors.password?.message}
-                    </AlertDescription>
+                    <AlertDescription>{errors.root.message}</AlertDescription>
                   </Alert>
                 )}
                 <Button type="submit" className="mt-2 select-none">
