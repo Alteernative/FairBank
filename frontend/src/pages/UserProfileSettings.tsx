@@ -137,6 +137,13 @@ export default function UserProfileSettings() {
               </div>
             </form>
           </CardContent>
+          <CardContent>
+            <form onSubmit={handleSubmit(updatePassword)}>
+              <Button type="submit" className="mt-2">
+                Supprimer le compte
+              </Button>
+            </form>
+          </CardContent>
         </Card>
       </section>
     </section>
