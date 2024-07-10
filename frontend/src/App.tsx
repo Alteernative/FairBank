@@ -19,7 +19,8 @@ import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
 import { UserContextProvider } from "@/contexts/UserContext";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
-
+import PasswordReset from "./components/PasswordReset.tsx";
+import PasswordResetRequest from "@/components/PasswordResetRequest.tsx";
 export default function App() {
   return (
     <Router>
@@ -139,7 +140,11 @@ export default function App() {
             </UserContextProvider>
           }
         />
-
+        <Route path="/password-reset/:token" element={<PasswordReset />} />
+        <Route
+          path="/request/password-reset/"
+          element={<PasswordResetRequest />}
+        />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
