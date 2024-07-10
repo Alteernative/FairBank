@@ -67,12 +67,6 @@ export default function SignIn() {
           console.error("Errors data:", responseErrorData);
 
           if (responseErrorData.error) {
-            // if (responseErrorData.error === "Empty Password") {
-            //   setError("password", {
-            //     type: "client",
-            //     message: "Le mot de passe est requis.",
-            //   });
-            // } else if (responseErrorData.error === "Invalid credentials") {
             if (responseErrorData.error === "Invalid credentials") {
               const errorMessage = "Email ou mot de passe invalide.";
               setError("email", {
