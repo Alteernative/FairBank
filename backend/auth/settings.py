@@ -49,8 +49,7 @@ CORS_ALLOWED_ORIGINS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
-    # 'users.authback.EmailBackend',
-    "django.contrib.auth.backends.ModelBackend",  # this line fixed my problem
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 ROOT_URLCONF = 'auth.urls'
