@@ -32,7 +32,7 @@ const PasswordFields = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="relative">
+      <div className="relative mx-2">
         <FloatingLabelInput
           type={passwordType}
           id="password"
@@ -41,7 +41,7 @@ const PasswordFields = () => {
           autoFocus
           className="h-12 pr-11"
         />
-        <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+        <span className="w-fullitems-center absolute right-3 top-0 flex h-full justify-center">
           <Button
             type="button"
             variant={"ghost"}
@@ -59,7 +59,7 @@ const PasswordFields = () => {
           {errors.password.message && String(errors.password.message)}
         </span>
       )}
-      <div className="relative">
+      <div className="relative mx-2">
         <FloatingLabelInput
           type={passwordType}
           id="re_password"
@@ -80,7 +80,7 @@ const PasswordFields = () => {
         </span>
       </div>
       {errors.re_password && (
-        <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+        <span className="flex items-center gap-1 text-xs text-destructive">
           <FaCircleExclamation />
           {errors.re_password.message && String(errors.re_password.message)}
         </span>
@@ -143,8 +143,8 @@ const PasswordReset = () => {
                 </CardDescription>
               </CardHeader>
               <PasswordFields />
-              <div className="mt-6 flex w-full">
-                <Button type="submit" className="ml-auto">
+              <div className="mt-6 flex justify-center justify-items-center">
+                <Button type="submit" className="flex">
                   {"Soumettre"}
                 </Button>
               </div>
