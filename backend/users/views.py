@@ -128,6 +128,18 @@ class UserViewset(viewsets.ViewSet):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def destroy(self, request, pk=None):
+        print("deleting this...", User.objects.get(pk=pk))
+
+    # try:
+    #     user = User.objects.get(pk=pk)
+    #     user.delete()
+    #     return Response({"success": "User was deleted"}, status=status.HTTP_204_NO_CONTENT)
+    # except User.DoesNotExist:
+    #     return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    # except Exception as e:
+    #     return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
