@@ -151,6 +151,11 @@ export default function SignIn() {
                   {/* <Button type="submit" className="mt-2 h-12 select-none"> */}
                   S'identifier
                 </Button>
+                <Button variant="link">
+                  <Link to={"/request/password-reset"}>
+                    Mot de passe oublié?
+                  </Link>
+                </Button>
               </div>
             </form>
           </CardContent>
