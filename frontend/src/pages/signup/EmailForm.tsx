@@ -7,6 +7,7 @@ export default function EmailForm() {
   const {
     register,
     formState: { errors },
+    clearErrors,
   } = useFormContext();
 
   return (
@@ -22,6 +23,7 @@ export default function EmailForm() {
           autoFocus
           {...register("email")}
           className="h-12"
+          onChange={() => clearErrors("email")}
         />
         {errors.email && (
           <span className="flex items-center gap-1 text-xs text-destructive">
