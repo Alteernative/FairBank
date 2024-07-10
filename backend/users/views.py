@@ -23,7 +23,7 @@ class LoginViewset(viewsets.ViewSet):
 
             # check if user is inside Db using function authenticate
             # User returned
-            user = authenticate(request, email=email, password=password)
+            user = authenticate(request, email=email, password=password, isactive=True)
 
             if user:
                 # generate tupple first part is empty second part is token
