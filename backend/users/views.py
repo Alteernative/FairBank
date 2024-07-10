@@ -18,7 +18,7 @@ class LoginViewset(viewsets.ViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             # check info to authenticate if the email exists
-            email = serializer.validated_data['email']
+            email = serializer.validated_data['email'].lower()
             password = serializer.validated_data['password']
 
             # check if user is inside Db using function authenticate
@@ -73,7 +73,7 @@ class RegisterViewset(viewsets.ViewSet):
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            user = serializer.save(email=serializer.validated_data['email'].lower())
             user_data = {
                 "email": user.email,
                 "first_name": user.first_name,
