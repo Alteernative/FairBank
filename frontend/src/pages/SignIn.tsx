@@ -6,18 +6,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash, FaTriangleExclamation } from "react-icons/fa6";
 import { useState } from "react";
-// import { Checkbox } from "@/components/ui/checkbox.tsx";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 export default function SignIn() {
   const [passwordType, setPasswordType] = useState("password");
@@ -25,6 +29,7 @@ export default function SignIn() {
     handleSubmit,
     register,
     formState: { errors },
+    setError,
   } = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -41,7 +46,7 @@ export default function SignIn() {
       setPasswordType("password");
     }
   };
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: FormData) => {
     AxiosInstance.post("login/", {
       email: data.email,
       password: data.password,
@@ -55,8 +60,31 @@ export default function SignIn() {
         }
       })
       .catch((error) => {
+        console.log("Sign in error:", error);
         if (error.response) {
-          console.error("Error response:", error.response);
+          const responseErrorData = error.response.data;
+          console.error("Error status:", error.response.status);
+          console.error("Errors data:", responseErrorData);
+
+          if (responseErrorData.error) {
+            // if (responseErrorData.error === "Empty Password") {
+            //   setError("password", {
+            //     type: "client",
+            //     message: "Le mot de passe est requis.",
+            //   });
+            // } else if (responseErrorData.error === "Invalid credentials") {
+            if (responseErrorData.error === "Invalid credentials") {
+              const errorMessage = "Email ou mot de passe invalide.";
+              setError("email", {
+                type: "server",
+                message: errorMessage,
+              });
+              setError("password", {
+                type: "server",
+                message: errorMessage,
+              });
+            }
+          }
         }
       });
   };
@@ -104,12 +132,14 @@ export default function SignIn() {
                   className="h-12"
                   autoFocus
                 />
-                {errors.email && (
+
+                {errors.email && errors.email?.type !== "server" && (
                   <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
-                    {errors.email.message}
+                    {errors.email?.message}
                   </span>
                 )}
+
                 <div className="relative">
                   <FloatingLabelInput
                     type={passwordType}
@@ -130,25 +160,25 @@ export default function SignIn() {
                     </Button>
                   </span>
                 </div>
-                {errors.password && (
-                  <span className="flex items-center gap-1 text-xs text-destructive">
+
+                {errors.password && errors.password?.type !== "server" && (
+                  <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
                     {errors.password.message}
                   </span>
                 )}
 
-                {/* Checkbox Show/Hide password */}
-                {/* <div className="flex items-center gap-2">
-                  <Checkbox id="show-password" onClick={handleClick} />
-                  <label
-                    htmlFor="show-password"
-                    className="text-sm font-medium"
-                  >
-                    Afficher le mot de passe
-                  </label>
-                </div> */}
+                {(errors.email?.type === "server" ||
+                  errors.password?.type === "server") && (
+                  <Alert variant={"destructive"}>
+                    <FaTriangleExclamation className="size-4" />
+                    <AlertTitle>Erreur</AlertTitle>
+                    <AlertDescription>
+                      {errors.password?.message}
+                    </AlertDescription>
+                  </Alert>
+                )}
                 <Button type="submit" className="mt-2 select-none">
-                  {/* <Button type="submit" className="mt-2 h-12 select-none"> */}
                   S'identifier
                 </Button>
               </div>
