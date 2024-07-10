@@ -137,7 +137,6 @@ class UserViewset(viewsets.ViewSet):
 
         serializer = RegisterSerializer()
         serializer.destroy(user, request.data)
-        user.is_active = False
         user.save()
 
         return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
