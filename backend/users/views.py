@@ -23,7 +23,7 @@ class LoginViewset(viewsets.ViewSet):
 
             # check if user is inside Db using function authenticate
             # User returned
-            user = authenticate(request, email=email, password=password)
+            user = authenticate(request, email=email, password=password, isactive=True)
 
             if user:
                 # generate tupple first part is empty second part is token
@@ -60,7 +60,7 @@ class LoginViewset(viewsets.ViewSet):
                     }
                 )
             else:
-                return Response({"error": "Invalid credentials"}, status=401)
+                return Response({"error": "Invalid credentials or User is not active"}, status=401)
         else:
             return Response(serializer.errors, status=400)
 
@@ -104,6 +104,7 @@ class UserViewset(viewsets.ViewSet):
         receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
 
         user_data = {
+            "id": user.id,
             "email": user.email,
             "first_name": user.first_name,
             "last_name": user.last_name,
@@ -129,7 +130,16 @@ class UserViewset(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
-        print("deleting this...", User.objects.get(pk=pk))
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = RegisterSerializer()
+        serializer.destroy(user, request.data)
+        user.save()
+
+        return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
 
     # try:
     #     user = User.objects.get(pk=pk)
