@@ -56,6 +56,7 @@ export default function BirthdayForm({ isLastStep }: { isLastStep: boolean }) {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
+                  <SelectLabel>Mois</SelectLabel>
                   <SelectItem value="01">Janvier</SelectItem>
                   <SelectItem value="02">Février</SelectItem>
                   <SelectItem value="03">Mars</SelectItem>
