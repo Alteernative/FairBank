@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model, authenticate
 from knox.models import AuthToken
 from rest_framework import status
+from rest_framework import permissions
+from rest_framework.parsers import MultiPartParser, FormParser
 
 User = get_user_model()
 
@@ -13,23 +15,24 @@ User = get_user_model()
 class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            # check info to authenticate if the email exists
             email = serializer.validated_data['email'].lower()
             password = serializer.validated_data['password']
+            image_url = serializer.validated_data.get('image_url')
 
-            # check if user is inside Db using function authenticate
-            # User returned
             user = authenticate(request, email=email, password=password, isactive=True)
 
             if user:
-                # generate tupple first part is empty second part is token
+                if image_url:
+                    user.image_url = image_url
+                    user.save()
+
                 _, token = AuthToken.objects.create(user)
 
-                # receive all transactions sent and received
                 sent_transactions = Transaction.objects.filter(sender=user)
                 received_transactions = Transaction.objects.filter(receiver=user)
                 pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
@@ -69,21 +72,25 @@ class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request):
-        serializer = self.serializer_class(data=request.data)
+        data = request.data.copy()
+        if 'image' in request.FILES:
+            data['image_url'] = request.FILES['image']
+        serializer = self.serializer_class(data=data)
         if serializer.is_valid():
-            user = serializer.save(email=serializer.validated_data['email'].lower())
+            user = serializer.save()
             user_data = {
                 "email": user.email,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
                 "balance": user.balance,
+                "image_url": user.image_url.url if user.image_url else None,
             }
             return Response(user_data)
         else:
             return Response(serializer.errors, status=400)
-
 
 class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
