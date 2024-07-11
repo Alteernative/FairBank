@@ -34,6 +34,7 @@ type Activity = {
   amount: string;
   isPositive: boolean;
 };
+
 interface Transaction {
   id: number;
   sender: string;
@@ -43,6 +44,7 @@ interface Transaction {
   status: string;
   // Add other properties if needed
 }
+
 // Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
@@ -54,6 +56,7 @@ export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
+  const baseUrl = "http://127.0.0.1:8000";
 
   const [isTransactionSent, setTransaction] = useState(false);
 
@@ -149,16 +152,23 @@ export default function UserPanel() {
       });
   };
 
-  console.log(user);
+  console.log(user.image_url);
 
   return (
     <>
       <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
         <div className="flex w-full flex-col items-center gap-3 pt-3">
-          <FaRegCircleUser className="size-16" />
+          {user.image_url ? (
+            <img
+              src={`${baseUrl}${user.image_url}`}
+              alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
+              className="h-16 w-16 rounded-full"
+            />
+          ) : (
+            <FaRegCircleUser className="size-16" />
+          )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <h3 className="text-sm">Régulier</h3>
-
           <div className="mt-7 flex w-full items-center justify-around">
             <Dialog>
               <DialogTrigger asChild>
