@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,8 +7,17 @@ import { signUpSchema } from "@/schemas/SignUpSchema.ts";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
-import UserForm from "./signup/UserForm.tsx";
+import NameForm from "./signup/NameForm.tsx";
+import BirthdayForm from "./signup/BirthdayForm.tsx";
 // import PlanForm from "./signup/PlanForm.tsx";
+
+type FormValues = {
+  email: string;
+  first_name: string;
+  last_name: string;
+  password: string;
+  re_password: string;
+};
 
 // TODO: Add toast is the sign up is confirmed
 export default function SignUp() {
@@ -16,16 +25,27 @@ export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
   const stepSchema = signUpSchema(step);
-  const methods = useForm({
+  const MAX_STEPS = 4;
+  const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
+    mode: "all",
+    defaultValues: {
+      email: "",
+      password: "",
+      re_password: "",
+      first_name: "",
+      last_name: "",
+      // birthday_year: "",
+      // birthday_month: "",
+      // birthday_day: "",
+    },
   });
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     const allData = { ...formData, ...data };
     setFormData(allData);
 
-    // if (step < 4) {
-    if (step < 3) {
+    if (step < MAX_STEPS) {
       setStep(step + 1);
     } else {
       console.log(allData);
@@ -40,7 +60,24 @@ export default function SignUp() {
         })
         .catch((error) => {
           if (error.response) {
-            console.error("Error response:", error.response);
+            // console.error("Error response:", error.response);
+            const responseErrorData = error.response.data;
+            console.error("Error status:", error.response.status);
+            console.error("Errors data:", responseErrorData);
+
+            if (responseErrorData.errors) {
+              if (responseErrorData.errors.email) {
+                methods.setError("email", {
+                  type: "server",
+                  message: responseErrorData.errors.email,
+                });
+              } else if (responseErrorData.errors.password) {
+                methods.setError("password", {
+                  type: "server",
+                  message: responseErrorData.errors.password,
+                });
+              }
+            }
           }
         });
     }
@@ -74,10 +111,10 @@ export default function SignUp() {
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             {step === 1 && <EmailForm />}
             {step === 2 && <PasswordForm />}
-            {step === 3 && <UserForm isLastStep={true} />}
-            {/* {step === 4 && (
+            {step === 3 && <NameForm />}
+            {step === 4 && <BirthdayForm isLastStep={true} />}
+            {/* {step === 5 && (
               <PlanForm
-                onNext={methods.handleSubmit(onSubmit)}
                 isLastStep={true}
               />
             )} */}
