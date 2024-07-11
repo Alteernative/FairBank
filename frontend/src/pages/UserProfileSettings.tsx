@@ -13,6 +13,9 @@ import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
+import ImageUpload from "@/pages/signup/ImageUpload.tsx";
+import { useRef, useState } from "react";
+import { FaCircleExclamation } from "react-icons/fa6";
 
 export default function UserProfileSettings() {
   const { user } = useUserContext();
@@ -24,7 +27,24 @@ export default function UserProfileSettings() {
   setValue("last_name", user.last_name);
   setValue("email", user.email);
   setValue("id", user.id);
+  const [fileName, setFileName] = useState("");
+  const fileInputRef = useRef(null);
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    } else {
+      setFileName("");
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setFileName("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
   const modifyUser = (data: FieldValues) => {
     console.log(data);
 
@@ -168,6 +188,39 @@ export default function UserProfileSettings() {
                   Supprimer le compte
                 </Button>
               </form>
+              <input
+                type="file"
+                id="image"
+                {...register("image_url", { onChange: handleFileChange })}
+                ref={fileInputRef}
+                className="hidden"
+              />
+              <label
+                htmlFor="image"
+                className="mt-2 flex cursor-pointer items-center justify-center rounded border bg-gray-100 p-2 hover:bg-gray-200"
+              >
+                {" "}
+                {fileName || "Choisir un fichier"}
+              </label>
+              {fileName && (
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-sm text-gray-500">
+                    Fichier sélectionné: {fileName}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleRemoveFile}
+                    className="rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
+                  >
+                    x
+                  </button>
+                </div>
+              )}
+              {!fileName && (
+                <span className="text-sm text-gray-500">
+                  Aucun fichier choisi
+                </span>
+              )}
             </CardContent>
           </Card>
         </section>
