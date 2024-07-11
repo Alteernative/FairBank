@@ -43,7 +43,7 @@ export default function DashboardExchangeRates() {
 
   // Add api key here 
   // TODO: Use .env file later
-  const apiKey = "GcJgJQB9Yb22eQAVU1tSxzlzYSA64lP9";
+  const apiKey = "";
 
   const fetchExchangeRates = async () => {
     try {
