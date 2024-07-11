@@ -6,6 +6,7 @@ import StepWrapper from "./StepWrapper";
 export default function ImageUpload() {
   const {
     register,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -16,8 +17,10 @@ export default function ImageUpload() {
     const file = e.target.files[0];
     if (file) {
       setFileName(file.name);
+      setValue("image_url", file);
     } else {
       setFileName("");
+      setValue("image_url", null);
     }
   };
 
@@ -25,6 +28,7 @@ export default function ImageUpload() {
     setFileName("");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+      setValue("image_url", null); // Clear the file in the form context
     }
   };
 
