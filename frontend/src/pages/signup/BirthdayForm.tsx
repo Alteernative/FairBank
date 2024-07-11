@@ -12,15 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type BirthdayFormProps = {
-  isLastStep: boolean;
-  isSubmitting: boolean;
-};
-
-export default function BirthdayForm({
-  isLastStep,
-  isSubmitting,
-}: BirthdayFormProps) {
+export default function BirthdayForm() {
   const {
     register,
     formState: { errors },
@@ -33,8 +25,6 @@ export default function BirthdayForm({
       // title="Renseignement de base"
       title="Date de naissance"
       description="Entrer votre date de naissance et pays ci-dessous pour créer votre compte."
-      isLastStep={isLastStep}
-      isSubmitting={isSubmitting}
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput
