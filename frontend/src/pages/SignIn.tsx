@@ -42,9 +42,14 @@ export default function SignIn() {
     }
   };
   const onSubmit = (data: FieldValues) => {
-    AxiosInstance.post("login/", {
-      email: data.email,
-      password: data.password,
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+
+    AxiosInstance.post("login/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((response) => {
         if (response && response.data && response.data.token) {
