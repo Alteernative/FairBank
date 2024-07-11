@@ -48,7 +48,7 @@ export const signUpSchema = (step) => {
       });
     case 4:
       return z.object({
-        birthday_year: z.coerce
+        birth_year: z.coerce
           .number({
             invalid_type_error: "Année invalide.",
           })
@@ -56,11 +56,11 @@ export const signUpSchema = (step) => {
           .max(new Date().getFullYear()),
 
         // TODO: Find a way to show an error when the month is not selected.
-        birthday_month: z.string({
+        birth_month: z.string({
           required_error: "Sélectionner le mois.",
         }),
 
-        birthday_day: z.coerce
+        birth_day: z.coerce
           .number({ invalid_type_error: "Jour invalide." })
           .min(1, {
             message: "Jour invalide.",

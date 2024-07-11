@@ -30,24 +30,23 @@ export default function BirthdayForm({ isLastStep }: { isLastStep: boolean }) {
       <section className="flex flex-col gap-4">
         <FloatingLabelInput
           type="text"
-          id="birthday_year"
+          id="birth_year"
           label="Année"
           maxLength={4}
           autoFocus
           className="h-12"
-          {...register("birthday_year")}
-          onChange={() => clearErrors("birthday_year")}
+          {...register("birth_year")}
+          onChange={() => clearErrors("birth_year")}
         />
-        {errors.birthday_year && (
+        {errors.birth_year && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
             <FaCircleExclamation />
-            {errors.birthday_year.message &&
-              String(errors.birthday_year.message)}
+            {errors.birth_year.message && String(errors.birth_year.message)}
           </span>
         )}
 
         <Controller
-          name="birthday_month"
+          name="birth_month"
           control={control}
           rules={{ required: "Le mois de naissance est requis" }}
           render={({ field }) => (
@@ -74,27 +73,26 @@ export default function BirthdayForm({ isLastStep }: { isLastStep: boolean }) {
             </Select>
           )}
         />
-        {errors.birthday_month && (
+        {errors.birth_month && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
             <FaCircleExclamation />
-            {errors.birthday_month.message &&
-              String(errors.birthday_month.message)}
+            {errors.birth_month.message && String(errors.birth_month.message)}
           </span>
         )}
 
         <FloatingLabelInput
           type="text"
-          id="birthday_day"
+          id="birth_day"
           label="Jour"
           maxLength={2}
           className="h-12"
-          {...register("birthday_day")}
-          onChange={() => clearErrors("birthday_day")}
+          {...register("birth_day")}
+          onChange={() => clearErrors("birth_day")}
         />
-        {errors.birthday_day && (
+        {errors.birth_day && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
             <FaCircleExclamation />
-            {errors.birthday_day.message && String(errors.birthday_day.message)}
+            {errors.birth_day.message && String(errors.birth_day.message)}
           </span>
         )}
 
