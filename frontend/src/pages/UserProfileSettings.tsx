@@ -48,10 +48,19 @@ export default function UserProfileSettings() {
   const modifyUser = (data: FieldValues) => {
     console.log(data);
 
-    AxiosInstance.put(`users/${user.id}/`, {
-      email: data.email,
-      first_name: data.first_name,
-      last_name: data.last_name,
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+
+    if (fileInputRef.current && fileInputRef.current.files[0]) {
+      formData.append("image_url", fileInputRef.current.files[0]);
+    }
+
+    AxiosInstance.put(`users/${user.id}/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((response) => {
         console.log("Update successful:", response.data);
@@ -156,6 +165,45 @@ export default function UserProfileSettings() {
               </form>
             </CardContent>
             <CardContent>
+              <form onSubmit={handleSubmit(deleteAccount)}>
+                <Button type="submit" className="mt-2" variant="destructive">
+                  Supprimer le compte
+                </Button>
+              </form>
+              <input
+                type="file"
+                id="image"
+                {...register("image_url", { onChange: handleFileChange })}
+                ref={fileInputRef}
+                className="hidden"
+              />
+              <label
+                htmlFor="image"
+                className="mt-2 flex cursor-pointer items-center justify-center rounded border bg-gray-100 p-2 hover:bg-gray-200"
+              >
+                {fileName || "Choisir un fichier"}
+              </label>
+              {fileName && (
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-sm text-gray-500">
+                    Fichier sélectionné: {fileName}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleRemoveFile}
+                    className="rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
+                  >
+                    x
+                  </button>
+                </div>
+              )}
+              {!fileName && (
+                <span className="text-sm text-gray-500">
+                  Aucun fichier choisi
+                </span>
+              )}
+            </CardContent>
+            <CardContent>
               <form onSubmit={handleSubmit(updatePassword)}>
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-col gap-3">
@@ -181,46 +229,6 @@ export default function UserProfileSettings() {
                   </div>
                 </div>
               </form>
-            </CardContent>
-            <CardContent>
-              <form onSubmit={handleSubmit(deleteAccount)}>
-                <Button type="submit" className="mt-2">
-                  Supprimer le compte
-                </Button>
-              </form>
-              <input
-                type="file"
-                id="image"
-                {...register("image_url", { onChange: handleFileChange })}
-                ref={fileInputRef}
-                className="hidden"
-              />
-              <label
-                htmlFor="image"
-                className="mt-2 flex cursor-pointer items-center justify-center rounded border bg-gray-100 p-2 hover:bg-gray-200"
-              >
-                {" "}
-                {fileName || "Choisir un fichier"}
-              </label>
-              {fileName && (
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-sm text-gray-500">
-                    Fichier sélectionné: {fileName}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={handleRemoveFile}
-                    className="rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
-                  >
-                    x
-                  </button>
-                </div>
-              )}
-              {!fileName && (
-                <span className="text-sm text-gray-500">
-                  Aucun fichier choisi
-                </span>
-              )}
             </CardContent>
           </Card>
         </section>
