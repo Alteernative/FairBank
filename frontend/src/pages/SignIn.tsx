@@ -38,7 +38,7 @@ export default function SignIn() {
     clearErrors,
   } = useForm({
     resolver: zodResolver(signInSchema),
-    mode: "all",
+    mode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",
