@@ -1,6 +1,4 @@
-import { FaMoneyCheck, FaPiggyBank, FaCrown } from "react-icons/fa";
 import React, { useState } from 'react';
-import SignUp from "./SignUp";
 
 export default function Particuliers() {
 
