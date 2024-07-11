@@ -55,7 +55,7 @@ export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
       isLastStep={isLastStep}
       isSubmitting={isSubmitting}
     >
-      <section className="flex w-full flex-col gap-3">
+      <section className="relative flex w-full flex-col gap-3">
         <Card
           className={`w-full flex-1 cursor-pointer shadow-none transition-all duration-200 hover:border-primary ${selectedPlan === "tier1" ? "border-primary" : ""}`}
           onClick={() => handleSelectPlan("tier1")}
@@ -87,6 +87,14 @@ export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
             <span className="content-center font-jomhuria text-3xl">{` ${formatCurrency(100)}/mo`}</span>
           </CardHeader>
         </Card>
+
+        <Link
+          to="/particuliers"
+          target="_blank"
+          className="absolute -bottom-7 left-0 text-sm hover:underline"
+        >
+          Plus d'infos sur les plans.
+        </Link>
       </section>
       <input type="hidden" {...register("plan")} value={selectedPlan} />
     </StepWrapper>
