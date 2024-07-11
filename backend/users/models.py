@@ -10,6 +10,9 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 
 
+def upload_to(instance, filename):
+    return '{filename}'.format(filename=filename)
+
 class CustomUserManager(BaseUserManager):
     """
      Custom manager for CustomUser.
@@ -46,6 +49,7 @@ class CustomUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True)
     username = models.CharField(max_length=200, null=True, blank=True)
     balance = models.IntegerField(default=0)
+    image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
