@@ -35,7 +35,7 @@ export default function ImageUpload() {
   return (
     <StepWrapper
       title="Personaliser votre profil"
-      description="Televerser une image de profil si vous le desirez, sinon cliquez sur suivant"
+      description="Téléverser une image de profil si vous le désirez, sinon cliquez sur suivant"
     >
       <section className="flex flex-col gap-4">
         <input
