@@ -48,48 +48,47 @@ export default function SignIn() {
       setPasswordType("password");
     }
   };
-  const onSubmit = (data: FormData) => {
-    AxiosInstance.post("login/", {
-      email: data.email,
-      password: data.password,
-    })
-      .then((response) => {
-        if (response && response.data && response.data.token) {
-          localStorage.setItem("Token", response.data.token);
-          navigate("/dashboard");
-        } else {
-          console.log("Invalid response structure:", response);
-        }
-      })
-      .catch((error) => {
-        console.log("Sign in error:", error);
-        if (error.response) {
-          const responseErrorData = error.response.data;
-          console.error("Error status:", error.response.status);
-          console.error("Errors data:", responseErrorData);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await AxiosInstance.post("login/", {
+        email: data.email,
+        password: data.password,
+      });
+      if (response && response.data && response.data.token) {
+        localStorage.setItem("Token", response.data.token);
+        navigate("/dashboard");
+      } else {
+        console.log("Invalid response structure:", response);
+      }
+    } catch (error: any) {
+      console.log("Sign in error:", error);
+      if (error.response) {
+        const responseErrorData = error.response.data;
+        console.error("Error status:", error.response.status);
+        console.error("Errors data:", responseErrorData);
 
-          if (responseErrorData.error) {
-            // if (responseErrorData.error === "Invalid credentials") {
-            //   const errorMessage = "Email ou mot de passe invalide.";
-            //   setError("email", {
-            //     type: "server",
-            //     message: errorMessage,
-            //   });
-            //   setError("password", {
-            //     type: "server",
-            //     message: errorMessage,
-            //   });
-            // }
-            if (responseErrorData.error === "Invalid credentials") {
-              const errorMessage = "Email ou mot de passe invalide.";
-              setError("root", {
-                type: "server",
-                message: errorMessage,
-              });
-            }
+        if (responseErrorData.error) {
+          // if (responseErrorData.error === "Invalid credentials") {
+          //   const errorMessage = "Email ou mot de passe invalide.";
+          //   setError("email", {
+          //     type: "server",
+          //     message: errorMessage,
+          //   });
+          //   setError("password", {
+          //     type: "server",
+          //     message: errorMessage,
+          //   });
+          // }
+          if (responseErrorData.error === "Invalid credentials") {
+            const errorMessage = "Email ou mot de passe invalide.";
+            setError("root", {
+              type: "server",
+              message: errorMessage,
+            });
           }
         }
-      });
+      }
+    }
   };
 
   return (
