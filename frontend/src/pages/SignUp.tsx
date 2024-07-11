@@ -43,7 +43,7 @@ export default function SignUp() {
       })
         .then(() => {
           console.log("registered successfully");
-          // navigate(`/connexion`);
+          navigate(`/connexion`);
         })
         .catch((error) => {
           if (error.response) {
