@@ -1,45 +1,3 @@
-// import { z } from "zod";
-
-// export const emailSchema = z.object({
-//   email: z.string().email({
-//     message: "Adresse courriel invalide.",
-//   }),
-// });
-
-// export const passwordSchema = z
-//   .object({
-//     password: z
-//       .string()
-//       .min(8, {
-//         message: "Mot de passe doit contenir au moins 8 caractères.",
-//       })
-//       .regex(/[A-Z]/, {
-//         message: "Mot de passe doit contenir au moins une majuscule",
-//       })
-//       .regex(/[a-z]/, {
-//         message: "Mot de passe doit contenir au moins une minuscule",
-//       })
-//       .regex(/[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/, {
-//         message: "Mot de passe doit contenir au moins un caractère spécial.",
-//       }),
-//     rePassword: z.string(),
-//   })
-//   .refine((data) => data.password === data.rePassword, {
-//     message: "Les mots de passe ne sont pas identiques.",
-//     path: ["rePassword"],
-//   });
-
-// export const userSchema = z.object({
-//   first_name: z.string().min(1, {
-//     message: "Prénom invalide.",
-//   }),
-//   last_name: z.string().min(1, {
-//     message: "Nom invalide.",
-//   }),
-//   age: z.number().gte(18, {
-//     message: "Âge invalide. (18+)",
-//   }),
-// });
 import { z } from "zod";
 
 export const signUpSchema = (step) => {
@@ -76,6 +34,10 @@ export const signUpSchema = (step) => {
         });
     case 3:
       return z.object({
+        image_url: z.any(),
+      });
+    case 4:
+      return z.object({
         first_name: z.string().min(1, {
           message: "Prénom invalide.",
         }),
@@ -87,5 +49,7 @@ export const signUpSchema = (step) => {
         //   message: "Âge invalide. (18+)",
         // }),
       });
+    default:
+      return z.object({});
   }
 };
