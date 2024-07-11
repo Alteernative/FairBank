@@ -43,14 +43,14 @@ export default function DashboardExchangeRates() {
 
   // Add api key here 
   // TODO: Use .env file later
-  const apiKey = "";
+  const apiKey = "GcJgJQB9Yb22eQAVU1tSxzlzYSA64lP9";
 
   const fetchExchangeRates = async () => {
     try {
       const response = await axios.get(`https://api.apilayer.com/exchangerates_data/latest`, {
         params: {
-          base: 'USD',
-          symbols: 'CAD,JPY,EUR,GBP,CNY,INR',
+          base: 'CAD',
+          symbols: 'USD,JPY,EUR,GBP,CNY,INR',
         },
         headers: {
           apikey: apiKey,
@@ -73,8 +73,8 @@ export default function DashboardExchangeRates() {
         params: {
           start_date: '2024-01-01',
           end_date: '2024-07-01',
-          base: 'USD',
-          symbols: 'CAD,JPY,EUR,GBP,CNY,INR',
+          base: 'CAD',
+          symbols: 'USD,JPY,EUR,GBP,CNY,INR',
         },
         headers: {
           apikey: apiKey,
@@ -111,8 +111,8 @@ export default function DashboardExchangeRates() {
 
 function getFlagEmoji(currency) {
   switch (currency) {
-    case "CAD":
-      return "🇨🇦";
+    case "USD":
+      return "🇺🇸";
     case "JPY":
       return "🇯🇵";
     case "EUR":
@@ -131,7 +131,7 @@ function getFlagEmoji(currency) {
   return (
       <main className="h-full w-full flex flex-wrap justify-center rounded-lg px-10 shadow-lg">
         <h1 className="w-full mb-10 font-jomhuria text-6xl">Taux de change</h1>
-        <p className="w-full text-3xl mb-2 text-center font-bold">Taux actuels selon le USD 🇺🇸:</p>
+        <p className="w-full text-3xl mb-2 text-center font-bold">Taux actuels selon le CAD 🇨🇦:</p>
 
         {Object.keys(chartData).map((currency) => (
             <Dialog key={currency}>
@@ -140,7 +140,7 @@ function getFlagEmoji(currency) {
               <DialogTrigger asChild>
               <Button className="outline h-1/4 w-1/4 md:w-1/4 mx-2 my-2 rounded-lg px-5 shadow-lg">
                   {exchangeRates[currency] ? (
-                      <p className="text-2xl"> USD-{currency} {getFlagEmoji(currency)}
+                      <p className="text-2xl"> CAD-{currency} {getFlagEmoji(currency)}
                         <br/> <br/>
                         {exchangeRates[currency]} {currency}</p>
                   ) : (
@@ -162,9 +162,9 @@ function getFlagEmoji(currency) {
 
                 <Card key={currency}>
                   <CardHeader>
-                    <CardTitle>USD - {currency}</CardTitle>
+                    <CardTitle>CAD - {currency}</CardTitle>
                     <CardDescription>
-                      Valeur du taux de change USD - {currency} des 6 derniers mois
+                      Valeur du taux de change CAD - {currency} des 6 derniers mois
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
