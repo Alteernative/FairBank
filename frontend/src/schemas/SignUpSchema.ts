@@ -53,7 +53,7 @@ export const signUpSchema = (step) => {
             invalid_type_error: "Année invalide.",
           })
           .min(1900, "Année invalide.")
-          .max(new Date().getFullYear()),
+          .max(new Date().getFullYear(), "Année invalide"),
 
         // TODO: Find a way to show an error when the month is not selected.
         birth_month: z.string({
