@@ -96,6 +96,7 @@ class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = RegisterSerializer
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+    parser_classes = (MultiPartParser, FormParser)
 
     def list(self, request):
         user = request.user
@@ -119,15 +120,16 @@ class UserViewset(viewsets.ViewSet):
             "sent_transactions": sent_serializer.data,
             "received_transactions": received_serializer.data,
             "pending_sender_transactions": sender_pending_serializer.data,
-            "pending_received_transactions": receiver_pending_serializer.data
+            "pending_received_transactions": receiver_pending_serializer.data,
+            "image_url": user.image_url.url if user.image_url else None,  # Ensure the URL is sent correctly
         }
 
         return Response(user_data)
 
     def update(self, request, pk=None):
         try:
-            user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
+            user = CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = RegisterSerializer(user, data=request.data, partial=True)
@@ -138,14 +140,12 @@ class UserViewset(viewsets.ViewSet):
 
     def destroy(self, request, pk=None):
         try:
-            user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
+            user = CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = RegisterSerializer()
-        serializer.destroy(user, request.data)
+        user.is_active = False
         user.save()
-
         return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
 
     # try:
