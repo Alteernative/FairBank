@@ -41,45 +41,46 @@ export default function SignUp() {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const allData = { ...formData, ...data };
     setFormData(allData);
 
     if (step < MAX_STEPS) {
       setStep(step + 1);
     } else {
-      console.log(allData);
-      AxiosInstance.post("register/", allData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(() => {
-          console.log("registered successfully");
+      try {
+        console.log(allData);
+        const response = await AxiosInstance.post("register/", allData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response) {
+          console.log("Register Success");
           navigate(`/connexion`);
-        })
-        .catch((error) => {
-          if (error.response) {
-            // console.error("Error response:", error.response);
-            const responseErrorData = error.response.data;
-            console.error("Error status:", error.response.status);
-            console.error("Errors data:", responseErrorData);
+        }
+      } catch (error: any) {
+        if (error.response) {
+          // console.error("Error response:", error.response);
+          const responseErrorData = error.response.data;
+          console.error("Error status:", error.response.status);
+          console.error("Errors data:", responseErrorData);
 
-            if (responseErrorData.errors) {
-              if (responseErrorData.errors.email) {
-                methods.setError("email", {
-                  type: "server",
-                  message: responseErrorData.errors.email,
-                });
-              } else if (responseErrorData.errors.password) {
-                methods.setError("password", {
-                  type: "server",
-                  message: responseErrorData.errors.password,
-                });
-              }
+          if (responseErrorData.errors) {
+            if (responseErrorData.errors.email) {
+              methods.setError("email", {
+                type: "server",
+                message: responseErrorData.errors.email,
+              });
+            } else if (responseErrorData.errors.password) {
+              methods.setError("password", {
+                type: "server",
+                message: responseErrorData.errors.password,
+              });
             }
           }
-        });
+        }
+      }
     }
   };
 
@@ -112,7 +113,12 @@ export default function SignUp() {
             {step === 1 && <EmailForm />}
             {step === 2 && <PasswordForm />}
             {step === 3 && <NameForm />}
-            {step === 4 && <BirthdayForm isLastStep={true} />}
+            {step === 4 && (
+              <BirthdayForm
+                isLastStep={true}
+                isSubmitting={methods.formState.isSubmitting}
+              />
+            )}
             {/* {step === 5 && (
               <PlanForm
                 isLastStep={true}
