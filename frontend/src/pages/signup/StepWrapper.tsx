@@ -33,7 +33,6 @@ export default function StepWrapper({
       <CardContent className="flex flex-col justify-between">
         {children}
         <div className="mt-6 flex w-full">
-          {/* <Button type="submit" disabled={isSubmitting} className="ml-auto"> */}
           <Button type="submit" className="ml-auto w-32">
             {isLastStep ? (
               isSubmitting ? (
