@@ -14,7 +14,12 @@ import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
-import { FaEye, FaEyeSlash, FaTriangleExclamation } from "react-icons/fa6";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaTriangleExclamation,
+  FaSpinner,
+} from "react-icons/fa6";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 
@@ -28,7 +33,7 @@ export default function SignIn() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setError,
     clearErrors,
   } = useForm({
@@ -187,7 +192,11 @@ export default function SignIn() {
                   </Alert>
                 )}
                 <Button type="submit" className="mt-2 select-none">
-                  S'identifier
+                  {isSubmitting ? (
+                    <FaSpinner className="animate-spin" />
+                  ) : (
+                    "S'identifier"
+                  )}
                 </Button>
               </div>
             </form>
