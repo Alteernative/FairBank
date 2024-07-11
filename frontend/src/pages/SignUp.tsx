@@ -9,6 +9,7 @@ import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
 import NameForm from "./signup/NameForm.tsx";
 import BirthdayForm from "./signup/BirthdayForm.tsx";
+import { toast } from "sonner";
 // import PlanForm from "./signup/PlanForm.tsx";
 
 type FormValues = {
@@ -28,7 +29,7 @@ export default function SignUp() {
   const MAX_STEPS = 4;
   const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
-    mode: "all",
+    mode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",
@@ -61,23 +62,15 @@ export default function SignUp() {
         }
       } catch (error: any) {
         if (error.response) {
-          // console.error("Error response:", error.response);
+          console.error("Error response:", error.response);
           const responseErrorData = error.response.data;
           console.error("Error status:", error.response.status);
           console.error("Errors data:", responseErrorData);
 
-          if (responseErrorData.errors) {
-            if (responseErrorData.errors.email) {
-              methods.setError("email", {
-                type: "server",
-                message: responseErrorData.errors.email,
-              });
-            } else if (responseErrorData.errors.password) {
-              methods.setError("password", {
-                type: "server",
-                message: responseErrorData.errors.password,
-              });
-            }
+          if (error.response.status === 400) {
+            console.log("Inside toast if");
+            toast("Inscription échoué. Courriel existe déjà.");
+            navigate("/inscription");
           }
         }
       }
