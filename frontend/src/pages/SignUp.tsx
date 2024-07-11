@@ -30,9 +30,10 @@ export default function SignUp() {
     } else {
       const formDataToSend = new FormData();
       for (const key in allData) {
-        if (key === "image_url") {
-          formDataToSend.append(key, allData[key][0]);
-        } else {
+        if (key === "image_url" && allData[key]) {
+          formDataToSend.append(key, allData[key]);
+        } else if (key !== "image_url") {
+          console.log(allData[key]);
           formDataToSend.append(key, allData[key]);
         }
       }
@@ -42,7 +43,7 @@ export default function SignUp() {
         },
       })
         .then(() => {
-          console.log("registered successfully");
+          console.log("Registered successfully");
           navigate(`/connexion`);
         })
         .catch((error) => {
