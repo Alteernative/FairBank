@@ -8,9 +8,8 @@ import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
 import UserForm from "./signup/UserForm.tsx";
-// import PlanForm from "./signup/PlanForm.tsx";
+import ImageUpload from "@/pages/signup/ImageUpload.tsx";
 
-// TODO: Add toast is the sign up is confirmed
 export default function SignUp() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
@@ -23,20 +22,28 @@ export default function SignUp() {
   const onSubmit = (data: FieldValues) => {
     const allData = { ...formData, ...data };
     setFormData(allData);
+    console.log(allData);
 
-    // if (step < 4) {
-    if (step < 3) {
+    if (step < 4) {
       setStep(step + 1);
+      methods.clearErrors();
     } else {
-      console.log(allData);
-      AxiosInstance.post("register/", allData, {
+      const formDataToSend = new FormData();
+      for (const key in allData) {
+        if (key === "image_url") {
+          formDataToSend.append(key, allData[key][0]);
+        } else {
+          formDataToSend.append(key, allData[key]);
+        }
+      }
+      AxiosInstance.post("register/", formDataToSend, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       })
         .then(() => {
           console.log("registered successfully");
-          navigate(`/connexion`);
+          // navigate(`/connexion`);
         })
         .catch((error) => {
           if (error.response) {
@@ -74,7 +81,8 @@ export default function SignUp() {
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             {step === 1 && <EmailForm />}
             {step === 2 && <PasswordForm />}
-            {step === 3 && <UserForm isLastStep={true} />}
+            {step === 3 && <ImageUpload />}
+            {step === 4 && <UserForm isLastStep={true} />}
             {/* {step === 4 && (
               <PlanForm
                 onNext={methods.handleSubmit(onSubmit)}
