@@ -35,12 +35,18 @@ const passwordSchema = z
   });
 
 const nameSchema = z.object({
-  first_name: z.string().min(1, {
-    message: "Prénom requis.",
-  }),
-  last_name: z.string().min(1, {
-    message: "Nom requis.",
-  }),
+  first_name: z
+    .string()
+    .min(1, {
+      message: "Prénom requis.",
+    })
+    .regex(/^[A-Za-z]+$/, { message: "Prénom invalide." }),
+  last_name: z
+    .string()
+    .min(1, {
+      message: "Nom requis.",
+    })
+    .regex(/^[A-Za-z]+$/, { message: "Nom invalide." }),
 });
 
 const birthdaySchema = z.object({
