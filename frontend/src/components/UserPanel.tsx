@@ -122,7 +122,7 @@ export default function UserPanel() {
     )
       .then((response) => {
         console.log("Transaction successful:", response.data);
-        toast.success("Les fonds ont été demandé.");
+        toast.info("Les fonds ont été demandé.");
         setTimeout(() => {
           window.location.reload();
         }, 3000);
