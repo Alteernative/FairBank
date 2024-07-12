@@ -10,6 +10,7 @@ export default function PasswordForm() {
   const {
     register,
     formState: { errors },
+    clearErrors,
   } = useFormContext();
   const [passwordType, setPasswordType] = useState("password");
   const handleClick = () => {
@@ -34,6 +35,7 @@ export default function PasswordForm() {
             {...register("password")}
             autoFocus
             className="h-12 pr-11"
+            onChange={() => clearErrors("password")}
           />
           <span className="absolute right-3 top-0 flex h-full items-center justify-center">
             <Button
@@ -60,6 +62,7 @@ export default function PasswordForm() {
             label="Confirmer"
             {...register("re_password")}
             className="h-12 pr-11"
+            onChange={() => clearErrors("re_password")}
           />
           <span className="absolute right-3 top-0 flex h-full items-center justify-center">
             <Button
