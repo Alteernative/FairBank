@@ -10,7 +10,7 @@ import PasswordForm from "./signup/PasswordForm.tsx";
 import NameForm from "./signup/NameForm.tsx";
 import BirthdayForm from "./signup/BirthdayForm.tsx";
 import { toast, Toaster } from "sonner";
-// import PlanForm from "./signup/PlanForm.tsx";
+import PlanForm from "./signup/PlanForm.tsx";
 
 type FormValues = {
   email: string;
@@ -18,15 +18,18 @@ type FormValues = {
   last_name: string;
   password: string;
   re_password: string;
+  // birthday_year: number;
+  // birthday_month: string;
+  // birthday_day: number;
+  plan: string;
 };
 
-// TODO: Add toast is the sign up is confirmed
 export default function SignUp() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
   const stepSchema = signUpSchema(step);
-  const MAX_STEPS = 4;
+  const MAX_STEPS = 5;
   const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
     mode: "onSubmit",
@@ -36,9 +39,10 @@ export default function SignUp() {
       re_password: "",
       first_name: "",
       last_name: "",
-      // birthday_year: "",
+      // birthday_year: 0,
       // birthday_month: "",
-      // birthday_day: "",
+      // birthday_day: 0,
+      plan: "",
     },
   });
 
@@ -57,14 +61,16 @@ export default function SignUp() {
           },
         });
         if (response) {
-          console.log("Register Success");
-          navigate(`/connexion`);
+          toast.success("Inscription complétée.");
+          setTimeout(() => {
+            navigate(`/connexion`);
+          }, 3500);
         }
       } catch (error: any) {
         if (error.response) {
           console.error("Error response:", error.response);
-          const responseErrorData = error.response.data;
           console.error("Error status:", error.response.status);
+          const responseErrorData = error.response.data;
           console.error("Errors data:", responseErrorData);
 
           if (
@@ -73,7 +79,6 @@ export default function SignUp() {
               "user with this email already exists."
             )
           ) {
-            console.log("Email already taken");
             toast.error("Inscription refusé, le courriel existe déjà.");
             setTimeout(() => {
               window.location.reload();
@@ -114,17 +119,13 @@ export default function SignUp() {
               {step === 1 && <EmailForm />}
               {step === 2 && <PasswordForm />}
               {step === 3 && <NameForm />}
-              {step === 4 && (
-                <BirthdayForm
+              {step === 4 && <BirthdayForm />}
+              {step === 5 && (
+                <PlanForm
                   isLastStep={true}
                   isSubmitting={methods.formState.isSubmitting}
                 />
               )}
-              {/* {step === 5 && (
-              <PlanForm
-                isLastStep={true}
-              />
-            )} */}
             </form>
           </FormProvider>
         </main>
