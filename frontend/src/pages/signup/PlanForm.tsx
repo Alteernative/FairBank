@@ -1,52 +1,44 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import StepWrapper from "./StepWrapper";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  MdAccountBalanceWallet,
+  MdOutlineWorkspacePremium,
+} from "react-icons/md";
+import { FaCrown } from "react-icons/fa";
 import formatCurrency from "@/utils/formatCurrency";
-import { useState } from "react";
-import { MdAccountBalanceWallet } from "react-icons/md";
-import { MdOutlineWorkspacePremium } from "react-icons/md";
-import { FaCrown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { FaCircleExclamation } from "react-icons/fa6";
 
-type PlanFormProps = {
-  isLastStep: boolean;
-  isSubmitting: boolean;
-};
-
-export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
-  const [selectedPlan, setSelectedPlan] = useState("");
+export default function PlanForm({ isLastStep, isSubmitting }) {
   const {
     register,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useFormContext();
 
-  type Plan = {
-    title: string;
-    description: string;
-    price: number;
-  };
-
-  const plans: { [key: string]: Plan } = {
-    tier1: {
-      title: "Régulier",
-      description: "Description",
-      price: 10,
+  const plans = [
+    {
+      id: "tier1",
+      name: "Régulier",
+      icon: MdAccountBalanceWallet,
+      price: 25,
     },
-    tier2: {
-      title: "Premium",
-      description: "Description",
+    {
+      id: "tier2",
+      name: "Premium",
+      icon: MdOutlineWorkspacePremium,
+      price: 50,
+    },
+    {
+      id: "tier3",
+      name: "Ultime",
+      icon: FaCrown,
       price: 100,
     },
-    tier3: {
-      title: "Ultime",
-      description: "Description",
-      price: 500,
-    },
-  };
+  ];
 
-  const handleSelectPlan = (planTier: string) => {
-    setSelectedPlan(planTier);
-  };
+  const selectedPlanId = watch("plan");
 
   return (
     <StepWrapper
@@ -55,48 +47,45 @@ export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
       isLastStep={isLastStep}
       isSubmitting={isSubmitting}
     >
-      <section className="relative flex w-full flex-col gap-3">
-        <Card
-          className={`w-full flex-1 cursor-pointer shadow-none transition-all duration-200 hover:border-primary ${selectedPlan === "tier1" ? "border-primary" : ""}`}
-          onClick={() => handleSelectPlan("tier1")}
-        >
-          <CardHeader className="flex flex-row items-center justify-between">
-            <MdAccountBalanceWallet size={32} />
-            <CardTitle className="text-center text-xl">Régulier</CardTitle>
-            <span className="content-center font-jomhuria text-3xl">{` ${formatCurrency(25)}/mo`}</span>
-          </CardHeader>
-        </Card>
-
-        <Card
-          className={`w-full flex-1 cursor-pointer shadow-none transition-all duration-200 hover:border-primary ${selectedPlan === "tier2" ? "border-primary" : ""}`}
-          onClick={() => handleSelectPlan("tier2")}
-        >
-          <CardHeader className="flex flex-row items-center justify-between">
-            <MdOutlineWorkspacePremium size={32} />
-            <CardTitle className="text-center text-xl">Premium</CardTitle>
-            <span className="content-center font-jomhuria text-3xl">{` ${formatCurrency(50)}/mo`}</span>
-          </CardHeader>
-        </Card>
-        <Card
-          className={`w-full flex-1 cursor-pointer shadow-none transition-all duration-200 hover:border-primary ${selectedPlan === "tier3" ? "border-primary" : ""}`}
-          onClick={() => handleSelectPlan("tier3")}
-        >
-          <CardHeader className="flex flex-row items-center justify-between">
-            <FaCrown size={32} />
-            <CardTitle className="text-center text-xl">Ultime</CardTitle>
-            <span className="content-center font-jomhuria text-3xl">{` ${formatCurrency(100)}/mo`}</span>
-          </CardHeader>
-        </Card>
+      <div className="relative flex flex-col gap-3">
+        {plans.map((plan) => (
+          <Card
+            key={plan.id}
+            className={`w-full flex-1 shadow-none transition-all duration-200 hover:border-primary ${selectedPlanId === plan.id ? "border-primary" : ""}`}
+          >
+            <input
+              id={`plan-${plan.id}`}
+              type="radio"
+              className="hidden"
+              value={plan.id}
+              {...register("plan")}
+            />
+            <label htmlFor={`plan-${plan.id}`}>
+              <CardHeader className="flex cursor-pointer flex-row items-center justify-between">
+                <plan.icon size={32} />
+                <CardTitle className="text-center text-xl">
+                  {plan.name}
+                </CardTitle>
+                <span className="content-center font-jomhuria text-3xl">{`${formatCurrency(plan.price)}/mo`}</span>
+              </CardHeader>
+            </label>
+          </Card>
+        ))}
+        {errors.plan && (
+          <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+            <FaCircleExclamation />
+            {errors.plan.message && String(errors.plan.message)}
+          </span>
+        )}
 
         <Link
           to="/particuliers"
           target="_blank"
-          className="absolute -bottom-7 left-0 text-sm hover:underline"
+          className="absolute -bottom-7 left-0 rounded-md px-1 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
         >
           Plus d'infos sur les plans.
         </Link>
-      </section>
-      <input type="hidden" {...register("plan")} value={selectedPlan} />
+      </div>
     </StepWrapper>
   );
 }
