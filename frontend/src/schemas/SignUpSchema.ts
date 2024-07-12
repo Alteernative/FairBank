@@ -55,7 +55,11 @@ const birthdaySchema = z.object({
       invalid_type_error: "Année invalide.",
     })
     .min(1900, "Année invalide.")
-    .max(new Date().getFullYear(), "Année invalide"),
+    .max(new Date().getFullYear(), "Année invalide")
+    .refine(
+      (year) => year <= new Date().getFullYear() - 18,
+      "Avoir au moins 18 ans."
+    ),
 
   birth_month: z.string({
     required_error: "Sélectionner le mois.",
