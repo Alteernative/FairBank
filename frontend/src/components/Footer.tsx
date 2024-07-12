@@ -13,6 +13,11 @@ import { FaXTwitter } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
 export default function Footer() {
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <footer className="mb-3 mt-10 flex flex-col items-center gap-7">
       {/* Top footer */}
@@ -68,20 +73,20 @@ export default function Footer() {
         <section className="flex flex-1 flex-col text-center">
           <h3 className="cursor-default text-lg font-semibold">Plan du site</h3>
           <div className="flex flex-col gap-2 pt-5">
-            <Button variant="link">
-              <Link to={"/particuliers"}>Particuliers</Link>
+          <Button variant="link">
+              <Link to={"/particuliers"} onClick={scrollToTop}>Particuliers</Link>
             </Button>
             <Button variant="link">
-              <Link to={"/services"}>Services</Link>
+              <Link to={"/services"} onClick={scrollToTop}>Services</Link>
             </Button>
             <Button variant="link">
-              <Link to={"/apropos"}>À Propos</Link>
+              <Link to={"/apropos"} onClick={scrollToTop}>À Propos</Link>
             </Button>
             <Button variant="link">
-              <Link to={"/faq"}>FAQ</Link>
+              <Link to={"/faq"} onClick={scrollToTop}>FAQ</Link>
             </Button>
             <Button variant="link">
-              <Link to={"/politiques"}>Confidentialité et sécurité</Link>
+              <Link to={"/politiques"} onClick={scrollToTop}>Confidentialité et sécurité</Link>
             </Button>
           </div>
         </section>

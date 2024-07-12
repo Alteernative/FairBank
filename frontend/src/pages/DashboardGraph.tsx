@@ -11,8 +11,9 @@ import {
 } from "chart.js";
 import { useUserContext } from "@/contexts/UserContext";
 import { useEffect, useState } from "react";
-import { log10 } from "chart.js/helpers";
-
+import { CSVLink, CSVDownload } from "react-csv";
+import formatDate from "@/utils/formatDate"; // Adjust the import path according to your project structure
+import { FaFileDownload } from "react-icons/fa";
 // Register the necessary components from Chart.js
 ChartJS.register(
   CategoryScale,
@@ -42,6 +43,7 @@ export default function DashboardGraph() {
     labels: [],
     datasets: [],
   });
+  const [JsonObj, setJsonObj] = useState<string>("");
 
   // TODO: Does not update the graph dynamically :
   useEffect(() => {
@@ -50,20 +52,18 @@ export default function DashboardGraph() {
         ...(user.received_transactions ?? []).map((t) => ({
           ...t,
           type: "received" as const,
+          date: formatDate(t.date),
         })),
         ...(user.sent_transactions ?? []).map((t) => ({
           ...t,
           type: "sent" as const,
+          date: formatDate(t.date),
         })),
       ];
 
       transactions.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
       );
-      //  console.log(transactions)
-      // console.log("the sorted transaction is ", transactions)
-      // console.log("the user is ", user)
-      // console.log("the balance is ", user.balance)
 
       let currentBalance = user.balance;
 
@@ -95,6 +95,25 @@ export default function DashboardGraph() {
           },
         ],
       });
+
+      const transactionsWithoutType = transactions.map(
+        ({ type, ...rest }) => rest
+      );
+
+      const transactionsForCsv = transactionsWithoutType.map((transaction) => ({
+        ...transaction,
+        amount: transaction.amount + "$",
+      }));
+      const additionalData = {
+        user_id: user.id,
+        user_name: user.name,
+        transactions: transactionsForCsv,
+        transactionCount: transactions.length,
+      };
+      const formattedJsonObj = JSON.stringify(additionalData, null, 2);
+      const header = "User Transactions Data\n";
+      setJsonObj(header + formattedJsonObj);
+      console.log(JsonObj);
     }
   }, [user]);
 
@@ -106,7 +125,7 @@ export default function DashboardGraph() {
       },
       title: {
         display: true,
-        text: "Account Balance After Each Transaction",
+        text: "Graphe de la balance",
       },
     },
     scales: {
@@ -119,12 +138,28 @@ export default function DashboardGraph() {
       y: {
         title: {
           display: true,
-          text: "Balance Amount",
+          text: "Balance",
         },
       },
     },
   };
 
   // console.log(balanceData)
-  return <Line options={options} data={balanceData} />;
+  return (
+    <>
+      <div className="my-4 flex flex-row ">
+        <CSVLink
+          filename={"Historiquetransactions.csv"}
+          data={JsonObj}
+          className="hover:bg-green-600-600 flex items-center rounded-md bg-green-500 px-4 py-2 text-white transition-colors duration-300"
+        >
+          <FaFileDownload className="mr-2" />
+          <span>Telecharger</span>
+        </CSVLink>
+      </div>
+      <div className="h-full w-full flex-grow">
+        <Line options={options} data={balanceData} className="h-full w-full" />
+      </div>
+    </>
+  );
 }

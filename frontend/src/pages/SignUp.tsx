@@ -7,6 +7,8 @@ import { signUpSchema } from "@/schemas/SignUpSchema.ts";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
+import UserForm from "./signup/UserForm.tsx";
+import ImageUpload from "@/pages/signup/ImageUpload.tsx";
 import NameForm from "./signup/NameForm.tsx";
 import BirthdayForm from "./signup/BirthdayForm.tsx";
 import { toast, Toaster } from "sonner";
@@ -49,15 +51,29 @@ export default function SignUp() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const allData = { ...formData, ...data };
     setFormData(allData);
+    console.log(allData);
+
 
     if (step < MAX_STEPS) {
+
       setStep(step + 1);
+      methods.clearErrors();
     } else {
+
       try {
         console.log(allData);
-        const response = await AxiosInstance.post("register/", allData, {
+         const formDataToSend = new FormData();
+      for (const key in allData) {
+        if (key === "image_url" && allData[key]) {
+          formDataToSend.append(key, allData[key]);
+        } else if (key !== "image_url") {
+          console.log(allData[key]);
+          formDataToSend.append(key, allData[key]);
+        }
+      }
+        const response = await AxiosInstance.post("register/", formDataToSend, {
           headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           },
         });
         if (response) {
@@ -114,13 +130,15 @@ export default function SignUp() {
             <Link to={"/"}>FairBank</Link>
           </h1>
 
+
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               {step === 1 && <EmailForm />}
               {step === 2 && <PasswordForm />}
-              {step === 3 && <NameForm />}
-              {step === 4 && <BirthdayForm />}
-              {step === 5 && (
+              {step === 3 && <ImageUpload />}
+              {step === 4 && <NameForm />}
+              {step === 5 && <BirthdayForm />}
+              {step === 6 && (
                 <PlanForm
                   isLastStep={true}
                   isSubmitting={methods.formState.isSubmitting}

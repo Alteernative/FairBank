@@ -34,6 +34,7 @@ type Activity = {
   amount: string;
   isPositive: boolean;
 };
+
 interface Transaction {
   id: number;
   sender: string;
@@ -43,6 +44,7 @@ interface Transaction {
   status: string;
   // Add other properties if needed
 }
+
 // Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
@@ -54,6 +56,7 @@ export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
+  const baseUrl = "http://127.0.0.1:8000";
 
   const [isTransactionSent, setTransaction] = useState(false);
 
@@ -81,15 +84,18 @@ export default function UserPanel() {
       }
     )
       .then((response) => {
-        console.log("Transaction successful:", response.data);
-        // TODO: remove forced reload on this page after transaction
-        // TODO: Update dynamicly the balance and graph
-        toast.success("Les fonds ont été envoyés.");
-        const updateUser = {
+        const newTransaction = response.data;
+        console.log("Transaction successful:", newTransaction);
+
+        // Update user context
+        const updatedUser = {
           ...user,
-          balance: user.balance - data.amount,
+          balance: user.balance - newTransaction.amount,
+          sent_transactions: [...user.sent_transactions, newTransaction],
         };
-        setUser(updateUser);
+        setUser(updatedUser);
+
+        toast.success("Les fonds ont été envoyés.");
       })
       .catch((error) => {
         console.error("Error:", error.message);
@@ -116,7 +122,7 @@ export default function UserPanel() {
     )
       .then((response) => {
         console.log("Transaction successful:", response.data);
-        toast.success("Les fonds ont été demandé.");
+        toast.info("Les fonds ont été demandé.");
         setTimeout(() => {
           window.location.reload();
         }, 3000);
@@ -149,16 +155,23 @@ export default function UserPanel() {
       });
   };
 
-  console.log(user);
+  console.log(user.image_url);
 
   return (
     <>
       <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
         <div className="flex w-full flex-col items-center gap-3 pt-3">
-          <FaRegCircleUser className="size-16" />
+          {user.image_url ? (
+            <img
+              src={`${baseUrl}${user.image_url}`}
+              alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
+              className="h-16 w-16 rounded-full"
+            />
+          ) : (
+            <FaRegCircleUser className="size-16" />
+          )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <h3 className="text-sm">Régulier</h3>
-
           <div className="mt-7 flex w-full items-center justify-around">
             <Dialog>
               <DialogTrigger asChild>

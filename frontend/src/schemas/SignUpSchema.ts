@@ -79,6 +79,10 @@ const planSchema = z.object({
   plan: z.string().min(1, "Choisir un plan."),
 });
 
+const imageSchema =  z.object({
+        image_url: z.any(),
+      });
+
 export const signUpSchema = (step) => {
   switch (step) {
     case 1:
@@ -86,10 +90,13 @@ export const signUpSchema = (step) => {
     case 2:
       return passwordSchema;
     case 3:
-      return nameSchema;
+      return imageSchema    
     case 4:
-      return birthdaySchema;
+      return nameSchema;
     case 5:
+      return birthdaySchema;
+    case 6:
       return planSchema;
+
   }
 };

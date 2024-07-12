@@ -26,7 +26,7 @@ export default function DashboardOverview() {
           <h2>Graphe ratio des depots et ajouts</h2>
         </div>
 
-        <div className="col-span-2 row-span-3 h-full w-full rounded-lg bg-white p-4 shadow">
+        <div className="col-span-2 row-span-3 flex h-full w-full flex-col rounded-lg bg-white p-4 shadow">
           <DashboardGraph />
         </div>
 

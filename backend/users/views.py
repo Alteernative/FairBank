@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model, authenticate
 from knox.models import AuthToken
 from rest_framework import status
+from rest_framework import permissions
+from rest_framework.parsers import MultiPartParser, FormParser
 
 User = get_user_model()
 
@@ -13,23 +15,23 @@ User = get_user_model()
 class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            # check info to authenticate if the email exists
-            email = serializer.validated_data['email']
+            email = serializer.validated_data['email'].lower()
             password = serializer.validated_data['password']
+            image_url = serializer.validated_data.get('image_url')
 
-            # check if user is inside Db using function authenticate
-            # User returned
-            user = authenticate(request, email=email, password=password)
-
+            user = authenticate(request, email=email, password=password, isactive=True)
             if user:
-                # generate tupple first part is empty second part is token
+                if image_url:
+                    user.image_url = image_url
+                    user.save()
+
                 _, token = AuthToken.objects.create(user)
 
-                # receive all transactions sent and received
                 sent_transactions = Transaction.objects.filter(sender=user)
                 received_transactions = Transaction.objects.filter(receiver=user)
                 pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
@@ -44,6 +46,7 @@ class LoginViewset(viewsets.ViewSet):
                     "email": user.email,
                     "first_name": user.first_name,
                     "last_name": user.last_name,
+                    "plan": user.plan,
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
@@ -60,7 +63,7 @@ class LoginViewset(viewsets.ViewSet):
                     }
                 )
             else:
-                return Response({"error": "Invalid credentials"}, status=401)
+                return Response({"error": "Invalid credentials or User is not active"}, status=401)
         else:
             return Response(serializer.errors, status=400)
 
@@ -69,9 +72,13 @@ class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request):
-        serializer = self.serializer_class(data=request.data)
+        data = request.data.copy()
+        if 'image' in request.FILES:
+            data['image_url'] = request.FILES['image']
+        serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             user = serializer.save()
             user_data = {
@@ -79,6 +86,8 @@ class RegisterViewset(viewsets.ViewSet):
                 "first_name": user.first_name,
                 "last_name": user.last_name,
                 "balance": user.balance,
+                "plan": user.plan,
+                "image_url": user.image_url.url if user.image_url else None,
             }
             return Response(user_data)
         else:
@@ -89,6 +98,7 @@ class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = RegisterSerializer
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+    parser_classes = (MultiPartParser, FormParser)
 
     def list(self, request):
         user = request.user
@@ -104,22 +114,25 @@ class UserViewset(viewsets.ViewSet):
         receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
 
         user_data = {
+            "id": user.id,
             "email": user.email,
             "first_name": user.first_name,
             "last_name": user.last_name,
+            "plan": user.plan,
             "balance": user.balance,
             "sent_transactions": sent_serializer.data,
             "received_transactions": received_serializer.data,
             "pending_sender_transactions": sender_pending_serializer.data,
-            "pending_received_transactions": receiver_pending_serializer.data
+            "pending_received_transactions": receiver_pending_serializer.data,
+            "image_url": user.image_url.url if user.image_url else None,  # Ensure the URL is sent correctly
         }
 
         return Response(user_data)
 
     def update(self, request, pk=None):
         try:
-            user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
+            user = CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = RegisterSerializer(user, data=request.data, partial=True)
@@ -127,6 +140,25 @@ class UserViewset(viewsets.ViewSet):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk=None):
+        try:
+            user = CustomUser.objects.get(pk=pk)
+        except CustomUser.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        user.is_active = False
+        user.save()
+        return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
+
+    # try:
+    #     user = User.objects.get(pk=pk)
+    #     user.delete()
+    #     return Response({"success": "User was deleted"}, status=status.HTTP_204_NO_CONTENT)
+    # except User.DoesNotExist:
+    #     return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    # except Exception as e:
+    #     return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TransactionViewset(viewsets.ModelViewSet):

@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 
 type User = {
+  image_url: string;
   id: number;
   first_name: string;
   last_name: string;
