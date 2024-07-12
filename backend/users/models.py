@@ -13,6 +13,7 @@ from django.utils.html import strip_tags
 def upload_to(instance, filename):
     return '{filename}'.format(filename=filename)
 
+
 class CustomUserManager(BaseUserManager):
     """
      Custom manager for CustomUser.
@@ -51,6 +52,13 @@ class CustomUser(AbstractUser):
     balance = models.IntegerField(default=0)
     image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
     objects = CustomUserManager()
+
+    Plan = [
+        ('regular', 'regular'),
+        ('premium', 'premium'),
+        ('ultimate', 'ultime')
+    ]
+    plan = models.CharField(max_length=20, choices=Plan, default='regular')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -125,6 +133,3 @@ class PendingTransactions(models.Model):
     def __str__(self):
         return (f'Transaction from {self.sender} to {self.receiver} for {self.amount} on {self.date} with status '
                 f'{self.status}')
-
-
-
