@@ -53,30 +53,11 @@ export default function SignIn() {
       setPasswordType("password");
     }
   };
-
-  const onSubmit = (data: FieldValues) => {
-    const formData = new FormData();
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-
-    AxiosInstance.post("login/", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        if (response && response.data && response.data.token) {
-          localStorage.setItem("Token", response.data.token);
-          navigate("/dashboard");
-        } else {
-          console.log("Invalid response structure:", response);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error("Error response:", error.response);
-        }
-
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await AxiosInstance.post("login/", {
+        email: data.email,
+        password: data.password,
       });
       if (response && response.data && response.data.token) {
         localStorage.setItem("Token", response.data.token);
@@ -92,17 +73,6 @@ export default function SignIn() {
         console.error("Errors data:", responseErrorData);
 
         if (responseErrorData.error) {
-          // if (responseErrorData.error === "Invalid credentials") {
-          //   const errorMessage = "Email ou mot de passe invalide.";
-          //   setError("email", {
-          //     type: "server",
-          //     message: errorMessage,
-          //   });
-          //   setError("password", {
-          //     type: "server",
-          //     message: errorMessage,
-          //   });
-          // }
           if (responseErrorData.error === "Invalid credentials") {
             const errorMessage = "Email ou mot de passe invalide.";
             setError("root", {
@@ -216,11 +186,6 @@ export default function SignIn() {
                   ) : (
                     "S'identifier"
                   )}
-                </Button>
-                <Button variant="link">
-                  <Link to={"/request/password-reset"}>
-                    Mot de passe oublié?
-                  </Link>
                 </Button>
               </div>
             </form>
