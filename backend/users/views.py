@@ -15,7 +15,6 @@ User = get_user_model()
 class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
-    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
