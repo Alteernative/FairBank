@@ -84,15 +84,18 @@ export default function UserPanel() {
       }
     )
       .then((response) => {
-        console.log("Transaction successful:", response.data);
-        // TODO: remove forced reload on this page after transaction
-        // TODO: Update dynamicly the balance and graph
-        toast.success("Les fonds ont été envoyés.");
-        const updateUser = {
+        const newTransaction = response.data;
+        console.log("Transaction successful:", newTransaction);
+
+        // Update user context
+        const updatedUser = {
           ...user,
-          balance: user.balance - data.amount,
+          balance: user.balance - newTransaction.amount,
+          sent_transactions: [...user.sent_transactions, newTransaction],
         };
-        setUser(updateUser);
+        setUser(updatedUser);
+
+        toast.success("Les fonds ont été envoyés.");
       })
       .catch((error) => {
         console.error("Error:", error.message);
