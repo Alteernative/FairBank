@@ -25,7 +25,6 @@ class LoginViewset(viewsets.ViewSet):
             image_url = serializer.validated_data.get('image_url')
 
             user = authenticate(request, email=email, password=password, isactive=True)
-
             if user:
                 if image_url:
                     user.image_url = image_url
@@ -47,6 +46,7 @@ class LoginViewset(viewsets.ViewSet):
                     "email": user.email,
                     "first_name": user.first_name,
                     "last_name": user.last_name,
+                    "plan": user.plan,
                     "balance": user.balance,
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
@@ -86,11 +86,13 @@ class RegisterViewset(viewsets.ViewSet):
                 "first_name": user.first_name,
                 "last_name": user.last_name,
                 "balance": user.balance,
+                "plan": user.plan,
                 "image_url": user.image_url.url if user.image_url else None,
             }
             return Response(user_data)
         else:
             return Response(serializer.errors, status=400)
+
 
 class UserViewset(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -116,6 +118,7 @@ class UserViewset(viewsets.ViewSet):
             "email": user.email,
             "first_name": user.first_name,
             "last_name": user.last_name,
+            "plan": user.plan,
             "balance": user.balance,
             "sent_transactions": sent_serializer.data,
             "received_transactions": received_serializer.data,
