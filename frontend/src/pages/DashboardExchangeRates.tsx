@@ -1,5 +1,9 @@
 import * as React from "react";
 import axios from "axios";
+import { TrendingUp } from "lucide-react"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { useUserContext } from "@/contexts/UserContext";
+import CountUp from "react-countup";
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -24,10 +28,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { TrendingUp } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
-import { useUserContext } from "@/contexts/UserContext";
-import CountUp from "react-countup";
+
 
 const chartConfig = {
   rate: {
@@ -41,20 +42,20 @@ export default function DashboardExchangeRates() {
   const [chartData, setChartData] = React.useState([]);
   const { user } = useUserContext();
 
-  // Add api key here 
+  // Add api key here GcJgJQB9Yb22eQAVU1tSxzlzYSA64lP9
   // TODO: Use .env file later
-  const apiKey = "GcJgJQB9Yb22eQAVU1tSxzlzYSA64lP9";
+  const apiKey = "";
 
   const fetchExchangeRates = async () => {
     try {
       const response = await axios.get(`https://api.apilayer.com/exchangerates_data/latest`, {
-        params: {
-          base: 'CAD',
-          symbols: 'USD,JPY,EUR,GBP,CNY,INR',
-        },
+          params: {
+            base: 'CAD',
+            symbols: 'USD,JPY,EUR,GBP,CNY,INR',
+          },
         headers: {
-          apikey: apiKey,
-        },
+            apikey: apiKey,
+          },
       });
 
       if (response.data && response.data.rates) {
