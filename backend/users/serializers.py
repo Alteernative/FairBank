@@ -8,7 +8,7 @@ User = get_user_model()
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
-    image_url = serializers.ImageField(required=False)
+   # image_url = serializers.ImageField(required=False)
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)
@@ -20,23 +20,26 @@ class LoginSerializer(serializers.Serializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'password', 'balance', 'image_url')
+        fields = ('email', 'first_name', 'last_name', 'password', 'plan', 'balance', 'image_url')
         extra_kwargs = {'password': {'write_only': True, 'required': False}}
 
     def create(self, validated_data):
         validated_data['balance'] = 0  # Set balance to 0 upon creation
         validated_data['email'] = validated_data['email'].lower()
+        plan = validated_data['plan']
         image_url = validated_data.pop('image_url', None)
         user = User.objects.create_user(**validated_data)
         if image_url:
             user.image_url = image_url
             user.save()
+        user.plan = plan
         return user
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.plan = validated_data.get('plan', instance.plan)
         image_url = validated_data.get('image_url', None)
         if image_url:
             instance.image_url = image_url
