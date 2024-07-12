@@ -100,6 +100,8 @@ logs/
 # Ignore database file
 db.sqlite3
 
+#Ignore mediafiles
+templates/mediafiles/*
 # Ignore compiled templates
 __pycache__/
 
