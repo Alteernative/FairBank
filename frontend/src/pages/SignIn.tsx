@@ -6,27 +6,39 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaTriangleExclamation,
+  FaSpinner,
+} from "react-icons/fa6";
 import { useState } from "react";
-// import { Checkbox } from "@/components/ui/checkbox.tsx";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 export default function SignIn() {
   const [passwordType, setPasswordType] = useState("password");
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    setError,
+    clearErrors,
   } = useForm({
     resolver: zodResolver(signInSchema),
+    mode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",
@@ -41,6 +53,7 @@ export default function SignIn() {
       setPasswordType("password");
     }
   };
+
   const onSubmit = (data: FieldValues) => {
     const formData = new FormData();
     formData.append("email", data.email);
@@ -63,7 +76,43 @@ export default function SignIn() {
         if (error.response) {
           console.error("Error response:", error.response);
         }
+
       });
+      if (response && response.data && response.data.token) {
+        localStorage.setItem("Token", response.data.token);
+        navigate("/dashboard");
+      } else {
+        console.log("Invalid response structure:", response);
+      }
+    } catch (error: any) {
+      console.log("Sign in error:", error);
+      if (error.response) {
+        const responseErrorData = error.response.data;
+        console.error("Error status:", error.response.status);
+        console.error("Errors data:", responseErrorData);
+
+        if (responseErrorData.error) {
+          // if (responseErrorData.error === "Invalid credentials") {
+          //   const errorMessage = "Email ou mot de passe invalide.";
+          //   setError("email", {
+          //     type: "server",
+          //     message: errorMessage,
+          //   });
+          //   setError("password", {
+          //     type: "server",
+          //     message: errorMessage,
+          //   });
+          // }
+          if (responseErrorData.error === "Invalid credentials") {
+            const errorMessage = "Email ou mot de passe invalide.";
+            setError("root", {
+              type: "server",
+              message: errorMessage,
+            });
+          }
+        }
+      }
+    }
   };
 
   return (
@@ -102,19 +151,26 @@ export default function SignIn() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <FloatingLabelInput
-                  type="email"
+                  // type="email"
+                  type="text"
                   id="email"
                   label="Courriel"
                   {...register("email")}
                   className="h-12"
                   autoFocus
+                  onChange={() => {
+                    clearErrors("email");
+                    clearErrors("root");
+                  }}
                 />
-                {errors.email && (
+
+                {errors.email && errors.email?.type !== "server" && (
                   <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
-                    {errors.email.message}
+                    {errors.email?.message}
                   </span>
                 )}
+
                 <div className="relative">
                   <FloatingLabelInput
                     type={passwordType}
@@ -122,6 +178,10 @@ export default function SignIn() {
                     label="Mot de passe"
                     {...register("password")}
                     className="h-12 pr-12"
+                    onChange={() => {
+                      clearErrors("password");
+                      clearErrors("root");
+                    }}
                   />
                   <span className="absolute right-3 top-0 flex h-full items-center justify-center">
                     <Button
@@ -135,26 +195,27 @@ export default function SignIn() {
                     </Button>
                   </span>
                 </div>
-                {errors.password && (
-                  <span className="flex items-center gap-1 text-xs text-destructive">
+
+                {errors.password && errors.password?.type !== "server" && (
+                  <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
                     <FaCircleExclamation />
                     {errors.password.message}
                   </span>
                 )}
 
-                {/* Checkbox Show/Hide password */}
-                {/* <div className="flex items-center gap-2">
-                  <Checkbox id="show-password" onClick={handleClick} />
-                  <label
-                    htmlFor="show-password"
-                    className="text-sm font-medium"
-                  >
-                    Afficher le mot de passe
-                  </label>
-                </div> */}
+                {errors.root && (
+                  <Alert variant={"destructive"}>
+                    <FaTriangleExclamation className="size-4" />
+                    <AlertTitle>Erreur</AlertTitle>
+                    <AlertDescription>{errors.root.message}</AlertDescription>
+                  </Alert>
+                )}
                 <Button type="submit" className="mt-2 select-none">
-                  {/* <Button type="submit" className="mt-2 h-12 select-none"> */}
-                  S'identifier
+                  {isSubmitting ? (
+                    <FaSpinner className="animate-spin" />
+                  ) : (
+                    "S'identifier"
+                  )}
                 </Button>
                 <Button variant="link">
                   <Link to={"/request/password-reset"}>
