@@ -24,9 +24,12 @@ import { useState } from "react";
 import { useUserContext } from "@/contexts/UserContext";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import Tier1Visa from "../assets/images/cards/horizontal/tier1/1/Visa.svg";
-import Tier2Visa from "../assets/images/cards/horizontal/tier2/2/Visa.svg";
-import Tier3Visa from "../assets/images/cards/horizontal/tier3/4/Visa.svg";
+import Tier1VisaH from "../assets/images/cards/horizontal/tier1/1/Visa.svg";
+import Tier2VisaH from "../assets/images/cards/horizontal/tier2/2/Visa.svg";
+import Tier3VisaH from "../assets/images/cards/horizontal/tier3/4/Visa.svg";
+import Tier1VisaV from "../assets/images/cards/vertical/tier1/1/Visa.svg";
+import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
+import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
 import formatCurrency from "@/utils/formatCurrency";
 import capitalize from "@/utils/capitalize";
 
@@ -310,10 +313,10 @@ export default function UserPanel() {
           <img
             src={
               user.plan === "tier1"
-                ? Tier1Visa
+                ? Tier1VisaH
                 : user.plan === "tier2"
-                  ? Tier2Visa
-                  : Tier3Visa
+                  ? Tier2VisaH
+                  : Tier3VisaH
             }
             alt="Image of the user's bank card"
             draggable="false"
@@ -325,7 +328,13 @@ export default function UserPanel() {
         </div>
         <div className="relative my-4 lg:hidden">
           <img
-            src="/cards/vertical/regular/1/Visa.svg"
+            src={
+              user.plan === "tier1"
+                ? Tier1VisaV
+                : user.plan === "tier2"
+                  ? Tier2VisaV
+                  : Tier3VisaV
+            }
             alt="Image of the user's bank card"
             draggable="false"
             className="p-3"
