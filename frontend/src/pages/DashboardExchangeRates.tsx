@@ -42,7 +42,7 @@ export default function DashboardExchangeRates() {
   const [chartData, setChartData] = React.useState([]);
   const { user } = useUserContext();
 
-  // Add api key here GcJgJQB9Yb22eQAVU1tSxzlzYSA64lP9
+  // Add api key here 
   // TODO: Use .env file later
   const apiKey = "";
 
