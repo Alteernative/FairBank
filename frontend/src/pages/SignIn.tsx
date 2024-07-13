@@ -73,7 +73,10 @@ export default function SignIn() {
         console.error("Errors data:", responseErrorData);
 
         if (responseErrorData.error) {
-          if (responseErrorData.error === "Invalid credentials") {
+          if (
+            responseErrorData.error ===
+            "Invalid credentials or User is not active"
+          ) {
             const errorMessage = "Email ou mot de passe invalide.";
             setError("root", {
               type: "server",
