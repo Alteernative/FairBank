@@ -31,7 +31,7 @@ export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
   const stepSchema = signUpSchema(step);
-  const MAX_STEPS = 5;
+  const MAX_STEPS = 6;
   const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
     mode: "onSubmit",
