@@ -34,6 +34,10 @@ const passwordSchema = z
     path: ["re_password"],
   });
 
+const imageSchema = z.object({
+  image_url: z.any(),
+});
+
 const nameSchema = z.object({
   first_name: z
     .string()
@@ -79,10 +83,6 @@ const planSchema = z.object({
   plan: z.string().min(1, "Choisir un plan."),
 });
 
-const imageSchema =  z.object({
-        image_url: z.any(),
-      });
-
 export const signUpSchema = (step) => {
   switch (step) {
     case 1:
@@ -90,13 +90,12 @@ export const signUpSchema = (step) => {
     case 2:
       return passwordSchema;
     case 3:
-      return imageSchema    
+      return imageSchema;
     case 4:
       return nameSchema;
     case 5:
       return birthdaySchema;
     case 6:
       return planSchema;
-
   }
 };
