@@ -24,7 +24,9 @@ import { useState } from "react";
 import { useUserContext } from "@/contexts/UserContext";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import { log10 } from "chart.js/helpers";
+import Tier1Visa from "../assets/images/cards/horizontal/tier1/1/Visa.svg";
+import Tier2Visa from "../assets/images/cards/horizontal/tier2/2/Visa.svg";
+import Tier3Visa from "../assets/images/cards/horizontal/tier3/4/Visa.svg";
 import formatCurrency from "@/utils/formatCurrency";
 import capitalize from "@/utils/capitalize";
 
@@ -33,6 +35,12 @@ type Activity = {
   date: string;
   amount: string;
   isPositive: boolean;
+};
+
+type PlanTitle = {
+  tier1: string;
+  tier2: string;
+  tier3: string;
 };
 
 interface Transaction {
@@ -44,6 +52,12 @@ interface Transaction {
   status: string;
   // Add other properties if needed
 }
+
+const planTitle: PlanTitle = {
+  tier1: "Régulier",
+  tier2: "Premium",
+  tier3: "Ultime",
+};
 
 // Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
@@ -171,7 +185,7 @@ export default function UserPanel() {
             <FaRegCircleUser className="size-16" />
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
-          <h3 className="text-sm">Régulier</h3>
+          <h3 className="text-sm">{planTitle[user.plan]}</h3>
           <div className="mt-7 flex w-full items-center justify-around">
             <Dialog>
               <DialogTrigger asChild>
@@ -294,7 +308,13 @@ export default function UserPanel() {
 
         <div className="relative my-4 hidden lg:block">
           <img
-            src="/cards/horizontal/regular/1/Visa.svg"
+            src={
+              user.plan === "tier1"
+                ? Tier1Visa
+                : user.plan === "tier2"
+                  ? Tier2Visa
+                  : Tier3Visa
+            }
             alt="Image of the user's bank card"
             draggable="false"
             className="p-3"

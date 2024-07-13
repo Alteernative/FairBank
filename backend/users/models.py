@@ -54,9 +54,9 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     Plan = [
-        ('regular', 'regular'),
-        ('premium', 'premium'),
-        ('ultimate', 'ultime')
+        ('tier1', 'regular'),
+        ('tier2', 'premium'),
+        ('tier3', 'ultimate')
     ]
     plan = models.CharField(max_length=20, choices=Plan, default='regular')
 
