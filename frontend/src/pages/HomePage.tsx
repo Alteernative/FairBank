@@ -126,7 +126,7 @@ function Reviews() {
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/reviews/woman1.jpg" />
@@ -142,7 +142,7 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/reviews/man3.jpg" />
@@ -157,7 +157,7 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/reviews/man2.jpg" />
@@ -172,7 +172,7 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/reviews/man4.png" />
@@ -187,7 +187,7 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
                   <AvatarImage src="/reviews/man1.jpg" />
