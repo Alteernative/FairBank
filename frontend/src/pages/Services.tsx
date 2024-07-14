@@ -16,7 +16,11 @@ export default function Services() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
-            <img src="/services.svg" alt="" className="mb-8 h-auto w-1/3" />
+            <img
+              src="/images/services.svg"
+              alt=""
+              className="mb-8 h-auto w-1/3"
+            />
           </div>
           <h1 className="mb-14 font-jomhuria text-6xl text-primary">
             Services Offerts
@@ -24,7 +28,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-12">
+      <section className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg bg-white p-6 shadow-lg">
             <FaMoneyCheckAlt className="mb-4 text-4xl text-green-600" />
