@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa6";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
+import { ModeToggle } from "@/components/ModeToggle.tsx";
 
 type FormData = {
   email: string;
@@ -90,7 +91,7 @@ export default function SignIn() {
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] lg:flex">
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
@@ -101,7 +102,10 @@ export default function SignIn() {
         />
       </aside>
 
-      <main className="flex w-80 flex-1 items-center justify-center bg-white">
+      <main className="flex w-80 flex-1 items-center justify-center">
+        <span className="absolute right-36 top-0 m-5">
+          <ModeToggle />
+        </span>
         <Button
           asChild
           variant={"ghost"}
