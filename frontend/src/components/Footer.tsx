@@ -100,16 +100,9 @@ export default function Footer() {
           <h3 className="cursor-default text-lg font-semibold">
             Contactez-nous
           </h3>
-          <Input id="name" placeholder="Nom" className="w-5/6  bg-white/70" />
-          <Input
-            type="email"
-            placeholder="Email"
-            className="w-5/6  bg-white/70"
-          />
-          <Textarea
-            placeholder="Message"
-            className="h-20 resize-none bg-white/70"
-          />
+          <Input id="name" placeholder="Nom" className="w-5/6" />
+          <Input type="email" placeholder="Email" className="w-5/6" />
+          <Textarea placeholder="Message" className="h-20 resize-none" />
           <Button className="mt-2">Soumettre</Button>
         </section>
       </section>
