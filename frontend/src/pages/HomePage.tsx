@@ -129,7 +129,7 @@ function Reviews() {
             <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/woman1.jpg" />
+                  <AvatarImage src="/reviews/woman1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Jacqueline Bergeron</h2>
@@ -145,7 +145,7 @@ function Reviews() {
             <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man3.jpg" />
+                  <AvatarImage src="/reviews/man3.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Antoine Augustin</h2>
@@ -160,7 +160,7 @@ function Reviews() {
             <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man2.jpg" />
+                  <AvatarImage src="/reviews/man2.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Gigi Jordan</h2>
@@ -175,7 +175,7 @@ function Reviews() {
             <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man4.png" />
+                  <AvatarImage src="/reviews/man4.png" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Charles Bisonette</h2>
@@ -190,7 +190,7 @@ function Reviews() {
             <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man1.jpg" />
+                  <AvatarImage src="/reviews/man1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Émile Paquette</h2>
