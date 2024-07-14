@@ -4,7 +4,7 @@ export default function Particuliers() {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <div className="mb-60">
+    <div className="mb-60 dark:bg-slate-950 dark:text-white">
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
