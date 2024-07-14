@@ -34,7 +34,9 @@ export default function DashboardOverview() {
 
   return (
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
-      <h1 className="mb-10 font-jomhuria text-6xl">Overview</h1>
+      <h1 className="mb-10 font-jomhuria text-6xl">
+        Bonjour {user.first_name}
+      </h1>
       <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-2 row-span-1 rounded-lg border p-4 shadow">
           <h2 className="mb-3 font-bold">Balance</h2>
@@ -52,7 +54,7 @@ export default function DashboardOverview() {
           <h2>Graphe ratio des depots et ajouts</h2>
         </div>
 
-        <div className="col-span-2 row-span-3 flex h-full w-full flex-col rounded-lg border p-4 shadow">
+        <div className="col-span-2 row-span-3 rounded-lg border p-4 shadow">
           <DashboardGraph />
         </div>
 
@@ -60,12 +62,12 @@ export default function DashboardOverview() {
           <h2>Transactions rapide</h2>
         </div>
 
-        <div className="col-span-3 row-span-1 rounded-lg border p-4 shadow">
+        {/* <div className="col-span-3 row-span-1 rounded-lg border p-4 shadow">
           <h2>
             Transactions totales :{" "}
             {user.sent_transactions.length + user.received_transactions.length}
           </h2>
-        </div>
+        </div> */}
 
         <div className="col-span-3 row-span-1 rounded-lg border p-4 shadow">
           <h2 className="mb-0 font-bold">Balance des devises étrangères:</h2>
