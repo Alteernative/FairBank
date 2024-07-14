@@ -190,6 +190,11 @@ export default function SignIn() {
                     "S'identifier"
                   )}
                 </Button>
+                <Button asChild variant="link">
+                  <Link to={"/request/password-reset"}>
+                    Mot de passe oublié?
+                  </Link>
+                </Button>
               </div>
             </form>
           </CardContent>
