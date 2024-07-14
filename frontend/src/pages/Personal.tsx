@@ -2,7 +2,7 @@ import { FaMoneyCheck, FaPiggyBank, FaCrown } from "react-icons/fa";
 
 export default function Particuliers() {
   return (
-    <div className="mb-60">
+    <div className="mb-60 dark:bg-slate-950 dark:text-white">
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
@@ -20,21 +20,21 @@ export default function Particuliers() {
 
       <section className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="rounded-lg bg-white p-6 shadow-lg">
+          <div className="rounded-lg border p-6 dark:border-slate-900">
             <FaMoneyCheck className="mb-4 text-4xl text-[#66C02E]" />
             <h2 className="mb-2 text-2xl font-semibold">Comptes Régulier</h2>
             <p>Limite de transfert quotidiennes: 10 000$ / jour</p>
             <p>Transactions quotidiennes: 20</p>
             <p>Transactions quotidiennes: 20.99% </p>
           </div>
-          <div className="rounded-lg bg-white p-6 shadow-lg">
+          <div className="rounded-lg border p-6 dark:border-slate-900">
             <FaPiggyBank className="mb-4 text-4xl text-[#66C02E]" />
             <h2 className="mb-2 text-2xl font-semibold">Comptes Premium</h2>
             <p>Limite de transfert quotidiennes: 50 000$ / jour </p>
             <p>Transactions quotidiennes: 50</p>
             <p>Taux d'interets sur les prets: 15.99%</p>
           </div>
-          <div className="rounded-lg bg-white p-6 shadow-lg">
+          <div className="rounded-lg border p-6 dark:border-slate-900">
             <FaCrown className="mb-4 text-4xl text-[#66C02E]" />
             <h2 className="mb-2 text-2xl font-semibold">Comptes Ultime</h2>
             <p>Limite de transfert quotidiennes: Illimité</p>
