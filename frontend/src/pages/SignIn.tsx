@@ -95,7 +95,7 @@ export default function SignIn() {
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
         <img
-          src="/login.svg"
+          src="/images/login.svg"
           alt="Sign in image"
           className="my-auto w-full content-center overflow-hidden"
         />
@@ -189,6 +189,11 @@ export default function SignIn() {
                   ) : (
                     "S'identifier"
                   )}
+                </Button>
+                <Button asChild variant="link">
+                  <Link to={"/request/password-reset"}>
+                    Mot de passe oublié?
+                  </Link>
                 </Button>
               </div>
             </form>
