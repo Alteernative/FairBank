@@ -70,12 +70,12 @@ export default function DashboardOverview() {
             <CarouselContent className="-ml-1">
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$`}
                           decimals={2}
@@ -89,12 +89,12 @@ export default function DashboardOverview() {
 
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$`}
                           decimals={2}
@@ -108,12 +108,12 @@ export default function DashboardOverview() {
 
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$ `}
                           decimals={2}
@@ -127,12 +127,12 @@ export default function DashboardOverview() {
 
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$ `}
                           decimals={2}
@@ -146,12 +146,12 @@ export default function DashboardOverview() {
 
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$ `}
                           decimals={2}
@@ -165,12 +165,12 @@ export default function DashboardOverview() {
 
               {balances.map((balance, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center bg-white/70 ">
+                  <Card className="flex h-20 flex-col items-center">
                     <CardHeader className="flex cursor-default flex-col items-center">
                       <h2>
                         <CountUp
                           start={0}
-                          end={balance.currency}
+                          end={balance.amount}
                           duration={2}
                           prefix={`$ `}
                           decimals={2}
