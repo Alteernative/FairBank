@@ -3,7 +3,7 @@ export default function Politiques() {
     <div className={"mb-60"}>
       <section className="mt-0 flex items-center">
         <div className="flex flex-1 items-center justify-center">
-          <img src="/security.svg" alt="" className="h-auto w-1/3" />
+          <img src="/images/privacy.svg" alt="" className="h-auto w-1/3" />
         </div>
       </section>
 

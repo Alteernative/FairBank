@@ -32,7 +32,7 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="flex items-center justify-around">
+    <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="flex flex-1 flex-col items-start justify-center gap-5">
         <h2 className="text-5xl font-bold">
           L'intérêt de notre banque&nbsp;?
@@ -42,14 +42,17 @@ function Hero() {
         <h3 className="text-2xl">
           Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
         </h3>
-        <Link to={"/inscription"} className="w-6/12">
-          <Button variant={"default"} size={"lg"} className="w-full rounded-3xl">
-            Devenir membre
-          </Button>
-        </Link>
+        <Button
+          asChild
+          variant={"default"}
+          size={"lg"}
+          className="w-1/2 rounded-3xl"
+        >
+          <Link to={"/inscription"}>Devenir membre</Link>
+        </Button>
       </div>
       <div className="flex flex-1 items-center justify-center">
-        <img src="/hero.svg" alt="Card image" />
+        <img src="/images/hero.svg" alt="Card image" />
       </div>
     </section>
   );
@@ -78,7 +81,7 @@ function About() {
   return (
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-center justify-center">
-        <img src="/about_us.svg" alt="" />
+        <img src="/images/about_us.svg" alt="" />
       </div>
       <div className="flex flex-1 flex-col items-start justify-center">
         <h2 className="text-2xl font-bold">Faites Valoir Vos Avoirs</h2>
@@ -104,13 +107,13 @@ function CallToAction() {
         </h2>
         <p>
           Des frais mensuels? Pas question. <br />
-          Profitez de retraits gratuits à n’importe quel guichet automatique au
-          Canada et d’une remise en argent sur chaque achat avec la carte
+          Profitez de retraits gratuits à n'importe quel guichet automatique au
+          Canada et d'une remise en argent sur chaque achat avec la carte
           FairBank.
         </p>
       </div>
       <div className="flex flex-1 items-center justify-center">
-        <img src="/call_to_action.svg" alt="" />
+        <img src="/images/call_to_action.svg" alt="" />
       </div>
     </section>
   );
@@ -123,10 +126,10 @@ function Reviews() {
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/woman1.jpg" />
+                  <AvatarImage src="/reviews/woman1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Jacqueline Bergeron</h2>
@@ -139,10 +142,10 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man3.jpg" />
+                  <AvatarImage src="/reviews/man3.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Antoine Augustin</h2>
@@ -154,10 +157,10 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man2.jpg" />
+                  <AvatarImage src="/reviews/man2.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Gigi Jordan</h2>
@@ -169,10 +172,10 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man4.png" />
+                  <AvatarImage src="/reviews/man4.png" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Charles Bisonette</h2>
@@ -184,10 +187,10 @@ function Reviews() {
             </Card>
           </CarouselItem>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-            <Card className="flex h-80 flex-col items-center bg-white/70  p-6">
+            <Card className="flex h-80 flex-col items-center p-6">
               <CardHeader className="flex cursor-default flex-col items-center">
                 <Avatar>
-                  <AvatarImage src="/man1.jpg" />
+                  <AvatarImage src="/reviews/man1.jpg" />
                   <AvatarFallback>Avatar placeholder</AvatarFallback>
                 </Avatar>
                 <h2>Émile Paquette</h2>

@@ -43,7 +43,7 @@ export default function Sidebar() {
               className="flex w-full items-center justify-start gap-2"
             >
               <PiCirclesFourFill />
-              Overview
+              Menu
             </Button>
           </Link>
           <Link to={"/dashboard/transactions"}>
@@ -55,6 +55,16 @@ export default function Sidebar() {
             >
               <IoDocumentTextOutline />
               Historique
+            </Button>
+          </Link>
+          <Link to={"/dashboard/activity"}>
+            <Button
+              variant={isActive("/dashboard/activity") ? "default" : "ghost"}
+              className="flex w-full items-center justify-start gap-2"
+            >
+              <MdCompareArrows />
+              Activité
+
             </Button>
           </Link>
           <Link to={"/dashboard/exchange-rates"}>

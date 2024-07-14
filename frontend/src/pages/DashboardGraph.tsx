@@ -106,7 +106,7 @@ export default function DashboardGraph() {
       }));
       const additionalData = {
         user_id: user.id,
-        user_name: user.name,
+        user_name: user.first_name, // TODO: Why?
         transactions: transactionsForCsv,
         transactionCount: transactions.length,
       };
@@ -126,7 +126,6 @@ export default function DashboardGraph() {
       title: {
         display: true,
         text: "Graphe de la balance",
-        text: "Balance du compte après chaque transaction",
       },
     },
     scales: {
@@ -140,7 +139,6 @@ export default function DashboardGraph() {
         title: {
           display: true,
           text: "Balance",
-          text: "Montant Balance",
         },
       },
     },

@@ -13,7 +13,7 @@ export default function FAQPage() {
       <Accordion
         type="single"
         collapsible
-        className="mb-20 w-2/3 rounded-md bg-white p-3"
+        className="mb-20 w-2/3 rounded-md p-3"
       >
         <AccordionItem value="item1" className="p-4">
           <AccordionTrigger className="text-lg">

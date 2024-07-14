@@ -344,7 +344,7 @@ export default function UserPanel() {
 
         <div className="mb-5 w-full">
           <h2 className="font-semibold">Activités récentes</h2>
-          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
+          <div className="space-y-2 rounded-lg border p-2 shadow">
             {activities.map((activity, index) => (
               <div key={index} className="flex items-center justify-between">
                 <div>
@@ -361,8 +361,10 @@ export default function UserPanel() {
           </div>
         </div>
         <div className="mb-5 w-full">
-          <h2 className="font-semibold">Activités à accepter</h2>
-          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
+
+          <h2 className="font-semibold">Activités a accepter</h2>
+          <div className="space-y-2 rounded-lg border p-2 shadow">
+
             {user?.pending_sender_transactions?.map(
               (transaction: Transaction, index: number) => (
                 <div key={index} className="flex items-center justify-between">
@@ -407,7 +409,7 @@ export default function UserPanel() {
           <h2 className="font-semibold">
             Activités en attente d'approbation de l'autre partie
           </h2>
-          <div className="space-y-2 rounded-lg bg-white p-2 shadow">
+          <div className="space-y-2 rounded-lg border p-2 shadow">
             {user?.pending_received_transactions?.map(
               (transaction: Transaction, index: number) => (
                 <div key={index} className="flex items-center justify-between">

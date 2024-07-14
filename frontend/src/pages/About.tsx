@@ -4,7 +4,7 @@ export default function Apropos() {
       <section className="py-12">
         <div className="container mx-auto text-center">
           <div className="flex justify-center">
-            <img src="/company.svg" alt="" className="h-auto w-2/5" />
+            <img src="/images/about.svg" alt="" className="h-auto w-2/5" />
           </div>
           <h1 className="mb-14 font-jomhuria text-6xl text-primary">
             Qui est Fairbank?
