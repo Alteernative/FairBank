@@ -156,7 +156,7 @@ export default function DashboardGraph() {
           className="hover:bg-green-600-600 flex items-center rounded-md bg-green-500 px-4 py-2 text-white transition-colors duration-300"
         >
           <FaFileDownload className="mr-2" />
-          <span>Telecharger</span>
+          <span>Télécharger</span>
         </CSVLink>
       </div>
       <div className="h-full w-full flex-grow">

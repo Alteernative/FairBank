@@ -24,7 +24,7 @@ export default function BirthdayForm() {
     <StepWrapper
       // title="Renseignement de base"
       title="Date de naissance"
-      description="Entrer votre date de naissance et pays ci-dessous pour créer votre compte."
+      description="Entrer votre date de naissance ci-dessous pour créer votre compte."
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput

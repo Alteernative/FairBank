@@ -13,7 +13,7 @@ export default function EmailForm() {
   return (
     <StepWrapper
       title="S'inscrire"
-      description="Entrer votre courriel ci-dessous pour créer votre compte."
+      description="Entrez votre courriel ci-dessous pour créer votre compte."
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput

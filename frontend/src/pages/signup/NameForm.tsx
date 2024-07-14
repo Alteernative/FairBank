@@ -12,7 +12,7 @@ export default function NameForm() {
   return (
     <StepWrapper
       title="Informations personnelles"
-      description="Entrer votre prénom, votre nom et votre âge ci-dessous pour créer votre compte."
+      description="Entrez votre prénom et votre nom ci-dessous pour créer votre compte."
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput

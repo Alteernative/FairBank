@@ -24,7 +24,7 @@ export default function PasswordForm() {
   return (
     <StepWrapper
       title="Mot de passe"
-      description="Entrer un mot de passe ci-dessous pour créer votre compte."
+      description="Entrez un mot de passe ci-dessous pour créer votre compte."
     >
       <section className="flex flex-col gap-4">
         <div className="relative">

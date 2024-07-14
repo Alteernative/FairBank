@@ -33,7 +33,7 @@ export default function DashboardOverview() {
               </div>
 
           <div className="col-span-1 row-span-1 rounded-lg bg-white p-4 shadow">
-              <h2>Graphe ratio des dépots et ajouts:</h2>
+              <h2>Ratio des dépots et ajouts:</h2>
           </div>
 
         <div className="col-span-2 row-span-3 flex h-full w-full flex-col rounded-lg bg-white p-4 shadow">
