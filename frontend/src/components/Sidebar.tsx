@@ -54,18 +54,7 @@ export default function Sidebar() {
               className="flex w-full items-center justify-start gap-2"
             >
               <IoDocumentTextOutline />
-              Transactions
-            </Button>
-          </Link>
-          <Link to={"/dashboard/compare-plans"}>
-            <Button
-              variant={
-                isActive("/dashboard/compare-plans") ? "default" : "ghost"
-              }
-              className="flex w-full items-center justify-start gap-2"
-            >
-              <MdCompareArrows />
-              Comparer les plans
+              Historique
             </Button>
           </Link>
           <Link to={"/dashboard/exchange-rates"}>

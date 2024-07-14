@@ -16,7 +16,6 @@ import DashboardExchangeRates from "./pages/DashboardExchangeRates";
 import DashboardHelp from "./pages/DashboardHelp";
 import DashboardSettings from "./pages/DashboardSettings";
 import DashboardTransactions from "./pages/transactions/DashboardTransactions.tsx";
-import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
@@ -95,14 +94,6 @@ export default function App() {
                 <TransactionContextProvider>
                     <DashboardTransactions />
                 </TransactionContextProvider>
-            </DashboardLayout>
-          }
-        />
-        <Route
-          path="/dashboard/compare-plans"
-          element={
-            <DashboardLayout>
-              <DashboardComparePlans />
             </DashboardLayout>
           }
         />
