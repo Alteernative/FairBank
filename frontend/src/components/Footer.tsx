@@ -74,7 +74,7 @@ export default function Footer() {
           <h3 className="cursor-default text-lg font-semibold">Plan du site</h3>
           <div className="flex flex-col gap-2 pt-5">
           <Button variant="link">
-              <Link to={"/particuliers"} onClick={scrollToTop}>Particuliers</Link>
+              <Link to={"/particuliers"} onClick={scrollToTop}>Plans</Link>
             </Button>
             <Button variant="link">
               <Link to={"/services"} onClick={scrollToTop}>Services</Link>

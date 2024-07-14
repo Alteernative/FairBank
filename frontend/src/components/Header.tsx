@@ -61,7 +61,7 @@ export default function Header() {
               to="/particuliers"
               className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
             >
-              Particuliers
+              Plans
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
