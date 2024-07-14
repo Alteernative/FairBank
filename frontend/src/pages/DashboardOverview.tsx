@@ -49,14 +49,18 @@ export default function DashboardOverview() {
         </div>
 
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
-          <h2>Graphe ratio des dépots et ajouts:</h2>
+          <h2>Graphe ratio des depots et ajouts</h2>
         </div>
 
-        <div className="col-span-2 row-span-3 flex h-full w-full flex-col rounded-lg border border p-4 shadow">
+        <div className="col-span-2 row-span-3 flex h-full w-full flex-col rounded-lg border p-4 shadow">
           <DashboardGraph />
         </div>
 
         <div className="col-span-1 row-span-3 rounded-lg border p-4 shadow">
+          <h2>Transactions rapide</h2>
+        </div>
+
+        <div className="col-span-3 row-span-1 rounded-lg border p-4 shadow">
           <h2>
             Transactions totales :{" "}
             {user.sent_transactions.length + user.received_transactions.length}

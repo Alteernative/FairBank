@@ -20,12 +20,9 @@ import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
-import DashboardGraph from "@/pages/DashboardGraph.tsx";
 import PasswordReset from "./components/PasswordReset.tsx";
 import PasswordResetRequest from "@/components/PasswordResetRequest.tsx";
-import { useEffect } from "react";
-import { ThemeProvider } from "./provider/ThemeProvider.tsx";
-
+import { ThemeProvider } from "@/provider/ThemeProvider.tsx";
 export default function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
