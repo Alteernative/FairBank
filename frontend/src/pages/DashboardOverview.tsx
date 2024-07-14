@@ -2,9 +2,8 @@ import { useUserContext } from "@/contexts/UserContext";
 import { useState } from "react";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
 import CountUp from "react-countup";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel.tsx";
-import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card.tsx";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar.tsx";
+import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel.tsx";
+import {Card, CardHeader} from "@/components/ui/card.tsx";
 
 export default function DashboardOverview() {
 
@@ -27,6 +26,7 @@ export default function DashboardOverview() {
                       end={user.balance}
                       duration={2}
                       prefix="$"
+                      suffix=" CAD"
                       decimals={2}
                       className="font-jomhuria text-6xl"
                   />
@@ -47,6 +47,7 @@ export default function DashboardOverview() {
               </h2>
           </div>
 
+          {/* Carousel Balance devises etrangeres */}
           <div className="col-span-3 row-span-1 rounded-lg bg-white p-4 shadow">
               <h2 className="mb-0 font-bold">Balance des devises étrangères:</h2>
 
@@ -63,6 +64,7 @@ export default function DashboardOverview() {
                                               end={balance.currency}
                                               duration={2}
                                               prefix={`$`}
+                                              suffix={' USD'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -81,7 +83,8 @@ export default function DashboardOverview() {
                                               start={0}
                                               end={balance.currency}
                                               duration={2}
-                                              prefix={`$`}
+                                              prefix={`¥`}
+                                              suffix={' JPY'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -100,7 +103,8 @@ export default function DashboardOverview() {
                                               start={0}
                                               end={balance.currency}
                                               duration={2}
-                                              prefix={`$ `}
+                                              prefix={`€`}
+                                              suffix={' EUR'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -119,7 +123,8 @@ export default function DashboardOverview() {
                                               start={0}
                                               end={balance.currency}
                                               duration={2}
-                                              prefix={`$ `}
+                                              prefix={`£`}
+                                              suffix={' GBP'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -138,7 +143,8 @@ export default function DashboardOverview() {
                                               start={0}
                                               end={balance.currency}
                                               duration={2}
-                                              prefix={`$ `}
+                                              prefix={`¥`}
+                                              suffix={' CNY'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -157,7 +163,8 @@ export default function DashboardOverview() {
                                               start={0}
                                               end={balance.currency}
                                               duration={2}
-                                              prefix={`$ `}
+                                              prefix={'₹'}
+                                              suffix={' INR'}
                                               decimals={2}
                                               className="font-jomhuria text-5xl"
                                           />
@@ -171,7 +178,6 @@ export default function DashboardOverview() {
               </Carousel>
           </div>
       </div>
-
       </main>
   );
 }
