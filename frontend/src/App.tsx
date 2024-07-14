@@ -16,7 +16,7 @@ import DashboardExchangeRates from "./pages/DashboardExchangeRates";
 import DashboardHelp from "./pages/DashboardHelp";
 import DashboardSettings from "./pages/DashboardSettings";
 import DashboardTransactions from "./pages/transactions/DashboardTransactions.tsx";
-import DashboardComparePlans from "./pages/DashboardComparePlans";
+import DashboardActivity from "./pages/DashboardActivity.tsx";
 import UserProfileSettings from "./pages/UserProfileSettings";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
@@ -97,10 +97,10 @@ export default function App() {
             }
           />
           <Route
-            path="/dashboard/compare-plans"
+            path="/dashboard/activity"
             element={
               <DashboardLayout>
-                <DashboardComparePlans />
+                <DashboardActivity />
               </DashboardLayout>
             }
           />
