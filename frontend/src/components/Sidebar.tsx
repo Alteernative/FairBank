@@ -57,11 +57,9 @@ export default function Sidebar() {
               Historique
             </Button>
           </Link>
-          <Link to={"/dashboard/compare-plans"}>
+          <Link to={"/dashboard/activity"}>
             <Button
-              variant={
-                isActive("/dashboard/compare-plans") ? "default" : "ghost"
-              }
+              variant={isActive("/dashboard/activity") ? "default" : "ghost"}
               className="flex w-full items-center justify-start gap-2"
             >
               <MdCompareArrows />
