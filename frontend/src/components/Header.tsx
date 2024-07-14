@@ -45,7 +45,9 @@ export default function Header() {
         <h1 className="font-jomhuria text-6xl text-primary">FairBank</h1>
       </Link>
       <NavigationMenu>
-        <NavigationMenuList className="gap-5">
+        {/* <NavigationMenuList className="gap-5"> */}
+        {/* TODO: Temporary solution Sprint2. Sprint 3 -> Add a hamburger menu */}
+        <NavigationMenuList className="hidden gap-5 lg:flex">
           <NavigationMenuItem>
             <Link
               to="/particuliers"
