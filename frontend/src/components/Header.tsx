@@ -7,19 +7,11 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "./ui/navigation-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { ModeToggle } from "./ModeToggle";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [position, setPosition] = useState("top")
+  // const [position, setPosition] = useState("top");
 
   const navigate = useNavigate();
 
@@ -50,8 +42,6 @@ export default function Header() {
   return (
     <header className="mt-7 flex items-center justify-between">
       <Link to="/" className="flex items-center">
-        {/* <img className="w-10" src="/logo_no_bg.png" alt="Logo du site" />
-          <h1 className="text-2xl font-bold font-sans">FairBank</h1> */}
         <h1 className="font-jomhuria text-6xl text-primary">FairBank</h1>
       </Link>
       <NavigationMenu>
@@ -88,7 +78,7 @@ export default function Header() {
               FAQ
             </Link>
           </NavigationMenuItem>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button>Français</Button>
             </DropdownMenuTrigger>
@@ -100,10 +90,11 @@ export default function Header() {
                 <DropdownMenuRadioItem value="bottom">Anglais</DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
+        <ModeToggle />
         {isAuthenticated ? (
           <>
             <Button
@@ -114,7 +105,7 @@ export default function Header() {
             </Button>
             <Button
               variant={"default"}
-              className="ms-2 rounded-3xl"
+              className="rounded-3xl"
               onClick={logoutUser}
             >
               Déconnecter
@@ -128,13 +119,11 @@ export default function Header() {
             >
               <Link to={"/connexion"}>Se connecter</Link>
             </Button>
-            <Button variant={"default"} className="ms-2 rounded-3xl">
+            <Button variant={"default"} className="rounded-3xl">
               <Link to={"/inscription"}>Devenir membre</Link>
             </Button>
           </>
         )}
-        {/* <Button variant={"outline"} className="bg-transparent text-black border-black hover:bg-transparent rounded-3xl text-primary font-semibold hover:text-primary/90 transition-all duration-250">S'incrire</Button> */}
-        {/* <Button variant={"outline"} className="bg-transparent text-primary border-primary rounded-3xl font-semibold transition-all duration-250 hover:bg-primary/10">Se connecter</Button> */}
       </div>
     </header>
   );
