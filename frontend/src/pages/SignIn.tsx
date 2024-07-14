@@ -128,7 +128,6 @@ export default function SignIn() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-4">
                 <FloatingLabelInput
-                  // type="email"
                   type="text"
                   id="email"
                   label="Courriel"
