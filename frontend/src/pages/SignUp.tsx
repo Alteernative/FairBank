@@ -53,27 +53,24 @@ export default function SignUp() {
     setFormData(allData);
     console.log(allData);
 
-
     if (step < MAX_STEPS) {
-
       setStep(step + 1);
       methods.clearErrors();
     } else {
-
       try {
         console.log(allData);
-         const formDataToSend = new FormData();
-      for (const key in allData) {
-        if (key === "image_url" && allData[key]) {
-          formDataToSend.append(key, allData[key]);
-        } else if (key !== "image_url") {
-          console.log(allData[key]);
-          formDataToSend.append(key, allData[key]);
+        const formDataToSend = new FormData();
+        for (const key in allData) {
+          if (key === "image_url" && allData[key]) {
+            formDataToSend.append(key, allData[key]);
+          } else if (key !== "image_url") {
+            console.log(allData[key]);
+            formDataToSend.append(key, allData[key]);
+          }
         }
-      }
         const response = await AxiosInstance.post("register/", formDataToSend, {
           headers: {
-          "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-data",
           },
         });
         if (response) {
@@ -113,7 +110,7 @@ export default function SignUp() {
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
           </Link>
           <img
-            src="/login.svg"
+            src="/images/login.svg"
             alt="Sign in image"
             className="my-auto w-full content-center overflow-hidden"
           />
@@ -129,7 +126,6 @@ export default function SignUp() {
           <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
             <Link to={"/"}>FairBank</Link>
           </h1>
-
 
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
