@@ -97,10 +97,7 @@ export default function Header() {
         <ModeToggle />
         {isAuthenticated ? (
           <>
-            <Button
-              variant={"ghost"}
-              className="rounded-3xl font-semibold hover:bg-primary/10"
-            >
+            <Button variant={"ghost"} className="rounded-3xl font-semibold">
               <Link to={"/dashboard"}>Tableau de bord</Link>
             </Button>
             <Button
@@ -113,10 +110,7 @@ export default function Header() {
           </>
         ) : (
           <>
-            <Button
-              variant={"ghost"}
-              className="rounded-3xl font-semibold hover:bg-primary/10"
-            >
+            <Button variant={"ghost"} className="rounded-3xl font-semibold">
               <Link to={"/connexion"}>Se connecter</Link>
             </Button>
             <Button variant={"default"} className="rounded-3xl">
