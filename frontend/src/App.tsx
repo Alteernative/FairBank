@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import Personal from "./pages/Personal";
