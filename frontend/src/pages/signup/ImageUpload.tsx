@@ -37,7 +37,7 @@ export default function ImageUpload() {
   return (
     <StepWrapper
       title="Personaliser votre profil"
-      description="Téléverser une image de profil si vous le désirez, sinon cliquez sur suivant"
+      description="Ajoutez une image à votre profil client ou passez pour créer votre compte."
     >
       <section className="relative flex flex-col gap-4">
         <input
@@ -60,7 +60,7 @@ export default function ImageUpload() {
             onClick={handleRemoveFile}
             className="absolute -bottom-[3.75rem] left-0 w-32"
           >
-            Retirer image
+            Retirer l'image
           </Button>
         )}
         {!fileName && (
