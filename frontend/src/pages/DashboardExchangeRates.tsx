@@ -163,7 +163,7 @@ export default function DashboardExchangeRates() {
   }
 
   return (
-    <main className="h-full w-full flex flex-wrap justify-center rounded-lg px-10 shadow-lg">
+    <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="w-full mb-10 font-jomhuria text-6xl">Taux de change</h1>
       <p className="w-full text-3xl mb-2 text-center font-bold">Taux actuels selon le CAD 🇨🇦:</p>
 
