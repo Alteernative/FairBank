@@ -32,7 +32,7 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="flex items-center justify-around dark:bg-slate-900 dark:text-white">
+    <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="flex flex-1 flex-col items-start justify-center gap-5">
         <h2 className="text-5xl font-bold">
           L'intérêt de notre banque&nbsp;?
