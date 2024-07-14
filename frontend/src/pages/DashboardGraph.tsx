@@ -106,7 +106,7 @@ export default function DashboardGraph() {
       },
       title: {
         display: true,
-        text: "Account Balance After Each Transaction",
+        text: "Balance du compte après chaque transaction",
       },
     },
     scales: {
@@ -119,7 +119,7 @@ export default function DashboardGraph() {
       y: {
         title: {
           display: true,
-          text: "Balance Amount",
+          text: "Montant Balance",
         },
       },
     },

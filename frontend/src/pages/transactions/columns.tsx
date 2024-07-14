@@ -1,7 +1,7 @@
-"use client"
-import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { Button } from "@/components/ui/button"
+"use client";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,21 +9,39 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
+  id: string;
+  amount: number;
+  status: "Envoyé" | "Reçu";
+  email: string;
+  date: string;
+  type: "sent" | "received";
+};
 
 export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Statut
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+      return (
+        <div className="font-medium ">&nbsp;&nbsp;&nbsp;&nbsp;{status}</div>
+      );
+    },
   },
   {
     accessorKey: "email",
@@ -36,7 +54,7 @@ export const columns: ColumnDef<Payment>[] = [
           Courriel
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -50,23 +68,52 @@ export const columns: ColumnDef<Payment>[] = [
           <div className="text-right">Montant</div>
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
+      const amount = parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-CA", {
         style: "currency",
         currency: "CAD",
-      }).format(amount)
+      }).format(amount);
+      const type = row.original.type;
 
-      return <div className=" font-medium">{formatted}</div>
+      return (
+        <div
+          className={`font-medium ${type === "received" ? "text-green-500" : "text-red-500"}`}
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatted}
+        </div>
+      );
     },
   },
-    // Row Actions
-    {
+  {
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("date")).toLocaleDateString("en-CA", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      return <div className="font-medium">{date}</div>;
+    },
+  },
+  // Row Actions
+  {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
+      const payment = row.original;
 
       return (
         <DropdownMenu>
@@ -88,7 +135,7 @@ export const columns: ColumnDef<Payment>[] = [
             {/*<DropdownMenuItem>View payment details</DropdownMenuItem>*/}
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
