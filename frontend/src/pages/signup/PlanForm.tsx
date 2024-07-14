@@ -43,7 +43,7 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
   return (
     <StepWrapper
       title="Plan bancaire"
-      description="Choisissez un plan bancaire pour créer votre compte."
+      description="Choisissez un de nos plans bancaires pour créer votre compte."
       isLastStep={isLastStep}
       isSubmitting={isSubmitting}
     >

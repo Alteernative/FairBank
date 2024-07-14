@@ -64,6 +64,7 @@ export default function Sidebar() {
             >
               <MdCompareArrows />
               Activité
+
             </Button>
           </Link>
           <Link to={"/dashboard/exchange-rates"}>

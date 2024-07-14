@@ -121,7 +121,7 @@ export default function SignIn() {
           <CardHeader>
             <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
             <CardDescription className="text-center">
-              Entrer votre email et votre mot de passe pour vous connecter.
+              Entrez votre courriel et mot de passe pour vous connecter.
             </CardDescription>
           </CardHeader>
           <CardContent>

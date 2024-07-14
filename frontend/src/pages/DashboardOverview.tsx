@@ -2,6 +2,7 @@ import { useUserContext } from "@/contexts/UserContext";
 import { useState } from "react";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
 import CountUp from "react-countup";
+
 import {
   Carousel,
   CarouselContent,
@@ -33,6 +34,7 @@ export default function DashboardOverview() {
   };
 
   return (
+
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">
         Bonjour {user.first_name}

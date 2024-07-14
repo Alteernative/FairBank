@@ -45,8 +45,10 @@ export default function DashboardExchangeRates() {
   const [convertedAmount, setConvertedAmount] = React.useState(0);
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
 
+  // API KEY apilayer.com
   const apiKey = "1vIa5mpChI9QTb9Gq4ASmFD4ej82oaIQ";
 
+  // Fetch exchange rates compared to the CAD
   const fetchExchangeRates = async () => {
     try {
       const response = await axios.get(`https://api.apilayer.com/exchangerates_data/latest`, {
@@ -69,6 +71,7 @@ export default function DashboardExchangeRates() {
     }
   };
 
+  // Fetch data for the exchange rate graph
   const fetchHistoryExchangeRates = async () => {
     try {
       const response = await axios.get(`https://api.apilayer.com/exchangerates_data/timeseries`, {
@@ -87,6 +90,7 @@ export default function DashboardExchangeRates() {
         const data = response.data.rates;
         const processedData = {};
         Object.keys(data).forEach(date => {
+
           Object.keys(data[date]).forEach(currency => {
             if (!processedData[currency]) {
               processedData[currency] = [];
@@ -266,11 +270,12 @@ export default function DashboardExchangeRates() {
                   Convertir
                 </Button>
               </div>
-              <div>
-                <p>Montant converti: {convertedAmount} {currency}</p>
-              </div>
-            </DialogFooter>
 
+              <div>
+                <p >Montant converti: {convertedAmount} {currency}</p>
+              </div>
+
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       ))}

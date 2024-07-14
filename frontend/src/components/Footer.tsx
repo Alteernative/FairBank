@@ -68,9 +68,10 @@ export default function Footer() {
         <section className="flex flex-1 flex-col text-center">
           <h3 className="cursor-default text-lg font-semibold">Plan du site</h3>
           <div className="flex flex-col gap-2 pt-5">
+
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
-                Particuliers
+                Plans
               </Link>
             </Button>
             <Button asChild variant="link">
