@@ -1,15 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "./ui/navigation-menu";
-import { useEffect, useState } from "react";
-import AxiosInstance from "@/components/AxiosInstance.tsx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [position, setPosition] = useState("top")
+
   const navigate = useNavigate();
 
   // FIXME: Auth is true, when user logs out from dashboard
@@ -77,6 +88,19 @@ export default function Header() {
               FAQ
             </Link>
           </NavigationMenuItem>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button>Français</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Changer la langue:</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                <DropdownMenuRadioItem value="top">Français</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="bottom">Anglais</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex items-center">

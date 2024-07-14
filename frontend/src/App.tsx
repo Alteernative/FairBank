@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import Personal from "./pages/Personal";
@@ -14,14 +15,18 @@ import DashboardOverview from "./pages/DashboardOverview";
 import DashboardExchangeRates from "./pages/DashboardExchangeRates";
 import DashboardHelp from "./pages/DashboardHelp";
 import DashboardSettings from "./pages/DashboardSettings";
-import DashboardTransactions from "./pages/DashboardTransactions";
+import DashboardTransactions from "./pages/transactions/DashboardTransactions.tsx";
 import DashboardComparePlans from "./pages/DashboardComparePlans";
 import UserProfileSettings from "./pages/UserProfileSettings";
 import { UserContextProvider } from "@/contexts/UserContext";
+import { TransactionContextProvider } from "@/contexts/TransactionContext";
 import DashboardGraph from "@/pages/DashboardGraph.tsx";
 import PasswordReset from "./components/PasswordReset.tsx";
 import PasswordResetRequest from "@/components/PasswordResetRequest.tsx";
+import { useEffect } from "react";
+
 export default function App() {
+
   return (
     <Router>
       <Routes>
@@ -87,7 +92,9 @@ export default function App() {
           path="/dashboard/transactions"
           element={
             <DashboardLayout>
-              <DashboardTransactions />
+                <TransactionContextProvider>
+                    <DashboardTransactions />
+                </TransactionContextProvider>
             </DashboardLayout>
           }
         />

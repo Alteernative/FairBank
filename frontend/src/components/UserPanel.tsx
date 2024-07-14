@@ -174,6 +174,7 @@ export default function UserPanel() {
 
   console.log(user.image_url);
 
+  console.log(user);
   return (
     <>
       <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
