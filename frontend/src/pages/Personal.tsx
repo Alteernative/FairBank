@@ -72,9 +72,11 @@ export default function Particuliers() {
               <div className="mb-1 font-semibold">Régulier</div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "25" : "20"}$
+                  {isAnnual ? "270" : "20"}$
                 </span>
-                <span className="font-medium text-slate-500">/mo</span>
+                <span className="font-medium text-slate-500">
+                  {isAnnual ? "/yr" : "/mo"}
+                </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
                 Plan de base pour les particuliers avec des fonctionnalités
@@ -144,13 +146,15 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "50" : "40"}$
+                  {isAnnual ? "400" : "40"}$
                 </span>
                 <span
                   className="text-4xl font-bold text-slate-900 dark:text-slate-200"
                   v-text="isAnnual ? '49' : '55'"
                 ></span>
-                <span className="font-medium text-slate-500">/mo</span>
+                <span className="font-medium text-slate-500">
+                  {isAnnual ? "/yr" : "/mo"}
+                </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
                 Plan avancé pour les utilisateurs exigeants, avec des avantages
@@ -176,7 +180,7 @@ export default function Particuliers() {
                   <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                 </svg>
                 <span>
-                  Nombre <b>illimité</b> d'opérations par mois
+                  Nombre <b>illimité</b> dopérations par mois
                 </span>
               </li>
               <li className="flex items-center">
@@ -225,9 +229,11 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "100" : "85"}$
+                  {isAnnual ? "800" : "85"}$
                 </span>
-                <span className="font-medium text-slate-500">/mo</span>
+                <span className="font-medium text-slate-500">
+                  {isAnnual ? "/yr" : "/mo"}
+                </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
                 Plan exclusif pour les utilisateurs professionnels, avec des
@@ -253,7 +259,7 @@ export default function Particuliers() {
                   <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                 </svg>
                 <span>
-                  Nombre <b>illimité</b> d'opérations par mois
+                  Nombre <b>illimité</b> dopérations par mois
                 </span>
               </li>
               <li className="flex items-center">
