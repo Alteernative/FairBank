@@ -5,7 +5,6 @@ import {
   Wallet,
   Palette,
   Bell,
-  Monitor,
   ArrowLeft,
   LockIcon,
 } from "lucide-react";
