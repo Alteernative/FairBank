@@ -6,6 +6,7 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 export default function DashboardTransactions() {
   const { user } = useUserContext();
 
+  //*********** function temp *****************//
   const updateCurrencyBalance = (currency, amount) => {
     AxiosInstance.put(`currencies/update_balance/`, { currency, amount })
       .then((response) => {
@@ -21,6 +22,7 @@ export default function DashboardTransactions() {
   const amount = 10.0; // Replace with the amount you want to add
   console.log(currency, amount);
   updateCurrencyBalance(currency, amount);
+  //*********** function temp *****************//
 
   const sentTransactions: Payment[] = user.sent_transactions.map(
     (transaction) => ({
