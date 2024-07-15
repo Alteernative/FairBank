@@ -6,7 +6,6 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 export default function DashboardTransactions() {
   const { user } = useUserContext();
 
-
   const sentTransactions: Payment[] = user.sent_transactions.map(
     (transaction) => ({
       id: transaction.id.toString(),
@@ -32,7 +31,7 @@ export default function DashboardTransactions() {
   const data: Payment[] = [...sentTransactions, ...receivedTransactions];
 
   return (
-    <main className="h-full w-7/12 rounded-lg px-10 shadow-lg   ">
+    <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">
         Historique des transactions
       </h1>
