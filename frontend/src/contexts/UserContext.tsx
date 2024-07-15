@@ -11,6 +11,7 @@ type User = {
   balance: number;
   pending_sender_transactions: [];
   pending_received_transactions: [];
+  currencies: [];
 };
 
 type UserContextProps = {
@@ -27,6 +28,7 @@ const defaultUser: User = {
   balance: 0,
   sent_transactions: [],
   received_transactions: [],
+  currencies: [],
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
