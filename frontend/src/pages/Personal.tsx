@@ -7,15 +7,16 @@ export default function Particuliers() {
     <div className="mb-60 dark:bg-slate-950 dark:text-white">
       <section className="py-12">
         <div className="container mx-auto text-center">
-          <div className="flex justify-center">
+          {/* Looks better w/o it? */}
+          {/* <div className="flex justify-center">
             <img
               src="/images/personal.svg"
               alt=""
               className="mb-8 h-auto w-1/3"
             />
-          </div>
+          </div> */}
           <h1 className="mb-4 font-jomhuria text-6xl text-primary">
-            Commencez gratuitement ou selon vos besoins!
+            Choisissez le plan qui correspond à vos besoins!
           </h1>
         </div>
       </section>
@@ -44,7 +45,7 @@ export default function Particuliers() {
             <span
               className={
                 isAnnual
-                  ? "text-indigo-200"
+                  ? "text-slate-100"
                   : "text-slate-400 dark:text-slate-500"
               }
             >
@@ -72,7 +73,7 @@ export default function Particuliers() {
               <div className="mb-1 font-semibold">Régulier</div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "270" : "20"}$
+                  ${isAnnual ? "270" : "20"}
                 </span>
                 <span className="font-medium text-slate-500">
                   {isAnnual ? "/yr" : "/mo"}
@@ -114,7 +115,7 @@ export default function Particuliers() {
                   <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                 </svg>
                 <span>
-                  <b>5000$</b> en transactions quotidiennes
+                  <b>$5,000</b> en transactions quotidiennes
                 </span>
               </li>
               <li className="flex items-center">
@@ -146,7 +147,7 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "400" : "40"}$
+                  ${isAnnual ? "400" : "40"}
                 </span>
                 <span
                   className="text-4xl font-bold text-slate-900 dark:text-slate-200"
@@ -192,7 +193,7 @@ export default function Particuliers() {
                   <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                 </svg>
                 <span>
-                  <b>15000$</b> en transactions quotidiennes
+                  <b>$15,000</b> en transactions quotidiennes
                 </span>
               </li>
               <li className="flex items-center">
@@ -229,7 +230,7 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  {isAnnual ? "800" : "85"}$
+                  ${isAnnual ? "800" : "85"}
                 </span>
                 <span className="font-medium text-slate-500">
                   {isAnnual ? "/yr" : "/mo"}
