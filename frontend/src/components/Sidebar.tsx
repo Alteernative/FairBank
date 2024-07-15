@@ -37,69 +37,72 @@ export default function Sidebar() {
       <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
         {/* Top nav */}
         <div className="flex flex-col gap-5">
-          <Link to={"/dashboard"}>
-            <Button
-              variant={isActive("/dashboard") ? "default" : "ghost"}
-              className="flex w-full items-center justify-start gap-2"
-            >
+          <Button
+            asChild
+            variant={isActive("/dashboard") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard"}>
               <PiCirclesFourFill />
               Menu
-            </Button>
-          </Link>
-          <Link to={"/dashboard/transactions"}>
-            <Button
-              variant={
-                isActive("/dashboard/transactions") ? "default" : "ghost"
-              }
-              className="flex w-full items-center justify-start gap-2"
-            >
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant={isActive("/dashboard/transactions") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard/transactions"}>
               <IoDocumentTextOutline />
               Historique
-            </Button>
-          </Link>
-          <Link to={"/dashboard/activity"}>
-            <Button
-              variant={isActive("/dashboard/activity") ? "default" : "ghost"}
-              className="flex w-full items-center justify-start gap-2"
-            >
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant={isActive("/dashboard/activity") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard/activity"}>
               <MdCompareArrows />
               Activité
-
-            </Button>
-          </Link>
-          <Link to={"/dashboard/exchange-rates"}>
-            <Button
-              variant={
-                isActive("/dashboard/exchange-rates") ? "default" : "ghost"
-              }
-              className="flex w-full items-center justify-start gap-2"
-            >
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant={
+              isActive("/dashboard/exchange-rates") ? "default" : "ghost"
+            }
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard/exchange-rates"}>
               <BsCurrencyExchange />
               Taux de change
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
 
         {/* Bottom nav*/}
         <div className="flex flex-col gap-5">
-          <Link to={"/dashboard/help"}>
-            <Button
-              variant={isActive("/dashboard/help") ? "default" : "ghost"}
-              className="flex w-full items-center justify-start gap-2"
-            >
+          <Button
+            asChild
+            variant={isActive("/dashboard/help") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard/help"}>
               <FaRegQuestionCircle />
               Aide
-            </Button>
-          </Link>
-          <Link to={"/dashboard/settings"}>
-            <Button
-              variant={isActive("/dashboard/settings") ? "default" : "ghost"}
-              className="flex w-full items-center justify-start gap-2"
-            >
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant={isActive("/dashboard/settings") ? "default" : "ghost"}
+            className="flex w-full items-center justify-start gap-2"
+          >
+            <Link to={"/dashboard/settings"}>
               <FaCog />
               Paramètres
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button
             variant={"destructive"}
             onClick={handleLogout}
