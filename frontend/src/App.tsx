@@ -26,7 +26,7 @@ import ProfileSettings from "./pages/dashboard/dashboard-settings/ProfileSetting
 import AccountSettings from "./pages/dashboard/dashboard-settings/AccountSettings.tsx";
 import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceSettings.tsx";
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
-import DisplaySettings from "./pages/dashboard/dashboard-settings/DisplaySettings.tsx";
+import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 export default function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -165,11 +165,11 @@ export default function App() {
             }
           />
           <Route
-            path="/settings/display"
+            path="/settings/security"
             element={
               <UserContextProvider>
                 <Settings>
-                  <DisplaySettings />
+                  <SecuritySettings />
                 </Settings>
               </UserContextProvider>
             }

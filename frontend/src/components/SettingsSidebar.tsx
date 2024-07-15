@@ -7,6 +7,7 @@ import {
   Bell,
   Monitor,
   ArrowLeft,
+  LockIcon,
 } from "lucide-react";
 import { Separator } from "./ui/separator";
 
@@ -78,9 +79,9 @@ export default function SettingsSidebar() {
             variant="ghost"
             className={`flex w-full items-center justify-start gap-2 ${isActive("/settings/display") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
-            <Link to={"/settings/display"}>
-              <Monitor size={"20"} />
-              Display
+            <Link to={"/settings/security"}>
+              <LockIcon size={"20"} />
+              Sécurité
             </Link>
           </Button>
         </div>
