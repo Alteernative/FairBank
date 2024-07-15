@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import formatDate from "@/utils/formatDate.ts";
 import {
   Dialog,
   DialogClose,
@@ -31,6 +30,7 @@ import Tier1VisaV from "../assets/images/cards/vertical/tier1/1/Visa.svg";
 import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
 import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
 import formatCurrency from "@/utils/formatCurrency";
+import formatDate from "@/utils/formatDate.ts";
 import capitalize from "@/utils/capitalize";
 
 type Activity = {
@@ -361,10 +361,8 @@ export default function UserPanel() {
           </div>
         </div>
         <div className="mb-5 w-full">
-
           <h2 className="font-semibold">Activités a accepter</h2>
           <div className="space-y-2 rounded-lg border p-2 shadow">
-
             {user?.pending_sender_transactions?.map(
               (transaction: Transaction, index: number) => (
                 <div key={index} className="flex items-center justify-between">
