@@ -1,5 +1,9 @@
+from decimal import Decimal
+
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
+
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
@@ -23,7 +27,7 @@ class LoginViewset(viewsets.ViewSet):
             password = serializer.validated_data['password']
             image_url = serializer.validated_data.get('image_url')
 
-            user = authenticate(request, email=email, password=password, isactive=True)
+            user = authenticate(request, email=email, password=password, is_active=True)
             if user:
                 if image_url:
                     user.image_url = image_url
@@ -35,11 +39,13 @@ class LoginViewset(viewsets.ViewSet):
                 received_transactions = Transaction.objects.filter(receiver=user)
                 pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
                 pending_transactions_receiver = PendingTransactions.objects.filter(receiver=user, status='pending')
+                currencies = UserCurrency.objects.filter(user=user)
 
                 sent_serializer = TransactionSerializer(sent_transactions, many=True)
                 received_serializer = TransactionSerializer(received_transactions, many=True)
                 sender_pending_serializer = PendingTransactionSerializer(pending_transactions_sender, many=True)
                 receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
+                currencies_serializer = UserCurrencySerializer(currencies, many=True)
 
                 user_data = {
                     "email": user.email,
@@ -50,15 +56,14 @@ class LoginViewset(viewsets.ViewSet):
                     "sent_transactions": sent_serializer.data,
                     "received_transactions": received_serializer.data,
                     "pending_sender_transactions": sender_pending_serializer.data,
-                    "pending_received_transactions": receiver_pending_serializer.data
+                    "pending_received_transactions": receiver_pending_serializer.data,
+                    "currencies": currencies_serializer.data,
                 }
 
                 return Response(
-
                     {
                         "user": user_data,
                         "token": token,
-
                     }
                 )
             else:
@@ -80,6 +85,7 @@ class RegisterViewset(viewsets.ViewSet):
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             user = serializer.save()
+            UserCurrency.objects.create(user=user)
             user_data = {
                 "email": user.email,
                 "first_name": user.first_name,
@@ -217,3 +223,55 @@ class RequestTransactionViewset(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CurrencyViewset(viewsets.ModelViewSet):
+    queryset = UserCurrency.objects.all()
+    serializer_class = UserCurrencySerializer
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ['get', 'put']
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    @action(detail=False, methods=['put'], url_path='update_balance')
+    def update_balance(self, request):
+        user = request.user
+        currency = request.data.get('currency')
+        amount = request.data.get('amount')
+
+        if not currency or amount is None:
+            return Response({'error': 'Both currency and amount are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            amount = Decimal(amount)  # Convert to Decimal
+            if amount < 0:
+                return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError:
+            return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            currency_instance = UserCurrency.objects.get(user=user)
+        except UserCurrency.DoesNotExist:
+            return Response({'error': 'Currency balances not found for this user'}, status=status.HTTP_404_NOT_FOUND)
+
+        if currency == 'usd':
+            currency_instance.balance_usd += amount
+        elif currency == 'jpy':
+            currency_instance.balance_jpy += amount
+        elif currency == 'eur':
+            currency_instance.balance_eur += amount
+        elif currency == 'gbp':
+            currency_instance.balance_gbp += amount
+        elif currency == 'cny':
+            currency_instance.balance_cny += amount
+        elif currency == 'inr':
+            currency_instance.balance_inr += amount
+        else:
+            return Response({'error': 'Invalid currency type'}, status=status.HTTP_400_BAD_REQUEST)
+
+        currency_instance.save()
+        return Response(
+            {'success': 'Balance updated successfully', 'balances': UserCurrencySerializer(currency_instance).data},
+            status=status.HTTP_200_OK
+        )
