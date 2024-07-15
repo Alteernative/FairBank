@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
@@ -111,11 +110,13 @@ class UserViewset(viewsets.ViewSet):
         received_transactions = Transaction.objects.filter(receiver=user)
         pending_transactions_sender = PendingTransactions.objects.filter(sender=user, status='pending')
         pending_transactions_receiver = PendingTransactions.objects.filter(receiver=user, status='pending')
+        currencies = UserCurrency.objects.filter(user=user).first()
 
         sent_serializer = TransactionSerializer(sent_transactions, many=True)
         received_serializer = TransactionSerializer(received_transactions, many=True)
         sender_pending_serializer = PendingTransactionSerializer(pending_transactions_sender, many=True)
         receiver_pending_serializer = PendingTransactionSerializer(pending_transactions_receiver, many=True)
+        currencies_serializer = UserCurrencySerializer(currencies)
 
         user_data = {
             "id": user.id,
@@ -128,7 +129,8 @@ class UserViewset(viewsets.ViewSet):
             "received_transactions": received_serializer.data,
             "pending_sender_transactions": sender_pending_serializer.data,
             "pending_received_transactions": receiver_pending_serializer.data,
-            "image_url": user.image_url.url if user.image_url else None,  # Ensure the URL is sent correctly
+            "image_url": user.image_url.url if user.image_url else None,
+            "currencies": currencies_serializer.data if currencies else None,
         }
 
         return Response(user_data)
@@ -154,6 +156,7 @@ class UserViewset(viewsets.ViewSet):
         user.is_active = False
         user.save()
         return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
+
 
     # try:
     #     user = User.objects.get(pk=pk)
