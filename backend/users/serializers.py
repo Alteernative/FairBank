@@ -8,7 +8,8 @@ User = get_user_model()
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
-   # image_url = serializers.ImageField(required=False)
+
+    # image_url = serializers.ImageField(required=False)
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)
@@ -149,3 +150,9 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Insufficient balance.")
 
         return data
+
+
+class UserCurrencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCurrency
+        fields = ('balance_usd', 'balance_jpy', 'balance_eur', 'balance_gbp', 'balance_cny', 'balance_inr')

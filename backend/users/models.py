@@ -133,3 +133,17 @@ class PendingTransactions(models.Model):
     def __str__(self):
         return (f'Transaction from {self.sender} to {self.receiver} for {self.amount} on {self.date} with status '
                 f'{self.status}')
+
+
+class UserCurrency(models.Model):
+    user = models.ForeignKey(CustomUser, related_name='currency_balances', on_delete=models.CASCADE)
+    balance_usd = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_jpy = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_eur = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_gbp = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_cny = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    balance_inr = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f'{self.user.email} currency balances'
+
