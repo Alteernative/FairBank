@@ -1,4 +1,3 @@
-from decimal import Decimal
 
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
@@ -244,7 +243,6 @@ class CurrencyViewset(viewsets.ModelViewSet):
             return Response({'error': 'Both currency and amount are required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            amount = Decimal(amount)  # Convert to Decimal
             if amount < 0:
                 return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
         except ValueError:
