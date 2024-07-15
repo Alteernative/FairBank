@@ -9,19 +9,24 @@ import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
 import FAQPage from "./pages/FAQPage";
 import Politiques from "./pages/Politiques";
-import DashboardLayout from "./pages/DashboardLayout";
-import DashboardOverview from "./pages/DashboardOverview";
-import DashboardExchangeRates from "./pages/DashboardExchangeRates";
-import DashboardHelp from "./pages/DashboardHelp";
-import DashboardSettings from "./pages/DashboardSettings";
+import DashboardLayout from "./pages/dashboard/DashboardLayout.tsx";
+import DashboardOverview from "./pages/dashboard/DashboardOverview.tsx";
 import DashboardTransactions from "./pages/transactions/DashboardTransactions.tsx";
-import DashboardActivity from "./pages/DashboardActivity.tsx";
-import UserProfileSettings from "./pages/UserProfileSettings";
+import DashboardExchangeRates from "./pages/dashboard/DashboardExchangeRates.tsx";
+import DashboardActivity from "./pages/dashboard/DashboardActivity.tsx";
+import DashboardHelp from "./pages/dashboard/DashboardHelp.tsx";
+import Settings from "./pages/dashboard/dashboard-settings/Settings.tsx";
+import UserProfileSettings from "./pages/UserProfileSettings.tsx";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
 import PasswordReset from "./components/PasswordReset.tsx";
 import PasswordResetRequest from "@/components/PasswordResetRequest.tsx";
 import { ThemeProvider } from "@/provider/ThemeProvider.tsx";
+import ProfileSettings from "./pages/dashboard/dashboard-settings/ProfileSettings.tsx";
+import AccountSettings from "./pages/dashboard/dashboard-settings/AccountSettings.tsx";
+import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceSettings.tsx";
+import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
+import DisplaySettings from "./pages/dashboard/dashboard-settings/DisplaySettings.tsx";
 export default function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -120,22 +125,56 @@ export default function App() {
             }
           />
           <Route
-            path="/dashboard/settings"
-            element={
-              <DashboardLayout>
-                <DashboardSettings />
-              </DashboardLayout>
-            }
-          />
-
-          <Route
-            path="/user/settings"
+            path="/settings"
             element={
               <UserContextProvider>
-                <UserProfileSettings />
+                <Settings>
+                  <ProfileSettings />
+                </Settings>
               </UserContextProvider>
             }
           />
+          <Route
+            path="/settings/account"
+            element={
+              <UserContextProvider>
+                <Settings>
+                  <AccountSettings />
+                </Settings>
+              </UserContextProvider>
+            }
+          />
+          <Route
+            path="/settings/themes"
+            element={
+              <UserContextProvider>
+                <Settings>
+                  <AppearanceSettings />
+                </Settings>
+              </UserContextProvider>
+            }
+          />
+          <Route
+            path="/settings/notifications"
+            element={
+              <UserContextProvider>
+                <Settings>
+                  <NotificationsSettings />
+                </Settings>
+              </UserContextProvider>
+            }
+          />
+          <Route
+            path="/settings/display"
+            element={
+              <UserContextProvider>
+                <Settings>
+                  <DisplaySettings />
+                </Settings>
+              </UserContextProvider>
+            }
+          />
+
           <Route
             path="/user/settings"
             element={
