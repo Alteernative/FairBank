@@ -39,8 +39,8 @@ export default function Sidebar() {
         <div className="flex flex-col gap-5">
           <Button
             asChild
-            variant={isActive("/dashboard") ? "default" : "ghost"}
-            className="flex w-full items-center justify-start gap-2"
+            variant="ghost"
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard"}>
               <PiCirclesFourFill />
@@ -49,8 +49,8 @@ export default function Sidebar() {
           </Button>
           <Button
             asChild
-            variant={isActive("/dashboard/transactions") ? "default" : "ghost"}
-            className="flex w-full items-center justify-start gap-2"
+            variant="ghost"
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/transactions"}>
               <IoDocumentTextOutline />
@@ -59,8 +59,8 @@ export default function Sidebar() {
           </Button>
           <Button
             asChild
-            variant={isActive("/dashboard/activity") ? "default" : "ghost"}
-            className="flex w-full items-center justify-start gap-2"
+            variant="ghost"
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/activity") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/activity"}>
               <MdCompareArrows />
@@ -69,10 +69,8 @@ export default function Sidebar() {
           </Button>
           <Button
             asChild
-            variant={
-              isActive("/dashboard/exchange-rates") ? "default" : "ghost"
-            }
-            className="flex w-full items-center justify-start gap-2"
+            variant="ghost"
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/exchange-rates") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/exchange-rates"}>
               <BsCurrencyExchange />
@@ -85,8 +83,8 @@ export default function Sidebar() {
         <div className="flex flex-col gap-5">
           <Button
             asChild
-            variant={isActive("/dashboard/help") ? "default" : "ghost"}
-            className="flex w-full items-center justify-start gap-2"
+            variant="ghost"
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/help") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/help"}>
               <FaRegQuestionCircle />
@@ -95,10 +93,10 @@ export default function Sidebar() {
           </Button>
           <Button
             asChild
-            variant={isActive("/dashboard/settings") ? "default" : "ghost"}
+            variant={isActive("/settings") ? "default" : "ghost"}
             className="flex w-full items-center justify-start gap-2"
           >
-            <Link to={"/dashboard/settings"}>
+            <Link to={"/settings"}>
               <FaCog />
               Paramètres
             </Link>
