@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
   const fileInputRef = useRef(null);
