@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
-import { FaSpinner } from "react-icons/fa6";
+import { Loader } from "lucide-react";
 
 type StepWrapperProps = {
   title: string;
@@ -33,10 +33,14 @@ export default function StepWrapper({
       <CardContent className="flex flex-col justify-between">
         {children}
         <div className="mt-6 flex w-full">
-          <Button type="submit" className="ml-auto w-32">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="ml-auto w-32"
+          >
             {isLastStep ? (
               isSubmitting ? (
-                <FaSpinner className="animate-spin" />
+                <Loader size={20} className="animate-spin" />
               ) : (
                 "Soumettre"
               )
