@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { Input } from "@/components/ui/input";
 import { useUserContext } from "@/contexts/UserContext";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
