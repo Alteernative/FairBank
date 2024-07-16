@@ -62,13 +62,15 @@ const PasswordReset = () => {
 
       .then(() => {
         setShowMessage(true);
-        toast.success("Un couriel de reinitisalisation a été envoyé.");
+        toast.success("Un couriel de réinitisalisation a été envoyé.");
         setTimeout(() => {
           navigate("/");
         }, 2000);
       })
       .catch(() => {
-        toast.error("Le compte que vous essayer d'initializer n'existe pas");
+        toast.error(
+          "Une erreur est survenu lors de la réinitialisation du mot de passe."
+        );
       });
   };
 
