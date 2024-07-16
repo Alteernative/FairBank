@@ -12,6 +12,7 @@ import { Toaster, toast } from "sonner";
 
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -84,6 +85,7 @@ const PasswordReset = () => {
             className="my-auto w-full content-center overflow-hidden"
           />
         </aside>
+
         <main className="flex w-80 flex-1 items-center justify-center">
           <span className="absolute right-36 top-0 m-5">
             <ModeToggle />
@@ -99,26 +101,29 @@ const PasswordReset = () => {
             <Link to={"/"}>FairBank</Link>
           </h1>
 
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <Card className="h-[19rem] w-96 border shadow-md">
-                <CardHeader>
-                  <CardTitle className="ml-1 text-center text-2xl">
-                    {"Reinisialisez votre mot de passe"}
-                  </CardTitle>
-                  <CardDescription className="text-center">
-                    {"veuillez entrez votre adresse courriel"}
-                  </CardDescription>
-                </CardHeader>
-                <PasswordFields />
-                <div className="mt-2 flex w-full items-center justify-center">
-                  <Button type="submit" className="mt-2">
-                    {"Demandez un nouveau mot de passe"}
-                  </Button>
-                </div>
-              </Card>
-            </form>
-          </FormProvider>
+          <Card className="h-[25rem] w-96 border-none shadow-none">
+            <CardHeader>
+              <CardTitle className="ml-1 text-center text-2xl">
+                Réinitialisez votre mot de passe
+              </CardTitle>
+              <CardDescription className="text-center">
+                Entrez votre courriel ci-dessous pour réinitialiser votre mot de
+                passe.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <FormProvider {...methods}>
+                <form onSubmit={methods.handleSubmit(onSubmit)}>
+                  <div className="flex flex-col gap-4">
+                    <PasswordFields />
+                    <Button type="submit" className="mt-2 select-none">
+                      Soumettre
+                    </Button>
+                  </div>
+                </form>
+              </FormProvider>
+            </CardContent>
+          </Card>
         </main>
       </section>
       <Toaster richColors />
