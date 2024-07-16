@@ -107,6 +107,7 @@ export default function UserPanel() {
         const newTransaction = response.data;
         console.log("Transaction successful:", newTransaction);
 
+        window.location.reload();
         // Update user context
         const updatedUser = {
           ...user,
