@@ -15,8 +15,9 @@ import {
   FaMoneyBillTransfer,
   FaHandHoldingDollar,
   FaEllipsisVertical,
-  FaRegCircleUser,
 } from "react-icons/fa6";
+import { GiPayMoney } from "react-icons/gi";
+import { CircleUser } from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
@@ -34,7 +35,6 @@ import formatDate from "@/utils/formatDate.ts";
 import capitalize from "@/utils/capitalize";
 
 type Activity = {
-  name: string;
   date: string;
   amount: string;
   isPositive: boolean;
@@ -186,7 +186,7 @@ export default function UserPanel() {
               className="h-16 w-16 rounded-full"
             />
           ) : (
-            <FaRegCircleUser className="size-16" />
+            <CircleUser className="size-16" />
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <h3 className="text-sm">{planTitle[user.plan]}</h3>
@@ -299,14 +299,45 @@ export default function UserPanel() {
               </DialogContent>
             </Dialog>
 
-            <div className="text-center">
-              <Link to={"/user/settings"}>
-                <Button variant={"outline"} className="size-14 rounded-full">
-                  <FaEllipsisVertical className="size-4" />
-                </Button>
-              </Link>
-              <p className="mt-2 text-sm">Autres</p>
-            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <div>
+                  <Button variant={"outline"} className="size-14 rounded-full">
+                    <GiPayMoney className="size-4" />
+                  </Button>
+                  <p className="mt-2 text-sm">Déposer</p>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
+                  <DialogHeader>
+                    <DialogTitle>Déposer des fonds</DialogTitle>
+                    <DialogDescription>
+                      Veuillez entrer le montant à déposer.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="name" className="text-right">
+                        Montant
+                      </Label>
+                      <Input
+                        id="amount"
+                        defaultValue=""
+                        placeholder="$100.00"
+                        className="col-span-3"
+                        {...requestForm.register("amount", { required: true })}
+                      />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button type="submit">Déposer</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 
