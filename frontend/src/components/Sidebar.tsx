@@ -1,8 +1,12 @@
-import { FaSignOutAlt, FaRegQuestionCircle, FaCog } from "react-icons/fa";
-import { PiCirclesFourFill } from "react-icons/pi";
+import {
+  LayoutDashboard,
+  ScrollText,
+  Radio,
+  CircleHelp,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import { BsCurrencyExchange } from "react-icons/bs";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import { MdCompareArrows } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AxiosInstance from "@/components/AxiosInstance";
@@ -43,7 +47,7 @@ export default function Sidebar() {
             className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard"}>
-              <PiCirclesFourFill />
+              <LayoutDashboard size={20} />
               Menu
             </Link>
           </Button>
@@ -53,7 +57,7 @@ export default function Sidebar() {
             className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/transactions"}>
-              <IoDocumentTextOutline />
+              <ScrollText size={20} />
               Historique
             </Link>
           </Button>
@@ -63,7 +67,7 @@ export default function Sidebar() {
             className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/activity") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/activity"}>
-              <MdCompareArrows />
+              <Radio size={20} />
               Activité
             </Link>
           </Button>
@@ -73,7 +77,7 @@ export default function Sidebar() {
             className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/exchange-rates") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/exchange-rates"}>
-              <BsCurrencyExchange />
+              <BsCurrencyExchange size={20} />
               Taux de change
             </Link>
           </Button>
@@ -87,7 +91,7 @@ export default function Sidebar() {
             className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/help") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link to={"/dashboard/help"}>
-              <FaRegQuestionCircle />
+              <CircleHelp size={20} />
               Aide
             </Link>
           </Button>
@@ -97,7 +101,7 @@ export default function Sidebar() {
             className="flex w-full items-center justify-start gap-2"
           >
             <Link to={"/settings"}>
-              <FaCog />
+              <Settings size={20} />
               Paramètres
             </Link>
           </Button>
@@ -106,7 +110,7 @@ export default function Sidebar() {
             onClick={handleLogout}
             className="flex w-full items-center justify-start gap-2"
           >
-            <FaSignOutAlt />
+            <LogOut size={20} />
             Se déconnecter
           </Button>
         </div>
