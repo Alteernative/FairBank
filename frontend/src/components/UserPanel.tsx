@@ -12,9 +12,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { FaMoneyBillTransfer, FaHandHoldingDollar } from "react-icons/fa6";
-import { GiPayMoney } from "react-icons/gi";
-import { CircleUser } from "lucide-react";
+// import { FaMoneyBillTransfer, FaHandHoldingDollar } from "react-icons/fa6";
+// import { GiPayMoney } from "react-icons/gi";
+import {
+  CircleUser,
+  Send,
+  HandCoins,
+  CircleDollarSign,
+  DollarSign,
+} from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { useUserContext } from "@/contexts/UserContext";
@@ -185,10 +191,10 @@ export default function UserPanel() {
           balance: user.balance + parseFloat(data.amount),
         };
         setUser(updatedUser);
-        toast.success("Le montant a bien été ajouté.");
+        toast.success("Le montant a été déposé dans votre compte.");
       })
       .catch((error) => {
-        toast.error("Le montant n'a pas été ajouté.");
+        toast.error("Une erreur est survenu lors du dépôt.");
       });
   };
 
@@ -215,7 +221,8 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div>
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    <FaMoneyBillTransfer className="size-4" />
+                    {/* <FaMoneyBillTransfer className="size-4" /> */}
+                    <Send size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Envoyer</p>
                 </div>
@@ -239,6 +246,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...sendForm.register("amount", { required: true })}
                       />
@@ -269,7 +277,8 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div>
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    <FaHandHoldingDollar className="size-4" />
+                    {/* <FaHandHoldingDollar className="size-4" /> */}
+                    <HandCoins size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Demander</p>
                 </div>
@@ -293,6 +302,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...requestForm.register("amount", { required: true })}
                       />
@@ -323,7 +333,8 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div>
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    <GiPayMoney className="size-4" />
+                    {/* <GiPayMoney className="size-4" /> */}
+                    <DollarSign size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Déposer</p>
                 </div>
@@ -346,6 +357,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...depositForm.register("amount", { required: true })}
                       />
