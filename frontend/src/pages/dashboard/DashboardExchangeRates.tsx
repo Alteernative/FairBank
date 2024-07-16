@@ -30,6 +30,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
+import { useNavigate } from "react-router-dom";
 
 const chartConfig = {
   rate: {
@@ -45,9 +46,10 @@ export default function DashboardExchangeRates() {
   const [amount, setAmount] = React.useState(0);
   const [convertedAmount, setConvertedAmount] = React.useState(0);
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
+  const navigate = useNavigate();
 
   // API KEY apilayer.com
-  const apiKey = "v3ykf5cvTdM5MA4PFlD4Vuuc35EqhHe0";
+  const apiKey = "Ee7q94aj8Gx56lrGv8RCEquV3IdvLcZz\n";
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
     AxiosInstance.put(`currencies/update_balance/`, {
@@ -56,8 +58,10 @@ export default function DashboardExchangeRates() {
       converted_amount: convertedAmount.toString(),
     })
       .then((response) => {
-        console.log("Balance updated successfully:", response.data);
-        // navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+          window.location.reload();
+        }, 500);
       })
       .catch((error) => {
         console.error("Error updating balance:", error);
