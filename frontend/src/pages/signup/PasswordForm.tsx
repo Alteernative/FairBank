@@ -3,8 +3,7 @@ import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { useFormContext } from "react-hook-form";
 import { useState } from "react";
 import StepWrapper from "./StepWrapper";
-import { FaCircleExclamation } from "react-icons/fa6";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { CircleAlert, Eye, EyeOff } from "lucide-react";
 
 export default function PasswordForm() {
   const {
@@ -45,13 +44,17 @@ export default function PasswordForm() {
               className="size-7 select-none rounded-full"
               onClick={handleClick}
             >
-              {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+              {passwordType === "password" ? (
+                <Eye size={20} />
+              ) : (
+                <EyeOff size={20} />
+              )}
             </Button>
           </span>
         </div>
         {errors.password && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.password.message && String(errors.password.message)}
           </span>
         )}
@@ -72,13 +75,17 @@ export default function PasswordForm() {
               className="size-7 select-none rounded-full"
               onClick={handleClick}
             >
-              {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+              {passwordType === "password" ? (
+                <Eye size={20} />
+              ) : (
+                <EyeOff size={20} />
+              )}
             </Button>
           </span>
         </div>
         {errors.re_password && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.re_password.message && String(errors.re_password.message)}
           </span>
         )}
