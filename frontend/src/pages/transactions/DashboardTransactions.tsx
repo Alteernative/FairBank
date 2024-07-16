@@ -1,9 +1,26 @@
 import { useUserContext } from "@/contexts/UserContext.tsx";
 import { Payment, columns } from "./columns";
 import { DataTable } from "./data-table";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
 
 export default function DashboardTransactions() {
   const { user } = useUserContext();
+
+  const updateCurrencyBalance = (currency, amount) => {
+    AxiosInstance.put(`currencies/update_balance/`, { currency, amount })
+      .then((response) => {
+        console.log("Balance updated successfully:", response.data);
+        // navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Error updating balance:", error);
+      });
+  };
+
+  const currency = "eur"; // Replace with the currency you want to update
+  const amount = 10.0; // Replace with the amount you want to add
+  console.log(currency, amount);
+  updateCurrencyBalance(currency, amount);
 
   const sentTransactions: Payment[] = user.sent_transactions.map(
     (transaction) => ({
