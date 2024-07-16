@@ -71,7 +71,7 @@ export default function Particuliers() {
           <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow shadow-slate-950/5 dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
               <div className="mb-1 font-semibold">Régulier</div>
-              <div className="mb-2 inline-flex items-baseline">
+              <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
                   ${isAnnual ? "270" : "20"}
                 </span>
@@ -91,7 +91,7 @@ export default function Particuliers() {
               </a>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Comprend:
+              Inclus
             </div>
             <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li className="flex items-center">
@@ -142,10 +142,10 @@ export default function Particuliers() {
               </div>
             </div>
             <div className="mb-5">
-              <div className="mb-1 font-semibold text-slate-900 dark:text-slate-200">
+              <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
                 Premium
               </div>
-              <div className="mb-2 inline-flex items-baseline">
+              <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
                   ${isAnnual ? "400" : "40"}
                 </span>
@@ -169,7 +169,7 @@ export default function Particuliers() {
               </a>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Comprend:
+              Inclus
             </div>
             <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li className="flex items-center">
@@ -225,10 +225,10 @@ export default function Particuliers() {
         <div className="h-full">
           <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow shadow-slate-950/5 dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
-              <div className="mb-1 font-semibold text-slate-900 dark:text-slate-200">
+              <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
                 Ultime
               </div>
-              <div className="mb-2 inline-flex items-baseline">
+              <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
                   ${isAnnual ? "800" : "85"}
                 </span>
@@ -248,7 +248,7 @@ export default function Particuliers() {
               </a>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Comprend:
+              Inclus
             </div>
             <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li className="flex items-center">
