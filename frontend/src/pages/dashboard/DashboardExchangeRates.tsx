@@ -47,10 +47,14 @@ export default function DashboardExchangeRates() {
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
 
   // API KEY apilayer.com
-  const apiKey = "ksrWbiHtvHfiZPKUpTrd5O9gyUCFfz51";
+  const apiKey = "hXq1hnMvQ80qdJOPlKTtk08be5RXVynG";
 
-  const updateCurrencyBalance = (currency, amount) => {
-    AxiosInstance.put(`currencies/update_balance/`, { currency, amount })
+  const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
+    AxiosInstance.put(`currencies/update_balance/`, {
+      currency: currency,
+      original_amount: originalAmount.toString(),
+      converted_amount: convertedAmount.toString(),
+    })
       .then((response) => {
         console.log("Balance updated successfully:", response.data);
         // navigate("/dashboard");
@@ -67,15 +71,18 @@ export default function DashboardExchangeRates() {
   // Fetch exchange rates compared to the CAD
   const fetchExchangeRates = async () => {
     try {
-      const response = await axios.get(`https://api.apilayer.com/exchangerates_data/latest`, {
-        params: {
-          base: 'CAD',
-          symbols: 'USD,JPY,EUR,GBP,CNY,INR',
-        },
-        headers: {
-          apikey: apiKey,
-        },
-      });
+      const response = await axios.get(
+        `https://api.apilayer.com/exchangerates_data/latest`,
+        {
+          params: {
+            base: "CAD",
+            symbols: "USD,JPY,EUR,GBP,CNY,INR",
+          },
+          headers: {
+            apikey: apiKey,
+          },
+        }
+      );
 
       if (response.data && response.data.rates) {
         setExchangeRates(response.data.rates);
@@ -90,24 +97,26 @@ export default function DashboardExchangeRates() {
   // Fetch data for the exchange rate graph
   const fetchHistoryExchangeRates = async () => {
     try {
-      const response = await axios.get(`https://api.apilayer.com/exchangerates_data/timeseries`, {
-        params: {
-          start_date: '2024-01-01',
-          end_date: '2024-07-01',
-          base: 'CAD',
-          symbols: 'USD,JPY,EUR,GBP,CNY,INR',
-        },
-        headers: {
-          apikey: apiKey,
-        },
-      });
+      const response = await axios.get(
+        `https://api.apilayer.com/exchangerates_data/timeseries`,
+        {
+          params: {
+            start_date: "2024-01-01",
+            end_date: "2024-07-01",
+            base: "CAD",
+            symbols: "USD,JPY,EUR,GBP,CNY,INR",
+          },
+          headers: {
+            apikey: apiKey,
+          },
+        }
+      );
 
       if (response.data && response.data.rates) {
         const data = response.data.rates;
         const processedData = {};
-        Object.keys(data).forEach(date => {
-
-          Object.keys(data[date]).forEach(currency => {
+        Object.keys(data).forEach((date) => {
+          Object.keys(data[date]).forEach((currency) => {
             if (!processedData[currency]) {
               processedData[currency] = [];
             }
@@ -128,24 +137,32 @@ export default function DashboardExchangeRates() {
 
   const handleConversion = async () => {
     try {
-      const response = await axios.get(`https://api.apilayer.com/exchangerates_data/convert`, {
-        params: {
-          from: "CAD",
-          to: selectedCurrency,
-          amount,
-        },
-        headers: {
-          apikey: apiKey,
-        },
-      });
+      const response = await axios.get(
+        `https://api.apilayer.com/exchangerates_data/convert`,
+        {
+          params: {
+            from: "CAD",
+            to: selectedCurrency,
+            amount,
+          },
+          headers: {
+            apikey: apiKey,
+          },
+        }
+      );
 
       if (response.data && response.data.result) {
-        setConvertedAmount(response.data.result);
+        const convertedAmount = response.data.result;
+        setConvertedAmount(convertedAmount);
+
         // Update user's balance with the converted amount
-        setUser(prevUser => ({
-          ...prevUser,
-          balance: prevUser.balance + response.data.result,
-        }));
+        // setUser((prevUser) => ({
+        //   ...prevUser,
+        //   balance: prevUser.balance + convertedAmount,
+        // }));
+
+        // Update the backend with both the original and converted amounts
+        updateCurrencyBalance(selectedCurrency, amount, convertedAmount);
       } else {
         console.error("Error converting currency");
       }
@@ -180,17 +197,22 @@ export default function DashboardExchangeRates() {
 
   return (
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
-      <h1 className="w-full mb-10 font-jomhuria text-6xl">Taux de change</h1>
-      <p className="w-full text-3xl mb-2 text-center font-bold">Taux actuels selon le CAD 🇨🇦:</p>
+      <h1 className="mb-10 w-full font-jomhuria text-6xl">Taux de change</h1>
+      <p className="mb-2 w-full text-center text-3xl font-bold">
+        Taux actuels selon le CAD 🇨🇦:
+      </p>
 
       {Object.keys(chartData).map((currency) => (
         <Dialog key={currency}>
           <DialogTrigger asChild>
-            <Button className="outline h-1/4 w-1/4 md:w-1/4 mx-2 my-2 rounded-lg px-5 shadow-lg">
+            <Button className="mx-2 my-2 h-1/4 w-1/4 rounded-lg px-5 shadow-lg outline md:w-1/4">
               {exchangeRates[currency] ? (
-                <p className="text-2xl"> CAD-{currency} {getFlagEmoji(currency)}
+                <p className="text-2xl">
+                  {" "}
+                  CAD-{currency} {getFlagEmoji(currency)}
                   <br /> <br />
-                  {exchangeRates[currency]} {currency}</p>
+                  {exchangeRates[currency]} {currency}
+                </p>
               ) : (
                 <p className="text-2xl">
                   Chargement taux conversion {currency}...
@@ -203,7 +225,8 @@ export default function DashboardExchangeRates() {
             <DialogHeader>
               <DialogTitle>Graphe de devise </DialogTitle>
               <DialogDescription>
-                Vous pouvez voir ici plus de détails sur l'état du {currency} et l'ajouter à votre balance.
+                Vous pouvez voir ici plus de détails sur l'état du {currency} et
+                l'ajouter à votre balance.
               </DialogDescription>
             </DialogHeader>
 
@@ -229,12 +252,16 @@ export default function DashboardExchangeRates() {
                       tickLine={false}
                       axisLine={false}
                       tickMargin={8}
-                      tickFormatter={(value) => new Date(value).toLocaleDateString()}
+                      tickFormatter={(value) =>
+                        new Date(value).toLocaleDateString()
+                      }
                     />
                     <YAxis domain={["auto", "auto"]} />
                     <ChartTooltip
                       cursor={false}
-                      content={<ChartTooltipContent indicator="dot" hideLabel />}
+                      content={
+                        <ChartTooltipContent indicator="dot" hideLabel />
+                      }
                     />
                     <Area
                       dataKey="rate"
@@ -251,7 +278,8 @@ export default function DashboardExchangeRates() {
                 <div className="flex w-full items-start gap-2 text-sm">
                   <div className="grid gap-2">
                     <div className="flex items-center gap-2 font-medium leading-none">
-                      Croissance de 5.2% ce mois-ci <TrendingUp className="h-4 w-4" />
+                      Croissance de 5.2% ce mois-ci{" "}
+                      <TrendingUp className="h-4 w-4" />
                     </div>
                     <div className="flex items-center gap-2 leading-none text-muted-foreground">
                       Janvier - Juillet 2024
@@ -261,9 +289,9 @@ export default function DashboardExchangeRates() {
               </CardFooter>
             </Card>
 
-            <DialogFooter className="flex justify-between items-center mt-4">
+            <DialogFooter className="mt-4 flex items-center justify-between">
               <div className="flex space-x-4">
-                <Button className="flex-1" onClick={() => {  }}>
+                <Button className="flex-1" onClick={() => {}}>
                   Balance ${user.balance.toPrecision(4)}
                 </Button>
                 <Input
@@ -287,10 +315,10 @@ export default function DashboardExchangeRates() {
               </div>
 
               <div>
-                <p >Montant converti: {convertedAmount} {currency}</p>
-                { updateCurrencyBalance( {convertedAmount} , {currency} ) }
+                <p>
+                  Montant converti: {convertedAmount} {currency}
+                </p>
               </div>
-
             </DialogFooter>
           </DialogContent>
         </Dialog>

@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
@@ -262,36 +264,47 @@ class CurrencyViewset(viewsets.ModelViewSet):
     def update_balance(self, request):
         user = request.user
         currency = request.data.get('currency')
-        amount = request.data.get('amount')
+        original_amount = request.data.get('original_amount')
+        converted_amount = request.data.get('converted_amount')
 
-        if not currency or amount is None:
-            return Response({'error': 'Both currency and amount are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        print("Received currency:", currency)
+        print("Received original amount:", original_amount)
+        print("Received converted amount:", converted_amount)
+
+        if not currency or original_amount is None or converted_amount is None:
+            return Response({'error': 'Currency, original amount, and converted amount are required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            if amount < 0:
-                return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
-        except ValueError:
-            return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
+            original_amount = Decimal(original_amount)
+            converted_amount = Decimal(converted_amount)
+            if original_amount < 0 or converted_amount < 0:
+                return Response({'error': 'Amounts must be positive'}, status=status.HTTP_400_BAD_REQUEST)
+        except (ValueError, TypeError, Decimal.InvalidOperation):
+            return Response({'error': 'Invalid amount values'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             currency_instance = UserCurrency.objects.get(user=user)
         except UserCurrency.DoesNotExist:
             return Response({'error': 'Currency balances not found for this user'}, status=status.HTTP_404_NOT_FOUND)
 
-        if currency == 'usd':
-            currency_instance.balance_usd += amount
-        elif currency == 'jpy':
-            currency_instance.balance_jpy += amount
-        elif currency == 'eur':
-            currency_instance.balance_eur += amount
-        elif currency == 'gbp':
-            currency_instance.balance_gbp += amount
-        elif currency == 'cny':
-            currency_instance.balance_cny += amount
-        elif currency == 'inr':
-            currency_instance.balance_inr += amount
+        if currency == 'USD':
+            currency_instance.balance_usd += converted_amount
+        elif currency == 'JPY':
+            currency_instance.balance_jpy += converted_amount
+        elif currency == 'EUR':
+            currency_instance.balance_eur += converted_amount
+        elif currency == 'GBP':
+            currency_instance.balance_gbp += converted_amount
+        elif currency == 'CNY':
+            currency_instance.balance_cny += converted_amount
+        elif currency == 'INR':
+            currency_instance.balance_inr += converted_amount
         else:
             return Response({'error': 'Invalid currency type'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.balance -= original_amount
+        user.save()
 
         currency_instance.save()
         return Response(
