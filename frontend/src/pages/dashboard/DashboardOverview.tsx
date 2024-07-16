@@ -41,7 +41,7 @@ export default function DashboardOverview() {
           <CountUp
             start={0}
             end={user.balance}
-            duration={2}
+            duration={1}
             prefix="$"
             decimals={2}
             className="font-jomhuria text-6xl"

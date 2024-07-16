@@ -3,19 +3,19 @@ import { Button } from "@/components/ui/button";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaCircleExclamation } from "react-icons/fa6";
-import StepWrapper from "../pages/signup/StepWrapper";
 import AxiosInstance from "./AxiosInstance";
 import { useNavigate } from "react-router-dom";
 
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { toast, Toaster } from "sonner";
+import { Eye, EyeOff } from "lucide-react";
 
 const PasswordFields = () => {
   const {
@@ -32,40 +32,15 @@ const PasswordFields = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="relative mx-2">
+      <div className="relative">
         <FloatingLabelInput
           type={passwordType}
           id="password"
+          autoComplete="off"
           label="Mot de passe"
           {...register("password")}
           autoFocus
-          className="h-12 pr-11"
-        />
-        <span className="w-fullitems-center absolute right-3 top-0 flex h-full justify-center">
-          <Button
-            type="button"
-            variant={"ghost"}
-            size={"icon"}
-            className="size-7 select-none rounded-full"
-            onClick={handleClick}
-          >
-            {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
-          </Button>
-        </span>
-      </div>
-      {errors.password && (
-        <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-          <FaCircleExclamation />
-          {errors.password.message && String(errors.password.message)}
-        </span>
-      )}
-      <div className="relative mx-2">
-        <FloatingLabelInput
-          type={passwordType}
-          id="re_password"
-          label="Confirmer"
-          {...register("re_password")}
-          className="h-12 pr-11"
+          className="h-12 pr-12"
         />
         <span className="absolute right-3 top-0 flex h-full items-center justify-center">
           <Button
@@ -75,7 +50,42 @@ const PasswordFields = () => {
             className="size-7 select-none rounded-full"
             onClick={handleClick}
           >
-            {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+            {passwordType === "password" ? (
+              <Eye size={20} />
+            ) : (
+              <EyeOff size={20} />
+            )}
+          </Button>
+        </span>
+      </div>
+      {errors.password && (
+        <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
+          <FaCircleExclamation />
+          {errors.password.message && String(errors.password.message)}
+        </span>
+      )}
+      <div className="relative">
+        <FloatingLabelInput
+          type={passwordType}
+          id="re_password"
+          autoComplete="off"
+          label="Confirmer"
+          {...register("re_password")}
+          className="h-12 pr-12"
+        />
+        <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+          <Button
+            type="button"
+            variant={"ghost"}
+            size={"icon"}
+            className="size-7 select-none rounded-full"
+            onClick={handleClick}
+          >
+            {passwordType === "password" ? (
+              <Eye size={20} />
+            ) : (
+              <EyeOff size={20} />
+            )}
           </Button>
         </span>
       </div>
@@ -102,14 +112,16 @@ const PasswordReset = () => {
     })
       .then((response) => {
         console.log("Response from server:", response);
-        toast.success("Le mot de passe a été reinitializé avec succès .");
+        toast.success("Votre mot de passe a été réinitialisé avec succès .");
         setShowMessage(true);
         setTimeout(() => {
           navigate("/connexion");
         }, 3000);
       })
       .catch((error) => {
-        toast.error("Echec de la reinitialization du mot de passe");
+        toast.error(
+          "Une erreur est survenu lors de la réinitialisation de votre mot de passe"
+        );
         console.error("Error during form submission:", error);
       });
   };
@@ -121,7 +133,7 @@ const PasswordReset = () => {
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
         <img
-          src="/login.svg"
+          src="/images/login.svg"
           alt="Sign in image"
           className="my-auto w-full content-center overflow-hidden"
         />
@@ -131,26 +143,29 @@ const PasswordReset = () => {
           <Link to={"/"}>FairBank</Link>
         </h1>
 
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <Card className="h-[25rem] w-96 border shadow-md">
-              <CardHeader>
-                <CardTitle className="text-center text-2xl">
-                  {"Reinisialisez votre mot de passe"}
-                </CardTitle>
-                <CardDescription className="text-center">
-                  {"veuillez entrez votre nouveau mot de passe, il doit "}
-                </CardDescription>
-              </CardHeader>
-              <PasswordFields />
-              <div className="mt-6 flex justify-center justify-items-center">
-                <Button type="submit" className="flex">
-                  {"Soumettre"}
-                </Button>
-              </div>
-            </Card>
-          </form>
-        </FormProvider>
+        <Card className="h-[25rem] w-96 border-none shadow-none">
+          <CardHeader>
+            <CardTitle className="ml-1 text-center text-2xl">
+              Réinitialisez votre mot de passe
+            </CardTitle>
+            <CardDescription className="text-center">
+              Entrez votre nouveau mot de passe ci-dessous pour compléter la
+              réinitialisation.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <div className="flex flex-col gap-4">
+                  <PasswordFields />
+                  <Button type="submit" className="mt-2 select-none">
+                    {"Soumettre"}
+                  </Button>
+                </div>
+              </form>
+            </FormProvider>
+          </CardContent>
+        </Card>
       </main>
       <Toaster richColors />
     </section>

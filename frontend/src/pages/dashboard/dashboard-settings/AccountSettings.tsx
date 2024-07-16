@@ -148,7 +148,7 @@ export default function AccountSettings() {
             <CardContent>
               <div className="relative">
                 <FloatingLabelInput
-                  type="text"
+                  type={passwordType}
                   id="re_password"
                   {...register("re_password")}
                   label="Confirmer"

@@ -47,7 +47,7 @@ export default function DashboardExchangeRates() {
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
 
   // API KEY apilayer.com
-  const apiKey = "hXq1hnMvQ80qdJOPlKTtk08be5RXVynG";
+  const apiKey = "v3ykf5cvTdM5MA4PFlD4Vuuc35EqhHe0";
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
     AxiosInstance.put(`currencies/update_balance/`, {

@@ -23,13 +23,13 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
       id: "tier2",
       name: "Premium",
       icon: Award,
-      price: 50,
+      price: 40,
     },
     {
       id: "tier3",
       name: "Ultime",
       icon: Crown,
-      price: 100,
+      price: 85,
     },
   ];
 

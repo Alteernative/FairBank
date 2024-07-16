@@ -68,7 +68,7 @@ export default function DashboardActivity() {
                           onClick={() =>
                             updateTransactionStatus(transaction, "accepted")
                           }
-                          className="bg-green-500 text-white"
+                          className="bg-green-500 text-white hover:bg-green-600 hover:text-white"
                         >
                           <Check />
                         </Button>
@@ -79,7 +79,7 @@ export default function DashboardActivity() {
                           onClick={() =>
                             updateTransactionStatus(transaction, "rejected")
                           }
-                          className="bg-red-500 text-white"
+                          className="bg-red-500 text-white hover:bg-red-600"
                         >
                           <X />
                         </Button>
