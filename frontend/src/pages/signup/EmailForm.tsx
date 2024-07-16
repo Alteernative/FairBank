@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { FaCircleExclamation } from "react-icons/fa6";
+import { CircleAlert } from "lucide-react";
 import StepWrapper from "./StepWrapper";
 
 export default function EmailForm() {
@@ -27,7 +27,7 @@ export default function EmailForm() {
         />
         {errors.email && (
           <span className="flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.email.message && String(errors.email.message)}
           </span>
         )}
