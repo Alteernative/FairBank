@@ -21,6 +21,15 @@ export default function DashboardOverview() {
     setBalances([...balances, { currency, amount: convertedAmount }]);
   };
 
+  const currencySymbols = {
+    USD: "$",
+    JPY: "¥",
+    EUR: "€",
+    GBP: "£",
+    CNY: "¥",
+    INR: "₹",
+  };
+
   return (
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">
@@ -63,119 +72,31 @@ export default function DashboardOverview() {
 
           <Carousel className="w-full">
             <CarouselContent className="-ml-1">
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$`}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
+              {Object.entries(user.currencies).map(([key, value], index) => {
+                const currencyKey = key.replace("balance_", "").toUpperCase();
 
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$`}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
-
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$ `}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
-
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$ `}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
-
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$ `}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
-
-              {balances.map((balance, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={balance.amount}
-                          duration={2}
-                          prefix={`$ `}
-                          decimals={2}
-                          className="font-jomhuria text-5xl"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              ))}
+                return (
+                  <CarouselItem
+                    key={index}
+                    className="md:basis-1/2 lg:basis-1/4"
+                  >
+                    <Card className="flex h-20 flex-col items-center">
+                      <CardHeader className="flex cursor-default flex-col items-center">
+                        <h2>
+                          <CountUp
+                            start={0}
+                            end={parseFloat(value)}
+                            duration={1}
+                            prefix={currencySymbols[currencyKey]}
+                            decimals={2}
+                            className="text-3xl font-extrabold"
+                          />
+                        </h2>
+                      </CardHeader>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
           </Carousel>
         </div>
