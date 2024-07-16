@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/avatar.tsx";
 
 export default function DashboardOverview() {
+
   const { user } = useUserContext();
   const [balances, setBalances] = useState([
     { currency: "CAD", amount: user.balance },
@@ -32,6 +33,7 @@ export default function DashboardOverview() {
     const convertedAmount = user.balance * rate;
     setBalances([...balances, { currency, amount: convertedAmount }]);
   };
+
 
   return (
 
