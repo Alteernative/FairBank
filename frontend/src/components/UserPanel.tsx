@@ -246,6 +246,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...sendForm.register("amount", { required: true })}
                       />
@@ -301,6 +302,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...requestForm.register("amount", { required: true })}
                       />
@@ -355,6 +357,7 @@ export default function UserPanel() {
                         // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
+                        autoComplete="off"
                         className="col-span-3"
                         {...depositForm.register("amount", { required: true })}
                       />
