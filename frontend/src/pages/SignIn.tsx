@@ -12,12 +12,11 @@ import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
-import { Eye, EyeOff, TriangleAlert, Loader } from "lucide-react";
+import { CircleAlert, Eye, EyeOff, TriangleAlert, Loader } from "lucide-react";
 
 type FormData = {
   email: string;
@@ -138,7 +137,7 @@ export default function SignIn() {
 
                 {errors.email && errors.email?.type !== "server" && (
                   <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-                    <FaCircleExclamation />
+                    <CircleAlert size={20} />
                     {errors.email?.message}
                   </span>
                 )}
@@ -174,7 +173,7 @@ export default function SignIn() {
 
                 {errors.password && errors.password?.type !== "server" && (
                   <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-                    <FaCircleExclamation />
+                    <CircleAlert size={20} />
                     {errors.password.message}
                   </span>
                 )}
