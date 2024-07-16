@@ -19,7 +19,6 @@ import { toast } from "sonner";
 export default function ProfileSettings() {
   const { user } = useUserContext();
   const { register, handleSubmit, setValue } = useForm();
-
   const baseUrl = "http://127.0.0.1:8000";
   const fileInputRef = useRef(null);
   setValue("first_name", user.first_name);
@@ -64,7 +63,6 @@ export default function ProfileSettings() {
   };
 
   return (
-    // <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
     <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
       <main className="flex flex-col gap-4">
         <form onSubmit={handleSubmit(handleName)}>
@@ -77,14 +75,13 @@ export default function ProfileSettings() {
             </CardHeader>
             <CardContent>
               {user.image_url ? (
-                // TODO: To implement in Sprint 3
+                // TODO: Improve in Sprint 3: Preview uploaded image
                 <div className="relative size-16">
                   <input
                     type="file"
                     id="image"
                     {...register("image_url", { onChange: handleImageChange })}
                     ref={fileInputRef}
-                    // className="absolute left-2 top-3 size-20 opacity-100"
                     className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                   />
                   <img
