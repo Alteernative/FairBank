@@ -132,9 +132,11 @@ export default function AppearanceSettings() {
           </section>
         </CardContent>
       </Card>
-      <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
+
+      {/* TODO: No submit buttons. Update on user click */}
+      {/* <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
         Sauvegarder
-      </Button>
+      </Button> */}
     </main>
   );
 }
