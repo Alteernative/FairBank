@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { CSVLink, CSVDownload } from "react-csv";
 import formatDate from "@/utils/formatDate"; // Adjust the import path according to your project structure
 import { FaFileDownload } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 // Register the necessary components from Chart.js
 ChartJS.register(
   CategoryScale,
@@ -124,7 +125,7 @@ export default function DashboardGraph() {
         position: "top" as const,
       },
       title: {
-        display: true,
+        display: false,
         text: "Graphe de la balance",
       },
     },
@@ -137,7 +138,7 @@ export default function DashboardGraph() {
       },
       y: {
         title: {
-          display: true,
+          display: false,
           text: "Balance",
         },
       },
@@ -147,14 +148,13 @@ export default function DashboardGraph() {
   // console.log(balanceData)
   return (
     <>
-      <div className="my-4 flex flex-row ">
+      <div className="flex flex-row justify-end">
         <CSVLink
           filename={"Historiquetransactions.csv"}
           data={JsonObj}
-          className="hover:bg-green-600-600 flex items-center rounded-md bg-green-500 px-4 py-2 text-white transition-colors duration-300"
+          className="flex size-7 items-center justify-center rounded-md bg-green-500 text-white transition-colors duration-300 hover:bg-green-600"
         >
-          <FaFileDownload className="mr-2" />
-          <span>Télécharger</span>
+          <FaFileDownload />
         </CSVLink>
       </div>
       <div className="h-full w-full flex-grow">

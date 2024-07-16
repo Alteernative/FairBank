@@ -1,29 +1,16 @@
 import { useUserContext } from "@/contexts/UserContext";
 import { useState } from "react";
-import DashboardGraph from "@/pages/DashboardGraph.tsx";
+// import DashboardGraph from "@/pages/dashboard/DashboardGraph";
+import DashboardGraph from "./DashboardGraph";
 import CountUp from "react-countup";
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel.tsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card.tsx";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar.tsx";
+import { Card, CardHeader } from "@/components/ui/card.tsx";
 
 export default function DashboardOverview() {
-
   const { user } = useUserContext();
   const [balances, setBalances] = useState([
     { currency: "CAD", amount: user.balance },
@@ -34,9 +21,7 @@ export default function DashboardOverview() {
     setBalances([...balances, { currency, amount: convertedAmount }]);
   };
 
-
   return (
-
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">
         Bonjour {user.first_name}

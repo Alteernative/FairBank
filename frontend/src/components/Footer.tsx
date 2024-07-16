@@ -23,7 +23,7 @@ export default function Footer() {
       <section className="flex w-full max-w-screen-xl justify-between">
         {/* Left */}
         <section className="flex flex-1 flex-col">
-          <div className="cursor-default">
+          <div className="cursor-default select-none">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
             <p>Banque différente, avenir&nbsp;différent.</p>
           </div>
@@ -68,7 +68,6 @@ export default function Footer() {
         <section className="flex flex-1 flex-col text-center">
           <h3 className="cursor-default text-lg font-semibold">Plan du site</h3>
           <div className="flex flex-col gap-2 pt-5">
-
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
                 Plans

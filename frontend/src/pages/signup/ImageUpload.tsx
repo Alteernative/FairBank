@@ -2,6 +2,8 @@ import { useFormContext } from "react-hook-form";
 import { useState, useRef } from "react";
 import { FaCircleExclamation } from "react-icons/fa6";
 import StepWrapper from "./StepWrapper";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 export default function ImageUpload() {
   const {
@@ -35,9 +37,9 @@ export default function ImageUpload() {
   return (
     <StepWrapper
       title="Personaliser votre profil"
-      description="Téléverser une image de profil si vous le désirez, sinon cliquez sur suivant"
+      description="Ajoutez une image à votre profil client ou passez pour créer votre compte."
     >
-      <section className="flex flex-col gap-4">
+      <section className="relative flex flex-col gap-4">
         <input
           type="file"
           id="image"
@@ -45,29 +47,32 @@ export default function ImageUpload() {
           ref={fileInputRef}
           className="hidden"
         />
-        <label
+        <Label
           htmlFor="image"
-          className="mt-2 flex cursor-pointer items-center justify-center rounded border bg-gray-100 p-2 hover:bg-gray-200"
+          className="flex cursor-pointer items-center justify-center rounded-lg border p-5"
         >
           {fileName || "Choisir un fichier"}
-        </label>
+        </Label>
         {fileName && (
-          <div className="mt-2 flex items-center gap-2">
-            <span className="text-sm text-gray-500">
-              Fichier sélectionné: {fileName}
-            </span>
-            <button
-              type="button"
-              onClick={handleRemoveFile}
-              className="rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
-            >
-              x
-            </button>
-          </div>
+          <Button
+            type="button"
+            variant={"destructive"}
+            onClick={handleRemoveFile}
+            className="absolute -bottom-[3.75rem] left-0 w-32"
+          >
+            Retirer l'image
+          </Button>
         )}
         {!fileName && (
-          <span className="text-sm text-gray-500">Aucun fichier choisi</span>
+          <Button
+            type="submit"
+            variant={"outline"}
+            className="absolute -bottom-[3.75rem] left-0 w-32"
+          >
+            Passez
+          </Button>
         )}
+
         {errors.image_url && (
           <span className="flex items-center gap-1 text-xs text-destructive">
             <FaCircleExclamation />

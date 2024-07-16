@@ -1,7 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import formatDate from "@/utils/formatDate.ts";
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -12,18 +9,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  FaMoneyBillTransfer,
-  FaHandHoldingDollar,
-  FaEllipsisVertical,
-  FaRegCircleUser,
-  FaMoneyBillTrendUp,
-} from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { FaMoneyBillTransfer, FaHandHoldingDollar } from "react-icons/fa6";
+import { GiPayMoney } from "react-icons/gi";
+import { CircleUser } from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
 import { useUserContext } from "@/contexts/UserContext";
-import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Tier1VisaH from "../assets/images/cards/horizontal/tier1/1/Visa.svg";
 import Tier2VisaH from "../assets/images/cards/horizontal/tier2/2/Visa.svg";
@@ -31,11 +25,12 @@ import Tier3VisaH from "../assets/images/cards/horizontal/tier3/4/Visa.svg";
 import Tier1VisaV from "../assets/images/cards/vertical/tier1/1/Visa.svg";
 import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
 import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
-import formatCurrency from "@/utils/formatCurrency";
 import capitalize from "@/utils/capitalize";
+// import formatDate from "@/utils/formatDate.ts";
+// import { Link } from "react-router-dom";
+// import formatCurrency from "@/utils/formatCurrency";
 
 type Activity = {
-  name: string;
   date: string;
   amount: string;
   isPositive: boolean;
@@ -47,15 +42,15 @@ type PlanTitle = {
   tier3: string;
 };
 
-interface Transaction {
-  id: number;
-  sender: string;
-  receiver: string;
-  amount: number;
-  date: string;
-  status: string;
-  // Add other properties if needed
-}
+// interface Transaction {
+//   id: number;
+//   sender: string;
+//   receiver: string;
+//   amount: number;
+//   date: string;
+//   status: string;
+//   // Add other properties if needed
+// }
 
 const planTitle: PlanTitle = {
   tier1: "Régulier",
@@ -69,7 +64,6 @@ const activities: Activity[] = [
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
 ];
 
-// export default function UserPanel({ firstname, lastname, plan }: UserProps) {
 export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
@@ -153,31 +147,31 @@ export default function UserPanel() {
       });
   };
 
-  const updateTransactionStatus = (
-    transaction: Transaction,
-    status: string
-  ) => {
-    AxiosInstance.put(`request/${transaction.id}/`, {
-      status: status,
-      sender: transaction.sender,
-      receiver: transaction.receiver,
-      amount: transaction.amount,
-    })
-      .then((transaction) => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-        console.log("Update successful:", transaction);
-      })
-      .catch((error) => {
-        console.error("Error updating transaction:", error.response.data);
-      });
-  };
+  // const updateTransactionStatus = (
+  //   transaction: Transaction,
+  //   status: string
+  // ) => {
+  //   AxiosInstance.put(`request/${transaction.id}/`, {
+  //     status: status,
+  //     sender: transaction.sender,
+  //     receiver: transaction.receiver,
+  //     amount: transaction.amount,
+  //   })
+  //     .then((transaction) => {
+  //       setTimeout(() => {
+  //         window.location.reload();
+  //       }, 3000);
+  //       toast.success("Le montant a bien été ajouté.");
+  //     })
+  //     .catch((error) => {
+  //       toast.error("Le montant n'a pas été ajouté.");
+  //     });
+  // };
 
   const deposer = (data: FieldValues) => {
     AxiosInstance.post(
       `users/add_balance/`,
-      { amount: data.amount },
+      { amount: parseFloat(data.amount) },
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -185,9 +179,12 @@ export default function UserPanel() {
       }
     )
       .then((response) => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        console.log("Data amount:" + data.amount);
+        const updatedUser = {
+          ...user,
+          balance: user.balance + parseFloat(data.amount),
+        };
+        setUser(updatedUser);
         toast.success("Le montant a bien été ajouté.");
       })
       .catch((error) => {
@@ -195,8 +192,8 @@ export default function UserPanel() {
       });
   };
 
+  // DEBUG: Remove
   console.log(user.image_url);
-
   console.log(user);
   return (
     <>
@@ -209,7 +206,7 @@ export default function UserPanel() {
               className="h-16 w-16 rounded-full"
             />
           ) : (
-            <FaRegCircleUser className="size-16" />
+            <CircleUser className="size-16" />
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <h3 className="text-sm">{planTitle[user.plan]}</h3>
@@ -326,9 +323,9 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div>
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    <FaMoneyBillTrendUp className="size-4" />
+                    <GiPayMoney className="size-4" />
                   </Button>
-                  <p className="mt-2 text-sm">Deposer</p>
+                  <p className="mt-2 text-sm">Déposer</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
@@ -413,76 +410,6 @@ export default function UserPanel() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-        <div className="mb-5 w-full">
-          <h2 className="font-semibold">Activités a accepter</h2>
-          <div className="space-y-2 rounded-lg border p-2 shadow">
-            {user?.pending_sender_transactions?.map(
-              (transaction: Transaction, index: number) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div>
-                    <p className="text-base">{transaction.receiver}</p>
-                    <p className="text-sm text-gray-500">
-                      {formatDate(transaction.date)}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        updateTransactionStatus(transaction, "accepted")
-                      }
-                      className="rounded bg-green-500 px-2 py-1 text-white"
-                    >
-                      V
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() =>
-                        updateTransactionStatus(transaction, "rejected")
-                      }
-                      className="rounded bg-red-500 px-2 py-1 text-white"
-                    >
-                      X
-                    </button>
-                  </div>
-                  <p className="font-medium text-gray-700">
-                    {transaction.amount}
-                  </p>
-                  <p className="font-medium text-blue-500">
-                    {transaction.status}
-                  </p>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-        <div className="mb-5 w-full">
-          <h2 className="font-semibold">
-            Activités en attente d'approbation de l'autre partie
-          </h2>
-          <div className="space-y-2 rounded-lg border p-2 shadow">
-            {user?.pending_received_transactions?.map(
-              (transaction: Transaction, index: number) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div>
-                    <p className="text-base">{transaction.sender}</p>
-                    <p className="text-sm text-gray-500">
-                      {formatDate(transaction.date)}
-                    </p>
-                  </div>
-                  <p className="font-medium text-gray-700">
-                    {formatCurrency(transaction.amount)}
-                  </p>
-                  <p className="font-medium text-blue-500">
-                    {transaction.status === "pending"
-                      ? "en attente"
-                      : transaction.status}
-                  </p>
-                </div>
-              )
-            )}
           </div>
         </div>
       </section>

@@ -82,7 +82,8 @@ export const columns: ColumnDef<Payment>[] = [
         <div
           className={`font-medium ${type === "received" ? "text-green-500" : "text-red-500"}`}
         >
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatted}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {type === "received" ? formatted : `-${formatted}`}
         </div>
       );
     },

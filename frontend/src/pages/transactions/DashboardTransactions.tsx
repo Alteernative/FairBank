@@ -6,7 +6,6 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 export default function DashboardTransactions() {
   const { user } = useUserContext();
 
-
   const sentTransactions: Payment[] = user.sent_transactions.map(
     (transaction) => ({
       id: transaction.id.toString(),
@@ -32,16 +31,10 @@ export default function DashboardTransactions() {
   const data: Payment[] = [...sentTransactions, ...receivedTransactions];
 
   return (
-    <main className="h-full w-7/12 rounded-lg px-10 shadow-lg   ">
+    <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">
-        Historique des Transactions
+        Historique des transactions
       </h1>
-      <h2 className="text-2xl font-bold tracking-tight">
-        Salut {user.first_name}!
-      </h2>
-      <p className="text-muted-foreground">
-        Voici l'historique de tes transactions récentes:
-      </p>
       <DataTable columns={columns} data={data} />
     </main>
   );

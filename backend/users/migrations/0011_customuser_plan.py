@@ -13,6 +13,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customuser',
             name='plan',
-            field=models.CharField(choices=[('regular', 'regular'), ('premium', 'premium'), ('ultime', 'ultime')], default='regular', max_length=20),
+            field=models.CharField(
+                choices=[
+                    ('tier1',
+                     'regular'),
+                    ('tier2',
+                     'premium'),
+                    ('tier3',
+                     'ultimate')],
+                default='regular',
+                max_length=20),
         ),
     ]
