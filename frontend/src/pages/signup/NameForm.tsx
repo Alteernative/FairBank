@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import StepWrapper from "./StepWrapper";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { FaCircleExclamation } from "react-icons/fa6";
+import { CircleAlert } from "lucide-react";
 
 export default function NameForm() {
   const {
@@ -26,7 +26,7 @@ export default function NameForm() {
         />
         {errors.first_name && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.first_name.message && String(errors.first_name.message)}
           </span>
         )}
@@ -40,25 +40,10 @@ export default function NameForm() {
         />
         {errors.last_name && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.last_name.message && String(errors.last_name.message)}
           </span>
         )}
-
-        {/* TODO: Replace with birthday selector */}
-        {/* <FloatingLabelInput
-          type="text"
-          id="age"
-          label="Âge"
-          {...register("birthday")}
-          className="h-12"
-        />
-        {errors.age && (
-          <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
-            {errors.age.message && String(errors.age.message)}
-          </span>
-        )} */}
       </section>
     </StepWrapper>
   );
