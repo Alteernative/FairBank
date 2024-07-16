@@ -76,7 +76,7 @@ export default function Particuliers() {
                   ${isAnnual ? "270" : "20"}
                 </span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/yr" : "/mo"}
+                  {isAnnual ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
@@ -154,7 +154,7 @@ export default function Particuliers() {
                   v-text="isAnnual ? '49' : '55'"
                 ></span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/yr" : "/mo"}
+                  {isAnnual ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
@@ -233,7 +233,7 @@ export default function Particuliers() {
                   ${isAnnual ? "800" : "85"}
                 </span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/yr" : "/mo"}
+                  {isAnnual ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
