@@ -99,11 +99,6 @@ export default function ProfileSettings() {
                     className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                   />
                   <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
-                  {/* <img
-                    src={`${baseUrl}${user.image_url}`}
-                    alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
-                    className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80"
-                  /> */}
                 </div>
               )}
             </CardContent>
