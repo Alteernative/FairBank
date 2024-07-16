@@ -7,10 +7,44 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function AppearanceSettings() {
   return (
     <main className="ml-14 mt-20 flex w-4/5 flex-col gap-4 md:ml-12 lg:ml-8">
+      <Card className="w-10/12 border-none shadow-none">
+        <CardHeader>
+          <CardTitle>Font</CardTitle>
+          <CardDescription>
+            Choisissez un font pour votre tableau de bord.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Select>
+            <SelectTrigger className="max-w-[20rem]">
+              <SelectValue placeholder="Font" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Fonts</SelectLabel>
+                <SelectItem value="font-system">Système</SelectItem>
+                <SelectItem value="font-inter">Inter</SelectItem>
+                <SelectItem value="font-roboto">Roboto</SelectItem>
+                <SelectItem value="font-montserrat">Montserrat</SelectItem>
+                <SelectItem value="font-satoshi">Satoshi</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </CardContent>
+      </Card>
       <Card className="w-10/12 border-none shadow-none">
         <CardHeader>
           <CardTitle>Mode sombre</CardTitle>
