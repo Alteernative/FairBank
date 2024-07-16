@@ -217,7 +217,7 @@ export default function UserPanel() {
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <Badge
-            className={`${user.plan === "tier1" ? "bg-green-500" : user.plan === "tier2" ? "bg-gray-500" : "bg-yellow-500"}`}
+            className={`cursor-default transition-all duration-300 hover:text-white ${user.plan === "tier1" ? "bg-green-500 hover:bg-green-600" : user.plan === "tier2" ? "bg-gray-500 hover:bg-gray-600" : "bg-yellow-500 hover:bg-yellow-600"}`}
           >
             {planTitle[user.plan]}
           </Badge>
