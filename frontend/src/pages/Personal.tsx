@@ -80,7 +80,7 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan de base pour les particuliers avec des fonctionnalités
+                Plan de base pour les particuliers, avec des fonctionnalités
                 essentielles.
               </div>
               <a
@@ -158,8 +158,8 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan avancé pour les utilisateurs exigeants, avec des avantages
-                supplémentaires.
+                Plan avancé pour les utilisateurs exigeants, offrant des
+                avantages supplémentaires.
               </div>
               <a
                 className="inline-flex w-full justify-center whitespace-nowrap rounded-lg bg-emerald-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 transition-all duration-150 hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 dark:focus-visible:ring-slate-600"
@@ -237,7 +237,7 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan exclusif pour les utilisateurs professionnels, avec des
+                Plan exclusif pour les utilisateurs professionnels, incluant des
                 avantages premium.
               </div>
               <a
