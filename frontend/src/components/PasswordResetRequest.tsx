@@ -16,6 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
+import { ModeToggle } from "./ModeToggle";
 
 const PasswordFields = () => {
   const {
@@ -84,6 +85,9 @@ const PasswordReset = () => {
           />
         </aside>
         <main className="flex w-80 flex-1 items-center justify-center">
+          <span className="absolute right-36 top-0 m-5">
+            <ModeToggle />
+          </span>
           <Button
             asChild
             variant={"ghost"}
