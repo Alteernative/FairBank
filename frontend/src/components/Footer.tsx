@@ -5,12 +5,11 @@ import { Textarea } from "./ui/textarea";
 import {
   FaFacebookF,
   FaInstagram,
+  FaXTwitter,
   FaYoutube,
   FaLinkedinIn,
-  FaPhone,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+} from "react-icons/fa6";
+import { Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -30,13 +29,13 @@ export default function Footer() {
           </span>
           <section className="mt-14 lg:mt-10">
             <div className="flex items-center gap-3">
-              <FaPhone />
+              <Phone size={"20"} />
               <Link to="tel:1-800-123-4567" className="hover:underline">
                 1-800-123-4567
               </Link>
             </div>
             <div className="flex items-center gap-3">
-              <MdEmail />
+              <Mail size={"20"} />
               <Link
                 to="mailto: contact@fairbank.com "
                 className="hover:underline"
