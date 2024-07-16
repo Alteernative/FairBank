@@ -47,7 +47,7 @@ export default function DashboardExchangeRates() {
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
 
   // API KEY apilayer.com
-  const apiKey = "OXEFBZAu9FJlq5fqgaHI0YfEze5MeFMj";
+  const apiKey = "ksrWbiHtvHfiZPKUpTrd5O9gyUCFfz51";
 
   const updateCurrencyBalance = (currency, amount) => {
     AxiosInstance.put(`currencies/update_balance/`, { currency, amount })
@@ -278,10 +278,8 @@ export default function DashboardExchangeRates() {
                   className="flex-1"
                   type="submit"
                   onClick={() => {
-                    { updateCurrencyBalance( currency , amount ) }
                     setSelectedCurrency(currency);
                     handleConversion();
-                    // updateCurrencyBalance( currency , convertedAmount )
                   }}
                 >
                   Convertir
@@ -290,6 +288,7 @@ export default function DashboardExchangeRates() {
 
               <div>
                 <p >Montant converti: {convertedAmount} {currency}</p>
+                { updateCurrencyBalance( {convertedAmount} , {currency} ) }
               </div>
 
             </DialogFooter>
