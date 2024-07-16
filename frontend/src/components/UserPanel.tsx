@@ -327,7 +327,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={depositForm.handleSubmit(deposer)}>
+                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
                   <DialogHeader>
                     <DialogTitle>Déposer des fonds</DialogTitle>
                     <DialogDescription>
@@ -344,7 +344,7 @@ export default function UserPanel() {
                         defaultValue=""
                         placeholder="$100.00"
                         className="col-span-3"
-                        {...depositForm.register("amount", { required: true })}
+                        {...requestForm.register("amount", { required: true })}
                       />
                     </div>
                   </div>
