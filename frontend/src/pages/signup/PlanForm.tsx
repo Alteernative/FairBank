@@ -1,14 +1,9 @@
 import { useFormContext } from "react-hook-form";
 import StepWrapper from "./StepWrapper";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  MdAccountBalanceWallet,
-  MdOutlineWorkspacePremium,
-} from "react-icons/md";
-import { FaCrown } from "react-icons/fa";
 import formatCurrency from "@/utils/formatCurrency";
 import { Link } from "react-router-dom";
-import { FaCircleExclamation } from "react-icons/fa6";
+import { CircleAlert, Wallet, Award, Crown } from "lucide-react";
 
 export default function PlanForm({ isLastStep, isSubmitting }) {
   const {
@@ -21,19 +16,19 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
     {
       id: "tier1",
       name: "Régulier",
-      icon: MdAccountBalanceWallet,
+      icon: Wallet,
       price: 25,
     },
     {
       id: "tier2",
       name: "Premium",
-      icon: MdOutlineWorkspacePremium,
+      icon: Award,
       price: 50,
     },
     {
       id: "tier3",
       name: "Ultime",
-      icon: FaCrown,
+      icon: Crown,
       price: 100,
     },
   ];
@@ -73,7 +68,7 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
         ))}
         {errors.plan && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.plan.message && String(errors.plan.message)}
           </span>
         )}
@@ -81,7 +76,7 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
         <Link
           to="/particuliers"
           target="_blank"
-          className="absolute -bottom-7 left-0 rounded-md px-1 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+          className="absolute -bottom-11 left-0 rounded-md px-1 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
         >
           Plus d'infos sur les plans.
         </Link>
