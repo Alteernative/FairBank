@@ -146,6 +146,7 @@ export default function SignIn() {
                   <FloatingLabelInput
                     type={passwordType}
                     id="password"
+                    autoComplete="off"
                     label="Mot de passe"
                     {...register("password")}
                     className="h-12 pr-12"

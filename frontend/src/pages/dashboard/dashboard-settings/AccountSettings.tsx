@@ -92,6 +92,7 @@ export default function AccountSettings() {
               {/* <FloatingLabelInput
                 type={passwordType}
                 id="password"
+                autoComplete="off"
                 {...register("password")}
                 label="Nouveau mot de passe"
                 className="h-12"
@@ -111,6 +112,7 @@ export default function AccountSettings() {
                 <FloatingLabelInput
                   type={passwordType}
                   id="password"
+                  autoComplete="off"
                   label="Mot de passe"
                   {...register("password")}
                   className="h-12 pr-12"

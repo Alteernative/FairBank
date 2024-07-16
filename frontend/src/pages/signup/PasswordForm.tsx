@@ -30,6 +30,7 @@ export default function PasswordForm() {
           <FloatingLabelInput
             type={passwordType}
             id="password"
+            autoComplete="off"
             label="Mot de passe"
             {...register("password")}
             autoFocus
@@ -62,6 +63,7 @@ export default function PasswordForm() {
           <FloatingLabelInput
             type={passwordType}
             id="re_password"
+            autoComplete="off"
             label="Confirmer"
             {...register("re_password")}
             className="h-12 pr-11"
