@@ -64,7 +64,6 @@ const activities: Activity[] = [
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
 ];
 
-// export default function UserPanel({ firstname, lastname, plan }: UserProps) {
 export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
@@ -162,17 +161,17 @@ export default function UserPanel() {
   //       setTimeout(() => {
   //         window.location.reload();
   //       }, 3000);
-  //       console.log("Update successful:", transaction);
+  //       toast.success("Le montant a bien été ajouté.");
   //     })
   //     .catch((error) => {
-  //       console.error("Error updating transaction:", error.response.data);
+  //       toast.error("Le montant n'a pas été ajouté.");
   //     });
   // };
 
   const deposer = (data: FieldValues) => {
     AxiosInstance.post(
       `users/add_balance/`,
-      { amount: data.amount },
+      { amount: parseFloat(data.amount) },
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -180,9 +179,12 @@ export default function UserPanel() {
       }
     )
       .then((response) => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        console.log("Data amount:" + data.amount);
+        const updatedUser = {
+          ...user,
+          balance: user.balance + parseFloat(data.amount),
+        };
+        setUser(updatedUser);
         toast.success("Le montant a bien été ajouté.");
       })
       .catch((error) => {
@@ -327,11 +329,11 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
+                <form onSubmit={depositForm.handleSubmit(deposer)}>
                   <DialogHeader>
-                    <DialogTitle>Déposer des fonds</DialogTitle>
+                    <DialogTitle>Deposer des fonds</DialogTitle>
                     <DialogDescription>
-                      Veuillez entrer le montant à déposer.
+                      Veuillez entrer le montant à deposer.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
@@ -341,16 +343,17 @@ export default function UserPanel() {
                       </Label>
                       <Input
                         id="amount"
+                        // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
                         className="col-span-3"
-                        {...requestForm.register("amount", { required: true })}
+                        {...depositForm.register("amount", { required: true })}
                       />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">Déposer</Button>
+                      <Button type="submit">Envoyer</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -409,77 +412,6 @@ export default function UserPanel() {
             ))}
           </div>
         </div>
-
-        {/* <div className="mb-5 w-full">
-          <h2 className="font-semibold">Activités a accepter</h2>
-          <div className="space-y-2 rounded-lg border p-2 shadow">
-            {user?.pending_sender_transactions?.map(
-              (transaction: Transaction, index: number) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div>
-                    <p className="text-base">{transaction.receiver}</p>
-                    <p className="text-sm text-gray-500">
-                      {formatDate(transaction.date)}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        updateTransactionStatus(transaction, "accepted")
-                      }
-                      className="rounded bg-green-500 px-2 py-1 text-white"
-                    >
-                      V
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() =>
-                        updateTransactionStatus(transaction, "rejected")
-                      }
-                      className="rounded bg-red-500 px-2 py-1 text-white"
-                    >
-                      X
-                    </button>
-                  </div>
-                  <p className="font-medium text-gray-700">
-                    {transaction.amount}
-                  </p>
-                  <p className="font-medium text-blue-500">
-                    {transaction.status}
-                  </p>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-        <div className="mb-5 w-full">
-          <h2 className="font-semibold">
-            Activités en attente d'approbation de l'autre partie
-          </h2>
-          <div className="space-y-2 rounded-lg border p-2 shadow">
-            {user?.pending_received_transactions?.map(
-              (transaction: Transaction, index: number) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div>
-                    <p className="text-base">{transaction.sender}</p>
-                    <p className="text-sm text-gray-500">
-                      {formatDate(transaction.date)}
-                    </p>
-                  </div>
-                  <p className="font-medium text-gray-700">
-                    {formatCurrency(transaction.amount)}
-                  </p>
-                  <p className="font-medium text-blue-500">
-                    {transaction.status === "pending"
-                      ? "en attente"
-                      : transaction.status}
-                  </p>
-                </div>
-              )
-            )}
-          </div>
-        </div> */}
       </section>
       <Toaster richColors />
     </>
