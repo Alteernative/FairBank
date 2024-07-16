@@ -1,7 +1,10 @@
 import AxiosInstance from "@/components/AxiosInstance";
+import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/contexts/UserContext";
+import capitalize from "@/utils/capitalize";
 import formatCurrency from "@/utils/formatCurrency";
 import formatDate from "@/utils/formatDate";
+import { Check, X } from "lucide-react";
 
 type Transaction = {
   id: number;
@@ -41,41 +44,48 @@ export default function DashboardActivity() {
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
       <h1 className="mb-10 font-jomhuria text-6xl">Activités</h1>
       <div className="mb-5 w-full">
-        <h2 className="font-semibold">Activités a accepter</h2>
-        <div className="space-y-2 rounded-lg border p-2 shadow">
+        <h2 className="font-semibold">Activités à accepter</h2>
+        <div className="space-y-2 rounded-lg border px-5 py-3 shadow">
           {user?.pending_sender_transactions?.map(
             (transaction: Transaction, index: number) => (
               <div key={index} className="flex items-center justify-between">
-                <div>
+                <div className="flex flex-col">
                   <p className="text-base">{transaction.receiver}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     {formatDate(transaction.date)}
                   </p>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      updateTransactionStatus(transaction, "accepted")
-                    }
-                    className="rounded bg-green-500 px-2 py-1 text-white"
-                  >
-                    V
-                  </button>
+                  <div className="mt-5 flex items-center gap-3">
+                    <Button
+                      type="button"
+                      size={"icon"}
+                      variant={"outline"}
+                      onClick={() =>
+                        updateTransactionStatus(transaction, "accepted")
+                      }
+                      className="bg-green-500 text-white"
+                    >
+                      <Check />
+                    </Button>
 
-                  <button
-                    type="button"
-                    onClick={() =>
-                      updateTransactionStatus(transaction, "rejected")
-                    }
-                    className="rounded bg-red-500 px-2 py-1 text-white"
-                  >
-                    X
-                  </button>
+                    <Button
+                      type="button"
+                      size={"icon"}
+                      onClick={() =>
+                        updateTransactionStatus(transaction, "rejected")
+                      }
+                      className="bg-red-500 text-white"
+                    >
+                      <X />
+                    </Button>
+                  </div>
                 </div>
-                <p className="font-medium text-gray-700">
-                  {transaction.amount}
+                <p className="font-jomhuria text-4xl">
+                  {formatCurrency(transaction.amount)}
                 </p>
                 <p className="font-medium text-blue-500">
-                  {transaction.status}
+                  {transaction.status === "pending"
+                    ? "En attente"
+                    : capitalize(transaction.status)}
                 </p>
               </div>
             )
@@ -102,7 +112,7 @@ export default function DashboardActivity() {
                 </p>
                 <p className="font-medium text-blue-500">
                   {transaction.status === "pending"
-                    ? "en attente"
+                    ? "En attente"
                     : transaction.status}
                 </p>
               </div>
