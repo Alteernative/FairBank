@@ -1,5 +1,6 @@
 import { UserContextProvider } from "@/contexts/UserContext";
 import SettingsSidebar from "@/components/SettingsSidebar";
+import { Toaster } from "sonner";
 
 export default function Settings({ children }: { children: React.ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export default function Settings({ children }: { children: React.ReactNode }) {
         <SettingsSidebar />
         {children}
       </UserContextProvider>
+      <Toaster richColors />
     </section>
   );
 }
