@@ -11,6 +11,8 @@ import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -18,7 +20,16 @@ import { toast } from "sonner";
 export default function AccountSettings() {
   const { user } = useUserContext();
   const { handleSubmit, register } = useForm();
+  const [passwordType, setPasswordType] = useState("password");
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+    } else {
+      setPasswordType("password");
+    }
+  };
 
   const handlePassword = async (data: FieldValues) => {
     try {
@@ -78,13 +89,51 @@ export default function AccountSettings() {
               <CardDescription>Entrez un nouveau mot de passe</CardDescription>
             </CardHeader>
             <CardContent>
-              <FloatingLabelInput
-                type="text"
+              {/* <FloatingLabelInput
+                type={passwordType}
                 id="password"
                 {...register("password")}
                 label="Nouveau mot de passe"
                 className="h-12"
               />
+              <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                <Button
+                  type="button"
+                  variant={"ghost"}
+                  size={"icon"}
+                  className="size-7 select-none rounded-full"
+                  onClick={handleClick}
+                >
+                  {passwordType === "password" ? <Eye /> : <EyeOff />}
+                </Button>
+              </span> */}
+              <div className="relative">
+                <FloatingLabelInput
+                  type={passwordType}
+                  id="password"
+                  label="Mot de passe"
+                  {...register("password")}
+                  className="h-12 pr-12"
+                  onChange={() => {
+                    // clearErrors("password");
+                  }}
+                />
+                <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                  <Button
+                    type="button"
+                    variant={"ghost"}
+                    size={"icon"}
+                    className="size-7 select-none rounded-full"
+                    onClick={handleClick}
+                  >
+                    {passwordType === "password" ? (
+                      <Eye size={20} />
+                    ) : (
+                      <EyeOff size={20} />
+                    )}
+                  </Button>
+                </span>
+              </div>
             </CardContent>
           </Card>
           <Card className="w-10/12 border-none shadow-none">
@@ -95,13 +144,30 @@ export default function AccountSettings() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <FloatingLabelInput
-                type="text"
-                id="re_password"
-                {...register("re_password")}
-                label="Confirmer"
-                className="h-12"
-              />
+              <div className="relative">
+                <FloatingLabelInput
+                  type="text"
+                  id="re_password"
+                  {...register("re_password")}
+                  label="Confirmer"
+                  className="h-12"
+                />
+                <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                  <Button
+                    type="button"
+                    variant={"ghost"}
+                    size={"icon"}
+                    className="size-7 select-none rounded-full"
+                    onClick={handleClick}
+                  >
+                    {passwordType === "password" ? (
+                      <Eye size={20} />
+                    ) : (
+                      <EyeOff size={20} />
+                    )}
+                  </Button>
+                </span>
+              </div>
             </CardContent>
           </Card>
           <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
