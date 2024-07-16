@@ -69,6 +69,7 @@ export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
+  const depositForm = useForm(); // New form for deposit
   const baseUrl = "http://127.0.0.1:8000";
 
   const [isTransactionSent, setTransaction] = useState(false);
@@ -167,6 +168,27 @@ export default function UserPanel() {
   //       console.error("Error updating transaction:", error.response.data);
   //     });
   // };
+
+  const deposer = (data: FieldValues) => {
+    AxiosInstance.post(
+      `users/add_balance/`,
+      { amount: data.amount },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
+      .then((response) => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        toast.success("Le montant a bien été ajouté.");
+      })
+      .catch((error) => {
+        toast.error("Le montant n'a pas été ajouté.");
+      });
+  };
 
   // DEBUG: Remove
   console.log(user.image_url);
@@ -305,7 +327,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
+                <form onSubmit={depositForm.handleSubmit(deposer)}>
                   <DialogHeader>
                     <DialogTitle>Déposer des fonds</DialogTitle>
                     <DialogDescription>
@@ -322,7 +344,7 @@ export default function UserPanel() {
                         defaultValue=""
                         placeholder="$100.00"
                         className="col-span-3"
-                        {...requestForm.register("amount", { required: true })}
+                        {...depositForm.register("amount", { required: true })}
                       />
                     </div>
                   </div>
