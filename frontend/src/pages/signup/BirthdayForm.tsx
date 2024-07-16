@@ -1,6 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
 import StepWrapper from "./StepWrapper";
-import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import {
   Select,
@@ -11,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CircleAlert } from "lucide-react";
 
 export default function BirthdayForm() {
   const {
@@ -39,7 +39,7 @@ export default function BirthdayForm() {
         />
         {errors.birth_year && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.birth_year.message && String(errors.birth_year.message)}
           </span>
         )}
@@ -75,7 +75,7 @@ export default function BirthdayForm() {
         />
         {errors.birth_month && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.birth_month.message && String(errors.birth_month.message)}
           </span>
         )}
@@ -91,7 +91,7 @@ export default function BirthdayForm() {
         />
         {errors.birth_day && (
           <span className="mb-2 flex items-center gap-1 text-xs text-destructive">
-            <FaCircleExclamation />
+            <CircleAlert size={20} />
             {errors.birth_day.message && String(errors.birth_day.message)}
           </span>
         )}
