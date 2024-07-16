@@ -12,20 +12,29 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
 import { FieldValues, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useUserContext();
   const { handleSubmit, register } = useForm();
+  const navigate = useNavigate();
 
-  const handleAccount = async (data: FieldValues) => {
+  const handlePassword = async (data: FieldValues) => {
     try {
-      console.log(data);
-      await AxiosInstance.put(`users/${user.id}/`, {
-        password: data.password,
+      const formData = new FormData();
+      formData.append("password", data.password);
+
+      await AxiosInstance.put(`users/${user.id}/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       toast.success("Votre mot de passe a été modifié.");
       localStorage.removeItem("Token");
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
     } catch (error) {
       console.error("Error updating user:", error);
       toast.error("Une erreur est survenue lors de la modification.");
@@ -35,24 +44,24 @@ export default function AccountSettings() {
   return (
     <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
       <main className="flex flex-col gap-4">
-        <form onSubmit={handleSubmit(handleAccount)}>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Courriel</CardTitle>
-              <CardDescription>
-                Contactez le support pour modifier votre courriel.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Input
-                type="text"
-                disabled
-                placeholder={user.email}
-                className="h-12"
-              />
-            </CardContent>
-          </Card>
-          <Separator />
+        <Card className="w-10/12 border-none shadow-none">
+          <CardHeader>
+            <CardTitle>Courriel</CardTitle>
+            <CardDescription>
+              Contactez le support pour modifier votre courriel.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Input
+              type="text"
+              disabled
+              placeholder={user.email}
+              className="h-12"
+            />
+          </CardContent>
+        </Card>
+        <Separator />
+        <form onSubmit={handleSubmit(handlePassword)}>
           {/* TODO: User enters current password, check if valid -> Enter new password, checks if diffrent than old password with zod validations. */}
           {/* <Card className="w-10/12 border-none shadow-none">
             <CardHeader>
