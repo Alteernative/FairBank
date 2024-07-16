@@ -85,10 +85,10 @@ export default function DashboardActivity() {
                         </Button>
                       </div>
                     </div>
-                    <p className="font-jomhuria text-4xl">
+                    <p className="select-none font-jomhuria text-4xl">
                       {formatCurrency(transaction.amount)}
                     </p>
-                    <p className="font-medium text-blue-500">
+                    <p className="select-none font-medium text-blue-500">
                       {transaction.status === "pending"
                         ? "En attente"
                         : capitalize(transaction.status)}
@@ -119,10 +119,10 @@ export default function DashboardActivity() {
                         {formatDate(transaction.date)}
                       </p>
                     </div>
-                    <p className="font-jomhuria text-4xl">
+                    <p className="select-none font-jomhuria text-4xl">
                       {formatCurrency(transaction.amount)}
                     </p>
-                    <p className="font-medium text-blue-500">
+                    <p className="select-none font-medium text-blue-500">
                       {transaction.status === "pending"
                         ? "En attente"
                         : transaction.status}
