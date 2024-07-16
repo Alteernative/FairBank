@@ -17,6 +17,7 @@ import {
   FaHandHoldingDollar,
   FaEllipsisVertical,
   FaRegCircleUser,
+  FaMoneyBillTrendUp,
 } from "react-icons/fa6";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
@@ -73,6 +74,7 @@ export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
+  const depositForm = useForm(); // New form for deposit
   const baseUrl = "http://127.0.0.1:8000";
 
   const [isTransactionSent, setTransaction] = useState(false);
@@ -169,6 +171,27 @@ export default function UserPanel() {
       })
       .catch((error) => {
         console.error("Error updating transaction:", error.response.data);
+      });
+  };
+
+  const deposer = (data: FieldValues) => {
+    AxiosInstance.post(
+      `users/add_balance/`,
+      { amount: data.amount },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
+      .then((response) => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        toast.success("Le montant a bien été ajouté.");
+      })
+      .catch((error) => {
+        toast.error("Le montant n'a pas été ajouté.");
       });
   };
 
@@ -299,14 +322,46 @@ export default function UserPanel() {
               </DialogContent>
             </Dialog>
 
-            <div className="text-center">
-              <Link to={"/user/settings"}>
-                <Button variant={"outline"} className="size-14 rounded-full">
-                  <FaEllipsisVertical className="size-4" />
-                </Button>
-              </Link>
-              <p className="mt-2 text-sm">Autres</p>
-            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <div>
+                  <Button variant={"outline"} className="size-14 rounded-full">
+                    <FaMoneyBillTransfer className="size-4" />
+                  </Button>
+                  <p className="mt-2 text-sm">Deposer</p>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <form onSubmit={depositForm.handleSubmit(deposer)}>
+                  <DialogHeader>
+                    <DialogTitle>Deposer des fonds</DialogTitle>
+                    <DialogDescription>
+                      Veuillez entrer le montant à deposer.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="name" className="text-right">
+                        Montant
+                      </Label>
+                      <Input
+                        id="amount"
+                        // onInput={handleInput}
+                        defaultValue=""
+                        placeholder="$100.00"
+                        className="col-span-3"
+                        {...depositForm.register("amount", { required: true })}
+                      />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button type="submit">Envoyer</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
 
@@ -361,10 +416,8 @@ export default function UserPanel() {
           </div>
         </div>
         <div className="mb-5 w-full">
-
           <h2 className="font-semibold">Activités a accepter</h2>
           <div className="space-y-2 rounded-lg border p-2 shadow">
-
             {user?.pending_sender_transactions?.map(
               (transaction: Transaction, index: number) => (
                 <div key={index} className="flex items-center justify-between">
