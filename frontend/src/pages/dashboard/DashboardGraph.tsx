@@ -125,7 +125,7 @@ export default function DashboardGraph() {
         position: "top" as const,
       },
       title: {
-        display: true,
+        display: false,
         text: "Graphe de la balance",
       },
     },
@@ -138,7 +138,7 @@ export default function DashboardGraph() {
       },
       y: {
         title: {
-          display: true,
+          display: false,
           text: "Balance",
         },
       },
