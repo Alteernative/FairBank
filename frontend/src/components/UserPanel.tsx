@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -11,18 +9,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  FaMoneyBillTransfer,
-  FaHandHoldingDollar,
-  FaEllipsisVertical,
-} from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { FaMoneyBillTransfer, FaHandHoldingDollar } from "react-icons/fa6";
 import { GiPayMoney } from "react-icons/gi";
 import { CircleUser } from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
 import { useUserContext } from "@/contexts/UserContext";
-import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import Tier1VisaH from "../assets/images/cards/horizontal/tier1/1/Visa.svg";
 import Tier2VisaH from "../assets/images/cards/horizontal/tier2/2/Visa.svg";
@@ -30,9 +25,10 @@ import Tier3VisaH from "../assets/images/cards/horizontal/tier3/4/Visa.svg";
 import Tier1VisaV from "../assets/images/cards/vertical/tier1/1/Visa.svg";
 import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
 import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
-import formatCurrency from "@/utils/formatCurrency";
-import formatDate from "@/utils/formatDate.ts";
 import capitalize from "@/utils/capitalize";
+// import formatDate from "@/utils/formatDate.ts";
+// import { Link } from "react-router-dom";
+// import formatCurrency from "@/utils/formatCurrency";
 
 type Activity = {
   date: string;
@@ -46,15 +42,15 @@ type PlanTitle = {
   tier3: string;
 };
 
-interface Transaction {
-  id: number;
-  sender: string;
-  receiver: string;
-  amount: number;
-  date: string;
-  status: string;
-  // Add other properties if needed
-}
+// interface Transaction {
+//   id: number;
+//   sender: string;
+//   receiver: string;
+//   amount: number;
+//   date: string;
+//   status: string;
+//   // Add other properties if needed
+// }
 
 const planTitle: PlanTitle = {
   tier1: "Régulier",
@@ -151,29 +147,29 @@ export default function UserPanel() {
       });
   };
 
-  const updateTransactionStatus = (
-    transaction: Transaction,
-    status: string
-  ) => {
-    AxiosInstance.put(`request/${transaction.id}/`, {
-      status: status,
-      sender: transaction.sender,
-      receiver: transaction.receiver,
-      amount: transaction.amount,
-    })
-      .then((transaction) => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-        console.log("Update successful:", transaction);
-      })
-      .catch((error) => {
-        console.error("Error updating transaction:", error.response.data);
-      });
-  };
+  // const updateTransactionStatus = (
+  //   transaction: Transaction,
+  //   status: string
+  // ) => {
+  //   AxiosInstance.put(`request/${transaction.id}/`, {
+  //     status: status,
+  //     sender: transaction.sender,
+  //     receiver: transaction.receiver,
+  //     amount: transaction.amount,
+  //   })
+  //     .then((transaction) => {
+  //       setTimeout(() => {
+  //         window.location.reload();
+  //       }, 3000);
+  //       console.log("Update successful:", transaction);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error updating transaction:", error.response.data);
+  //     });
+  // };
 
+  // DEBUG: Remove
   console.log(user.image_url);
-
   console.log(user);
   return (
     <>
@@ -391,7 +387,8 @@ export default function UserPanel() {
             ))}
           </div>
         </div>
-        <div className="mb-5 w-full">
+
+        {/* <div className="mb-5 w-full">
           <h2 className="font-semibold">Activités a accepter</h2>
           <div className="space-y-2 rounded-lg border p-2 shadow">
             {user?.pending_sender_transactions?.map(
@@ -460,7 +457,7 @@ export default function UserPanel() {
               )
             )}
           </div>
-        </div>
+        </div> */}
       </section>
       <Toaster richColors />
     </>
