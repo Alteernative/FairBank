@@ -30,14 +30,16 @@ export default function DisplaySettings() {
       last_name: data.last_name,
     })
       .then(() => {
-        toast.success("Le compte a été supprimé.");
+        toast.success("Votre compte a été supprimé.");
         setTimeout(() => {
           navigate("/");
         }, 2500);
         localStorage.removeItem("Token");
       })
       .catch((error) => {
-        toast.success("Erreure: le compte n'a pas été supprimé.");
+        toast.error(
+          "Une erreur est survenue lors de la fermeture de votre compte."
+        );
         console.error("Error updating user:", error);
       });
   };
