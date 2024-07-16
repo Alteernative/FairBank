@@ -157,6 +157,28 @@ class UserViewset(viewsets.ViewSet):
         user.save()
         return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['post'])
+    def add_balance(self, request):
+        user = request.user
+        amount = request.data.get('amount')
+
+        if amount is None:
+            return Response({'error': 'Amount is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            amount = float(amount)
+            if amount <= 0:
+                return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError:
+            return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.balance += amount
+        user.save()
+
+        return Response(
+            {'success': 'Balance updated successfully', 'balance': user.balance},
+            status=status.HTTP_200_OK
+        )
 
     # try:
     #     user = User.objects.get(pk=pk)
@@ -276,3 +298,6 @@ class CurrencyViewset(viewsets.ModelViewSet):
             {'success': 'Balance updated successfully', 'balances': UserCurrencySerializer(currency_instance).data},
             status=status.HTTP_200_OK
         )
+
+class DepositViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
