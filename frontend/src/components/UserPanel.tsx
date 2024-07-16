@@ -326,7 +326,7 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div>
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    <FaMoneyBillTransfer className="size-4" />
+                    <FaMoneyBillTrendUp className="size-4" />
                   </Button>
                   <p className="mt-2 text-sm">Deposer</p>
                 </div>
