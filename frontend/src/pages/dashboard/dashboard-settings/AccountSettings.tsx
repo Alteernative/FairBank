@@ -24,11 +24,11 @@ export default function AccountSettings() {
       await AxiosInstance.put(`users/${user.id}/`, {
         password: data.password,
       });
-      toast.success("Mot de passe modifié.");
+      toast.success("Votre mot de passe a été modifié.");
       localStorage.removeItem("Token");
     } catch (error) {
       console.error("Error updating user:", error);
-      toast.error("Error: Modification non complétée.");
+      toast.error("Une erreur est survenue lors de la modification.");
     }
   };
 
@@ -44,7 +44,12 @@ export default function AccountSettings() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Input type="text" disabled placeholder={user.email} />
+              <Input
+                type="text"
+                disabled
+                placeholder={user.email}
+                className="h-12"
+              />
             </CardContent>
           </Card>
           <Separator />
@@ -69,6 +74,7 @@ export default function AccountSettings() {
                 id="password"
                 {...register("password")}
                 label="Nouveau mot de passe"
+                className="h-12"
               />
             </CardContent>
           </Card>
@@ -85,6 +91,7 @@ export default function AccountSettings() {
                 id="re_password"
                 {...register("re_password")}
                 label="Confirmer"
+                className="h-12"
               />
             </CardContent>
           </Card>
