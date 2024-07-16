@@ -29,6 +29,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
 
 const chartConfig = {
   rate: {
@@ -46,7 +47,22 @@ export default function DashboardExchangeRates() {
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
 
   // API KEY apilayer.com
-  const apiKey = "1vIa5mpChI9QTb9Gq4ASmFD4ej82oaIQ";
+  const apiKey = "OXEFBZAu9FJlq5fqgaHI0YfEze5MeFMj";
+
+  const updateCurrencyBalance = (currency, amount) => {
+    AxiosInstance.put(`currencies/update_balance/`, { currency, amount })
+      .then((response) => {
+        console.log("Balance updated successfully:", response.data);
+        // navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Error updating balance:", error);
+      });
+  };
+  // const currency = "eur"; // Replace with the currency you want to update
+  // const amount = 10.0; // Replace with the amount you want to add
+  // console.log(currency, amount);
+  // updateCurrencyBalance(currency, amount);
 
   // Fetch exchange rates compared to the CAD
   const fetchExchangeRates = async () => {
@@ -262,9 +278,10 @@ export default function DashboardExchangeRates() {
                   className="flex-1"
                   type="submit"
                   onClick={() => {
-                    { user.balance = user.balance - e.target.value }
+                    { updateCurrencyBalance( currency , amount ) }
                     setSelectedCurrency(currency);
                     handleConversion();
+                    // updateCurrencyBalance( currency , convertedAmount )
                   }}
                 >
                   Convertir

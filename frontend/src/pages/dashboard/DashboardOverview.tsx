@@ -11,6 +11,7 @@ import {
 import { Card, CardHeader } from "@/components/ui/card.tsx";
 
 export default function DashboardOverview() {
+
   const { user } = useUserContext();
   const [balances, setBalances] = useState([
     { currency: "CAD", amount: user.balance },
@@ -20,6 +21,7 @@ export default function DashboardOverview() {
     const convertedAmount = user.balance * rate;
     setBalances([...balances, { currency, amount: convertedAmount }]);
   };
+
 
   return (
     <main className="h-full w-7/12 rounded-lg px-10 shadow-lg">
