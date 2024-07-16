@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
 import capitalize from "@/utils/capitalize";
 import { useRef, useState } from "react";
