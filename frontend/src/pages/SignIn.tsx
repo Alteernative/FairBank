@@ -14,15 +14,10 @@ import { signInSchema } from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
-import {
-  FaEye,
-  FaEyeSlash,
-  FaTriangleExclamation,
-  FaSpinner,
-} from "react-icons/fa6";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
+import { Eye, EyeOff, TriangleAlert, Loader } from "lucide-react";
 
 type FormData = {
   email: string;
@@ -54,6 +49,7 @@ export default function SignIn() {
       setPasswordType("password");
     }
   };
+
   const onSubmit = async (data: FormData) => {
     try {
       const response = await AxiosInstance.post("login/", {
@@ -167,7 +163,11 @@ export default function SignIn() {
                       className="size-7 select-none rounded-full"
                       onClick={handleClick}
                     >
-                      {passwordType === "password" ? <FaEye /> : <FaEyeSlash />}
+                      {passwordType === "password" ? (
+                        <Eye size={20} />
+                      ) : (
+                        <EyeOff size={20} />
+                      )}
                     </Button>
                   </span>
                 </div>
@@ -181,14 +181,18 @@ export default function SignIn() {
 
                 {errors.root && (
                   <Alert variant={"destructive"}>
-                    <FaTriangleExclamation className="size-4" />
+                    <TriangleAlert size={20} />
                     <AlertTitle>Erreur</AlertTitle>
                     <AlertDescription>{errors.root.message}</AlertDescription>
                   </Alert>
                 )}
-                <Button type="submit" className="mt-2 select-none">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="mt-2 select-none"
+                >
                   {isSubmitting ? (
-                    <FaSpinner className="animate-spin" />
+                    <Loader size={20} className="animate-spin" />
                   ) : (
                     "S'identifier"
                   )}
