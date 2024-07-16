@@ -126,7 +126,7 @@ const PasswordReset = () => {
           className="my-auto w-full content-center overflow-hidden"
         />
       </aside>
-      <main className="flex w-80 flex-1 items-center justify-center bg-white">
+      <main className="flex w-80 flex-1 items-center justify-center">
         <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
           <Link to={"/"}>FairBank</Link>
         </h1>
