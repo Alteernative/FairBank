@@ -98,6 +98,20 @@ export default function AppearanceSettings() {
               variant={"outline"}
               className="flex w-32 items-center justify-start"
             >
+              <div className="size-6 rounded-full border bg-orange-500"></div>
+              <p className="ml-3">Orange</p>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-32 items-center justify-start"
+            >
+              <div className="size-6 rounded-full border bg-rose-500"></div>
+              <p className="ml-3">Rose</p>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-32 items-center justify-start"
+            >
               <div className="size-6 rounded-full border bg-purple-500"></div>
               <p className="ml-3">Violet</p>
             </Button>
@@ -105,8 +119,15 @@ export default function AppearanceSettings() {
               variant={"outline"}
               className="flex w-32 items-center justify-start"
             >
-              <div className="size-6 rounded-full border bg-slate-500"></div>
+              <div className="size-6 rounded-full border bg-gray-500"></div>
               <p className="ml-3">Gris</p>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-32 items-center justify-start"
+            >
+              <div className="size-6 rounded-full border bg-neutral-500"></div>
+              <p className="ml-3">Neutre</p>
             </Button>
           </section>
         </CardContent>
