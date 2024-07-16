@@ -11,14 +11,12 @@ import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
-
 import { FieldValues, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useUserContext();
-  const { handleSubmit, register, setValue } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const handleAccount = async (data: FieldValues) => {
     try {
