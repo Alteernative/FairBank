@@ -12,7 +12,7 @@ import { useUserContext } from "@/contexts/UserContext";
 import capitalize from "@/utils/capitalize";
 import { useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { FaRegCircleUser } from "react-icons/fa6";
+import { CircleUser } from "lucide-react";
 import { toast } from "sonner";
 
 export default function ProfileSettings() {
@@ -90,7 +90,21 @@ export default function ProfileSettings() {
                   />
                 </div>
               ) : (
-                <FaRegCircleUser className="size-16" />
+                <div className="relative size-16">
+                  <input
+                    type="file"
+                    id="image"
+                    {...register("image_url", { onChange: handleImageChange })}
+                    ref={fileInputRef}
+                    className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                  />
+                  <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
+                  {/* <img
+                    src={`${baseUrl}${user.image_url}`}
+                    alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
+                    className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80"
+                  /> */}
+                </div>
               )}
             </CardContent>
           </Card>
