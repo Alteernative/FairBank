@@ -32,6 +32,7 @@ import Tier1VisaV from "../assets/images/cards/vertical/tier1/1/Visa.svg";
 import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
 import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
 import capitalize from "@/utils/capitalize";
+import { Badge } from "./ui/badge";
 // import formatDate from "@/utils/formatDate.ts";
 // import { Link } from "react-router-dom";
 // import formatCurrency from "@/utils/formatCurrency";
@@ -215,7 +216,11 @@ export default function UserPanel() {
             <CircleUser className="size-16" />
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
-          <h3 className="text-sm">{planTitle[user.plan]}</h3>
+          <Badge
+            className={`${user.plan === "tier1" ? "bg-green-500" : user.plan === "tier2" ? "bg-gray-500" : "bg-yellow-500"}`}
+          >
+            {planTitle[user.plan]}
+          </Badge>
           <div className="mt-7 flex w-full items-center justify-around">
             <Dialog>
               <DialogTrigger asChild>
