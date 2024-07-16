@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 // import { FaMoneyBillTransfer, FaHandHoldingDollar } from "react-icons/fa6";
-// import { GiPayMoney } from "react-icons/gi";
+
 import {
   CircleUser,
   Send,
@@ -153,27 +153,6 @@ export default function UserPanel() {
         toast.error("Les fonds n'ont pas été demandé.");
       });
   };
-
-  // const updateTransactionStatus = (
-  //   transaction: Transaction,
-  //   status: string
-  // ) => {
-  //   AxiosInstance.put(`request/${transaction.id}/`, {
-  //     status: status,
-  //     sender: transaction.sender,
-  //     receiver: transaction.receiver,
-  //     amount: transaction.amount,
-  //   })
-  //     .then((transaction) => {
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 3000);
-  //       toast.success("Le montant a bien été ajouté.");
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Le montant n'a pas été ajouté.");
-  //     });
-  // };
 
   const deposer = (data: FieldValues) => {
     AxiosInstance.post(
@@ -347,9 +326,9 @@ export default function UserPanel() {
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={depositForm.handleSubmit(deposer)}>
                   <DialogHeader>
-                    <DialogTitle>Deposer des fonds</DialogTitle>
+                    <DialogTitle>Déposer des fonds</DialogTitle>
                     <DialogDescription>
-                      Veuillez entrer le montant à deposer.
+                      Veuillez entrer le montant à déposer.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
@@ -370,7 +349,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">Envoyer</Button>
+                      <Button type="submit">Déposer</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
