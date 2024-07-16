@@ -16,7 +16,6 @@ import DashboardExchangeRates from "./pages/dashboard/DashboardExchangeRates.tsx
 import DashboardActivity from "./pages/dashboard/DashboardActivity.tsx";
 import DashboardHelp from "./pages/dashboard/DashboardHelp.tsx";
 import Settings from "./pages/dashboard/dashboard-settings/Settings.tsx";
-import UserProfileSettings from "./pages/UserProfileSettings.tsx";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
 import PasswordReset from "./components/PasswordReset.tsx";
@@ -171,15 +170,6 @@ export default function App() {
                 <Settings>
                   <SecuritySettings />
                 </Settings>
-              </UserContextProvider>
-            }
-          />
-
-          <Route
-            path="/user/settings"
-            element={
-              <UserContextProvider>
-                <UserProfileSettings />
               </UserContextProvider>
             }
           />
