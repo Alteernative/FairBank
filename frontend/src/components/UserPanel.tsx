@@ -206,7 +206,6 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    {/* <FaMoneyBillTransfer className="size-4" /> */}
                     <Send size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Envoyer</p>
@@ -228,23 +227,12 @@ export default function UserPanel() {
                       </Label>
                       <Input
                         id="amount"
-                        // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
                         {...sendForm.register("amount", { required: true })}
                       />
-                      {/* <CurrencyInput
-                        id="amount"
-                        // onInput={handleInput}
-                        defaultValue=""
-                        placeholder="$100.00"
-                        autoComplete="off"
-                        // className="col-span-3"
-                        className="flex h-12 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                        {...sendForm.register("amount", { required: true })}
-                      /> */}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
@@ -272,7 +260,6 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    {/* <FaHandHoldingDollar className="size-4" /> */}
                     <HandCoins size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Demander</p>
@@ -294,22 +281,12 @@ export default function UserPanel() {
                       </Label>
                       <Input
                         id="amount"
-                        // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
                         {...requestForm.register("amount", { required: true })}
                       />
-                      {/* <CurrencyInput
-                        id="amount"
-                        defaultValue=""
-                        placeholder="$100.00"
-                        autoComplete="off"
-                        // className="col-span-3"
-                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                        {...requestForm.register("amount", { required: true })}
-                      /> */}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
@@ -337,7 +314,6 @@ export default function UserPanel() {
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button variant={"outline"} className="size-14 rounded-full">
-                    {/* <GiPayMoney className="size-4" /> */}
                     <DollarSign size={20} />
                   </Button>
                   <p className="mt-2 text-sm">Déposer</p>
@@ -358,22 +334,12 @@ export default function UserPanel() {
                       </Label>
                       <Input
                         id="amount"
-                        // onInput={handleInput}
                         defaultValue=""
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
                         {...depositForm.register("amount", { required: true })}
                       />
-                      {/* <CurrencyInput
-                        id="amount"
-                        defaultValue=""
-                        placeholder="$100.00"
-                        autoComplete="off"
-                        // className="col-span-3"
-                        className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                        {...depositForm.register("amount", { required: true })}
-                      /> */}
                     </div>
                   </div>
                   <DialogFooter>
