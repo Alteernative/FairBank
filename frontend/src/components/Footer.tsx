@@ -9,7 +9,7 @@ import {
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa6";
-import { Mail, Phone } from "lucide-react";
+import { Copyright, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -134,8 +134,9 @@ export default function Footer() {
         </section>
       </section>
 
-      <p className="cursor-default">
-        &copy; {new Date().getFullYear()} FairBank Inc. Tous droits réservés.
+      <p className="flex cursor-default items-center gap-2">
+        <Copyright size={16} /> {new Date().getFullYear()} FairBank Inc. Tous
+        droits réservés.
       </p>
     </footer>
   );
