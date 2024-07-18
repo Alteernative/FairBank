@@ -63,7 +63,7 @@ export default function Particuliers() {
         {/* Pricing table 1*/}
 
         <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow shadow-slate-950/5 dark:border-slate-900 dark:bg-slate-900">
+          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
               <div className="mb-1 font-semibold">Régulier</div>
               <div className="mb-2 inline-flex select-none items-baseline">
@@ -112,7 +112,7 @@ export default function Particuliers() {
         {/* Pricing table 2*/}
 
         <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow shadow-slate-950/5 dark:border-slate-900 dark:bg-slate-900">
+          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
             <div className="absolute right-0 top-0 -mt-4 mr-6">
               <Badge className="cursor-default rounded-full bg-green-500 text-white hover:bg-green-500">
                 Le plus populaire
@@ -176,7 +176,7 @@ export default function Particuliers() {
         {/* Pricing table 3*/}
 
         <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow shadow-slate-950/5 dark:border-slate-900 dark:bg-slate-900">
+          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
               <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
                 Ultime
