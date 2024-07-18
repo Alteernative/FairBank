@@ -112,7 +112,7 @@ const PasswordReset = () => {
     })
       .then((response) => {
         console.log("Response from server:", response);
-        toast.success("Votre mot de passe a été réinitialisé avec succès .");
+        toast.success("Votre mot de passe a été réinitialisé avec succès.");
         setShowMessage(true);
         setTimeout(() => {
           navigate("/connexion");
