@@ -21,8 +21,7 @@ export default function Footer() {
       {/* Top footer */}
       <section className="flex w-full max-w-screen-xl flex-col gap-14 lg:flex-row lg:gap-0">
         {/* Left */}
-        {/* <section className="flex flex-1 flex-col"> */}
-        <section className="flex w-full flex-1 flex-col">
+        <section className="flex flex-1 flex-col">
           <span className="cursor-default select-none">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
             <p>Banque différente, avenir&nbsp;différent.</p>
@@ -109,7 +108,7 @@ export default function Footer() {
         </section>
       </section>
       <p className="cursor-default">
-        &copy; 2024 FairBank Inc. Tous droits réservés.
+        &copy; {new Date().getFullYear()} FairBank Inc. Tous droits réservés.
       </p>
     </footer>
   );
