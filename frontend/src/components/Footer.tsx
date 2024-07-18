@@ -45,7 +45,7 @@ export default function Footer() {
           </section>
 
           {/* Socials */}
-          <section className="mt-10 flex gap-3 py-2 md:mt-auto">
+          <section className="mt-10 flex gap-3 md:mt-auto">
             <Link to="https://facebook.com">
               <FaFacebookF className="cursor-pointer hover:opacity-70" />
             </Link>
@@ -66,7 +66,7 @@ export default function Footer() {
           </div> */}
         </section>
         {/* Middle */}
-        <section className="flex flex-1 flex-col text-start md:items-center md:text-center">
+        <section className="flex flex-1 flex-col text-start md:mt-3 md:items-center md:text-center">
           <h3 className="text-md mb-5 cursor-default font-semibold">
             Plan du site
           </h3>
@@ -99,7 +99,7 @@ export default function Footer() {
           </div>
         </section>
         {/* Right */}
-        <section className="text-stard flex w-full flex-1 flex-col gap-2 md:ml-14 md:text-center">
+        <section className="text-stard flex w-full flex-1 flex-col gap-2 md:ml-14 md:mt-3 md:text-center">
           <h3 className="text-md mb-5 cursor-default font-semibold">
             Contactez-nous
           </h3>
