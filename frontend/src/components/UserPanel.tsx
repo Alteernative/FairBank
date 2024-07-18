@@ -78,8 +78,6 @@ export default function UserPanel() {
   const depositForm = useForm(); // New form for deposit
   const baseUrl = "http://127.0.0.1:8000";
 
-  const [isTransactionSent, setTransaction] = useState(false);
-
   const submission = (data: FieldValues) => {
     // Log the data being sent
     console.log("Data being sent:", {
