@@ -35,17 +35,14 @@ function Hero() {
     <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
-          <h2
-            className="mb-3 text-5xl font-bold leading-tight
-          "
-          >
+          <h1 className="mb-3 text-5xl font-extrabold tracking-tight">
             L'intérêt de notre banque&nbsp;?
             <br />
             Votre bien-être financier.
-          </h2>
-          <h3 className="text-2xl leading-relaxed">
+          </h1>
+          <h2 className="text-2xl tracking-tight">
             Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
-          </h3>
+          </h2>
           <Button
             asChild
             variant={"default"}
@@ -66,7 +63,9 @@ function Hero() {
 function Sponsors() {
   return (
     <section className="mt-24 flex flex-col text-center opacity-70">
-      <h3 className="font-semibold">Magasinez dans vos boutiques préférées</h3>
+      <h2 className="font-semibold tracking-tight">
+        Magasinez dans vos boutiques préférées
+      </h2>
       <div className="flex w-full items-center justify-around">
         <IconContext.Provider value={{ size: "50px" }}>
           <FaApple />
@@ -90,7 +89,9 @@ function About() {
       </div>
       <div className="flex flex-1 flex-col items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-4xl font-bold">Faites valoir vos avoirs</h2>
+          <h2 className="text-4xl font-semibold tracking-tight">
+            Faites valoir vos avoirs
+          </h2>
           <p className="leading-loose">
             Nous nous engageons à offrir des services bancaires efficaces pour
             vous laisser investir dans votre futur. Envoyez de l'argent sans
@@ -110,7 +111,7 @@ function CallToAction() {
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl font-semibold tracking-tight">
             Obtenez les services bancaires que vous méritez!
           </h2>
           <p className="leading-loose">
@@ -131,7 +132,9 @@ function CallToAction() {
 function Reviews() {
   return (
     <section className="mx-10 my-20 flex flex-col items-center justify-center">
-      <h2 className="mb-3 text-lg font-bold opacity-70">Avis de nos membres</h2>
+      <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70">
+        Avis de nos membres
+      </h2>
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
