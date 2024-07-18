@@ -22,18 +22,20 @@ export default function Footer() {
       <section className="flex w-full max-w-screen-xl flex-col gap-14 md:flex-row md:gap-0">
         {/* Left */}
         <section className="flex flex-1 flex-col">
-          <span className="cursor-default select-none">
+          <span className="relative cursor-default select-none">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
-            <p>Banque différente, avenir&nbsp;différent.</p>
+            <p className="absolute top-12">
+              Banque différente, avenir&nbsp;différent.
+            </p>
           </span>
-          <section className="mt-14 md:mt-10">
-            <div className="flex items-center gap-3">
+          <div className="mt-10 flex flex-col gap-2 md:mt-14">
+            <span className="flex items-center gap-3">
               <Phone size={"20"} />
               <Link to="tel:1-800-123-4567" className="hover:underline">
                 1-800-123-4567
               </Link>
-            </div>
-            <div className="flex items-center gap-3">
+            </span>
+            <span className="flex items-center gap-3">
               <Mail size={"20"} />
               <Link
                 to="mailto: contact@fairbank.com "
@@ -41,11 +43,11 @@ export default function Footer() {
               >
                 contact@fairbank.com
               </Link>
-            </div>
-          </section>
+            </span>
+          </div>
 
           {/* Socials */}
-          <section className="mt-10 flex gap-3 md:mt-auto">
+          <div className="mt-10 flex gap-3 md:mt-auto">
             <Link to="https://facebook.com">
               <FaFacebookF className="cursor-pointer hover:opacity-70" />
             </Link>
@@ -61,13 +63,13 @@ export default function Footer() {
             <Link to="https://linkedin.com">
               <FaLinkedinIn className="cursor-pointer hover:opacity-70" />
             </Link>
-          </section>
+          </div>
           {/* <div className="flex h-full flex-col items-start gap-10">
           </div> */}
         </section>
         {/* Middle */}
         <section className="flex flex-1 flex-col text-start md:mt-3 md:items-center md:text-center">
-          <h3 className="text-md mb-5 cursor-default font-semibold">
+          <h3 className="mb-5 cursor-default text-xl font-semibold">
             Plan du site
           </h3>
           <div className=" flex flex-col items-start gap-2 md:items-center">
@@ -100,7 +102,7 @@ export default function Footer() {
         </section>
         {/* Right */}
         <section className="text-stard flex w-full flex-1 flex-col gap-2 md:ml-14 md:mt-3 md:text-center">
-          <h3 className="text-md mb-5 cursor-default font-semibold">
+          <h3 className="mb-5 cursor-default text-xl font-semibold">
             Contactez-nous
           </h3>
           <div className="flex gap-2">
@@ -131,6 +133,7 @@ export default function Footer() {
           <Button className="mt-2">Soumettre</Button>
         </section>
       </section>
+
       <p className="cursor-default">
         &copy; {new Date().getFullYear()} FairBank Inc. Tous droits réservés.
       </p>
