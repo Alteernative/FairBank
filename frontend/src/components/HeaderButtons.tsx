@@ -15,7 +15,7 @@ export const HeaderButtons = ({
     <div className="flex items-center gap-2">
       <ModeToggle />
       {isAuthenticated ? (
-        <div>
+        <>
           <Button
             asChild
             variant={"ghost"}
@@ -26,9 +26,9 @@ export const HeaderButtons = ({
           <Button asChild className="rounded-3xl" onClick={logoutUser}>
             Déconnecter
           </Button>
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           <Button
             asChild
             variant={"ghost"}
@@ -39,7 +39,7 @@ export const HeaderButtons = ({
           <Button asChild className="rounded-3xl">
             <Link to={"/inscription"}>Devenir membre</Link>
           </Button>
-        </div>
+        </>
       )}
     </div>
   );
