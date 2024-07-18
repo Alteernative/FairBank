@@ -79,7 +79,7 @@ export default function Header() {
       </NavigationMenu>
       <HeaderButtons
         isAuthenticated={isAuthenticated}
-        signoutUser={logoutUser}
+        logoutUser={logoutUser}
       />
     </header>
   );

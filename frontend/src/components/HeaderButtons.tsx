@@ -4,12 +4,12 @@ import { Button } from "./ui/button";
 
 type HeaderButtons = {
   isAuthenticated: boolean;
-  signoutUser: () => void;
+  logoutUser: () => void;
 };
 
 export const HeaderButtons = ({
   isAuthenticated,
-  signoutUser,
+  logoutUser,
 }: HeaderButtons) => {
   return (
     <div className="flex items-center gap-2">
@@ -23,7 +23,7 @@ export const HeaderButtons = ({
           >
             <Link to={"/dashboard"}>Tableau de bord</Link>
           </Button>
-          <Button asChild className="rounded-3xl" onClick={signoutUser}>
+          <Button asChild className="rounded-3xl" onClick={logoutUser}>
             Déconnecter
           </Button>
         </div>
