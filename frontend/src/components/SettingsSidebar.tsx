@@ -71,8 +71,6 @@ export default function SettingsSidebar() {
               Notifications
             </Link>
           </Button>
-
-          {/* FIXME: Not aligned */}
           <Button
             asChild
             variant="ghost"
