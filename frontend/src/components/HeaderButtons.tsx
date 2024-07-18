@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
+import { LanguageToggle } from "./LanguageToggle";
 
 type HeaderButtons = {
   isAuthenticated: boolean;
@@ -13,6 +14,7 @@ export const HeaderButtons = ({
 }: HeaderButtons) => {
   return (
     <div className="flex items-center gap-2">
+      <LanguageToggle />
       <ModeToggle />
       {isAuthenticated ? (
         <>
