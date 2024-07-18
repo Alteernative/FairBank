@@ -82,8 +82,6 @@
 }
 
 body {
-  /* background-color: #efeee6; */
-  backdrop-filter: blur(10px);
   min-height: 100vh; /* Ensure the body covers the full viewport height */
   margin: 0; /* Remove default margin */
   font-family: Inter, sans-serif;
@@ -118,4 +116,3 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
