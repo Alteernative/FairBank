@@ -1,18 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "./ui/navigation-menu";
-import { ModeToggle } from "./ModeToggle";
+import { HeaderButtons } from "./HeaderButtons";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const [position, setPosition] = useState("top");
-
   const navigate = useNavigate();
 
   // FIXME: Auth is true, when user logs out from dashboard
@@ -45,82 +42,45 @@ export default function Header() {
         <h1 className="font-jomhuria text-6xl text-primary">FairBank</h1>
       </Link>
       <NavigationMenu>
-        {/* <NavigationMenuList className="gap-5"> */}
-        {/* TODO: Temporary solution Sprint2. Sprint 3 -> Add a hamburger menu */}
         <NavigationMenuList className="hidden gap-5 lg:flex">
-          <NavigationMenuItem>
+          <NavigationMenuItem asChild>
             <Link
               to="/particuliers"
-              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
+              className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               Plans
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
+          <NavigationMenuItem asChild>
             <Link
               to="/services"
-              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
+              className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               Services
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
+          <NavigationMenuItem asChild>
             <Link
               to="/apropos"
-              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
+              className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               À Propos
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
+          <NavigationMenuItem asChild>
             <Link
               to="/faq"
-              className="duration-250 font-semibold text-primary transition-all hover:text-primary/50"
+              className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               FAQ
             </Link>
           </NavigationMenuItem>
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button>Français</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>Changer la langue:</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                <DropdownMenuRadioItem value="top">Français</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="bottom">Anglais</DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex items-center gap-2">
-        <ModeToggle />
-        {isAuthenticated ? (
-          <>
-            <Button variant={"ghost"} className="rounded-3xl font-semibold">
-              <Link to={"/dashboard"}>Tableau de bord</Link>
-            </Button>
-            <Button
-              variant={"default"}
-              className="rounded-3xl"
-              onClick={logoutUser}
-            >
-              Déconnecter
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button variant={"ghost"} className="rounded-3xl font-semibold">
-              <Link to={"/connexion"}>Se connecter</Link>
-            </Button>
-            <Button variant={"default"} className="rounded-3xl">
-              <Link to={"/inscription"}>Devenir membre</Link>
-            </Button>
-          </>
-        )}
-      </div>
+      <HeaderButtons
+        isAuthenticated={isAuthenticated}
+        signoutUser={logoutUser}
+      />
     </header>
   );
 }
