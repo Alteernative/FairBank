@@ -38,6 +38,7 @@ import { Badge } from "./ui/badge";
 // import formatCurrency from "@/utils/formatCurrency";
 
 type Activity = {
+  name: string;
   date: string;
   amount: string;
   isPositive: boolean;
@@ -364,7 +365,7 @@ export default function UserPanel() {
             draggable="false"
             className="p-3"
           />
-          <p className="absolute bottom-[2.3vw] left-[2.3vw] text-[1.1vw] font-medium text-white">
+          <p className="absolute bottom-[2.3vw] left-[2.3vw] select-none text-[1.1vw] font-medium text-white">
             {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
         </div>
