@@ -64,15 +64,13 @@ export default function Footer() {
               <FaLinkedinIn className="cursor-pointer hover:opacity-70" />
             </Link>
           </div>
-          {/* <div className="flex h-full flex-col items-start gap-10">
-          </div> */}
         </section>
         {/* Middle */}
         <section className="flex flex-1 flex-col text-start md:mt-3 md:items-center md:text-center">
           <h3 className="mb-5 cursor-default text-xl font-semibold">
             Plan du site
           </h3>
-          <div className=" flex flex-col items-start gap-2 md:items-center">
+          <nav className=" flex flex-col items-start gap-2 md:items-center">
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
                 Plans
@@ -98,7 +96,7 @@ export default function Footer() {
                 Confidentialité et sécurité
               </Link>
             </Button>
-          </div>
+          </nav>
         </section>
         {/* Right */}
         <section className="text-stard flex w-full flex-1 flex-col gap-2 md:ml-14 md:mt-3 md:text-center">
@@ -128,7 +126,7 @@ export default function Footer() {
           <Textarea
             placeholder="Message"
             autoComplete="off"
-            className="h-20 resize-none"
+            className="h-24 resize-none"
           />
           <Button className="mt-2">Soumettre</Button>
         </section>
