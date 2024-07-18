@@ -28,7 +28,7 @@ import NotificationsSettings from "./pages/dashboard/dashboard-settings/Notifica
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 export default function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider storageKey="vite-ui-theme">
       <Router>
         <Routes>
           <Route
