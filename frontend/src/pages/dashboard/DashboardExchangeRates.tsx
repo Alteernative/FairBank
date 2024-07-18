@@ -3,7 +3,6 @@ import axios from "axios";
 import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { useUserContext } from "@/contexts/UserContext";
-import CountUp from "react-countup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -42,14 +41,14 @@ const chartConfig = {
 export default function DashboardExchangeRates() {
   const [exchangeRates, setExchangeRates] = React.useState({});
   const [chartData, setChartData] = React.useState([]);
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const [amount, setAmount] = React.useState(0);
   const [convertedAmount, setConvertedAmount] = React.useState(0);
   const [selectedCurrency, setSelectedCurrency] = React.useState("");
   const navigate = useNavigate();
 
   // API KEY apilayer.com
-  const apiKey = "Ee7q94aj8Gx56lrGv8RCEquV3IdvLcZz\n";
+  const apiKey = "9PjsviRD106mo1VyTg79UwJkaMNFFNXW";
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
     AxiosInstance.put(`currencies/update_balance/`, {
