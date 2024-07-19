@@ -16,7 +16,7 @@ export default function FAQPage() {
         className="mb-20 w-2/3 rounded-md p-3"
       >
         <AccordionItem value="item1" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             1. Comment puis-je ouvrir un compte à FairBank?
           </AccordionTrigger>
           <AccordionContent>
@@ -28,7 +28,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item2" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             2. Qui peut ouvrir un compte à FairBank?
           </AccordionTrigger>
           <AccordionContent>
@@ -48,7 +48,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item3" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             3. Les dépôts directs ont-ils une période de retenue?
           </AccordionTrigger>
           <AccordionContent>
@@ -56,7 +56,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item4" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             4. Mon compte est verrouillé. Que dois-je faire pour y avoir accès à
             nouveau?
           </AccordionTrigger>
@@ -67,7 +67,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item5" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             5. Quel type de produits FairBank offre-t-elle?
           </AccordionTrigger>
           <AccordionContent>
@@ -78,7 +78,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item6" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             6. Comment puis-je trouver mon numéro de compte?
           </AccordionTrigger>
           <AccordionContent>
@@ -88,7 +88,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item7" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             7. Comment le taux de conversion du dollar américain est-il calculé
             chez FairBank?
           </AccordionTrigger>
@@ -100,7 +100,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item8" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             8. Puis-je profiter des services de FairBank si je vis à l'extérieur
             du Canada?
           </AccordionTrigger>
@@ -112,7 +112,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item9" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             9. Où puis-je utiliser ma carte FairBank?
           </AccordionTrigger>
           <AccordionContent>
@@ -121,7 +121,7 @@ export default function FAQPage() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item10" className="p-4">
-          <AccordionTrigger className="text-lg">
+          <AccordionTrigger className="text-start text-lg">
             10. Où puis-je trouver mes feuillets d'impôt?
           </AccordionTrigger>
           <AccordionContent>
