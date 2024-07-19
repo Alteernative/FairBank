@@ -17,9 +17,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="mb-3 mt-10 flex flex-col gap-7 md:items-center">
+    <footer className="mb-3 mt-10 flex flex-col gap-7 lg:items-center">
       {/* Top footer */}
-      <section className="flex w-full max-w-screen-xl flex-col gap-14 md:flex-row md:gap-0">
+      <section className="flex w-full max-w-screen-xl flex-col gap-14 lg:flex-row lg:gap-0">
         {/* Left */}
         <section className="flex flex-1 flex-col">
           <span className="relative cursor-default select-none">
@@ -28,7 +28,7 @@ export default function Footer() {
               Banque différente, avenir&nbsp;différent.
             </p>
           </span>
-          <div className="mt-10 flex flex-col gap-2 md:mt-14">
+          <div className="mt-10 flex flex-col gap-2 lg:mt-14">
             <span className="flex items-center gap-3">
               <Phone size={"20"} />
               <Link to="tel:1-800-123-4567" className="hover:underline">
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="mt-10 flex gap-3 md:mt-auto">
+          <div className="mt-10 flex gap-3 lg:mt-auto">
             <Link to="https://facebook.com">
               <FaFacebookF className="cursor-pointer hover:opacity-70" />
             </Link>
@@ -66,11 +66,11 @@ export default function Footer() {
           </div>
         </section>
         {/* Middle */}
-        <section className="flex flex-1 flex-col text-start md:mt-3 md:items-center md:text-center">
+        <section className="flex flex-1 flex-col text-start lg:mt-3 lg:items-center lg:text-center">
           <h3 className="mb-5 cursor-default text-xl font-semibold">
             Plan du site
           </h3>
-          <nav className=" flex flex-col items-start gap-2 md:items-center">
+          <nav className=" flex flex-col items-start gap-2 lg:items-center">
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
                 Plans
@@ -99,7 +99,7 @@ export default function Footer() {
           </nav>
         </section>
         {/* Right */}
-        <section className="text-stard flex w-full flex-1 flex-col gap-2 md:ml-14 md:mt-3 md:text-center">
+        <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
           <h3 className="mb-5 cursor-default text-xl font-semibold">
             Contactez-nous
           </h3>
