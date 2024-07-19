@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
-import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
-import { LanguageToggle } from "./LanguageToggle";
+import { cn } from "@/lib/utils";
 
-type HeaderButtons = {
+type HeaderButtonsProps = {
   isAuthenticated: boolean;
   logoutUser: () => void;
+  className?: string;
 };
 
-export const HeaderButtons = ({
+export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
   isAuthenticated,
   logoutUser,
-}: HeaderButtons) => {
+  className,
+}: HeaderButtonsProps) => {
   return (
-    <div className="flex items-center gap-2">
-      <LanguageToggle />
-      <ModeToggle />
+    <div className={cn("flex items-center gap-2", className)}>
       {isAuthenticated ? (
         <>
           <Button
