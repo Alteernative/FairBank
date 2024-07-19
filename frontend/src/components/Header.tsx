@@ -7,6 +7,17 @@ import {
   NavigationMenuList,
 } from "./ui/navigation-menu";
 import { HeaderButtons } from "./HeaderButtons";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "./ui/sheet";
+import { Button } from "./ui/button";
+import { Menu } from "lucide-react";
+import { LanguageToggle } from "./LanguageToggle";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -77,10 +88,58 @@ export default function Header() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <HeaderButtons
-        isAuthenticated={isAuthenticated}
-        logoutUser={logoutUser}
-      />
+      <div className="flex gap-2">
+        <span className="hidden gap-2 lg:flex">
+          <LanguageToggle />
+          <ModeToggle />
+        </span>
+        <HeaderButtons
+          isAuthenticated={isAuthenticated}
+          logoutUser={logoutUser}
+          className="hidden lg:flex"
+        />
+      </div>
+      <Sheet>
+        <SheetTrigger asChild className="lg:hidden">
+          <Button size={"icon"} variant={"ghost"}>
+            <Menu size={20} />
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="flex min-h-screen flex-col">
+          <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
+            <SheetClose asChild>
+              <Link to="/particuliers" className="hover:underline">
+                Plans
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link to="/services" className="hover:underline">
+                Services
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link to="/apropos" className="hover:underline">
+                À Propos
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link to="/faq" className="hover:underline">
+                FAQ
+              </Link>
+            </SheetClose>
+            {/* </SheetClose> */}
+          </nav>
+          <HeaderButtons
+            isAuthenticated={isAuthenticated}
+            logoutUser={logoutUser}
+            className="mt-20 flex items-center justify-center gap-5"
+          />
+          <span className="mt-auto flex items-end justify-start gap-2">
+            <LanguageToggle />
+            <ModeToggle />
+          </span>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 }
