@@ -1,3 +1,4 @@
+import React from 'react';
 import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,28 +19,31 @@ import {
 } from "@/components/ui/select";
 
 export default function AppearanceSettings() {
+
+  const handleFontChange = (value: string) => {
+    document.documentElement.style.setProperty('--font-family', value);
+  };
+
   return (
     <main className="ml-14 mt-20 flex w-4/5 flex-col gap-4 md:ml-12 lg:ml-8">
       <Card className="w-10/12 border-none shadow-none">
         <CardHeader>
-          <CardTitle>Font</CardTitle>
+          <CardTitle>Choix de polices</CardTitle>
           <CardDescription>
-            Choisissez un font pour votre tableau de bord.
+            Choisissez une police pour modifier l'apparence du site!
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Select>
+          <Select onValueChange={handleFontChange}>
             <SelectTrigger className="max-w-[20rem]">
-              <SelectValue placeholder="Font" />
+              <SelectValue placeholder="Polices" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fonts</SelectLabel>
-                <SelectItem value="font-system">Système</SelectItem>
-                <SelectItem value="font-inter">Inter</SelectItem>
-                <SelectItem value="font-roboto">Roboto</SelectItem>
-                <SelectItem value="font-montserrat">Montserrat</SelectItem>
-                <SelectItem value="font-satoshi">Satoshi</SelectItem>
+                <SelectItem value="'Inter', sans-serif">Inter</SelectItem>
+                <SelectItem value="'Montserrat', sans-serif">Montserrat</SelectItem>
+                <SelectItem value="'Roboto', sans-serif">Roboto</SelectItem>
+                <SelectItem value="'Satoshi', sans-serif">Satoshi</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -49,7 +53,7 @@ export default function AppearanceSettings() {
         <CardHeader>
           <CardTitle>Mode sombre</CardTitle>
           <CardDescription>
-            Choisissez un mode entre clair, sombre et système.
+            Choisissez entre un mode sombre, clair, ou système.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -64,7 +68,6 @@ export default function AppearanceSettings() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* TODO: Convert to a 3x3 grid */}
           <section className="flex flex-wrap gap-2">
             <Button
               variant={"outline"}

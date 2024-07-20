@@ -26,6 +26,8 @@ import AccountSettings from "./pages/dashboard/dashboard-settings/AccountSetting
 import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceSettings.tsx";
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
+import './fonts.css';
+
 export default function App() {
   return (
     <ThemeProvider storageKey="vite-ui-theme">

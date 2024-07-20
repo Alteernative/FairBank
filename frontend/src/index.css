@@ -81,10 +81,14 @@
   }
 }
 
+:root {
+  --font-family: 'Inter', sans-serif;
+}
+
 body {
   min-height: 100vh; /* Ensure the body covers the full viewport height */
   margin: 0; /* Remove default margin */
-  font-family: Inter, sans-serif;
+  font-family: var(--font-family), serif;
   /* font-family:
     system-ui,
     -apple-system,

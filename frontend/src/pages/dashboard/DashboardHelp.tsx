@@ -84,10 +84,9 @@ export default function DashboardHelp() {
           </AccordionTrigger>
           <AccordionContent>
             En appuyant sur les "Paramètres" dans le Dashboard et "Apparence", le choix de polices, mode sombre ou clair
-            ainsi que les options de préférence de couleurs sont présentes.
+            ainsi que les options de préférence des couleurs y sont présentes.
           </AccordionContent>
         </AccordionItem>
-
       </Accordion>
     </section>
   );
