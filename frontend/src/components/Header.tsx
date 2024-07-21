@@ -11,7 +11,9 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
 import { Button } from "./ui/button";
@@ -99,47 +101,54 @@ export default function Header() {
           className="hidden lg:flex"
         />
       </div>
-      <Sheet>
-        <SheetTrigger asChild className="lg:hidden">
-          <Button size={"icon"} variant={"ghost"}>
-            <Menu size={20} />
-          </Button>
-        </SheetTrigger>
-        <SheetContent className="flex min-h-screen flex-col">
-          <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
-            <SheetClose asChild>
-              <Link to="/particuliers" className="hover:underline">
-                Plans
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link to="/services" className="hover:underline">
-                Services
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link to="/apropos" className="hover:underline">
-                À Propos
-              </Link>
-            </SheetClose>
-            <SheetClose asChild>
-              <Link to="/faq" className="hover:underline">
-                FAQ
-              </Link>
-            </SheetClose>
-            {/* </SheetClose> */}
-          </nav>
-          <HeaderButtons
-            isAuthenticated={isAuthenticated}
-            logoutUser={logoutUser}
-            className="mt-20 flex items-center justify-center gap-5"
-          />
-          <span className="mt-auto flex items-end justify-start gap-2">
-            <LanguageToggle />
-            <ModeToggle />
-          </span>
-        </SheetContent>
-      </Sheet>
+
+      {/* Responsive hearder */}
+      <div className="flex gap-7 lg:hidden">
+        <span className="flex items-end justify-start gap-2">
+          <LanguageToggle />
+          <ModeToggle />
+        </span>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size={"icon"} variant={"ghost"}>
+              <Menu size={20} />
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="flex min-h-screen flex-col">
+            <SheetHeader className="hidden">
+              <SheetTitle />
+              <SheetDescription />
+            </SheetHeader>
+            <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
+              <SheetClose asChild>
+                <Link to="/particuliers" className="hover:underline">
+                  Plans
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link to="/services" className="hover:underline">
+                  Services
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link to="/apropos" className="hover:underline">
+                  À Propos
+                </Link>
+              </SheetClose>
+              <SheetClose asChild>
+                <Link to="/faq" className="hover:underline">
+                  FAQ
+                </Link>
+              </SheetClose>
+            </nav>
+            <HeaderButtons
+              isAuthenticated={isAuthenticated}
+              logoutUser={logoutUser}
+              className="mt-auto flex items-center justify-center gap-5"
+            />
+          </SheetContent>
+        </Sheet>
+      </div>
     </header>
   );
 }
