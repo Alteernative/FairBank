@@ -100,7 +100,7 @@ export default function Sidebar() {
             variant={isActive("dashboard/settings") ? "default" : "ghost"}
             className="flex w-full items-center justify-start gap-2"
           >
-            <Link to={"dashboard/settings"}>
+            <Link to={"/dashboard/settings"}>
               <Settings size={20} />
               Paramètres
             </Link>
