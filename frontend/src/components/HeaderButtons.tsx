@@ -41,13 +41,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="rounded-3xl font-semibold"
           >
-            <Link
-              to={"/connexion"}
-              className="flex items-center justify-start gap-2"
-            >
-              <LogIn size={20} />
-              Se connecter
-            </Link>
+            <Link to={"/connexion"}>Se connecter</Link>
           </Button>
           <Button asChild className="rounded-3xl">
             <Link to={"/inscription"}>Devenir membre</Link>
