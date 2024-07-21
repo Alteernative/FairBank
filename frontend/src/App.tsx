@@ -26,7 +26,7 @@ import AccountSettings from "./pages/dashboard/dashboard-settings/AccountSetting
 import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceSettings.tsx";
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
-import './fonts.css';
+import "./fonts.css";
 
 export default function App() {
   return (
@@ -126,7 +126,7 @@ export default function App() {
             }
           />
           <Route
-            path="/settings"
+            path="/dashboard/settings"
             element={
               <UserContextProvider>
                 <Settings>
@@ -136,7 +136,7 @@ export default function App() {
             }
           />
           <Route
-            path="/settings/account"
+            path="/dashboard/settings/account"
             element={
               <UserContextProvider>
                 <Settings>
@@ -146,7 +146,7 @@ export default function App() {
             }
           />
           <Route
-            path="/settings/themes"
+            path="/dashboard/settings/themes"
             element={
               <UserContextProvider>
                 <Settings>
@@ -156,7 +156,7 @@ export default function App() {
             }
           />
           <Route
-            path="/settings/notifications"
+            path="/dashboard/settings/notifications"
             element={
               <UserContextProvider>
                 <Settings>
@@ -166,7 +166,7 @@ export default function App() {
             }
           />
           <Route
-            path="/settings/security"
+            path="/dashboard/settings/security"
             element={
               <UserContextProvider>
                 <Settings>
