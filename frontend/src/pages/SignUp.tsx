@@ -13,6 +13,7 @@ import BirthdayForm from "./signup/BirthdayForm.tsx";
 import { toast, Toaster } from "sonner";
 import PlanForm from "./signup/PlanForm.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
+import { LanguageToggle } from "@/components/LanguageToggle.tsx";
 
 type FormValues = {
   email: string;
@@ -116,16 +117,16 @@ export default function SignUp() {
           />
         </aside>
         <main className="flex w-80 flex-1 items-center justify-center">
-          <span className="absolute right-36 top-0 m-5">
-            <ModeToggle />
-          </span>
-          <Button
-            asChild
-            variant={"ghost"}
-            className="absolute right-0 top-0 m-5"
-          >
-            <Link to={"/connexion"}>Se connecter</Link>
-          </Button>
+          <div className="absolute right-0 top-4 m-5">
+            <span className="flex items-end justify-start gap-2">
+              <LanguageToggle />
+              <ModeToggle />
+              <Button asChild variant={"ghost"} className="ml-2">
+                <Link to={"/connexion"}>Se connecter</Link>
+              </Button>
+            </span>
+          </div>
+
           <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
             <Link to={"/"}>FairBank</Link>
           </h1>

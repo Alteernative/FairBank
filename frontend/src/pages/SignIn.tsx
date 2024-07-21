@@ -99,19 +99,15 @@ export default function SignIn() {
       </aside>
 
       <main className="flex w-80 flex-1 items-center justify-center">
-        <div className="absolute right-40 top-0 m-5">
+        <div className="absolute right-0 top-4 m-5">
           <span className="flex items-end justify-start gap-2">
             <LanguageToggle />
             <ModeToggle />
+            <Button asChild variant={"ghost"} className="ml-2">
+              <Link to={"/inscription"}>Devenir membre</Link>
+            </Button>
           </span>
         </div>
-        <Button
-          asChild
-          variant={"ghost"}
-          className="absolute right-0 top-0 m-5"
-        >
-          <Link to={"/inscription"}>Devenir membre</Link>
-        </Button>
         <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
           <Link to={"/"}>FairBank</Link>
         </h1>
