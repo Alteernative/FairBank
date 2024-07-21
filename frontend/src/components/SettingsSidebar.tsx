@@ -27,10 +27,10 @@ export default function SettingsSidebar() {
         <div className="flex flex-col gap-5">
           <Button
             variant="ghost"
-            className={`${isActive("/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            className={`${isActive("/dashboard/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link
-              to={"/settings"}
+              to={"/dashboard/settings"}
               className="flex w-full items-center justify-start gap-2"
             >
               <UserRoundPen size={"20"} />
@@ -39,10 +39,10 @@ export default function SettingsSidebar() {
           </Button>
           <Button
             variant="ghost"
-            className={`${isActive("/settings/account") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            className={`${isActive("/dashboard/settings/account") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link
-              to={"/settings/account"}
+              to={"/dashboard/settings/account"}
               className="flex w-full items-center justify-start gap-2"
             >
               <Wallet size={"20"} />
@@ -51,10 +51,10 @@ export default function SettingsSidebar() {
           </Button>
           <Button
             variant="ghost"
-            className={`${isActive("/settings/themes") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            className={`${isActive("/dashboard/settings/themes") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
             <Link
-              to={"/settings/themes"}
+              to={"/dashboard/settings/themes"}
               className="flex w-full items-center justify-start gap-2"
             >
               <Palette size={"20"} />
@@ -64,9 +64,9 @@ export default function SettingsSidebar() {
           <Button
             asChild
             variant="ghost"
-            className={`flex w-full items-center justify-start gap-2 ${isActive("/settings/notifications") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/notifications") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
-            <Link to={"/settings/notifications"}>
+            <Link to={"/dashboard/settings/notifications"}>
               <Bell size={"20"} />
               Notifications
             </Link>
@@ -74,9 +74,9 @@ export default function SettingsSidebar() {
           <Button
             asChild
             variant="ghost"
-            className={`flex w-full items-center justify-start gap-2 ${isActive("/settings/display") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/display") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
           >
-            <Link to={"/settings/security"}>
+            <Link to={"/dashboard/settings/security"}>
               <LockIcon size={"20"} />
               Sécurité
             </Link>
