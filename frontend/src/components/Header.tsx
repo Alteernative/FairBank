@@ -103,7 +103,7 @@ export default function Header() {
       </div>
 
       {/* Responsive hearder */}
-      <div className="flex gap-7 lg:hidden">
+      <div className="flex gap-4 lg:hidden">
         <span className="flex items-end justify-start gap-2">
           <LanguageToggle />
           <ModeToggle />
