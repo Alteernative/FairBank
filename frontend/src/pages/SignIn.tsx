@@ -17,6 +17,7 @@ import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
 import { CircleAlert, Eye, EyeOff, TriangleAlert, Loader } from "lucide-react";
+import { LanguageToggle } from "@/components/LanguageToggle.tsx";
 
 type FormData = {
   email: string;
@@ -98,9 +99,12 @@ export default function SignIn() {
       </aside>
 
       <main className="flex w-80 flex-1 items-center justify-center">
-        <span className="absolute right-36 top-0 m-5">
-          <ModeToggle />
-        </span>
+        <div className="absolute right-40 top-0 m-5">
+          <span className="flex items-end justify-start gap-2">
+            <LanguageToggle />
+            <ModeToggle />
+          </span>
+        </div>
         <Button
           asChild
           variant={"ghost"}
