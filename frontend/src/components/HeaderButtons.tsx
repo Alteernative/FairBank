@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { LogIn, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 type HeaderButtonsProps = {
   isAuthenticated: boolean;
