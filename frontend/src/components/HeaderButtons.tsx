@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { LogIn, LogOut } from "lucide-react";
 
 type HeaderButtonsProps = {
   isAuthenticated: boolean;
@@ -26,10 +27,11 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
           </Button>
           <Button
             variant={"destructive"}
-            className="rounded-3xl"
+            className="flex items-center justify-start gap-2 rounded-3xl"
             onClick={logoutUser}
           >
-            Déconnecter
+            <LogOut size={20} />
+            Se déconnecter
           </Button>
         </>
       ) : (
@@ -39,7 +41,13 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="rounded-3xl font-semibold"
           >
-            <Link to={"/connexion"}>Se connecter</Link>
+            <Link
+              to={"/connexion"}
+              className="flex items-center justify-start gap-2"
+            >
+              <LogIn size={20} />
+              Se connecter
+            </Link>
           </Button>
           <Button asChild className="rounded-3xl">
             <Link to={"/inscription"}>Devenir membre</Link>
