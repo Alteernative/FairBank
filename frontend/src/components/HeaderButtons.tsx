@@ -24,7 +24,11 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
           >
             <Link to={"/dashboard"}>Tableau de bord</Link>
           </Button>
-          <Button className="rounded-3xl" onClick={logoutUser}>
+          <Button
+            variant={"destructive"}
+            className="rounded-3xl"
+            onClick={logoutUser}
+          >
             Déconnecter
           </Button>
         </>
