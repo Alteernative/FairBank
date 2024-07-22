@@ -53,43 +53,35 @@ export default function AccountSettings() {
   };
 
   return (
-    <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
-      <main className="flex flex-col gap-4">
-        <Card className="w-10/12 border-none shadow-none">
+    <main className="flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-60">
+      <Card className="w-10/12">
+        <CardHeader>
+          <CardTitle>Courriel</CardTitle>
+          <CardDescription>
+            Contactez le support pour modifier votre courriel.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Input
+            type="text"
+            disabled
+            placeholder={user.email}
+            className="h-12"
+          />
+        </CardContent>
+      </Card>
+      <Separator />
+      <form
+        onSubmit={handleSubmit(handlePassword)}
+        className="flex flex-col gap-4"
+      >
+        <Card className="w-10/12">
           <CardHeader>
-            <CardTitle>Courriel</CardTitle>
-            <CardDescription>
-              Contactez le support pour modifier votre courriel.
-            </CardDescription>
+            <CardTitle>Nouveau mot de passe</CardTitle>
+            <CardDescription>Entrez un nouveau mot de passe</CardDescription>
           </CardHeader>
           <CardContent>
-            <Input
-              type="text"
-              disabled
-              placeholder={user.email}
-              className="h-12"
-            />
-          </CardContent>
-        </Card>
-        <Separator />
-        <form onSubmit={handleSubmit(handlePassword)}>
-          {/* TODO: User enters current password, check if valid -> Enter new password, checks if diffrent than old password with zod validations. */}
-          {/* <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Mot de passe</CardTitle>
-              <CardDescription>Modifiez votre mot de passe</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <FloatingLabelInput type="text" label="Mot de passe actuel" />
-            </CardContent>
-          </Card> */}
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Nouveau mot de passe</CardTitle>
-              <CardDescription>Entrez un nouveau mot de passe</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {/* <FloatingLabelInput
+            {/* <FloatingLabelInput
                 type={passwordType}
                 id="password"
                 autoComplete="off"
@@ -108,75 +100,74 @@ export default function AccountSettings() {
                   {passwordType === "password" ? <Eye /> : <EyeOff />}
                 </Button>
               </span> */}
-              <div className="relative">
-                <FloatingLabelInput
-                  type={passwordType}
-                  id="password"
-                  autoComplete="off"
-                  label="Mot de passe"
-                  {...register("password")}
-                  className="h-12 pr-12"
-                  onChange={() => {
-                    // clearErrors("password");
-                  }}
-                />
-                <span className="absolute right-3 top-0 flex h-full items-center justify-center">
-                  <Button
-                    type="button"
-                    variant={"ghost"}
-                    size={"icon"}
-                    className="size-7 select-none rounded-full"
-                    onClick={handleClick}
-                  >
-                    {passwordType === "password" ? (
-                      <Eye size={20} />
-                    ) : (
-                      <EyeOff size={20} />
-                    )}
-                  </Button>
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Confirmer le nouveau mot de passe</CardTitle>
-              <CardDescription>
-                Confirmez le nouveau mot de passe.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="relative">
-                <FloatingLabelInput
-                  type={passwordType}
-                  id="re_password"
-                  {...register("re_password")}
-                  label="Confirmer"
-                  className="h-12"
-                />
-                <span className="absolute right-3 top-0 flex h-full items-center justify-center">
-                  <Button
-                    type="button"
-                    variant={"ghost"}
-                    size={"icon"}
-                    className="size-7 select-none rounded-full"
-                    onClick={handleClick}
-                  >
-                    {passwordType === "password" ? (
-                      <Eye size={20} />
-                    ) : (
-                      <EyeOff size={20} />
-                    )}
-                  </Button>
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-          <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
-            Sauvegarder
-          </Button>
-        </form>
-      </main>
-    </section>
+            <div className="relative">
+              <FloatingLabelInput
+                type={passwordType}
+                id="password"
+                autoComplete="off"
+                label="Mot de passe"
+                {...register("password")}
+                className="h-12 pr-12"
+                onChange={() => {
+                  // clearErrors("password");
+                }}
+              />
+              <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                <Button
+                  type="button"
+                  variant={"ghost"}
+                  size={"icon"}
+                  className="size-7 select-none rounded-full"
+                  onClick={handleClick}
+                >
+                  {passwordType === "password" ? (
+                    <Eye size={20} />
+                  ) : (
+                    <EyeOff size={20} />
+                  )}
+                </Button>
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Confirmer le nouveau mot de passe</CardTitle>
+            <CardDescription>
+              Confirmez le nouveau mot de passe.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="relative">
+              <FloatingLabelInput
+                type={passwordType}
+                id="re_password"
+                {...register("re_password")}
+                label="Confirmer"
+                className="h-12"
+              />
+              <span className="absolute right-3 top-0 flex h-full items-center justify-center">
+                <Button
+                  type="button"
+                  variant={"ghost"}
+                  size={"icon"}
+                  className="size-7 select-none rounded-full"
+                  onClick={handleClick}
+                >
+                  {passwordType === "password" ? (
+                    <Eye size={20} />
+                  ) : (
+                    <EyeOff size={20} />
+                  )}
+                </Button>
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+        <Button type="submit" className="mt-3 w-32">
+          Sauvegarder
+        </Button>
+      </form>
+    </main>
   );
 }
