@@ -42,7 +42,7 @@ export default function DashboardActivity() {
   };
 
   return (
-    <section className="h-full w-full bg-muted/20 px-5 py-5 lg:ml-60 lg:mr-72">
+    <section className="h-screen w-full bg-muted/20 px-5 py-5 lg:ml-60 lg:mr-72">
       <h1 className="mb-10 font-jomhuria text-6xl">Activités</h1>
       <main className="flex flex-col gap-10">
         <div className="mb-5 w-full">
