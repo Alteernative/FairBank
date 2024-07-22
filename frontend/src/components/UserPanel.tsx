@@ -106,7 +106,7 @@ export default function UserPanel() {
         const newTransaction = response.data;
         console.log("Transaction successful:", newTransaction);
 
-        window.location.reload();
+        // window.location.reload();
         // Update user context
         const updatedUser = {
           ...user,
@@ -143,9 +143,9 @@ export default function UserPanel() {
       .then((response) => {
         console.log("Transaction successful:", response.data);
         toast.info("Les fonds ont été demandé.");
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
         // navigate(`/dashboard`);
       })
       .catch((error) => {
@@ -183,7 +183,7 @@ export default function UserPanel() {
   console.log(user);
   return (
     <>
-      <section className="flex h-full w-3/12 flex-col items-center justify-between px-3">
+      <section className="fixed right-0 flex h-screen w-72 flex-col items-center justify-between px-3 pb-6">
         <div className="flex w-full flex-col items-center gap-3 pt-3">
           {user.image_url ? (
             <img
