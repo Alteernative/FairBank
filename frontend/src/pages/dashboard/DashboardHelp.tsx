@@ -7,14 +7,12 @@ import {
 
 export default function DashboardHelp() {
   return (
-    // <section className="h-full w-7/12 rounded-lg px-10 shadow-lg">
     <main className="h-full w-full bg-muted/20 px-5 py-5 lg:ml-60 lg:mr-72">
       <h1 className="mb-10 font-jomhuria text-6xl">Centre d'aide</h1>
       <Accordion
         type="single"
         collapsible
         className="mb-20 w-full content-center rounded-md"
-        // className="mb-20 w-[30rem] content-center rounded-md"
       >
         <AccordionItem value="item1" className="px-4 pb-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
@@ -99,6 +97,5 @@ export default function DashboardHelp() {
         </AccordionItem>
       </Accordion>
     </main>
-    // </section>
   );
 }
