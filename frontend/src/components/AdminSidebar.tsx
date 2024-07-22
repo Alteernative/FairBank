@@ -1,13 +1,4 @@
-import {
-  LayoutDashboard,
-  Radio,
-  CircleHelp,
-  Settings,
-  LogOut,
-  Menu,
-  Inbox,
-} from "lucide-react";
-import { BsCurrencyExchange } from "react-icons/bs";
+import { LayoutDashboard, Settings, LogOut, Menu, Inbox } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AxiosInstance from "@/components/AxiosInstance";
@@ -45,8 +36,8 @@ export default function Sidebar() {
   return (
     <aside className="fixed left-0 h-screen py-5 lg:w-60 lg:border-r">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
-        <Link to={"/"}>
-          <h1 className="font-jomhuria text-6xl">FairBank</h1>
+        <Link to={"/admin"}>
+          <h1 className="font-jomhuria text-6xl">Admin</h1>
         </Link>
 
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
@@ -55,9 +46,9 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/admin") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link to={"/dashboard"}>
+              <Link to={"/admin"}>
                 <LayoutDashboard size={20} />
                 Menu
               </Link>
@@ -65,9 +56,9 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/admin/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link to={"/dashboard/transactions"}>
+              <Link to={"/admin/demands"}>
                 <Inbox size={20} />
                 Demandes
               </Link>
@@ -78,10 +69,10 @@ export default function Sidebar() {
           <div className="flex flex-col gap-5">
             <Button
               asChild
-              variant={isActive("dashboard/settings") ? "default" : "ghost"}
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              variant={isActive("/admin/settings") ? "default" : "ghost"}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/admin/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link to={"/dashboard/settings"}>
+              <Link to={"/admin/settings"}>
                 <Settings size={20} />
                 Paramètres
               </Link>
@@ -123,9 +114,9 @@ export default function Sidebar() {
                     <Button
                       asChild
                       variant="ghost"
-                      className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+                      className={`flex w-full items-center justify-start gap-2 ${isActive("/admin") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
                     >
-                      <Link to={"/dashboard"}>
+                      <Link to={"/admin"}>
                         <LayoutDashboard size={20} />
                         Menu
                       </Link>
@@ -135,9 +126,9 @@ export default function Sidebar() {
                     <Button
                       asChild
                       variant="ghost"
-                      className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+                      className={`flex w-full items-center justify-start gap-2 ${isActive("/admin/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
                     >
-                      <Link to={"/dashboard/transactions"}>
+                      <Link to={"/admin/transactions"}>
                         <Inbox size={20} />
                         Demandes
                       </Link>
@@ -155,7 +146,7 @@ export default function Sidebar() {
                       }
                       className="flex w-full items-center justify-start gap-2"
                     >
-                      <Link to={"/dashboard/settings"}>
+                      <Link to={"/admin/settings"}>
                         <Settings size={20} />
                         Paramètres
                       </Link>
@@ -183,7 +174,7 @@ export default function Sidebar() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link to={"/dashboard"}>
+                <Link to={"/admin"}>
                   <LayoutDashboard size={20} />
                   <span className="sr-only">Menu</span>
                 </Link>
@@ -195,9 +186,9 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/admin/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link to={"/dashboard/transactions"}>
+              <Link to={"/admin/transactions"}>
                 <ScrollText size={20} />
                 Historique
               </Link>
