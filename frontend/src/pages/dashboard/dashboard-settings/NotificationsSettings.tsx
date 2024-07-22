@@ -8,8 +8,8 @@ import {
 
 export default function NotificationsSettings() {
   return (
-    <main className="ml-14 mt-20 flex w-4/5 flex-col gap-4 md:ml-12 lg:ml-8">
-      <Card className="w-10/12 border-none shadow-none">
+    <main className="flex w-full flex-col gap-4 bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
+      <Card className="w-10/12">
         <CardHeader>
           <CardTitle>Préférences des notifications</CardTitle>
           <CardDescription>
