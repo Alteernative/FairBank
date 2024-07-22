@@ -27,6 +27,7 @@ import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceS
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 import "./fonts.css";
+import AdminSignIn from "./pages/admin/AdminSignIn.tsx";
 
 export default function App() {
   return (
@@ -180,6 +181,9 @@ export default function App() {
             path="/request/password-reset/"
             element={<PasswordResetRequest />}
           />
+
+          <Route path="/admin/signin" element={<AdminSignIn />} />
+
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
