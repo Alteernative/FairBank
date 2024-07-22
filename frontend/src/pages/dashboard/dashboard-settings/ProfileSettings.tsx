@@ -14,6 +14,7 @@ import { useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { CircleUser } from "lucide-react";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
@@ -65,7 +66,7 @@ export default function ProfileSettings() {
   };
 
   return (
-    <main className="w-full bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
+    <main className="w-full bg-muted/20 px-10 pt-[7rem] lg:ml-60">
       <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
         <Card className="w-10/12">
           <CardHeader>
@@ -103,6 +104,7 @@ export default function ProfileSettings() {
             )}
           </CardContent>
         </Card>
+        <Separator />
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
