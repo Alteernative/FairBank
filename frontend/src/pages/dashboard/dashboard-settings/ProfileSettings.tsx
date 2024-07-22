@@ -65,10 +65,8 @@ export default function ProfileSettings() {
   };
 
   return (
-    // <main className="ml-10 mt-20 flex w-full flex-col gap-4 lg:ml-60">
     <main className="w-full bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
       <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
-        {/* <Card className="w-10/12 border-none shadow-none"> */}
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Image de profile</CardTitle>
@@ -105,7 +103,6 @@ export default function ProfileSettings() {
             )}
           </CardContent>
         </Card>
-        {/* <Card className="w-10/12 border-none shadow-none"> */}
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
@@ -121,7 +118,6 @@ export default function ProfileSettings() {
             />
           </CardContent>
         </Card>
-        {/* <Card className="w-10/12 border-none shadow-none"> */}
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Nom</CardTitle>
