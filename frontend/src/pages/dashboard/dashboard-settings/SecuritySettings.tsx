@@ -1,5 +1,16 @@
 import AxiosInstance from "@/components/AxiosInstance";
-import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -43,78 +54,51 @@ export default function DisplaySettings() {
   };
 
   return (
-    <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
-      <main className="flex flex-col gap-4">
-        <form onSubmit={handleSubmit(handleAccountDelete)}>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Fermez votre compte</CardTitle>
-              <CardDescription>
-                Attention: La fermeture de compte est finale.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button
-                type="submit"
-                variant={"destructive"}
-                className="min-w-1/2 max-w-[10rem]"
-              >
-                Fermer le compte
-              </Button>
-            </CardContent>
-          </Card>
-        </form>
-      </main>
-    </section>
+    <main className="flex w-full flex-col gap-4 bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
+      <form onSubmit={handleSubmit(handleAccountDelete)}>
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Fermez votre compte</CardTitle>
+            <CardDescription>
+              <b>Attention: La fermeture de compte est finale.</b>
+              <br /> Cliquez sur Demander pour envoyer une demande de fermeture
+              à notre équipe de support.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button type="button" variant={"destructive"}>
+                  Demander
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Êtes-vous sûr de vouloir fermer votre compte ?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {/* Cette action est irréversible. Votre demande sera traitée
+                    dans les 3 prochains jours ouvrables. */}
+                    <b>Cette action est irréversible.</b> Une demande de
+                    fermeture de compte sera envoyée à notre équipe de support
+                    et sera traitée dans les plus brefs délais.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuler</AlertDialogCancel>
+                  <AlertDialogAction
+                    type="submit"
+                    className={buttonVariants({ variant: "destructive" })}
+                  >
+                    Confirmer
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </CardContent>
+        </Card>
+      </form>
+    </main>
   );
-
-  // return (
-  //   <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
-  //     <main className="flex flex-col gap-4">
-  //       <form onSubmit={handleSubmit(handleAccountDelete)}>
-  //         <Card className="w-10/12 border-none shadow-none">
-  //           <CardHeader>
-  //             <CardTitle>Fermez votre compte</CardTitle>
-  //             <CardDescription>
-  //               Entrez FERMER et confirmer pour fermer votre compte client.
-  //             </CardDescription>
-  //           </CardHeader>
-  //           <CardContent>
-  //             <FloatingLabelInput
-  //               type="text"
-  //               label="Confirmer la fermeture"
-  //               id="confirm-delete-account"
-  //             />
-  //           </CardContent>
-  //         </Card>
-  //         <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
-  //           Sauvegarder
-  //         </Button>
-  //       </form>
-  //     </main>
-  //   </section>
-  // );
-  // return (
-  //   <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
-  //     <main className="flex flex-col gap-4">
-  //       <form onSubmit={handleSubmit(handleAccountDelete)}>
-  //         <Card className="w-10/12 border-none shadow-none">
-  //           <CardHeader>
-  //             <CardTitle>Fermez votre compte</CardTitle>
-  //             <CardDescription>
-  //               Entrez votre courriel et confirmer pour fermer votre compte
-  //               client.
-  //             </CardDescription>
-  //           </CardHeader>
-  //           <CardContent>
-  //             <FloatingLabelInput type="text" label="Courriel" />
-  //           </CardContent>
-  //         </Card>
-  //         <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
-  //           Sauvegarder
-  //         </Button>
-  //       </form>
-  //     </main>
-  //   </section>
-  // );
 }
