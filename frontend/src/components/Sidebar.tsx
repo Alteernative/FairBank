@@ -43,7 +43,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="sticky lg:w-2/12 lg:border-r">
+    <aside className="fixed left-0 h-screen py-5 lg:w-60 lg:border-r">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
         <Link to={"/"}>
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
@@ -141,7 +141,7 @@ export default function Sidebar() {
               <SheetTitle />
               <SheetDescription />
             </SheetHeader>
-            <div className="flex h-full w-full flex-col items-start pl-10">
+            <div className="flex h-screen w-full flex-col items-start pl-10">
               <Link to={"/"}>
                 <h1 className="font-jomhuria text-6xl">FairBank</h1>
               </Link>
@@ -241,6 +241,36 @@ export default function Sidebar() {
           </SheetContent>
         </Sheet>
       </div>
+
+      {/* Option 3 Tooltip Sidebar (Ne pas supprimer)*/}
+      {/* <div className="flex h-full w-14 flex-col items-center lg:hidden">
+        <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to={"/dashboard"}>
+                  <LayoutDashboard size={20} />
+                  <span className="sr-only">Menu</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Menu</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <div className="flex flex-col gap-5">
+            <Button
+              asChild
+              variant="ghost"
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+            >
+              <Link to={"/dashboard/transactions"}>
+                <ScrollText size={20} />
+                Historique
+              </Link>
+            </Button>
+          </div>
+        </nav>
+      </div> */}
     </aside>
   );
 }
