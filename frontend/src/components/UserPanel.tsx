@@ -183,8 +183,8 @@ export default function UserPanel() {
   console.log(user);
   return (
     <>
-      <section className="fixed right-0 flex h-screen w-72 flex-col items-center justify-between px-3 pb-6">
-        <div className="flex w-full flex-col items-center gap-3 pt-3">
+      <section className="fixed right-0 hidden h-screen w-72 flex-col items-center justify-between px-3 py-5 lg:flex lg:border-l">
+        <div className="flex w-full flex-col items-center gap-3">
           {user.image_url ? (
             <img
               src={`${baseUrl}${user.image_url}`}
@@ -196,7 +196,7 @@ export default function UserPanel() {
           )}
           <h2 className="text-base">{`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}</h2>
           <Badge
-            className={`cursor-default transition-all duration-300 hover:text-white ${user.plan === "tier1" ? "bg-green-500 hover:bg-green-600" : user.plan === "tier2" ? "bg-gray-500 hover:bg-gray-600" : "bg-yellow-500 hover:bg-yellow-600"}`}
+            className={`cursor-default rounded-full shadow ${user.plan === "tier1" ? "bg-green-500 hover:bg-green-500" : user.plan === "tier2" ? "bg-gray-500 hover:bg-gray-500" : "bg-yellow-500 hover:bg-yellow-500"}`}
           >
             {planTitle[user.plan]}
           </Badge>
@@ -365,7 +365,7 @@ export default function UserPanel() {
             draggable="false"
             className="p-3"
           />
-          <p className="absolute bottom-[2.3vw] left-[2.3vw] select-none text-[1.1vw] font-medium text-white">
+          <p className="absolute bottom-[3.75vh] left-[3.5vh] select-none text-[1.75vh] font-medium text-white">
             {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
         </div>
