@@ -106,12 +106,15 @@ export default function ProfileSettings() {
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
-            <CardDescription>Modifiez votre prénom</CardDescription>
+            <CardDescription>
+              Faire une demande pour modifier votre prénom
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <FloatingLabelInput
               type="text"
               id="first_name"
+              disabled
               {...register("first_name")}
               label="Prénom"
               className="h-12"
@@ -121,12 +124,15 @@ export default function ProfileSettings() {
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Nom</CardTitle>
-            <CardDescription>Modifiez votre prénom</CardDescription>
+            <CardDescription>
+              Faire une demande pour modifier votre nom.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <FloatingLabelInput
               type="text"
               id="last_name"
+              disabled
               {...register("last_name")}
               label="Nom"
               className="h-12"
@@ -134,7 +140,7 @@ export default function ProfileSettings() {
           </CardContent>
         </Card>
         <Button type="submit" className="mt-3 w-40">
-          Sauvegarder
+          Demander
         </Button>
       </form>
     </main>
