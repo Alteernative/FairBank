@@ -28,6 +28,8 @@ import NotificationsSettings from "./pages/dashboard/dashboard-settings/Notifica
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 import "./fonts.css";
 import AdminSignIn from "./pages/admin/AdminSignIn.tsx";
+import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview.tsx";
+import AdminDashboard from "./pages/admin/dashboard/AdminDashboard.tsx";
 
 export default function App() {
   return (
@@ -183,6 +185,14 @@ export default function App() {
           />
 
           <Route path="/admin/signin" element={<AdminSignIn />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminDashboard>
+                <AdminDashboardOverview />
+              </AdminDashboard>
+            }
+          />
 
           <Route path="*" element={<NoPage />} />
         </Routes>
