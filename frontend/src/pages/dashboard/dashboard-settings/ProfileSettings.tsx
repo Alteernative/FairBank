@@ -54,6 +54,9 @@ export default function ProfileSettings() {
       .then((response) => {
         console.log("Update successful:", response.data);
         toast.success("Votre profil a été modifié.");
+
+        // DEBUG: Temporary solution. Better solution: useState to update profile img dynamically?
+        setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -62,82 +65,82 @@ export default function ProfileSettings() {
   };
 
   return (
-    <section className="ml-14 mt-20 w-4/5 md:ml-12 lg:ml-8">
-      <main className="flex flex-col gap-4">
-        <form onSubmit={handleSubmit(handleName)}>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Image de profile</CardTitle>
-              <CardDescription>
-                Modifiez votre image de profile.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {user.image_url ? (
-                // TODO: Improve in Sprint 3: Preview uploaded image
-                <div className="relative size-16">
-                  <input
-                    type="file"
-                    id="image"
-                    {...register("image_url", { onChange: handleImageChange })}
-                    ref={fileInputRef}
-                    className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                  />
-                  <img
-                    src={`${baseUrl}${user.image_url}`}
-                    alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
-                    className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80"
-                  />
-                </div>
-              ) : (
-                <div className="relative size-16">
-                  <input
-                    type="file"
-                    id="image"
-                    {...register("image_url", { onChange: handleImageChange })}
-                    ref={fileInputRef}
-                    className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                  />
-                  <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
-                </div>
-              )}
-            </CardContent>
-          </Card>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Prénom</CardTitle>
-              <CardDescription>Modifiez votre prénom</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <FloatingLabelInput
-                type="text"
-                id="first_name"
-                {...register("first_name")}
-                label="Prénom"
-                className="h-12"
-              />
-            </CardContent>
-          </Card>
-          <Card className="w-10/12 border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Nom</CardTitle>
-              <CardDescription>Modifiez votre prénom</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <FloatingLabelInput
-                type="text"
-                id="last_name"
-                {...register("last_name")}
-                label="Nom"
-                className="h-12"
-              />
-            </CardContent>
-          </Card>
-          <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
-            Sauvegarder
-          </Button>
-        </form>
-      </main>
-    </section>
+    // <main className="ml-10 mt-20 flex w-full flex-col gap-4 lg:ml-60">
+    <main className="w-full bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
+      <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
+        {/* <Card className="w-10/12 border-none shadow-none"> */}
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Image de profile</CardTitle>
+            <CardDescription>Modifiez votre image de profile.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {user.image_url ? (
+              // TODO: Improve in Sprint 3: Preview uploaded image
+              <div className="relative size-16">
+                <input
+                  type="file"
+                  id="image"
+                  {...register("image_url", { onChange: handleImageChange })}
+                  ref={fileInputRef}
+                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                />
+                <img
+                  src={`${baseUrl}${user.image_url}`}
+                  alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
+                  className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80"
+                />
+              </div>
+            ) : (
+              <div className="relative size-16">
+                <input
+                  type="file"
+                  id="image"
+                  {...register("image_url", { onChange: handleImageChange })}
+                  ref={fileInputRef}
+                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                />
+                <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+        {/* <Card className="w-10/12 border-none shadow-none"> */}
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Prénom</CardTitle>
+            <CardDescription>Modifiez votre prénom</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FloatingLabelInput
+              type="text"
+              id="first_name"
+              {...register("first_name")}
+              label="Prénom"
+              className="h-12"
+            />
+          </CardContent>
+        </Card>
+        {/* <Card className="w-10/12 border-none shadow-none"> */}
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Nom</CardTitle>
+            <CardDescription>Modifiez votre prénom</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FloatingLabelInput
+              type="text"
+              id="last_name"
+              {...register("last_name")}
+              label="Nom"
+              className="h-12"
+            />
+          </CardContent>
+        </Card>
+        <Button type="submit" className="mt-3 w-40">
+          Sauvegarder
+        </Button>
+      </form>
+    </main>
   );
 }
