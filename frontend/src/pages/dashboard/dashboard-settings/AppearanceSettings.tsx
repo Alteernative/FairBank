@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,43 +13,44 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
+// FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
 export default function AppearanceSettings() {
-
+  const [currentFont, setCurrentFont] = useState("Inter");
   const handleFontChange = (value: string) => {
-    document.documentElement.style.setProperty('--font-family', value);
+    document.documentElement.style.setProperty("--font-family", value);
+    setCurrentFont(value);
   };
 
   return (
-    <main className="ml-14 mt-20 flex w-4/5 flex-col gap-4 md:ml-12 lg:ml-8">
-      <Card className="w-10/12 border-none shadow-none">
+    <main className="flex w-full flex-col gap-4 bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
+      <Card className="w-10/12">
         <CardHeader>
           <CardTitle>Choix de polices</CardTitle>
           <CardDescription>
-            Choisissez une police pour modifier l'apparence du site!
+            Choisissez une police pour modifier l'apparence du site.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Select onValueChange={handleFontChange}>
+          <Select onValueChange={handleFontChange} value={currentFont}>
             <SelectTrigger className="max-w-[20rem]">
-              <SelectValue placeholder="Polices" />
+              <SelectValue>{currentFont}</SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="'Inter', sans-serif">Inter</SelectItem>
-                <SelectItem value="'Montserrat', sans-serif">Montserrat</SelectItem>
-                <SelectItem value="'Roboto', sans-serif">Roboto</SelectItem>
-                <SelectItem value="'Satoshi', sans-serif">Satoshi</SelectItem>
+                <SelectItem value="Inter">Inter</SelectItem>
+                <SelectItem value="Montserrat">Montserrat</SelectItem>
+                <SelectItem value="Roboto">Roboto</SelectItem>
+                <SelectItem value="Satoshi">Satoshi</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </CardContent>
       </Card>
-      <Card className="w-10/12 border-none shadow-none">
+      <Card className="w-10/12">
         <CardHeader>
           <CardTitle>Mode sombre</CardTitle>
           <CardDescription>
@@ -60,7 +61,7 @@ export default function AppearanceSettings() {
           <ModeToggle />
         </CardContent>
       </Card>
-      <Card className="w-10/12 border-none shadow-none">
+      <Card className="w-10/12">
         <CardHeader>
           <CardTitle>Préférence de couleurs</CardTitle>
           <CardDescription>
@@ -135,11 +136,6 @@ export default function AppearanceSettings() {
           </section>
         </CardContent>
       </Card>
-
-      {/* TODO: No submit buttons. Update on user click */}
-      {/* <Button type="submit" className="min-w-1/2 ml-6 mt-5 max-w-[10rem]">
-        Sauvegarder
-      </Button> */}
     </main>
   );
 }
