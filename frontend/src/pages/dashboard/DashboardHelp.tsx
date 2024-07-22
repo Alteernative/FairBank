@@ -7,7 +7,7 @@ import {
 
 export default function DashboardHelp() {
   return (
-    <main className="h-full w-full bg-muted/20 px-5 py-5 lg:ml-60 lg:mr-72">
+    <main className="h-full w-full bg-muted/20 px-16 py-5 lg:ml-60 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">Centre d'aide</h1>
       <Accordion
         type="single"
