@@ -26,8 +26,7 @@ export default function SettingsSidebar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    // <aside className="sticky lg:w-2/12">
-    <aside className="fixed left-0 h-screen border-r py-5 lg:w-60">
+    <aside className="fixed left-0 h-screen py-5 lg:w-60 lg:border-r">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
         <Link to={"/"}>
           <h1 className="font-jomhuria text-6xl">Paramètres</h1>
