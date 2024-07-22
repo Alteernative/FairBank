@@ -1,6 +1,6 @@
 import { useUserContext } from "@/contexts/UserContext";
 import { useState } from "react";
-import DashboardGraph from "./DashboardGraph-new";
+import DashboardGraph from "./DashboardGraph";
 import CountUp from "react-countup";
 import {
   Carousel,
