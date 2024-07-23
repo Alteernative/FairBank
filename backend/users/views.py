@@ -267,13 +267,13 @@ class CurrencyViewset(viewsets.ModelViewSet):
         original_amount = request.data.get('original_amount')
         converted_amount = request.data.get('converted_amount')
 
-
         print("Received currency:", currency)
         print("Received original amount:", original_amount)
         print("Received converted amount:", converted_amount)
 
         if not currency or original_amount is None or converted_amount is None:
-            return Response({'error': 'Currency, original amount, and converted amount are required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Currency, original amount, and converted amount are required'},
+                            status=status.HTTP_400_BAD_REQUEST)
 
         try:
             original_amount = Decimal(original_amount)
@@ -312,5 +312,28 @@ class CurrencyViewset(viewsets.ModelViewSet):
             status=status.HTTP_200_OK
         )
 
-class DepositViewset(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+
+class ContactUsViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = ContactUsSerializer
+    queryset = ContactUsMessages.objects.all()
+
+    def create(self, request, *args, **kwargs):
+
+        nom = request.data.get('nom').strip()
+        prenom = request.data.get('prenom').strip()
+        email = request.data.get('email').strip()
+        message = request.data.get('message').strip()
+
+        existing_entries = ContactUsMessages.objects.filter(nom=nom, prenom=prenom, email=email, message=message)
+
+        if existing_entries.exists():
+            return Response({"error": "Duplicate entry detected."}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        print(f"Invalid data: {serializer.errors}")
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
