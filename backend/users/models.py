@@ -147,3 +147,12 @@ class UserCurrency(models.Model):
     def __str__(self):
         return f'{self.user.email} currency balances'
 
+
+class ContactUsMessages(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200, unique=False)
+    message = models.TextField(max_length=500)
+
+    def __str__(self):
+        return f'{self.nom} {self.prenom} {self.email} {self.message}'
