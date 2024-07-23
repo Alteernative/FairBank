@@ -129,11 +129,14 @@ export default function Footer() {
             </nav>
           </section>
           {/* Right */}
-          <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
+          <section className="flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
             <h3 className="mb-5 cursor-default text-xl font-semibold">
               Contactez-nous
             </h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-full flex-col gap-2"
+            >
               <div className="flex gap-2">
                 <Input
                   id="first_name"
