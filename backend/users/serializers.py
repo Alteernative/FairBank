@@ -156,3 +156,9 @@ class UserCurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCurrency
         fields = ('balance_usd', 'balance_jpy', 'balance_eur', 'balance_gbp', 'balance_cny', 'balance_inr')
+
+
+class ContactUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactUsMessages
+        fields = ('id', 'nom', 'prenom', 'email', 'message')
