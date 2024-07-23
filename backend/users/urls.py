@@ -8,5 +8,5 @@ router.register('users', UserViewset, basename='users')
 router.register('transactions', TransactionViewset, basename='transaction')
 router.register('request', RequestTransactionViewset, basename='request')
 router.register('currencies', CurrencyViewset, basename='currency')
-
+router.register('contactus', ContactUsViewset, basename='contactus')
 urlpatterns = router.urls
