@@ -8,6 +8,9 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel.tsx";
 import { Card, CardHeader } from "@/components/ui/card.tsx";
+import { ProgressBar } from "./ProgressBar";
+
+const UPPER_LIMIT = 100;
 
 export default function DashboardOverview() {
   const { user } = useUserContext();
@@ -47,10 +50,11 @@ export default function DashboardOverview() {
           />
         </div>
 
+        {/* TODO: Add condition for upper limit of transactions amount based on account type */}
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
-          <h2>Graphe ratio des depots et ajouts</h2>
+          <h2>Quantité de transactions</h2>
+          <ProgressBar transactionsCount={user.sent_transactions.length} upperLimit={UPPER_LIMIT} />
         </div>
-
         <div className="col-span-3 row-span-3 rounded-lg border p-4 shadow">
           <DashboardGraph />
         </div>
