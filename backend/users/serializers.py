@@ -162,3 +162,28 @@ class ContactUsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactUsMessages
         fields = ('id', 'nom', 'prenom', 'email', 'message')
+
+
+class SimpleTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['amount']
+
+
+class SimplePendingTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PendingTransactions
+        fields = ['amount']
+
+
+class AdminUsersSerializer(serializers.ModelSerializer):
+    sent_transactions = SimpleTransactionSerializer(many=True, read_only=True)
+    received_transactions = SimpleTransactionSerializer(many=True, read_only=True)
+    pending_received_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
+    pending_sender_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'sent_transactions', 'received_transactions',
+            'pending_sender_transactions', 'pending_received_transactions']
