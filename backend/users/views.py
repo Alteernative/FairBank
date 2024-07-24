@@ -182,15 +182,6 @@ class UserViewset(viewsets.ViewSet):
             status=status.HTTP_200_OK
         )
 
-    # try:
-    #     user = User.objects.get(pk=pk)
-    #     user.delete()
-    #     return Response({"success": "User was deleted"}, status=status.HTTP_204_NO_CONTENT)
-    # except User.DoesNotExist:
-    #     return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-    # except Exception as e:
-    #     return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
@@ -337,3 +328,24 @@ class ContactUsViewset(viewsets.ModelViewSet):
 
         print(f"Invalid data: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AdminViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = AdminUsersSerializer
+
+    queryset = User.objects.all()
+
+    @action(detail=False, methods=['get'])
+    def list_all_users(self, request):
+        users = User.objects.all()
+        serializer = self.serializer_class(users, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def list_all_contactUs(self, request):
+        contactus_messages = ContactUsMessages.objects.all()
+
+        messages_serialized = ContactUsSerializer(contactus_messages, many=True)
+        print(messages_serialized.data)
+        return Response(messages_serialized.data)
