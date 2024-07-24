@@ -71,6 +71,29 @@ class LoginViewset(viewsets.ViewSet):
         else:
             return Response(serializer.errors, status=400)
 
+def welcome_message_send(user):
+    sitelink = "http://localhost:5173/"
+    full_link = str(sitelink)
+    print(full_link)
+
+    context = {
+        'full_link': full_link,
+        'email_adress': user.email,
+    }
+    html_message = render_to_string("backend/welcomeEmail.html", context=context)
+    plain_message = strip_tags(html_message)
+
+    msg = EmailMultiAlternatives(
+        subject="Welcome {title}".format(title=user.first_name+" "+user.last_name),
+        body=plain_message,
+        from_email="alteernative@gmail.com",
+        to=[user.email]
+    )
+    msg.attach_alternative(html_message, "text/html")
+    try:
+        msg.send()
+    except Exception as e:
+        print(f"Failed to send email: {e}")
 
 class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
@@ -94,6 +117,7 @@ class RegisterViewset(viewsets.ViewSet):
                 "plan": user.plan,
                 "image_url": user.image_url.url if user.image_url else None,
             }
+            welcome_message_send(user)
             return Response(user_data)
         else:
             return Response(serializer.errors, status=400)
