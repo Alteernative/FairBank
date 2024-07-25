@@ -10,9 +10,9 @@ import {
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { useUserContext } from "@/contexts/UserContext";
 import capitalize from "@/utils/capitalize";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Pen } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 
@@ -21,18 +21,21 @@ export default function ProfileSettings() {
   const { register, handleSubmit, setValue } = useForm();
   const baseUrl = "http://127.0.0.1:8000";
   const fileInputRef = useRef(null);
-  setValue("first_name", user.first_name);
-  setValue("last_name", user.last_name);
-  setValue("email", user.email);
-  setValue("id", user.id);
-  const [fileName, setFileName] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+
+  useEffect(() => {
+    setValue("first_name", user.first_name);
+    setValue("last_name", user.last_name);
+    setValue("email", user.email);
+    setValue("id", user.id);
+    // setSelectedImage(`${baseUrl}${user.image_url}`);
+    setSelectedImage(user.image_url ? `${baseUrl}${user.image_url}` : "");
+  }, [user, setValue]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFileName(file.name);
-    } else {
-      setFileName("");
+      setSelectedImage(URL.createObjectURL(file));
     }
   };
 
@@ -42,7 +45,6 @@ export default function ProfileSettings() {
     const formData = new FormData();
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.last_name);
-
     if (fileInputRef.current && fileInputRef.current.files[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
     }
@@ -55,13 +57,12 @@ export default function ProfileSettings() {
       .then((response) => {
         console.log("Update successful:", response.data);
         toast.success("Votre profil a été modifié.");
-
-        // DEBUG: Temporary solution. Better solution: useState to update profile img dynamically?
-        setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
-        toast.error("Une erreur est survenue lors de la modification.");
+        toast.error(
+          "Une erreur est survenue lors de la modification du profil."
+        );
       });
   };
 
@@ -74,34 +75,31 @@ export default function ProfileSettings() {
             <CardDescription>Modifiez votre image de profile.</CardDescription>
           </CardHeader>
           <CardContent>
-            {user.image_url ? (
-              // TODO: Improve in Sprint 3: Preview uploaded image
-              <div className="relative size-16">
-                <input
-                  type="file"
-                  id="image"
-                  {...register("image_url", { onChange: handleImageChange })}
-                  ref={fileInputRef}
-                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                />
+            <div className="relative size-16">
+              {selectedImage ? (
                 <img
-                  src={`${baseUrl}${user.image_url}`}
+                  src={selectedImage}
                   alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
-                  className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80"
+                  className="size-full rounded-full"
                 />
-              </div>
-            ) : (
-              <div className="relative size-16">
+              ) : (
+                <CircleUser className="size-full rounded-full" />
+              )}
+              <Button
+                variant="outline"
+                type="button"
+                size="icon"
+                className="absolute -bottom-2 -right-1 size-7 cursor-pointer rounded-full object-cover"
+              >
+                <Pen size={14} className="z-0" />
                 <input
                   type="file"
-                  id="image"
                   {...register("image_url", { onChange: handleImageChange })}
                   ref={fileInputRef}
-                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                  className="absolute inset-0 z-10 h-full w-full cursor-pointer rounded-full opacity-0"
                 />
-                <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
-              </div>
-            )}
+              </Button>
+            </div>
           </CardContent>
         </Card>
         <Separator />
@@ -109,7 +107,7 @@ export default function ProfileSettings() {
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
             <CardDescription>
-              Faire une demande pour modifier votre prénom
+              Faire une demande pour modifier votre prénom.
             </CardDescription>
           </CardHeader>
           <CardContent>
