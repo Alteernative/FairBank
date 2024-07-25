@@ -12,7 +12,8 @@ export function LanguageToggle() {
   // const { setLanguage } = useLanguage();
 
   const languages = {
-    francais: "fr",
+    // francais: "fr",
+    français: "fr",
     anglais: "en",
   };
   return (
