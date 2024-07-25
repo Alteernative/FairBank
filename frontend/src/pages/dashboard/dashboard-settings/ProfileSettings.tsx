@@ -32,19 +32,17 @@ export default function ProfileSettings() {
     setSelectedImage(user.image_url ? `${baseUrl}${user.image_url}` : "");
   }, [user, setValue]);
 
-  const handleImageChange = (e) => {
+  const handleFile = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
     }
   };
 
-  const handleName = (data: FieldValues) => {
+  const handleImage = (data: FieldValues) => {
     console.log(data);
 
     const formData = new FormData();
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
     if (fileInputRef.current && fileInputRef.current.files[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
     }
@@ -56,19 +54,47 @@ export default function ProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success("Votre profil a été modifié.");
+        toast.success("Votre image de profile a été modifiée.");
       })
       .catch((error) => {
         console.error("Error updating user:", error);
         toast.error(
-          "Une erreur est survenue lors de la modification du profil."
+          "Une erreur est survenue lors de la modification de votre image de profile."
+        );
+      });
+  };
+
+  // TODO: Update this code to send a request to the admin.
+  const handleName = (data: FieldValues) => {
+    console.log(data);
+
+    const formData = new FormData();
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.last_name);
+
+    AxiosInstance.put(`users/${user.id}/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        console.log("Update successful:", response.data);
+        toast.success("Votre demande a été envoyé.");
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+        toast.error(
+          "Une erreur est survenue lors de la demande de modification de votre nom."
         );
       });
   };
 
   return (
-    <main className="w-full bg-muted/20 px-10 pt-[7rem] lg:ml-60">
-      <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
+    <main className="flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-60">
+      <form
+        onChange={handleSubmit(handleImage)}
+        className="flex flex-col gap-4"
+      >
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Image de profile</CardTitle>
@@ -94,7 +120,7 @@ export default function ProfileSettings() {
                 <Pen size={14} className="z-0" />
                 <input
                   type="file"
-                  {...register("image_url", { onChange: handleImageChange })}
+                  {...register("image_url", { onChange: handleFile })}
                   ref={fileInputRef}
                   className="absolute inset-0 z-10 h-full w-full cursor-pointer rounded-full opacity-0"
                 />
@@ -102,7 +128,9 @@ export default function ProfileSettings() {
             </div>
           </CardContent>
         </Card>
-        <Separator />
+      </form>
+      <Separator />
+      <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
         <Card className="w-10/12">
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
