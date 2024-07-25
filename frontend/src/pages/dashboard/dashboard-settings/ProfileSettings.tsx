@@ -90,7 +90,7 @@ export default function ProfileSettings() {
   };
 
   return (
-    <main className="flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-60">
+    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-60">
       <form
         onChange={handleSubmit(handleImage)}
         className="flex flex-col gap-4"
