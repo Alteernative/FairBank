@@ -202,23 +202,26 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings"}>
+                  {/* <span className="cursor-pointer">
                     <LogOut
                       size={20}
                       onClick={handleLogout}
                       className="text-destructive"
                     />
                     <span className="sr-only">Se déconnecter</span>
-                  </Link>
-                  {/* <Button
+                  </span> */}
+                  <Button
                     variant={"destructive"}
                     size={"icon"}
                     onClick={handleLogout}
                   >
                     <LogOut size={20} />
-                  </Button> */}
+                  </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="bg-destructive">
+                <TooltipContent
+                  side="right"
+                  className="bg-destructive text-white"
+                >
                   Se déconnecter
                 </TooltipContent>
               </Tooltip>
