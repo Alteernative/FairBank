@@ -187,3 +187,9 @@ class AdminUsersSerializer(serializers.ModelSerializer):
         fields = [
             'sent_transactions', 'received_transactions',
             'pending_sender_transactions', 'pending_received_transactions']
+
+
+class PendingUsersUpdatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PendingUsersUpdates
+        fields = ('nom', 'prenom', 'email')
