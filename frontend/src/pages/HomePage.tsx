@@ -15,8 +15,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { FaApple, FaAmazon, FaShopify, FaMicrosoft } from "react-icons/fa";
-import { SiWalmart, SiZara, SiMercedes } from "react-icons/si";
-import { IconContext } from "react-icons";
+import { SiWalmart, SiZara, SiMercedes, SiTesla } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -35,26 +34,27 @@ function Hero() {
     <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
-          <h1 className="mb-3 text-5xl font-extrabold tracking-tight">
+          <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">
             L'intérêt de notre banque&nbsp;?
             <br />
             Votre bien-être financier.
           </h1>
-          <h2 className="text-2xl tracking-tight">
+          <h2 className="text-xl tracking-tight lg:text-2xl">
             Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
           </h2>
           <Button
             asChild
             variant={"default"}
             size={"lg"}
-            className="w-1/2 rounded-3xl"
+            className="min-w-52 max-w-72 rounded-3xl"
           >
             <Link to={"/inscription"}>Devenir membre</Link>
           </Button>
         </div>
       </div>
-      <div className="flex flex-1 items-center justify-center">
-        <img src="/images/hero.svg" alt="Card image" />
+      {/* <div className="flex flex-1 items-center justify-center"> */}
+      <div className="hidden flex-1 items-center justify-center md:flex">
+        <img src="/images/hero.svg" alt="Hero section image" />
       </div>
     </section>
   );
@@ -62,20 +62,20 @@ function Hero() {
 
 function Sponsors() {
   return (
-    <section className="mt-24 flex flex-col text-center opacity-70">
-      <h2 className="font-semibold tracking-tight">
+    <section className="mt-24 flex flex-col gap-7 text-center opacity-70 dark:opacity-50">
+      <h2 className="font-semibold tracking-wide">
         Magasinez dans vos boutiques préférées
       </h2>
-      <div className="flex w-full items-center justify-around">
-        <IconContext.Provider value={{ size: "50px" }}>
-          <FaApple />
-          <FaAmazon />
-          <FaMicrosoft />
-          <SiZara size="70px" />
-          <SiWalmart size="100px" />
-          <FaShopify />
-          <SiMercedes />
-        </IconContext.Provider>
+      {/* <div className="flex w-full items-center justify-around"> */}
+      <div className="md: grid grid-cols-2 items-center justify-items-center gap-y-10 md:grid-cols-4 lg:grid-cols-8">
+        <FaApple size={50} />
+        <FaAmazon size={50} />
+        <FaMicrosoft size={50} />
+        <FaShopify size={50} />
+        <SiZara size={50} className="scale-150" />
+        <SiWalmart size={50} className="scale-[2]" />
+        <SiMercedes size={50} />
+        <SiTesla size={50} />
       </div>
     </section>
   );
@@ -84,8 +84,8 @@ function Sponsors() {
 function About() {
   return (
     <section className="mt-24 flex items-center">
-      <div className="flex flex-1 items-center justify-center">
-        <img src="/images/about_us.svg" alt="" />
+      <div className="hidden flex-1 items-center justify-center md:flex">
+        <img src="/images/about_us.svg" alt="About section image" />
       </div>
       <div className="flex flex-1 flex-col items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
@@ -122,8 +122,8 @@ function CallToAction() {
           </p>
         </div>
       </div>
-      <div className="flex flex-1 items-center justify-center">
-        <img src="/images/call_to_action.svg" alt="" />
+      <div className="hidden flex-1 items-center justify-center md:flex">
+        <img src="/images/call_to_action.svg" alt="CTA section image" />
       </div>
     </section>
   );
@@ -132,7 +132,7 @@ function CallToAction() {
 function Reviews() {
   return (
     <section className="mx-10 my-20 flex flex-col items-center justify-center">
-      <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70">
+      <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70 dark:opacity-50">
         Avis de nos membres
       </h2>
       <Carousel className="w-full">
