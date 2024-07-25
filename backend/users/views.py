@@ -71,6 +71,7 @@ class LoginViewset(viewsets.ViewSet):
         else:
             return Response(serializer.errors, status=400)
 
+
 def welcome_message_send(user):
     sitelink = "http://localhost:5173/"
     full_link = str(sitelink)
@@ -84,7 +85,7 @@ def welcome_message_send(user):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Welcome {title}".format(title=user.first_name+" "+user.last_name),
+        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
         body=plain_message,
         from_email="alteernative@gmail.com",
         to=[user.email]
@@ -94,6 +95,7 @@ def welcome_message_send(user):
         msg.send()
     except Exception as e:
         print(f"Failed to send email: {e}")
+
 
 class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
@@ -205,6 +207,29 @@ class UserViewset(viewsets.ViewSet):
             {'success': 'Balance updated successfully', 'balance': user.balance},
             status=status.HTTP_200_OK
         )
+
+    @action(detail=False, methods=['post'])
+    def request_update(self, request):
+
+        data = {
+            'nom': request.data.get('last_name'),
+            'prenom': request.data.get('first_name'),
+            'email': request.data.get('email')
+        }
+
+        try:
+            existing_request = PendingUsersUpdates.objects.get(email=data['email'])
+            existing_request.nom = data['nom']
+            existing_request.prenom = data['prenom']
+            existing_request.save()
+            serializer = PendingUsersUpdatesSerializer(existing_request)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except PendingUsersUpdates.ObjectDoesNotExist:
+            serializer = PendingUsersUpdatesSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TransactionViewset(viewsets.ModelViewSet):
