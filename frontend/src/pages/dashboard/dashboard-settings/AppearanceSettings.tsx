@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ModeToggle } from "@/components/ModeToggle";
+import { ModeButtons } from "@/components/ModeButtons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,9 +29,9 @@ export default function AppearanceSettings() {
     <main className="flex w-full flex-col gap-4 bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
       <Card className="w-10/12">
         <CardHeader>
-          <CardTitle>Choix de polices</CardTitle>
+          <CardTitle>Préférences de police</CardTitle>
           <CardDescription>
-            Choisissez une police pour modifier l'apparence du site.
+            Choisissez une police pour personnaliser l'apparence du site.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -52,20 +52,20 @@ export default function AppearanceSettings() {
       </Card>
       <Card className="w-10/12">
         <CardHeader>
-          <CardTitle>Mode sombre</CardTitle>
+          <CardTitle>Préférences de mode</CardTitle>
           <CardDescription>
-            Choisissez entre un mode sombre, clair, ou système.
+            Choisissez entre le mode clair, le mode sombre ou le mode système.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ModeToggle />
+          <ModeButtons />
         </CardContent>
       </Card>
       <Card className="w-10/12">
         <CardHeader>
-          <CardTitle>Préférence de couleurs</CardTitle>
+          <CardTitle>Préférences de couleurs</CardTitle>
           <CardDescription>
-            Choisissez un thème de couleurs parmis les palettes suivantes.
+            Choisissez un thème de couleurs parmi les palettes suivantes.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -125,6 +125,13 @@ export default function AppearanceSettings() {
             >
               <div className="size-6 rounded-full border bg-gray-500"></div>
               <p className="ml-3">Gris</p>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-32 items-center justify-start"
+            >
+              <div className="size-6 rounded-full border bg-slate-500"></div>
+              <p className="ml-3">Ardoise</p>
             </Button>
             <Button
               variant={"outline"}
