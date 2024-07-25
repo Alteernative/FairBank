@@ -99,12 +99,9 @@ export default function SettingsSidebar() {
         </nav>
       </div>
 
-      {/* Tooltip */}
-
+      {/* Responsive nav */}
       <div className="flex h-full w-full flex-col items-center lg:hidden">
         <Settings size={25} className="mb-10" />
-
-        {/* <div className="flex flex-col gap-5"></div> */}
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
           <TooltipProvider>
             <div className="flex flex-col gap-10">
@@ -117,7 +114,6 @@ export default function SettingsSidebar() {
                 </TooltipTrigger>
                 <TooltipContent side="right">Profile</TooltipContent>
               </Tooltip>
-
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to={"/dashboard/settings/account"}>
@@ -127,7 +123,6 @@ export default function SettingsSidebar() {
                 </TooltipTrigger>
                 <TooltipContent side="right">Compte</TooltipContent>
               </Tooltip>
-
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to={"/dashboard/settings/themes"}>
@@ -137,7 +132,6 @@ export default function SettingsSidebar() {
                 </TooltipTrigger>
                 <TooltipContent side="right">Apparence</TooltipContent>
               </Tooltip>
-
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to={"/dashboard/settings/notifications"}>
@@ -147,7 +141,6 @@ export default function SettingsSidebar() {
                 </TooltipTrigger>
                 <TooltipContent side="right">Notifications</TooltipContent>
               </Tooltip>
-
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link to={"/dashboard/settings/security"}>
