@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/card.tsx";
 import { toast, Toaster } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
+import { ModeToggle } from "./ModeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 
 const PasswordFields = () => {
   const {
@@ -139,6 +141,12 @@ const PasswordReset = () => {
         />
       </aside>
       <main className="flex w-80 flex-1 items-center justify-center">
+        <div className="absolute right-0 top-4 m-5">
+          <span className="flex items-end justify-start gap-2">
+            <LanguageToggle />
+            <ModeToggle />
+          </span>
+        </div>
         <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
           <Link to={"/"}>FairBank</Link>
         </h1>
