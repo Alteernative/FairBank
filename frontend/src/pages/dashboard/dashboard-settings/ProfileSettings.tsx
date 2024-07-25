@@ -41,12 +41,13 @@ export default function ProfileSettings() {
     const formData = new FormData();
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.last_name);
+    formData.append("email", user.email);
 
     if (fileInputRef.current && fileInputRef.current.files[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
     }
 
-    AxiosInstance.put(`users/${user.id}/`, formData, {
+    AxiosInstance.post(`users/request_update/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -114,7 +115,6 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="first_name"
-              disabled
               {...register("first_name")}
               label="Prénom"
               className="h-12"
@@ -132,7 +132,6 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="last_name"
-              disabled
               {...register("last_name")}
               label="Nom"
               className="h-12"
