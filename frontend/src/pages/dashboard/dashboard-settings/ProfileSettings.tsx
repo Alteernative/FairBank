@@ -54,12 +54,12 @@ export default function ProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success("Votre image de profile a été modifiée.");
+        toast.success("Votre image de profil a été modifiée.");
       })
       .catch((error) => {
         console.error("Error updating user:", error);
         toast.error(
-          "Une erreur est survenue lors de la modification de votre image de profile."
+          "Une erreur est survenue lors de la modification de votre image de profil."
         );
       });
   };
@@ -97,8 +97,8 @@ export default function ProfileSettings() {
       >
         <Card className="w-10/12">
           <CardHeader>
-            <CardTitle>Image de profile</CardTitle>
-            <CardDescription>Modifiez votre image de profile.</CardDescription>
+            <CardTitle>Image de profil</CardTitle>
+            <CardDescription>Modifiez votre image de profil.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="relative size-16">
