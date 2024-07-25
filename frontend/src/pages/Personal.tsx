@@ -7,14 +7,10 @@ export default function Particuliers() {
   const [isAnnual, setIsAnnual] = useState(true);
 
   return (
-    <div className="mb-32 dark:bg-slate-950 dark:text-white">
-      <section className="py-12">
-        <div className="container mx-auto text-center">
-          <h1 className="mb-4 font-jomhuria text-6xl text-primary">
-            Choisissez le plan qui correspond à vos besoins!
-          </h1>
-        </div>
-      </section>
+    <div className="mb-32 mt-12">
+      <h1 className="mb-4 text-center font-jomhuria text-6xl">
+        Choisissez le plan qui correspond à vos besoins!
+      </h1>
 
       {/* Pricing toggle */}
       <div className="m-auto mb-8 flex max-w-[14rem] justify-center lg:mb-16">
