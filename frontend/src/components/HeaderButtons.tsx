@@ -15,7 +15,12 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
   className,
 }: HeaderButtonsProps) => {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div
+      className={cn(
+        "flex w-full flex-col items-center gap-2 sm:flex-row ",
+        className
+      )}
+    >
       {isAuthenticated ? (
         <>
           <Button
@@ -27,7 +32,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
           </Button>
           <Button
             variant={"destructive"}
-            className="flex items-center justify-start gap-2 rounded-3xl"
+            className="flex items-center gap-2 rounded-3xl"
             onClick={logoutUser}
           >
             <LogOut size={20} />
