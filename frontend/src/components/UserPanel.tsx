@@ -407,12 +407,12 @@ export default function UserPanel() {
             <img
               src={`${baseUrl}${user.image_url}`}
               alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
-              className="mt-4 size-10 cursor-pointer rounded-full"
+              className="mt-2 size-10 cursor-pointer rounded-full"
             />
           ) : (
             <CircleUser className="mt-2 size-10 cursor-pointer" />
           )}
-          <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
+          <nav className="mb-5 mt-[4.5rem] flex h-full flex-col items-center justify-between">
             <TooltipProvider>
               <div className="flex flex-col items-center gap-10">
                 <Tooltip>
