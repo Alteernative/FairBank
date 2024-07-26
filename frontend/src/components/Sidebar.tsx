@@ -140,7 +140,7 @@ export default function Sidebar() {
       {/* Responsive nav */}
       <div className="flex h-full w-full flex-col items-center lg:hidden">
         <Link to={"/"}>
-          <Home size={20} />
+          <Home size={25} className="mt-4" />
         </Link>
         <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
           <TooltipProvider>
@@ -230,7 +230,12 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button asChild size={"icon"} variant={"ghost"}>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={"hover:bg-transparent"}
+                  >
                     <Link to={"/dashboard/settings"}>
                       <Settings size={20} />
                       <span className="sr-only">Paramètres</span>
@@ -241,14 +246,6 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  {/* <span className="cursor-pointer">
-                    <LogOut
-                      size={20}
-                      onClick={handleLogout}
-                      className="text-destructive"
-                    />
-                    <span className="sr-only">Se déconnecter</span>
-                  </span> */}
                   <Button
                     variant={"destructive"}
                     size={"icon"}
