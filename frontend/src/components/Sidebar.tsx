@@ -230,7 +230,12 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button asChild size={"icon"} variant={"ghost"}>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={"hover:bg-transparent"}
+                  >
                     <Link to={"/dashboard/settings"}>
                       <Settings size={20} />
                       <span className="sr-only">Paramètres</span>
@@ -241,14 +246,6 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  {/* <span className="cursor-pointer">
-                    <LogOut
-                      size={20}
-                      onClick={handleLogout}
-                      className="text-destructive"
-                    />
-                    <span className="sr-only">Se déconnecter</span>
-                  </span> */}
                   <Button
                     variant={"destructive"}
                     size={"icon"}
