@@ -7,7 +7,7 @@ import {
 
 export default function DashboardHelp() {
   return (
-    <main className="mx-14 h-screen w-full bg-muted/20 px-10 py-5 lg:ml-52 lg:mr-72 lg:px-5">
+    <main className="mx-14 min-h-screen w-full bg-muted/20 px-10 py-5 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">Centre d'aide</h1>
       <Accordion
         type="single"
