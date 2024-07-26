@@ -146,7 +146,7 @@ export default function App() {
             }
           />
           <Route
-            path="/dashboard/settings/apparence"
+            path="/dashboard/settings/appearance"
             element={
               <UserContextProvider>
                 <Settings>
