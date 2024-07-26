@@ -42,7 +42,7 @@ export default function DashboardActivity() {
   };
 
   return (
-    <section className="mx-14 h-screen w-full bg-muted/20 px-10 py-5 lg:ml-52 lg:mr-72 lg:px-5">
+    <section className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">Activités</h1>
       <main className="flex flex-col gap-10">
         <div className="mb-5 w-full">
@@ -53,46 +53,48 @@ export default function DashboardActivity() {
                 <>
                   <div
                     key={index}
-                    className="flex items-center justify-between"
+                    className="flex flex-wrap items-center justify-between gap-4"
                   >
                     <div className="flex flex-col">
                       <p className="text-base">{transaction.receiver}</p>
                       <p className="text-sm text-muted-foreground">
                         {formatDate(transaction.date)}
                       </p>
-                      <div className="mt-5 flex items-center gap-3">
-                        <Button
-                          type="button"
-                          size={"icon"}
-                          variant={"outline"}
-                          onClick={() =>
-                            updateTransactionStatus(transaction, "accepted")
-                          }
-                          className="bg-green-500 text-white hover:bg-green-600 hover:text-white"
-                        >
-                          <Check />
-                        </Button>
-
-                        <Button
-                          type="button"
-                          size={"icon"}
-                          onClick={() =>
-                            updateTransactionStatus(transaction, "rejected")
-                          }
-                          className="bg-red-500 text-white hover:bg-red-600"
-                        >
-                          <X />
-                        </Button>
-                      </div>
                     </div>
                     <p className="select-none font-jomhuria text-4xl">
                       {formatCurrency(transaction.amount)}
                     </p>
-                    <p className="select-none font-medium text-blue-500">
+                    <div className="flex items-center gap-3">
+                      <Button
+                        type="button"
+                        size={"icon"}
+                        variant={"outline"}
+                        onClick={() =>
+                          updateTransactionStatus(transaction, "accepted")
+                        }
+                        className="bg-green-500 text-white hover:bg-green-600 hover:text-white"
+                      >
+                        <Check />
+                      </Button>
+
+                      <Button
+                        type="button"
+                        size={"icon"}
+                        onClick={() =>
+                          updateTransactionStatus(transaction, "rejected")
+                        }
+                        className="bg-red-500 text-white hover:bg-red-600"
+                      >
+                        <X />
+                      </Button>
+                    </div>
+
+                    {/* TODO: Is this necessary? */}
+                    {/* <p className="select-none font-medium text-blue-500">
                       {transaction.status === "pending"
                         ? "En attente"
                         : capitalize(transaction.status)}
-                    </p>
+                    </p> */}
                   </div>
                   <Separator />
                 </>
@@ -111,7 +113,7 @@ export default function DashboardActivity() {
                 <>
                   <div
                     key={index}
-                    className="flex items-center justify-between"
+                    className="flex flex-wrap items-center justify-between gap-4"
                   >
                     <div>
                       <p className="text-base">{transaction.sender}</p>

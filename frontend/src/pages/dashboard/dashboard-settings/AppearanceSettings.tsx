@@ -26,8 +26,8 @@ export default function AppearanceSettings() {
   };
 
   return (
-    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-52">
-      <Card className="w-10/12">
+    <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
           <CardTitle>Préférences de police</CardTitle>
           <CardDescription>
@@ -50,7 +50,7 @@ export default function AppearanceSettings() {
           </Select>
         </CardContent>
       </Card>
-      <Card className="w-10/12">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
           <CardTitle>Préférences de mode</CardTitle>
           <CardDescription>
@@ -61,7 +61,7 @@ export default function AppearanceSettings() {
           <ModeButtons />
         </CardContent>
       </Card>
-      <Card className="w-10/12">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
           <CardTitle>Préférences de couleurs</CardTitle>
           <CardDescription>
@@ -72,70 +72,70 @@ export default function AppearanceSettings() {
           <section className="flex flex-wrap gap-2">
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-green-500"></div>
               <p className="ml-3">Vert</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-blue-500"></div>
               <p className="ml-3">Bleu</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-red-500"></div>
               <p className="ml-3">Rouge</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-yellow-500"></div>
               <p className="ml-3">Jaune</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-orange-500"></div>
               <p className="ml-3">Orange</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-rose-500"></div>
               <p className="ml-3">Rose</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-purple-500"></div>
               <p className="ml-3">Violet</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-gray-500"></div>
               <p className="ml-3">Gris</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-slate-500"></div>
               <p className="ml-3">Ardoise</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-neutral-500"></div>
               <p className="ml-3">Neutre</p>

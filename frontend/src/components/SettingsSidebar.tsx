@@ -51,9 +51,9 @@ export default function SettingsSidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/appearance") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link to={"/dashboard/settings/themes"}>
+              <Link to={"/dashboard/settings/appearance"}>
                 <Palette size={20} />
                 Apparence
               </Link>
@@ -71,7 +71,7 @@ export default function SettingsSidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/display") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/security") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/settings/security"}>
                 <LockIcon size={20} />
@@ -137,9 +137,9 @@ export default function SettingsSidebar() {
                     asChild
                     size={"icon"}
                     variant={"ghost"}
-                    className={`${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                    className={`${isActive("/dashboard/settings/appearance") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
                   >
-                    <Link to={"/dashboard/settings/themes"}>
+                    <Link to={"/dashboard/settings/appearance"}>
                       <Palette size={20} />
                       <span className="sr-only">Apparence</span>
                     </Link>
@@ -183,7 +183,12 @@ export default function SettingsSidebar() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button asChild size={"icon"} variant={"ghost"}>
+                <Button
+                  asChild
+                  size={"icon"}
+                  variant={"ghost"}
+                  className={"hover:bg-transparent"}
+                >
                   <Link to={"/dashboard"}>
                     <ArrowLeft size={20} />
                     <span className="sr-only">Retouner</span>

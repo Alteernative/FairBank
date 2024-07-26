@@ -6,10 +6,10 @@ export function ModeButtons() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-col gap-2 sm:flex-row">
       <Button
         variant="outline"
-        className="flex items-center gap-2"
+        className="flex items-center justify-start gap-2"
         onClick={() => setTheme("light")}
       >
         <Sun className="h-[1.2rem] w-[1.2rem]" />
@@ -18,7 +18,7 @@ export function ModeButtons() {
       </Button>
       <Button
         variant="outline"
-        className="flex items-center gap-2"
+        className="flex items-center justify-start gap-2"
         onClick={() => setTheme("dark")}
       >
         <Moon className="h-[1.2rem] w-[1.2rem]" />
@@ -27,7 +27,7 @@ export function ModeButtons() {
       </Button>
       <Button
         variant="outline"
-        className="flex items-center gap-2"
+        className="flex items-center justify-start gap-2"
         onClick={() => setTheme("system")}
       >
         <SunMoon className="h-[1.2rem] w-[1.2rem]" />

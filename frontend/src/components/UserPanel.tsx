@@ -180,7 +180,7 @@ export default function UserPanel() {
   console.log(user);
   return (
     <>
-      <section className="fixed right-0 hidden h-screen w-72 flex-col items-center justify-between px-3 py-5 lg:flex lg:border-l">
+      <aside className="fixed right-0 hidden h-screen w-72 flex-col items-center justify-between px-3 py-5 lg:flex lg:border-l">
         <div className="flex w-full flex-col items-center gap-3">
           {user.image_url ? (
             <img
@@ -399,7 +399,7 @@ export default function UserPanel() {
             ))}
           </div>
         </div>
-      </section>
+      </aside>
 
       <aside className="fixed right-0 h-screen w-14 border-l py-5 lg:w-72">
         <div className="flex h-full w-full flex-col items-center lg:hidden">
@@ -410,7 +410,7 @@ export default function UserPanel() {
               className="size-10 cursor-pointer rounded-full"
             />
           ) : (
-            <CircleUser className="size-16" />
+            <CircleUser className="size-10 cursor-pointer" />
           )}
           <nav className="mb-5 mt-16 flex h-full flex-col items-center justify-between">
             <TooltipProvider>
@@ -423,7 +423,7 @@ export default function UserPanel() {
                           <Send size={20} />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                         <form onSubmit={sendForm.handleSubmit(submission)}>
                           <DialogHeader>
                             <DialogTitle>Envoyer des fonds</DialogTitle>
@@ -463,7 +463,7 @@ export default function UserPanel() {
                               />
                             </div>
                           </div>
-                          <DialogFooter>
+                          <DialogFooter className="flex flex-row justify-end">
                             <DialogClose asChild>
                               <Button type="submit">Envoyer</Button>
                             </DialogClose>
@@ -482,7 +482,7 @@ export default function UserPanel() {
                           <HandCoins size={20} />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                         <form
                           onSubmit={requestForm.handleSubmit(requestTransfer)}
                         >
@@ -524,7 +524,7 @@ export default function UserPanel() {
                               />
                             </div>
                           </div>
-                          <DialogFooter>
+                          <DialogFooter className="flex flex-row justify-end">
                             <DialogClose asChild>
                               <Button type="submit">Demander</Button>
                             </DialogClose>
@@ -543,7 +543,7 @@ export default function UserPanel() {
                           <DollarSign size={20} />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                         <form onSubmit={depositForm.handleSubmit(deposer)}>
                           <DialogHeader>
                             <DialogTitle>Déposer des fonds</DialogTitle>
@@ -568,7 +568,7 @@ export default function UserPanel() {
                               />
                             </div>
                           </div>
-                          <DialogFooter>
+                          <DialogFooter className="flex flex-row justify-end">
                             <DialogClose asChild>
                               <Button type="submit">Déposer</Button>
                             </DialogClose>

@@ -53,8 +53,8 @@ export default function AccountSettings() {
   };
 
   return (
-    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-52">
-      <Card className="w-10/12">
+    <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
           <CardTitle>Courriel</CardTitle>
           <CardDescription>
@@ -75,7 +75,7 @@ export default function AccountSettings() {
         onSubmit={handleSubmit(handlePassword)}
         className="flex flex-col gap-4"
       >
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Nouveau mot de passe</CardTitle>
             <CardDescription>Entrez un nouveau mot de passe</CardDescription>
@@ -130,7 +130,7 @@ export default function AccountSettings() {
             </div>
           </CardContent>
         </Card>
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Confirmer le nouveau mot de passe</CardTitle>
             <CardDescription>

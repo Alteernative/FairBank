@@ -33,7 +33,7 @@ export default function DashboardOverview() {
   };
 
   return (
-    <main className="mx-14 h-full w-full bg-muted/20 px-10 py-5 lg:ml-52 lg:mr-72 lg:px-5">
+    <main className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">
         Bonjour {user.first_name}
       </h1>

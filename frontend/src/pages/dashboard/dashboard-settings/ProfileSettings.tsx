@@ -90,12 +90,12 @@ export default function ProfileSettings() {
   };
 
   return (
-    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-52">
+    <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
       <form
         onChange={handleSubmit(handleImage)}
         className="flex flex-col gap-4"
       >
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Image de profil</CardTitle>
             <CardDescription>Modifiez votre image de profil.</CardDescription>
@@ -131,7 +131,7 @@ export default function ProfileSettings() {
       </form>
       <Separator />
       <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Prénom</CardTitle>
             <CardDescription>
@@ -149,7 +149,7 @@ export default function ProfileSettings() {
             />
           </CardContent>
         </Card>
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Nom</CardTitle>
             <CardDescription>

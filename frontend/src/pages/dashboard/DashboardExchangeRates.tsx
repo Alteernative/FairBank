@@ -199,7 +199,7 @@ export default function DashboardExchangeRates() {
   }
 
   return (
-    <main className="mx-14 h-screen w-full bg-muted/20 px-10 py-5 lg:ml-52 lg:mr-72 lg:px-5">
+    <main className="mx-14 h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 w-full font-jomhuria text-6xl">Taux de change</h1>
       <p className="mb-2 w-full text-center text-3xl font-bold">
         Taux actuels selon le CAD 🇨🇦:
