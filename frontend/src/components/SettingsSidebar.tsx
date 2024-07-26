@@ -183,7 +183,12 @@ export default function SettingsSidebar() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button asChild size={"icon"} variant={"ghost"}>
+                <Button
+                  asChild
+                  size={"icon"}
+                  variant={"ghost"}
+                  className={"hover:bg-transparent"}
+                >
                   <Link to={"/dashboard"}>
                     <ArrowLeft size={20} />
                     <span className="sr-only">Retouner</span>
