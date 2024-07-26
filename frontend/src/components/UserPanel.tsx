@@ -363,7 +363,7 @@ export default function UserPanel() {
             draggable="false"
             className="p-3"
           />
-          <p className="fixed bottom-[32.6rem] right-44 select-none text-[1rem] font-medium text-white">
+          <p className="absolute bottom-[1.75rem] right-[10rem] select-none text-base font-medium text-white">
             {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
         </div>
