@@ -29,37 +29,31 @@ export default function SettingsSidebar() {
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
           <div className="flex flex-col gap-5">
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings"}>
                 <UserRoundPen size={20} />
                 Profile
               </Link>
             </Button>
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings/account") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/account") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings/account"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings/account"}>
                 <Wallet size={20} />
                 Compte
               </Link>
             </Button>
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings/themes"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings/themes"}>
                 <Palette size={20} />
                 Apparence
               </Link>
@@ -107,46 +101,81 @@ export default function SettingsSidebar() {
             <div className="flex flex-col gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings"}>
-                    <UserRoundPen size={20} />
-                    <span className="sr-only">Profile</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                  >
+                    <Link to={"/dashboard/settings"}>
+                      <UserRoundPen size={20} />
+                      <span className="sr-only">Profile</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Profile</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings/account"}>
-                    <Wallet size={20} />
-                    <span className="sr-only">Compte</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/settings/account") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                  >
+                    <Link to={"/dashboard/settings/account"}>
+                      <Wallet size={20} />
+                      <span className="sr-only">Compte</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Compte</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings/themes"}>
-                    <Palette size={20} />
-                    <span className="sr-only">Apparence</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                  >
+                    <Link to={"/dashboard/settings/themes"}>
+                      <Palette size={20} />
+                      <span className="sr-only">Apparence</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Apparence</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings/notifications"}>
-                    <Bell size={20} />
-                    <span className="sr-only">Notifications</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/settings/notifications") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                  >
+                    <Link to={"/dashboard/settings/notifications"}>
+                      <Bell size={20} />
+                      <span className="sr-only">Notifications</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Notifications</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings/security"}>
-                    <LockIcon size={20} />
-                    <span className="sr-only">Sécurité</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/settings/security") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+                  >
+                    <Link to={"/dashboard/settings/security"}>
+                      <LockIcon size={20} />
+                      <span className="sr-only">Sécurité</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Sécurité</TooltipContent>
               </Tooltip>
@@ -154,10 +183,12 @@ export default function SettingsSidebar() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link to={"/dashboard"}>
-                  <ArrowLeft size={20} />
-                  <span className="sr-only">Retouner</span>
-                </Link>
+                <Button asChild size={"icon"} variant={"ghost"}>
+                  <Link to={"/dashboard"}>
+                    <ArrowLeft size={20} />
+                    <span className="sr-only">Retouner</span>
+                  </Link>
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="right">Retouner</TooltipContent>
             </Tooltip>

@@ -62,7 +62,7 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard"}>
                 <LayoutDashboard size={20} />
@@ -72,7 +72,7 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/transactions") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/transactions"}>
                 <ScrollText size={20} />
@@ -82,7 +82,7 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/activity") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/activity") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/activity"}>
                 <Radio size={20} />
@@ -92,7 +92,7 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/exchange-rates") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/exchange-rates") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/exchange-rates"}>
                 <BsCurrencyExchange size={20} />
@@ -106,7 +106,7 @@ export default function Sidebar() {
             <Button
               asChild
               variant="ghost"
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/help") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/help") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/help"}>
                 <CircleHelp size={20} />
@@ -116,7 +116,9 @@ export default function Sidebar() {
             <Button
               asChild
               variant={"ghost"}
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={
+                "flex w-full items-center justify-start gap-2 hover:bg-transparent hover:underline"
+              }
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
@@ -138,44 +140,72 @@ export default function Sidebar() {
       {/* Responsive nav */}
       <div className="flex h-full w-full flex-col items-center lg:hidden">
         <Link to={"/"}>
-          <Home size={20} className="mb-10" />
+          <Home size={20} />
         </Link>
-        <nav className="mb-5 mt-10 flex h-full flex-col items-center justify-between">
+        <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
           <TooltipProvider>
             <div className="flex flex-col items-center gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard"}>
-                    <LayoutDashboard size={20} />
-                    <span className="sr-only">Menu</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard") ? "bg-muted" : "hover:bg-transparent"}`}
+                  >
+                    <Link to={"/dashboard"}>
+                      <LayoutDashboard size={20} />
+                      <span className="sr-only">Menu</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Menu</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/transactions"}>
-                    <ScrollText size={20} />
-                    <span className="sr-only">Historique</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/transactions") ? "bg-muted" : "hover:bg-transparent"}`}
+                  >
+                    <Link to={"/dashboard/transactions"}>
+                      <ScrollText size={20} />
+                      <span className="sr-only">Historique</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Historique</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/activity"}>
-                    <Radio size={20} />
-                    <span className="sr-only">Activité</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/activity") ? "bg-muted" : "hover:bg-transparent"}`}
+                  >
+                    <Link to={"/dashboard/activity"}>
+                      <Radio size={20} />
+                      <span className="sr-only">Activité</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Activité</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/exchange-rates"}>
-                    <BsCurrencyExchange size={20} />
-                    <span className="sr-only">Taux de change</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/exchange-rates") ? "bg-muted" : "hover:bg-transparent"}`}
+                  >
+                    <Link to={"/dashboard/exchange-rates"}>
+                      <BsCurrencyExchange size={20} />
+                      <span className="sr-only">Taux de change</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Taux de change</TooltipContent>
               </Tooltip>
@@ -184,19 +214,28 @@ export default function Sidebar() {
             <div className="flex flex-col items-center gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/help"}>
-                    <CircleHelp size={20} />
-                    <span className="sr-only">Aide</span>
-                  </Link>
+                  <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className={`${isActive("/dashboard/help") ? "bg-muted" : "hover:bg-transparent"}`}
+                  >
+                    <Link to={"/dashboard/help"}>
+                      <CircleHelp size={20} />
+                      <span className="sr-only">Aide</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Aide</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link to={"/dashboard/settings"}>
-                    <Settings size={20} />
-                    <span className="sr-only">Paramètres</span>
-                  </Link>
+                  <Button asChild size={"icon"} variant={"ghost"}>
+                    <Link to={"/dashboard/settings"}>
+                      <Settings size={20} />
+                      <span className="sr-only">Paramètres</span>
+                    </Link>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">Paramètres</TooltipContent>
               </Tooltip>
