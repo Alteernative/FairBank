@@ -116,7 +116,9 @@ export default function Sidebar() {
             <Button
               asChild
               variant={"ghost"}
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={
+                "flex w-full items-center justify-start gap-2 hover:bg-transparent hover:underline"
+              }
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
@@ -228,12 +230,7 @@ export default function Sidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    asChild
-                    size={"icon"}
-                    variant={"ghost"}
-                    className={`${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent"}`}
-                  >
+                  <Button asChild size={"icon"} variant={"ghost"}>
                     <Link to={"/dashboard/settings"}>
                       <Settings size={20} />
                       <span className="sr-only">Paramètres</span>
