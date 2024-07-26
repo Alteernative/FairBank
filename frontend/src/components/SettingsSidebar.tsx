@@ -95,10 +95,10 @@ export default function SettingsSidebar() {
 
       {/* Responsive nav */}
       <div className="flex h-full w-full flex-col items-center lg:hidden">
-        <Settings size={25} className="mb-10" />
-        <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
+        <Settings size={25} className="mt-4" />
+        <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
           <TooltipProvider>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col items-center gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
