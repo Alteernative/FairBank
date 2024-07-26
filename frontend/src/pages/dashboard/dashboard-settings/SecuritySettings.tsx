@@ -72,7 +72,7 @@ export default function DisplaySettings() {
                   Demander
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent>
+              <AlertDialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                 <AlertDialogHeader>
                   <AlertDialogTitle>
                     Êtes-vous sûr de vouloir fermer votre compte ?
@@ -85,8 +85,10 @@ export default function DisplaySettings() {
                     et sera traitée dans les plus brefs délais.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogFooter className="flex flex-row items-center justify-end space-x-2">
+                  <AlertDialogCancel className="mt-0">
+                    Annuler
+                  </AlertDialogCancel>
                   <AlertDialogAction
                     type="submit"
                     className={buttonVariants({ variant: "destructive" })}
