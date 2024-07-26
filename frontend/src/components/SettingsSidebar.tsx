@@ -29,37 +29,31 @@ export default function SettingsSidebar() {
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
           <div className="flex flex-col gap-5">
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings"}>
                 <UserRoundPen size={20} />
                 Profile
               </Link>
             </Button>
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings/account") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/account") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings/account"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings/account"}>
                 <Wallet size={20} />
                 Compte
               </Link>
             </Button>
             <Button
+              asChild
               variant="ghost"
-              className={`${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
+              className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings/themes") ? "bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
-              <Link
-                to={"/dashboard/settings/themes"}
-                className="flex w-full items-center justify-start gap-2"
-              >
+              <Link to={"/dashboard/settings/themes"}>
                 <Palette size={20} />
                 Apparence
               </Link>
