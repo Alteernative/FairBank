@@ -111,7 +111,7 @@ export default function DashboardActivity() {
                 <>
                   <div
                     key={index}
-                    className="flex items-center justify-between"
+                    className="flex flex-wrap items-center justify-between gap-4"
                   >
                     <div>
                       <p className="text-base">{transaction.sender}</p>
