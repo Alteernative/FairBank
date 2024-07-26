@@ -11,7 +11,7 @@ import FAQPage from "./pages/FAQPage";
 import Politiques from "./pages/Politiques";
 import DashboardLayout from "./pages/dashboard/DashboardLayout.tsx";
 import DashboardOverview from "./pages/dashboard/DashboardOverview.tsx";
-import DashboardTransactions from "./pages/transactions/DashboardTransactions.tsx";
+import DashboardTransactions from "./pages/dashboard/transactions/DashboardTransactions.tsx";
 import DashboardExchangeRates from "./pages/dashboard/DashboardExchangeRates.tsx";
 import DashboardActivity from "./pages/dashboard/DashboardActivity.tsx";
 import DashboardHelp from "./pages/dashboard/DashboardHelp.tsx";
@@ -146,7 +146,7 @@ export default function App() {
             }
           />
           <Route
-            path="/dashboard/settings/themes"
+            path="/dashboard/settings/apparence"
             element={
               <UserContextProvider>
                 <Settings>
