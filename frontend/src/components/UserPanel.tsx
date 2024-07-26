@@ -412,7 +412,7 @@ export default function UserPanel() {
           ) : (
             <CircleUser className="mt-2 size-10 cursor-pointer" />
           )}
-          <nav className="mb-5 mt-16 flex h-full flex-col items-center justify-between">
+          <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
             <TooltipProvider>
               <div className="flex flex-col items-center gap-10">
                 <Tooltip>
