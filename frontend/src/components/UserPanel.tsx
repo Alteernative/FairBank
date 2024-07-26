@@ -580,8 +580,6 @@ export default function UserPanel() {
                   <TooltipContent side="left">Déposer</TooltipContent>
                 </Tooltip>
               </div>
-
-              <div className="flex flex-col items-center gap-10"></div>
             </TooltipProvider>
           </nav>
         </div>
