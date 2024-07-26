@@ -54,9 +54,9 @@ export default function DisplaySettings() {
   };
 
   return (
-    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-10 pt-[7rem] lg:ml-60">
+    <main className="ml-14 flex w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-60">
       <form onSubmit={handleSubmit(handleAccountDelete)}>
-        <Card className="w-10/12">
+        <Card className="w-full sm:w-10/12">
           <CardHeader>
             <CardTitle>Fermez votre compte</CardTitle>
             <CardDescription>

@@ -410,7 +410,7 @@ export default function UserPanel() {
               className="size-10 cursor-pointer rounded-full"
             />
           ) : (
-            <CircleUser className="size-16" />
+            <CircleUser className="size-10 cursor-pointer" />
           )}
           <nav className="mb-5 mt-16 flex h-full flex-col items-center justify-between">
             <TooltipProvider>
