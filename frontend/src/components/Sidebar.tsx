@@ -140,7 +140,7 @@ export default function Sidebar() {
       {/* Responsive nav */}
       <div className="flex h-full w-full flex-col items-center lg:hidden">
         <Link to={"/"}>
-          <Home size={20} />
+          <Home size={20} className="mt-4" />
         </Link>
         <nav className="mb-5 mt-20 flex h-full flex-col items-center justify-between">
           <TooltipProvider>
