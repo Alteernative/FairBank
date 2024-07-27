@@ -40,5 +40,9 @@
   "tier1Description": "Basic plan for individuals, with essential features.",
 
   "toggleFR": "French",
-  "toggleEN": "English"
+  "toggleEN": "English",
+
+  "lightMode": "Light",
+  "darkMode": "Dark",
+  "systemMode": "System"
 }

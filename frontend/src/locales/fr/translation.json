@@ -39,5 +39,9 @@
   "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles.",
 
   "toggleFR": "Français",
-  "toggleEN": "Anglais"
+  "toggleEN": "Anglais",
+
+  "lightMode": "Clair",
+  "darkMode": "Sombre",
+  "systemMode": "Système"
 }
