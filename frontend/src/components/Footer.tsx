@@ -74,27 +74,27 @@ export default function Footer() {
           <nav className=" flex flex-col items-start gap-2 lg:items-center">
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
-                {t("footerPlans")}
+                {t("PlansNavLink")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/services"} onClick={scrollToTop}>
-                {t("footerServices")}
+                {t("ServicesNavLink")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/apropos"} onClick={scrollToTop}>
-                {t("footerAboutUs")}
+                {t("AboutUsNavLink")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/faq"} onClick={scrollToTop}>
-                {t("footerFAQ")}
+                {t("FAQNavLink")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/politiques"} onClick={scrollToTop}>
-                {t("footerPrivacy")}
+                {t("PrivacyNavLink")}
               </Link>
             </Button>
           </nav>
