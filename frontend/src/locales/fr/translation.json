@@ -1,5 +1,22 @@
 {
   "heroH1": "L'intérêt de notre banque? Votre bien-être financier.",
-  "heroH1_v2": "L'intérêt de notre banque&nbsp;?<br />Votre bien-être financier.",
-  "heroH2": "Ouvrez un compte en quelques minutes et dites adieu aux intérêts."
+  "heroH2": "Ouvrez un compte en quelques minutes et dites adieu aux intérêts.",
+  "sponsorsH2": "Magasinez dans vos boutiques préférées",
+  "signupButton": "Devenir membre",
+
+  "aboutH2": "Faites valoir vos avoirs",
+  "aboutP": "Nous nous engageons à offrir des services bancaires efficaces pour vous laisser investir dans votre futur. Envoyez de l'argent sans payer aucuns frais de transfert. Nos services sont facilement accessibles de n'importe où, à n'importe quel moment.",
+
+  "ctaH2": "Obtenez les services bancaires que vous méritez!",
+  "ctaP": "Des frais mensuels? Pas question. Profitez de retraits gratuits à n'importe quel guichet automatique au Canada et d'une remise en argent sur chaque achat avec la carte FairBank.",
+
+  "reviewsH2": "Avis de nos membres",
+  "reviews1P": "FairBank a transformé ma gestion financière. Service client exceptionnel!",
+  "reviews2P": "La simplicité d'utilisation de FairBank est impressionnante.",
+  "reviews3P": "Le taux d'échange est compétitif et fréquemment mis à jour!",
+  "reviews4P": "Services en ligne toujours rapides chez FairBank.",
+  "reviews5P": "Excellent support client, toujours à l'écoute.",
+
+  "toggleFR": "Français",
+  "toggleEN": "Anglais"
 }

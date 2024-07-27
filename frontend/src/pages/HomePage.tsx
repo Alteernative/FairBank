@@ -16,14 +16,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { FaApple, FaAmazon, FaShopify, FaMicrosoft } from "react-icons/fa";
 import { SiWalmart, SiZara, SiMercedes, SiTesla } from "react-icons/si";
+import { Trans, useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 export default function Home() {
+  const { i18n, t } = useTranslation();
+
   return (
     <main className="mt-10">
       {Hero()}
       {Sponsors()}
       {About()}
-      {CallToAction()}
+      {CTA()}
       {Reviews()}
     </main>
   );
@@ -35,20 +39,17 @@ function Hero() {
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            L'intérêt de notre banque&nbsp;?
-            <br />
-            Votre bien-être financier.
+            {/* {t("heroH1")} */}
+            <Trans i18nKey={"heroH1"} />
           </h1>
-          <h2 className="text-xl tracking-tight lg:text-2xl">
-            Ouvrez un compte en quelques minutes et dites adieu aux intérêts.
-          </h2>
+          <h2 className="text-xl tracking-tight lg:text-2xl">{t("heroH2")}</h2>
           <Button
             asChild
             variant={"default"}
             size={"lg"}
             className="min-w-52 max-w-72 rounded-3xl"
           >
-            <Link to={"/inscription"}>Devenir membre</Link>
+            <Link to={"/inscription"}>{t("signupButton")}</Link>
           </Button>
         </div>
       </div>
@@ -63,10 +64,7 @@ function Hero() {
 function Sponsors() {
   return (
     <section className="mt-24 flex flex-col gap-7 text-center opacity-70 dark:opacity-50">
-      <h2 className="font-semibold tracking-wide">
-        Magasinez dans vos boutiques préférées
-      </h2>
-      {/* <div className="flex w-full items-center justify-around"> */}
+      <h2 className="font-semibold tracking-wide">{t("sponsorsH2")}</h2>
       <div className="md: grid grid-cols-2 items-center justify-items-center gap-y-10 md:grid-cols-4 lg:grid-cols-8">
         <FaApple size={50} />
         <FaAmazon size={50} />
@@ -90,36 +88,24 @@ function About() {
       <div className="flex flex-1 flex-col items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
           <h2 className="text-4xl font-semibold tracking-tight">
-            Faites valoir vos avoirs
+            {t("aboutH2")}
           </h2>
-          <p className="leading-loose">
-            Nous nous engageons à offrir des services bancaires efficaces pour
-            vous laisser investir dans votre futur. Envoyez de l'argent sans
-            payer aucuns frais de transfert.
-            <br />
-            Nos services sont facilement accessibles de n'importe où, à
-            n'importe quel moment.
-          </p>
+          <p className="leading-loose">{t("aboutP")}</p>
         </div>
       </div>
     </section>
   );
 }
 
-function CallToAction() {
+function CTA() {
   return (
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
           <h2 className="text-4xl font-semibold tracking-tight">
-            Obtenez les services bancaires que vous méritez!
+            {t("ctaH2")}
           </h2>
-          <p className="leading-loose">
-            Des frais mensuels? Pas question. <br />
-            Profitez de retraits gratuits à n'importe quel guichet automatique
-            au Canada et d'une remise en argent sur chaque achat avec la carte
-            FairBank.
-          </p>
+          <p className="leading-loose">{t("ctaP")}</p>
         </div>
       </div>
       <div className="hidden flex-1 items-center justify-center md:flex">
@@ -133,7 +119,7 @@ function Reviews() {
   return (
     <section className="mx-10 my-20 flex flex-col items-center justify-center">
       <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70 dark:opacity-50">
-        Avis de nos membres
+        {t("reviewsH2")}
       </h2>
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
@@ -148,10 +134,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>27/01/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">
-                  FairBank a transformé ma gestion financière. Service client
-                  exceptionnel!
-                </p>
+                <p className="leading-relaxed">{t("reviews1P")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -166,9 +149,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>3/12/2023</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">
-                  La simplicité d'utilisation de FairBank est impressionnante.
-                </p>
+                <p className="leading-relaxed">{t("reviews2P")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -183,9 +164,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>23/02/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">
-                  Le taux d'échange est compétitif et fréquemment mis à jour!
-                </p>
+                <p className="leading-relaxed">{t("reviews3P")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -200,9 +179,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>19/03/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">
-                  Services en ligne toujours rapides chez FairBank
-                </p>
+                <p className="leading-relaxed">{t("reviews4P")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -217,9 +194,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>11/04/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">
-                  Excellent support client, toujours à l'écoute.
-                </p>
+                <p className="leading-relaxed">{t("reviews5P")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
