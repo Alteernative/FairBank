@@ -28,162 +28,165 @@ import NotificationsSettings from "./pages/dashboard/dashboard-settings/Notifica
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 import "./fonts.css";
 import "./utils/i8n.ts";
+import { LanguageProvider } from "./provider/LanguageProvider.tsx";
 
 export default function App() {
   return (
     <ThemeProvider storageKey="vite-ui-theme">
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout>
-                <HomePage />
-              </Layout>
-            }
-          />
-          <Route
-            path="/particuliers"
-            element={
-              <Layout>
-                <Personal />
-              </Layout>
-            }
-          />
-          <Route
-            path="/services"
-            element={
-              <Layout>
-                <Services />
-              </Layout>
-            }
-          />
-          <Route
-            path="/apropos"
-            element={
-              <Layout>
-                <About />
-              </Layout>
-            }
-          />
-          <Route path="/connexion" element={<SignIn />} />
-          <Route path="/inscription" element={<SignUp />} />
-          <Route
-            path="/faq"
-            element={
-              <Layout>
-                <FAQPage />
-              </Layout>
-            }
-          />
-          <Route
-            path="/politiques"
-            element={
-              <Layout>
-                <Politiques />
-              </Layout>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <DashboardLayout>
-                <DashboardOverview />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/transactions"
-            element={
-              <DashboardLayout>
-                <TransactionContextProvider>
-                  <DashboardTransactions />
-                </TransactionContextProvider>
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/activity"
-            element={
-              <DashboardLayout>
-                <DashboardActivity />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/exchange-rates"
-            element={
-              <DashboardLayout>
-                <DashboardExchangeRates />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/help"
-            element={
-              <DashboardLayout>
-                <DashboardHelp />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/settings"
-            element={
-              <UserContextProvider>
-                <Settings>
-                  <ProfileSettings />
-                </Settings>
-              </UserContextProvider>
-            }
-          />
-          <Route
-            path="/dashboard/settings/account"
-            element={
-              <UserContextProvider>
-                <Settings>
-                  <AccountSettings />
-                </Settings>
-              </UserContextProvider>
-            }
-          />
-          <Route
-            path="/dashboard/settings/appearance"
-            element={
-              <UserContextProvider>
-                <Settings>
-                  <AppearanceSettings />
-                </Settings>
-              </UserContextProvider>
-            }
-          />
-          <Route
-            path="/dashboard/settings/notifications"
-            element={
-              <UserContextProvider>
-                <Settings>
-                  <NotificationsSettings />
-                </Settings>
-              </UserContextProvider>
-            }
-          />
-          <Route
-            path="/dashboard/settings/security"
-            element={
-              <UserContextProvider>
-                <Settings>
-                  <SecuritySettings />
-                </Settings>
-              </UserContextProvider>
-            }
-          />
-          <Route path="/password-reset/:token" element={<PasswordReset />} />
-          <Route
-            path="/request/password-reset/"
-            element={<PasswordResetRequest />}
-          />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </Router>
+      <LanguageProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/particuliers"
+              element={
+                <Layout>
+                  <Personal />
+                </Layout>
+              }
+            />
+            <Route
+              path="/services"
+              element={
+                <Layout>
+                  <Services />
+                </Layout>
+              }
+            />
+            <Route
+              path="/apropos"
+              element={
+                <Layout>
+                  <About />
+                </Layout>
+              }
+            />
+            <Route path="/connexion" element={<SignIn />} />
+            <Route path="/inscription" element={<SignUp />} />
+            <Route
+              path="/faq"
+              element={
+                <Layout>
+                  <FAQPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/politiques"
+              element={
+                <Layout>
+                  <Politiques />
+                </Layout>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <DashboardLayout>
+                  <DashboardOverview />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/transactions"
+              element={
+                <DashboardLayout>
+                  <TransactionContextProvider>
+                    <DashboardTransactions />
+                  </TransactionContextProvider>
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/activity"
+              element={
+                <DashboardLayout>
+                  <DashboardActivity />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/exchange-rates"
+              element={
+                <DashboardLayout>
+                  <DashboardExchangeRates />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/help"
+              element={
+                <DashboardLayout>
+                  <DashboardHelp />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/settings"
+              element={
+                <UserContextProvider>
+                  <Settings>
+                    <ProfileSettings />
+                  </Settings>
+                </UserContextProvider>
+              }
+            />
+            <Route
+              path="/dashboard/settings/account"
+              element={
+                <UserContextProvider>
+                  <Settings>
+                    <AccountSettings />
+                  </Settings>
+                </UserContextProvider>
+              }
+            />
+            <Route
+              path="/dashboard/settings/appearance"
+              element={
+                <UserContextProvider>
+                  <Settings>
+                    <AppearanceSettings />
+                  </Settings>
+                </UserContextProvider>
+              }
+            />
+            <Route
+              path="/dashboard/settings/notifications"
+              element={
+                <UserContextProvider>
+                  <Settings>
+                    <NotificationsSettings />
+                  </Settings>
+                </UserContextProvider>
+              }
+            />
+            <Route
+              path="/dashboard/settings/security"
+              element={
+                <UserContextProvider>
+                  <Settings>
+                    <SecuritySettings />
+                  </Settings>
+                </UserContextProvider>
+              }
+            />
+            <Route path="/password-reset/:token" element={<PasswordReset />} />
+            <Route
+              path="/request/password-reset/"
+              element={<PasswordResetRequest />}
+            />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </Router>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
