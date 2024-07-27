@@ -130,7 +130,7 @@ export default function Footer() {
             </nav>
           </section>
           {/* Right */}
-          <section className="flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
+          <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
             <h3 className="mb-5 cursor-default text-xl font-semibold">
               {t("footerContactUs")}
             </h3>
