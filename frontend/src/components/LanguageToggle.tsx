@@ -8,15 +8,10 @@ import {
 } from "./ui/dropdown-menu";
 import capitalize from "@/utils/capitalize";
 import { LANGUAGES } from "@/constants";
+import { useLanguage } from "@/provider/LanguageProvider";
 
 export function LanguageToggle() {
-  // const { setLanguage } = useLanguage();
-
-  // const languages = {
-  //   // francais: "fr",
-  //   français: "fr",
-  //   anglais: "en",
-  // };
+  const { setLanguage } = useLanguage();
 
   return (
     <DropdownMenu>
