@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type HeaderButtonsProps = {
   isAuthenticated: boolean;
@@ -14,6 +15,8 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
   logoutUser,
   className,
 }: HeaderButtonsProps) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className={cn(
@@ -28,7 +31,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="rounded-3xl font-semibold"
           >
-            <Link to={"/dashboard"}>Tableau de bord</Link>
+            <Link to={"/dashboard"}>{t("dashboardBtn")}</Link>
           </Button>
           <Button
             variant={"destructive"}
@@ -36,7 +39,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             onClick={logoutUser}
           >
             <LogOut size={20} />
-            Se déconnecter
+            {t("signoutBtn")}
           </Button>
         </>
       ) : (
@@ -46,10 +49,10 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="rounded-3xl font-semibold"
           >
-            <Link to={"/connexion"}>Se connecter</Link>
+            <Link to={"/connexion"}>{t("signinBtn")}</Link>
           </Button>
           <Button asChild className="rounded-3xl">
-            <Link to={"/inscription"}>Devenir membre</Link>
+            <Link to={"/inscription"}>{t("signupBtn")}</Link>
           </Button>
         </>
       )}
