@@ -1,12 +1,17 @@
 import { Moon, Sun, SunMoon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/provider/ThemeProvider";
+import { cn } from "@/lib/utils";
 
-export function ModeButtons() {
+type ModeButtonsProps = {
+  className?: string;
+};
+
+export function ModeButtons({ className }: ModeButtonsProps) {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row">
+    <div className={cn("flex flex-col gap-2 sm:flex-row", className)}>
       <Button
         variant="outline"
         className="flex items-center justify-start gap-2"
