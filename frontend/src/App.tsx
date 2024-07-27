@@ -27,6 +27,7 @@ import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceS
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings.tsx";
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings.tsx";
 import "./fonts.css";
+import "./utils/i8n.ts";
 
 export default function App() {
   return (
