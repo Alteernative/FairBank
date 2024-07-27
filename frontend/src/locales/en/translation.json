@@ -3,7 +3,11 @@
   "heroH1_2": "Our bank's interest&nbsp;?<br />Your financial well-being.",
   "heroH2": "Open an account in minutes and say goodbye to interest.",
   "sponsorsH2": "Shop at your favorite stores",
-  "signupButton": "Become a member",
+
+  "signupBtn": "Become a member",
+  "siginpBtn": "Log in",
+  "signoutBtn": "Log out",
+  "dashboardBtn": "Dashboard",
 
   "aboutH2": "Value your assets",
   "aboutP": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, to any moment.",
@@ -17,6 +21,12 @@
   "reviews3P": "The exchange rate is competitive and frequently updated!",
   "reviews4P": "Always fast online services at FairBank.",
   "reviews5P": "Excellent customer support, always attentive.",
+
+  "plansH1": "Choose the plan that suits your needs!",
+  "annualBtn": "Yearly",
+  "monthlyBtn": "Monthly",
+
+  "tier1Description": "Basic plan for individuals, with essential features.",
 
   "toggleFR": "French",
   "toggleEN": "English"
