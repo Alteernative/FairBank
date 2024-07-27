@@ -16,11 +16,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { FaApple, FaAmazon, FaShopify, FaMicrosoft } from "react-icons/fa";
 import { SiWalmart, SiZara, SiMercedes, SiTesla } from "react-icons/si";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 
 export default function Home() {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <main className="mt-10">
@@ -39,8 +39,8 @@ function Hero() {
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            {/* {t("heroH1")} */}
-            <Trans i18nKey={"heroH1"} />
+            {t("heroH1")}
+            {/* <Trans i18nKey={"heroH1"} /> */}
           </h1>
           <h2 className="text-xl tracking-tight lg:text-2xl">{t("heroH2")}</h2>
           <Button
@@ -49,7 +49,7 @@ function Hero() {
             size={"lg"}
             className="min-w-52 max-w-72 rounded-3xl"
           >
-            <Link to={"/inscription"}>{t("signupButton")}</Link>
+            <Link to={"/inscription"}>{t("signupBtn")}</Link>
           </Button>
         </div>
       </div>
@@ -87,7 +87,7 @@ function About() {
       </div>
       <div className="flex flex-1 flex-col items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-4xl font-semibold tracking-tight">
+          <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
             {t("aboutH2")}
           </h2>
           <p className="leading-loose">{t("aboutP")}</p>
@@ -102,7 +102,7 @@ function CTA() {
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-4xl font-semibold tracking-tight">
+          <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
             {t("ctaH2")}
           </h2>
           <p className="leading-loose">{t("ctaP")}</p>
