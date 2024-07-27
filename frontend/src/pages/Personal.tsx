@@ -1,15 +1,17 @@
 import { Badge } from "@/components/ui/badge";
 import { CheckIcon } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function Particuliers() {
   const [isAnnual, setIsAnnual] = useState(true);
+  const { t } = useTranslation();
 
   return (
     <div className="mb-32 mt-12">
       <h1 className="mb-4 text-center font-jomhuria text-6xl">
-        Choisissez le plan qui correspond à vos besoins!
+        {t("plansH1")}
       </h1>
 
       {/* Pricing toggle */}
@@ -32,7 +34,7 @@ export default function Particuliers() {
             onClick={() => setIsAnnual(true)}
             aria-pressed={isAnnual}
           >
-            Annuel{" "}
+            {t("annualBtn")}{" "}
             <span
               className={
                 isAnnual
@@ -50,7 +52,7 @@ export default function Particuliers() {
             onClick={() => setIsAnnual(false)}
             aria-pressed={!isAnnual}
           >
-            Mensuel
+            {t("monthlyBtn")}
           </button>
         </div>
       </div>
@@ -71,8 +73,7 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan de base pour les particuliers, avec des fonctionnalités
-                essentielles.
+                {t("tier1Description")}
               </div>
               <Link
                 to={"/inscription"}
