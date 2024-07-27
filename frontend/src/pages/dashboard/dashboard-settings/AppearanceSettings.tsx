@@ -58,7 +58,7 @@ export default function AppearanceSettings() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ModeButtons />
+          <ModeButtons className="max-w-[20rem]" />
         </CardContent>
       </Card>
       <Card className="w-full sm:w-10/12">
@@ -69,7 +69,7 @@ export default function AppearanceSettings() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <section className="flex flex-wrap gap-2">
+          <section className="flex max-w-[20rem] flex-wrap gap-2">
             <Button
               variant={"outline"}
               className="flex w-full items-center justify-start sm:w-32"
