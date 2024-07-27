@@ -20,8 +20,10 @@ import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { ModeToggle } from "./ModeToggle";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
@@ -61,7 +63,7 @@ export default function Header() {
               to="/particuliers"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              Plans
+              {t("PlansNavLink")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -69,7 +71,7 @@ export default function Header() {
               to="/services"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              Services
+              {t("ServicesNavLink")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -77,7 +79,7 @@ export default function Header() {
               to="/apropos"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              À Propos
+              {t("AboutUsNavLink")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -85,7 +87,7 @@ export default function Header() {
               to="/faq"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              FAQ
+              {t("FAQNavLink")}
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -122,22 +124,22 @@ export default function Header() {
             <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
               <SheetClose asChild>
                 <Link to="/particuliers" className="hover:underline">
-                  Plans
+                  {t("PlansNavLink")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/services" className="hover:underline">
-                  Services
+                  {t("ServicesNavLink")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/apropos" className="hover:underline">
-                  À Propos
+                  {t("AboutUsNavLink")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/faq" className="hover:underline">
-                  FAQ
+                  {t("FAQNavLink")}
                 </Link>
               </SheetClose>
             </nav>
