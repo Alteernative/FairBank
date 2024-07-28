@@ -210,21 +210,26 @@ class UserViewset(viewsets.ViewSet):
 
     @action(detail=False, methods=['post'])
     def request_update(self, request):
-
+        user = request.user
         data = {
-            'nom': request.data.get('last_name'),
-            'prenom': request.data.get('first_name'),
+            'user': user.id,
+            'tmp_nom': request.data.get('tmp_nom'),
+            'tmp_prenom': request.data.get('tmp_prenom'),
+            'current_nom': request.data.get('current_nom'),
+            'current_prenom': request.data.get('current_prenom'),
             'email': request.data.get('email')
         }
 
         try:
             existing_request = PendingUsersUpdates.objects.get(email=data['email'])
-            existing_request.nom = data['nom']
-            existing_request.prenom = data['prenom']
+            existing_request.tmp_nom = data['tmp_nom']
+            existing_request.tmp_prenom = data['tmp_prenom']
+            existing_request.current_nom = data['current_nom']
+            existing_request.current_prenom = data['current_prenom']
             existing_request.save()
             serializer = PendingUsersUpdatesSerializer(existing_request)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except PendingUsersUpdates.ObjectDoesNotExist:
+        except PendingUsersUpdates.DoesNotExist:
             serializer = PendingUsersUpdatesSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
@@ -396,5 +401,14 @@ class AdminViewset(viewsets.ModelViewSet):
         contactus_messages = ContactUsMessages.objects.all()
 
         messages_serialized = ContactUsSerializer(contactus_messages, many=True)
+        # print(messages_serialized.data)
+        return Response(messages_serialized.data)
+
+    @action(detail=False, methods=['get'])
+    def list_all_requests(self, request):
+        contactus_messages = PendingUsersUpdates.objects.all()
+
+        messages_serialized = PendingUsersUpdatesSerializer(contactus_messages, many=True)
         print(messages_serialized.data)
         return Response(messages_serialized.data)
+
