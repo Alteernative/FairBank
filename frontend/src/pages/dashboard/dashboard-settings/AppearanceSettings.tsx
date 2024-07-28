@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 // FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
 export default function AppearanceSettings() {
@@ -48,6 +49,15 @@ export default function AppearanceSettings() {
               </SelectGroup>
             </SelectContent>
           </Select>
+        </CardContent>
+      </Card>
+      <Card className="w-full sm:w-10/12">
+        <CardHeader>
+          <CardTitle>Préférences de langue</CardTitle>
+          <CardDescription>Choisissez la langue.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <LanguageToggle />
         </CardContent>
       </Card>
       <Card className="w-full sm:w-10/12">
