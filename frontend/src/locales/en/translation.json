@@ -38,6 +38,14 @@
 
   "tier1Description": "Basic plan for individuals, with essential features.",
 
+  "aboutUsH1": "Who is Fairbank?",
+  "aboutUsMissionH2": "Our Mission",
+  "aboutUsMissionP1": "To help our customers succeed by providing quality banking services and helping them achieve their financial goals.",
+  "aboutUsMissionP2": "We are committed to providing efficient banking services by ensuring the security of your data so that you can invest in your future.",
+  "aboutUsValueH2": "Our Values",
+  "aboutUsValueP1": "Our Values",
+  "aboutUsValueP2": "Our Values",
+
   "faqQ1": "1. How do I open an account with FairBank?",
   "faqR1": "It couldn't be easier! You can open an account by visiting fairbank.com/inscription and applying online.",
   "faqQ2": "2. Who can open an account with FairBank?",

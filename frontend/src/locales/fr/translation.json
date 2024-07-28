@@ -38,6 +38,14 @@
 
   "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles.",
 
+  "aboutUsH1": "Qui est Fairbank ?",
+  "aboutUsMissionH2": "Notre Mission",
+  "aboutUsMissionP1": "Contribuer à la réussite des nos clients en leur offrant des services bancaires de qualité et en les aidant à atteindre leurs objectifs financiers.",
+  "aboutUsMissionP2": "Nous nous engageons à offrir des services bancaires efficaces en assurant la sécurité de vos données pour que vous puissiez investir dans votre futur.",
+  "aboutUsValueH2": "Nos Valeurs",
+  "aboutUsValueP1": "Nos Valeurs",
+  "aboutUsValueP2": "Nos Valeurs",
+
   "faqQ1": "1. Comment puis-je ouvrir un compte à FairBank?",
   "faqR1": "Rien de plus simple! Vous pouvez ouvrir un compte en visitant fairbank.com/inscription et en présentant une demande en ligne.",
   "faqQ2": "2. Qui peut ouvrir un compte à FairBank?",
