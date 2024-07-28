@@ -1,6 +1,5 @@
 {
   "heroH1": "Our bank's interest? Your financial well-being.",
-  "heroH1_2": "Our bank's interest&nbsp;?<br />Your financial well-being.",
   "heroH2": "Open an account in minutes and say goodbye to interest.",
   "sponsorsH2": "Shop at your favorite stores",
 
@@ -38,6 +37,27 @@
   "monthlyBtn": "Monthly",
 
   "tier1Description": "Basic plan for individuals, with essential features.",
+
+  "faqQ1": "1. How do I open an account with FairBank?",
+  "faqR1": "It couldn't be easier! You can open an account by visiting fairbank.com/inscription and applying online.",
+  "faqQ2": "2. Who can open an account with FairBank?",
+  "faqR2": "Every customer at FairBank must be a Canadian resident and over 18 years of age.",
+  "faqQ3": "3. Do direct deposits have a hold period?",
+  "faqR3": "No, your funds are available as soon as they are deposited.",
+  "faqQ4": "4. My account is locked. What do I need to do to regain access?",
+  "faqR4": "To unlock your account, please contact the FairBank Customer Service team at 1-800-123-4567 or by email at contact@fairbank.com",
+  "faqQ5": "5. What type of products does FairBank offer?",
+  "faqR5": "We offer three types of accounts: Regular, Premium, Ultimate, each with unique benefits. With your Fairbank accounts, you can make bill payments, transfer money, and more!",
+  "faqQ6": "6. How do I find my account number?",
+  "faqR6": "Log in to the Fairbank portal and from the dashboard you will see your unique nine-digit number that is unique to each account.",
+  "faqQ7": "7. How is the US dollar conversion rate calculated at FairBank?",
+  "faqR7": "Exchange rates are constantly changing, but you can access our live US dollar exchange rate by logging into your account. We update our exchange rates every 15 minutes.",
+  "faqQ8": "8. Can I use FairBank services if I live outside of Canada?",
+  "faqR8": "You can continue to access your current account while you are traveling outside of Canada. However, all EQ Bank account holders must be Canadian residents in order to maintain their account.",
+  "faqQ9": "9. Where can I use my FairBank card?",
+  "faqR9": "You can use your card anywhere Visa cards are accepted, both in Canada and abroad.",
+  "faqQ10": "10. Where can I find my tax slips?",
+  "faqR10": "Once you are logged in, navigate to the \"My Accounts\" tab to download our transaction history.",
 
   "toggleFR": "French",
   "toggleEN": "English",

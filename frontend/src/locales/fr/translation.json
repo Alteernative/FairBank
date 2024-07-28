@@ -38,6 +38,27 @@
 
   "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles.",
 
+  "faqQ1": "1. Comment puis-je ouvrir un compte à FairBank?",
+  "faqR1": "Rien de plus simple! Vous pouvez ouvrir un compte en visitant fairbank.com/inscription et en présentant une demande en ligne.",
+  "faqQ2": "2. Qui peut ouvrir un compte à FairBank?",
+  "faqR2": "Chaque client chez FairBank doit être un résident canadien et avoir plus de 18 ans.",
+  "faqQ3": "3. Les dépôts directs ont-ils une période de retenue?",
+  "faqR3": "Non, vos fonds sont disponibles dès qu'ils sont déposés.",
+  "faqQ4": "4. Mon compte est verrouillé. Que dois-je faire pour y avoir accès à nouveau?",
+  "faqR4": "Pour déverrouiller votre compte, veuillez communiquer avec l'équipe du Service à la clientèle de FairBank au 1-800-123-4567 ou par courriel à contact@fairbank.com",
+  "faqQ5": "5. Quel type de produits FairBank offre-t-elle?",
+  "faqR5": "Nous offrons trois types de comptes: Régulier, Premium, Ultime avec chacun des avantages uniques. Avec vos comptes Fairbank, vous pouvez effectuer des paiements de factures, des transferts de fonds, et bien plus encore!",
+  "faqQ6": "6. Comment puis-je trouver mon numéro de compte?",
+  "faqR6": "Ouvrez une session dans le portail de Fairbank et, à partir du tableau de bord, vous verrez votre numéro unique à neuf chiffres unique à chaque compte.",
+  "faqQ7": "7. Comment le taux de conversion du dollar américain est-il calculé chez FairBank?",
+  "faqR7": "Les taux de change fluctuent constamment, mais vous pouvez accéder à notre taux de change en direct du dollar américain en vous connectant à votre compte. Nous mettons à jour nos taux de change toutes les 15 minutes.",
+  "faqQ8": "8. Puis-je profiter des services de FairBank si je vis à l'extérieur du Canada?",
+  "faqR8": "Vous pouvez continuer d'accéder à votre compte actuel pendant que vous voyagez à l'extérieur du Canada. Toutefois, tous les titulaires de comptes de la Banque EQ doivent être des résidents canadiens pour pouvoir conserver leur compte.",
+  "faqQ9": "9. Où puis-je utiliser ma carte FairBank?",
+  "faqR9": "Vous pouvez utiliser votre carte partout où les cartes Visa sont acceptées, tant au Canada qu'à l'étranger.",
+  "faqQ10": "10. Où puis-je trouver mes feuillets d'impôt?",
+  "faqR10": "Une fois que vous avez ouvert une session, naviguez jusqu'à l'onglet « Mes comptes » pour télécharger l'historique de nos transactions.",
+
   "toggleFR": "Français",
   "toggleEN": "Anglais",
 
