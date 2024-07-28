@@ -8,6 +8,10 @@
   "signoutBtn": "Se déconnecter",
   "dashboardBtn": "Tableau de bord",
 
+  "placeholderFirstName": "Prénom",
+  "placeholderLastName": "Nom",
+  "placeholderEmail": "Courriel",
+
   "aboutH2": "Faites valoir vos avoirs",
   "aboutP": "Nous nous engageons à offrir des services bancaires efficaces pour vous laisser investir dans votre futur. Envoyez de l'argent sans payer aucuns frais de transfert. Nos services sont facilement accessibles de n'importe où, à n'importe quel moment.",
 
@@ -72,5 +76,12 @@
 
   "lightMode": "Clair",
   "darkMode": "Sombre",
-  "systemMode": "Système"
+  "systemMode": "Système",
+
+  "sendFundsTitle": "Envoyer des fonds",
+  "sendFundsDescription": "Envoyer des fonds",
+  "requestFundsTitle": "Demander des fonds",
+  "requestFundsDescription": "Demander des fonds",
+  "depositFundsTitle": "Déposer des fonds",
+  "depositFundsDescription": "Veuillez entrer le montant à déposer."
 }

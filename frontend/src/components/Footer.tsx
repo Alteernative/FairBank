@@ -19,6 +19,10 @@ export default function Footer() {
     window.scrollTo({ top: 0 });
   };
 
+  console.log("debug placeholder: " + t("placeholderFirstName"));
+  console.log("debug placeholder: " + t("placeholderLastName"));
+  console.log("debug placeholder: " + t("placeholderEmail"));
+
   return (
     <footer className="mb-3 mt-10 flex flex-col gap-7 lg:items-center">
       {/* Top footer */}
@@ -108,20 +112,20 @@ export default function Footer() {
             <Input
               id="first_name"
               type="text"
-              placeholder="Prénom"
+              placeholder={t("placeholderFirstName")}
               className="h-12 w-1/2"
             />
             <Input
               id="last_name"
               type="text"
-              placeholder="Nom"
+              placeholder={t("placeholderLastName")}
               className="h-12 w-1/2"
             />
           </div>
           <Input
             id="email"
             type="text"
-            placeholder="Email"
+            placeholder={t("placeholderEmail")}
             className="h-12 w-full"
           />
           <Textarea

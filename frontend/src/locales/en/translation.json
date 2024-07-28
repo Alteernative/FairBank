@@ -8,6 +8,10 @@
   "signoutBtn": "Log out",
   "dashboardBtn": "Dashboard",
 
+  "placeholderFirstName": "First name",
+  "placeholderLastName": "Last name",
+  "placeholderEmail": "Email",
+
   "aboutH2": "Value your assets",
   "aboutP": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, to any moment.",
 
@@ -72,5 +76,14 @@
 
   "lightMode": "Light",
   "darkMode": "Dark",
-  "systemMode": "System"
+  "systemMode": "System",
+
+  "sendFundsTitle": "Send Funds",
+  "sendFundsDescription": "Send Funds",
+
+  "requestFundsTitle": "Request Funds",
+  "requestFundsDescription": "Request Funds",
+
+  "depositFundsTitle": "Deposit Funds",
+  "depositFundsDescription": "Please enter the amount to deposit."
 }
