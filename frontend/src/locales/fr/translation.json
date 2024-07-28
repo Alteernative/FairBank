@@ -4,7 +4,7 @@
   "sponsorsH2": "Magasinez dans vos boutiques préférées",
 
   "signupBtn": "Devenir membre",
-  "siginpBtn": "Se connecter",
+  "signinBtn": "Se connecter",
   "signoutBtn": "Se déconnecter",
   "dashboardBtn": "Tableau de bord",
 
@@ -79,6 +79,8 @@
   "darkMode": "Sombre",
   "systemMode": "Système",
 
+  "dashboardWelcome": "Bonjour",
+
   "sidebarDashboard": "Menu",
   "sidebarTransaction": "Historique",
   "sidebarActivity": "Activité",
@@ -92,6 +94,9 @@
   "sidebarSettingsSecurity": "Sécurité",
   "sidebarSettingsReturn": "Retourner",
 
+  "tier1Title": "Régulier",
+  "tier2Title": "Premium",
+  "tier3Title": "Ultime",
   "sendFundsTitle": "Envoyer des fonds",
   "sendFundsAction": "Envoyer",
   "sendFundsDescription": "Veuillez entrer le montant à envoyer, ainsi que le courriel du destinataire.",

@@ -45,13 +45,6 @@ type PlanTitle = {
   tier3: string;
 };
 
-const planTitle: PlanTitle = {
-  tier1: "Régulier",
-  tier2: "Premium",
-  tier3: "Ultime",
-};
-
-// Exemples -> Fetch the last two transactions (nom, date, amount, isPositive)
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
@@ -64,6 +57,12 @@ export default function UserPanel() {
   const depositForm = useForm();
   const baseUrl = "http://127.0.0.1:8000";
   const { t } = useTranslation();
+
+  const planTitle: PlanTitle = {
+    tier1: t("tier1Title"),
+    tier2: t("tier2Title"),
+    tier3: t("tier3Title"),
+  };
 
   const submission = (data: FieldValues) => {
     console.log("Data being sent:", {

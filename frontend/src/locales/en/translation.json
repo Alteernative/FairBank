@@ -4,7 +4,7 @@
   "sponsorsH2": "Shop at your favorite stores",
 
   "signupBtn": "Become a member",
-  "siginpBtn": "Log in",
+  "signinBtn": "Log in",
   "signoutBtn": "Log out",
   "dashboardBtn": "Dashboard",
 
@@ -79,6 +79,8 @@
   "darkMode": "Dark",
   "systemMode": "System",
 
+  "dashboardWelcome": "Hi",
+
   "sidebarDashboard": "Overview",
   "sidebarTransaction": "History",
   "sidebarActivity": "Activity",
@@ -92,14 +94,17 @@
   "sidebarSettingsSecurity": "Security",
   "sidebarSettingsReturn": "Return",
 
+  "tier1Title": "Regular",
+  "tier2Title": "Premium",
+  "tier3Title": "Ultimate",
   "sendFundsTitle": "Send Funds",
   "sendFundsDescription": "Please enter the amount to send, as well as the recipient's email address.",
-  "sendFundsBtn": "Send",
+  "sendFundsAction": "Send",
   "requestFundsTitle": "Request Funds",
-  "requestFundsBtn": "Request",
+  "requestFundsAction": "Request",
   "requestFundsDescription": "Please enter the amount to request, as well as the recipient's email address.",
   "depositFundsTitle": "Deposit Funds",
-  "depositFundsBtn": "Deposit",
+  "depositFundsAction": "Deposit",
   "depositFundsDescription": "Please enter the amount to deposit.",
   "fundsAmountInput": "Amount",
   "fundsEmailInput": "Email"
