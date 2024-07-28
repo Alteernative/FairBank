@@ -118,7 +118,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Profile</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettingsProfile")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -134,7 +136,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Compte</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettingsAccount")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -150,7 +154,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Apparence</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettingsAppearance")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -166,7 +172,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Notifications</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettingsNotifications")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -182,7 +190,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Sécurité</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettingsSecurity")}
+                </TooltipContent>
               </Tooltip>
             </div>
 
@@ -200,7 +210,9 @@ export default function SettingsSidebar() {
                   </Link>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">Retouner</TooltipContent>
+              <TooltipContent side="right">
+                {t("sidebarSettingsReturn")}
+              </TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>
