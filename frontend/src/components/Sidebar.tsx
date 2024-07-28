@@ -13,24 +13,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AxiosInstance from "@/components/AxiosInstance";
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from "./ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -66,7 +59,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard"}>
                 <LayoutDashboard size={20} />
-                Menu
+                {t("sidebarDashboardBtn")}
               </Link>
             </Button>
             <Button
@@ -76,7 +69,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/transactions"}>
                 <ScrollText size={20} />
-                Historique
+                {t("sidebarTransactionBtn")}
               </Link>
             </Button>
             <Button
@@ -86,7 +79,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/activity"}>
                 <Radio size={20} />
-                Activité
+                {t("sidebarActivityBtn")}
               </Link>
             </Button>
             <Button
@@ -96,7 +89,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/exchange-rates"}>
                 <BsCurrencyExchange size={20} />
-                Taux de change
+                {t("sidebarExchangeRateBtn")}
               </Link>
             </Button>
           </div>
@@ -110,7 +103,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/help"}>
                 <CircleHelp size={20} />
-                Aide
+                {t("sidebarHelpBtn")}
               </Link>
             </Button>
             <Button
@@ -122,7 +115,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
-                Paramètres
+                {t("sidebarSettingsBtn")}
               </Link>
             </Button>
             <Button
@@ -131,7 +124,7 @@ export default function Sidebar() {
               className="flex w-full items-center justify-start gap-2"
             >
               <LogOut size={20} />
-              Se déconnecter
+              {t("signoutBtn")}
             </Button>
           </div>
         </nav>

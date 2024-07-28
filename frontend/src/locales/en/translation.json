@@ -11,6 +11,7 @@
   "placeholderFirstName": "First name",
   "placeholderLastName": "Last name",
   "placeholderEmail": "Email",
+  "placeholderRecipient": "recipient@email.com",
 
   "aboutH2": "Value your assets",
   "aboutP": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, to any moment.",
@@ -78,12 +79,22 @@
   "darkMode": "Dark",
   "systemMode": "System",
 
+  "sidebarDashboardBtn": "Overview",
+  "sidebarTransactionBtn": "History",
+  "sidebarActivityBtn": "Activity",
+  "sidebarExchangeRateBtn": "Exchange Rates",
+  "sidebarHelpBtn": "Help",
+  "sidebarSettingsBtn": "Settings",
+
   "sendFundsTitle": "Send Funds",
-  "sendFundsDescription": "Send Funds",
-
+  "sendFundsDescription": "Please enter the amount to send, as well as the recipient's email address.",
+  "sendFundsBtn": "Send",
   "requestFundsTitle": "Request Funds",
-  "requestFundsDescription": "Request Funds",
-
+  "requestFundsBtn": "Request",
+  "requestFundsDescription": "Please enter the amount to request, as well as the recipient's email address.",
   "depositFundsTitle": "Deposit Funds",
-  "depositFundsDescription": "Please enter the amount to deposit."
+  "depositFundsBtn": "Deposit",
+  "depositFundsDescription": "Please enter the amount to deposit.",
+  "fundsAmountInput": "Amount",
+  "fundsEmailInput": "Email"
 }

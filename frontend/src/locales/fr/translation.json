@@ -11,6 +11,7 @@
   "placeholderFirstName": "Prénom",
   "placeholderLastName": "Nom",
   "placeholderEmail": "Courriel",
+  "placeholderRecipient": "destinataire@courriel.com",
 
   "aboutH2": "Faites valoir vos avoirs",
   "aboutP": "Nous nous engageons à offrir des services bancaires efficaces pour vous laisser investir dans votre futur. Envoyez de l'argent sans payer aucuns frais de transfert. Nos services sont facilement accessibles de n'importe où, à n'importe quel moment.",
@@ -78,10 +79,22 @@
   "darkMode": "Sombre",
   "systemMode": "Système",
 
+  "sidebarDashboardBtn": "Menu",
+  "sidebarTransactionBtn": "Historique",
+  "sidebarActivityBtn": "Activité",
+  "sidebarExchangeRateBtn": "Taux de change",
+  "sidebarHelpBtn": "Aide",
+  "sidebarSettingsBtn": "Paramètres",
+
   "sendFundsTitle": "Envoyer des fonds",
-  "sendFundsDescription": "Envoyer des fonds",
+  "sendFundsAction": "Envoyer",
+  "sendFundsDescription": "Veuillez entrer le montant à envoyer, ainsi que le courriel du destinataire.",
   "requestFundsTitle": "Demander des fonds",
-  "requestFundsDescription": "Demander des fonds",
+  "requestFundsAction": "Demander",
+  "requestFundsDescription": "Veuillez entrer le montant à demander, ainsi que le courriel du destinataire.",
   "depositFundsTitle": "Déposer des fonds",
-  "depositFundsDescription": "Veuillez entrer le montant à déposer."
+  "depositFundsAction": "Déposer",
+  "depositFundsDescription": "Veuillez entrer le montant à déposer.",
+  "fundsAmountInput": "Montant",
+  "fundsEmailInput": "Courriel"
 }
