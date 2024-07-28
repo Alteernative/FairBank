@@ -59,7 +59,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard"}>
                 <LayoutDashboard size={20} />
-                {t("sidebarDashboardBtn")}
+                {t("sidebarDashboard")}
               </Link>
             </Button>
             <Button
@@ -69,7 +69,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/transactions"}>
                 <ScrollText size={20} />
-                {t("sidebarTransactionBtn")}
+                {t("sidebarTransaction")}
               </Link>
             </Button>
             <Button
@@ -79,7 +79,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/activity"}>
                 <Radio size={20} />
-                {t("sidebarActivityBtn")}
+                {t("sidebarActivity")}
               </Link>
             </Button>
             <Button
@@ -89,7 +89,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/exchange-rates"}>
                 <BsCurrencyExchange size={20} />
-                {t("sidebarExchangeRateBtn")}
+                {t("sidebarExchangeRate")}
               </Link>
             </Button>
           </div>
@@ -103,7 +103,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/help"}>
                 <CircleHelp size={20} />
-                {t("sidebarHelpBtn")}
+                {t("sidebarHelp")}
               </Link>
             </Button>
             <Button
@@ -115,7 +115,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
-                {t("sidebarSettingsBtn")}
+                {t("sidebarSettings")}
               </Link>
             </Button>
             <Button
