@@ -19,10 +19,6 @@ export default function Footer() {
     window.scrollTo({ top: 0 });
   };
 
-  console.log("debug placeholder: " + t("placeholderFirstName"));
-  console.log("debug placeholder: " + t("placeholderLastName"));
-  console.log("debug placeholder: " + t("placeholderEmail"));
-
   return (
     <footer className="mb-3 mt-10 flex flex-col gap-7 lg:items-center">
       {/* Top footer */}
