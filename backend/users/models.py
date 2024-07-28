@@ -159,9 +159,13 @@ class ContactUsMessages(models.Model):
 
 
 class PendingUsersUpdates(models.Model):
-    nom = models.CharField(max_length=100)
-    prenom = models.CharField(max_length=100)
-    email = models.EmailField(max_length=200, unique=True)
+    user = models.ForeignKey(CustomUser, related_name='pending_updates', on_delete=models.CASCADE)
+    current_nom = models.CharField(max_length=255, null=True, blank=True)
+    current_prenom = models.CharField(max_length=255, null=True, blank=True)
+    tmp_nom = models.CharField(max_length=255, null=True, blank=True)
+    tmp_prenom = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField()
 
     def __str__(self):
-        return f'{self.nom} {self.prenom} {self.email} '
+        return f'{self.user} - {self.current_nom} {self.current_prenom} - {self.tmp_nom} {self.tmp_prenom}'
+
