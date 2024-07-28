@@ -40,9 +40,11 @@ export default function ProfileSettings() {
     console.log(data);
 
     const formData = new FormData();
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
     formData.append("email", user.email);
+    formData.append("current_nom", user.last_name);
+    formData.append("current_prenom", user.first_name);
+    formData.append("tmp_nom", data.first_name);
+    formData.append("tmp_prenom", data.last_name);
 
     if (fileInputRef.current && fileInputRef.current.files[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
