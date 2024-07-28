@@ -12,8 +12,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import CurrencyInput from "react-currency-input-field";
-
 import {
   CircleUser,
   Send,
@@ -365,7 +363,7 @@ export default function UserPanel() {
             draggable="false"
             className="p-3"
           />
-          <p className="absolute bottom-[3.75vh] left-[3.5vh] select-none text-[1.75vh] font-medium text-white">
+          <p className="fixed bottom-[32.6rem] right-44 select-none text-[1rem] font-medium text-white">
             {capitalize(user.first_name)} {capitalize(user.last_name)}
           </p>
         </div>

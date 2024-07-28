@@ -108,7 +108,7 @@ export default function Sidebar() {
             </Button>
             <Button
               asChild
-              variant={isActive("dashboard/settings") ? "default" : "ghost"}
+              variant={"ghost"}
               className={`flex w-full items-center justify-start gap-2 ${isActive("/dashboard/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
             >
               <Link to={"/dashboard/settings"}>

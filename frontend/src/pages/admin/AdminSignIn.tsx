@@ -88,16 +88,16 @@ export default function AdminSignIn() {
 
   return (
     <section className="flex h-screen">
-      {/* <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
         <img
-          src="/images/login.svg"
+          src="/images/admin-login.svg"
           alt="Sign in image"
           className="my-auto w-full content-center overflow-hidden"
         />
-      </aside> */}
+      </aside>
 
       <main className="flex w-80 flex-1 items-center justify-center">
         <span className="absolute right-0 top-4 m-5 flex items-end justify-start gap-2">
