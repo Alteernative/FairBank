@@ -152,7 +152,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Menu</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarDashboard")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -168,7 +170,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Historique</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarTransaction")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -184,7 +188,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Activité</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarActivity")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -200,7 +206,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Taux de change</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarExchangeRate")}
+                </TooltipContent>
               </Tooltip>
             </div>
 
@@ -219,7 +227,7 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Aide</TooltipContent>
+                <TooltipContent side="right">{t("sidebarHelp")}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -235,7 +243,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Paramètres</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebarSettings")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
