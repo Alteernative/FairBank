@@ -50,13 +50,14 @@ export default function DashboardOverview() {
           />
         </div>
 
-        {/* TODO: Add condition for upper limit of transactions amount based on account type */}
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
-          <h2>Quantité de transactions</h2>
+          <h2 className="mb-3 font-bold">Transactions mensuelles</h2>
           <ProgressBar
-            transactionsCount={user.sent_transactions.length}
-            upperLimit={UPPER_LIMIT}
+              transactionsCount={user.sent_transactions.length}
+              upperLimit={UPPER_LIMIT}
           />
+
+
         </div>
         <div className="col-span-3 row-span-3 rounded-lg border p-4 shadow">
           <DashboardGraph />
