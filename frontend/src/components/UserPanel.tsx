@@ -30,9 +30,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-// import formatDate from "@/utils/formatDate.ts";
-// import { Link } from "react-router-dom";
-// import formatCurrency from "@/utils/formatCurrency";
+import { useTranslation } from "react-i18next";
 
 type Activity = {
   name: string;
@@ -46,16 +44,6 @@ type PlanTitle = {
   tier2: string;
   tier3: string;
 };
-
-// interface Transaction {
-//   id: number;
-//   sender: string;
-//   receiver: string;
-//   amount: number;
-//   date: string;
-//   status: string;
-//   // Add other properties if needed
-// }
 
 const planTitle: PlanTitle = {
   tier1: "Régulier",
@@ -73,11 +61,11 @@ export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const sendForm = useForm();
   const requestForm = useForm();
-  const depositForm = useForm(); // New form for deposit
+  const depositForm = useForm();
   const baseUrl = "http://127.0.0.1:8000";
+  const { t } = useTranslation();
 
   const submission = (data: FieldValues) => {
-    // Log the data being sent
     console.log("Data being sent:", {
       sender: data.sender,
       receiver: data.receiver,
@@ -87,8 +75,6 @@ export default function UserPanel() {
     AxiosInstance.post(
       "transactions/",
       {
-        //  sender: data.sender,
-        //push dans cette diag aussi l'email de l'user pour envoyer
         sender: user.email,
         receiver: data.receiver,
         amount: parseFloat(data.amount),
@@ -102,16 +88,12 @@ export default function UserPanel() {
       .then((response) => {
         const newTransaction = response.data;
         console.log("Transaction successful:", newTransaction);
-
-        // window.location.reload();
-        // Update user context
         const updatedUser = {
           ...user,
           balance: user.balance - newTransaction.amount,
           sent_transactions: [...user.sent_transactions, newTransaction],
         };
         setUser(updatedUser);
-
         toast.success("Les fonds ont été envoyés.");
       })
       .catch((error) => {
@@ -124,12 +106,9 @@ export default function UserPanel() {
     AxiosInstance.post(
       "request/",
       {
-        //  sender: data.sender,
-        //push dans cette diag aussi l'email de l'user pour envoyer
         sender: data.sender,
         receiver: user.email,
         amount: parseFloat(data.amount),
-        // status: "pending",
       },
       {
         headers: {
@@ -140,10 +119,6 @@ export default function UserPanel() {
       .then((response) => {
         console.log("Transaction successful:", response.data);
         toast.info("Les fonds ont été demandé.");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 3000);
-        // navigate(`/dashboard`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
@@ -162,7 +137,7 @@ export default function UserPanel() {
       }
     )
       .then((response) => {
-        console.log("Data amount:" + data.amount);
+        console.log("Data amount:" + response.data.amount);
         const updatedUser = {
           ...user,
           balance: user.balance + parseFloat(data.amount),
@@ -171,6 +146,7 @@ export default function UserPanel() {
         toast.success("Le montant a été déposé dans votre compte.");
       })
       .catch((error) => {
+        console.error("Error:", error.message);
         toast.error("Une erreur est survenu lors du dépôt.");
       });
   };
@@ -201,22 +177,21 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <Send size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">Envoyer</p>
+                  <p className="mt-2 text-sm">{t("sendFundsAction")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={sendForm.handleSubmit(submission)}>
                   <DialogHeader>
-                    <DialogTitle>Envoyer des fonds</DialogTitle>
+                    <DialogTitle>{t("sendFundsTitle")}</DialogTitle>
                     <DialogDescription>
-                      Veuillez entrer le montant à envoyer, ainsi que le
-                      courriel du destinataire.
+                      {t("sendFundsDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        Montant
+                        {t("fundsAmountInput")}
                       </Label>
                       <Input
                         id="amount"
@@ -229,12 +204,12 @@ export default function UserPanel() {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
-                        Courriel
+                        {t("fundsEmailInput")}
                       </Label>
                       <Input
                         id="username"
                         defaultValue=""
-                        placeholder="destinataire@email.com"
+                        placeholder={t("placeholderRecipient")}
                         className="col-span-3"
                         {...sendForm.register("receiver", { required: true })}
                       />
@@ -242,7 +217,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">Envoyer</Button>
+                      <Button type="submit">{t("sendFundsAction")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -255,22 +230,21 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <HandCoins size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">Demander</p>
+                  <p className="mt-2 text-sm">{t("requestFundsAction")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
                   <DialogHeader>
-                    <DialogTitle>Demander des fonds</DialogTitle>
+                    <DialogTitle>{t("requestFundsTitle")}</DialogTitle>
                     <DialogDescription>
-                      Veuillez entrer le montant à demander, ainsi que le
-                      courriel du destinataire.
+                      {t("requestFundsDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        Montant
+                        {t("fundsAmountInput")}
                       </Label>
                       <Input
                         id="amount"
@@ -283,12 +257,12 @@ export default function UserPanel() {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
-                        Courriel
+                        {t("fundsEmailInput")}
                       </Label>
                       <Input
                         id="sender"
                         defaultValue=""
-                        placeholder="destinataire@email.com"
+                        placeholder={t("placeholderRecipient")}
                         className="col-span-3"
                         {...requestForm.register("sender", { required: true })}
                       />
@@ -296,7 +270,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">Demander</Button>
+                      <Button type="submit">{t("requestFundsAction")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -309,21 +283,21 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <DollarSign size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">Déposer</p>
+                  <p className="mt-2 text-sm">{t("depositFundsAction")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={depositForm.handleSubmit(deposer)}>
                   <DialogHeader>
-                    <DialogTitle>Déposer des fonds</DialogTitle>
+                    <DialogTitle>{t("depositFundsTitle")}</DialogTitle>
                     <DialogDescription>
-                      Veuillez entrer le montant à déposer.
+                      {t("deposiFundsDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        Montant
+                        {t("fundsAmountInput")}
                       </Label>
                       <Input
                         id="amount"
@@ -337,7 +311,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">Déposer</Button>
+                      <Button type="submit">{t("depositFundsAction")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -422,16 +396,15 @@ export default function UserPanel() {
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                       <form onSubmit={sendForm.handleSubmit(submission)}>
                         <DialogHeader>
-                          <DialogTitle>Envoyer des fonds</DialogTitle>
+                          <DialogTitle>{t("sendFundsTitle")}</DialogTitle>
                           <DialogDescription>
-                            Veuillez entrer le montant à envoyer, ainsi que le
-                            courriel du destinataire.
+                            {t("sendFundsDescription")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              Montant
+                              {t("fundsAmountInput")}
                             </Label>
                             <Input
                               id="amount"
@@ -446,12 +419,12 @@ export default function UserPanel() {
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                              Courriel
+                              {t("fundsEmailInput")}
                             </Label>
                             <Input
                               id="username"
                               defaultValue=""
-                              placeholder="destinataire@email.com"
+                              placeholder={t("placeholderRecipient")}
                               className="col-span-3"
                               {...sendForm.register("receiver", {
                                 required: true,
@@ -461,14 +434,18 @@ export default function UserPanel() {
                         </div>
                         <DialogFooter className="flex flex-row justify-end">
                           <DialogClose asChild>
-                            <Button type="submit">Envoyer</Button>
+                            <Button type="submit">
+                              {t("sendFundsAction")}
+                            </Button>
                           </DialogClose>
                         </DialogFooter>
                       </form>
                     </DialogContent>
                   </Dialog>
                 </TooltipTrigger>
-                <TooltipContent side="left">Envoyer</TooltipContent>
+                <TooltipContent side="left">
+                  {t("sendFundsAction")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -483,16 +460,15 @@ export default function UserPanel() {
                         onSubmit={requestForm.handleSubmit(requestTransfer)}
                       >
                         <DialogHeader>
-                          <DialogTitle>Demander des fonds</DialogTitle>
+                          <DialogTitle>{t("requestFundsTitle")}</DialogTitle>
                           <DialogDescription>
-                            Veuillez entrer le montant à demander, ainsi que le
-                            courriel du destinataire.
+                            {t("requestFundsDescription")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              Montant
+                              {t("fundsAmountInput")}
                             </Label>
                             <Input
                               id="amount"
@@ -507,12 +483,12 @@ export default function UserPanel() {
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                              Courriel
+                              {t("fundsEmailInput")}
                             </Label>
                             <Input
                               id="sender"
                               defaultValue=""
-                              placeholder="destinataire@email.com"
+                              placeholder={t("placeholderRecipient")}
                               className="col-span-3"
                               {...requestForm.register("sender", {
                                 required: true,
@@ -522,14 +498,18 @@ export default function UserPanel() {
                         </div>
                         <DialogFooter className="flex flex-row justify-end">
                           <DialogClose asChild>
-                            <Button type="submit">Demander</Button>
+                            <Button type="submit">
+                              {t("requestFundsAction")}
+                            </Button>
                           </DialogClose>
                         </DialogFooter>
                       </form>
                     </DialogContent>
                   </Dialog>
                 </TooltipTrigger>
-                <TooltipContent side="left">Demander</TooltipContent>
+                <TooltipContent side="left">
+                  {t("requestFundsBtn")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -542,15 +522,15 @@ export default function UserPanel() {
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                       <form onSubmit={depositForm.handleSubmit(deposer)}>
                         <DialogHeader>
-                          <DialogTitle>Déposer des fonds</DialogTitle>
+                          <DialogTitle>{t("depositFundsTitle")}</DialogTitle>
                           <DialogDescription>
-                            Veuillez entrer le montant à déposer.
+                            {t("depositFundsDescription")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              Montant
+                              {t("fundsAmountInput")}
                             </Label>
                             <Input
                               id="amount"
@@ -566,14 +546,18 @@ export default function UserPanel() {
                         </div>
                         <DialogFooter className="flex flex-row justify-end">
                           <DialogClose asChild>
-                            <Button type="submit">Déposer</Button>
+                            <Button type="submit">
+                              {t("depositFundsAction")}
+                            </Button>
                           </DialogClose>
                         </DialogFooter>
                       </form>
                     </DialogContent>
                   </Dialog>
                 </TooltipTrigger>
-                <TooltipContent side="left">Déposer</TooltipContent>
+                <TooltipContent side="left">
+                  {t("depositFundsBtn")}
+                </TooltipContent>
               </Tooltip>
             </div>
           </TooltipProvider>
