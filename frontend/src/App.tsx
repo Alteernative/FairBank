@@ -30,6 +30,8 @@ import "./fonts.css";
 import AdminSignIn from "./pages/admin/AdminSignIn.tsx";
 import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview.tsx";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard.tsx";
+import AdminDashboardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
+import AdminDashBoardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
 
 export default function App() {
   return (
@@ -183,7 +185,6 @@ export default function App() {
             path="/request/password-reset/"
             element={<PasswordResetRequest />}
           />
-
           <Route path="/admin/signin" element={<AdminSignIn />} />
           <Route
             path="/admin"
@@ -193,6 +194,7 @@ export default function App() {
               </AdminDashboard>
             }
           />
+          <Route path="/admin/demands" element={<AdminDashBoardDemands />} />
 
           <Route path="*" element={<NoPage />} />
         </Routes>
