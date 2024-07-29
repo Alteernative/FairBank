@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -39,7 +39,9 @@ export default function DisplaySettings() {
       last_name: data.last_name,
     })
       .then(() => {
-        toast.success("Votre compte a été supprimé.");
+        toast.success(
+          "Une demande de fermeture de compte a été envoyée. Veuillez attendre la confirmation de fermeture de compte par courriel"
+        );
         setTimeout(() => {
           navigate("/");
         }, 2500);
@@ -89,11 +91,14 @@ export default function DisplaySettings() {
                   <AlertDialogCancel className="mt-0">
                     Annuler
                   </AlertDialogCancel>
-                  <AlertDialogAction
-                    type="submit"
-                    className={buttonVariants({ variant: "destructive" })}
-                  >
-                    Confirmer
+                  <AlertDialogAction asChild>
+                    <Button
+                      type="submit"
+                      variant="destructive"
+                      onClick={handleSubmit(handleAccountDelete)}
+                    >
+                      Confirmer
+                    </Button>
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
