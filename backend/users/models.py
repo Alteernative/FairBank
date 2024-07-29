@@ -165,7 +165,8 @@ class PendingUsersUpdates(models.Model):
     tmp_nom = models.CharField(max_length=255, null=True, blank=True)
     tmp_prenom = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField()
+    tmp_email = models.EmailField(blank=True)
 
     def __str__(self):
-        return f'{self.user} - {self.current_nom} {self.current_prenom} - {self.tmp_nom} {self.tmp_prenom}'
-
+        return (f'{self.user} - {self.current_nom} {self.current_prenom} - {self.tmp_nom} {self.tmp_prenom} - '
+                f'{self.email} {self.tmp_email}')
