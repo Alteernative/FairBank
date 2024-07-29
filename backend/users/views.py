@@ -98,6 +98,30 @@ def welcome_message_send(user):
         print(f"Failed to send email: {e}")
 
 
+def newsletter_email(user):
+    sitelink = "http://localhost:5173/unsubscribe"
+    full_link = str(sitelink) + str("/") + str(user.id)
+    context = {
+        'full_link': full_link,
+        'email_adress': user.email,
+    }
+    print(full_link)
+    html_message = render_to_string("backend/newsletter.html", context=context)
+    plain_message = strip_tags(html_message)
+
+    msg = EmailMultiAlternatives(
+        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
+        body=plain_message,
+        from_email="Alteernative02@gmail.com",
+        to=[user.email]
+    )
+    msg.attach_alternative(html_message, "text/html")
+    try:
+        msg.send()
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
+
 class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = User.objects.all()
@@ -253,7 +277,7 @@ class UserViewset(viewsets.ViewSet):
             'current_nom': request.data.get('current_nom'),
             'current_prenom': request.data.get('current_prenom'),
             'email': request.data.get('email'),
-            'tmp_email':request.data.get('tmp_email')
+            'tmp_email': request.data.get('tmp_email')
         }
         print("the user we're tryin go log is : :)))))", data)
 
@@ -274,6 +298,21 @@ class UserViewset(viewsets.ViewSet):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UnsubscribeUsers(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = LoginSerializer
+    queryset = CustomUser.objects.all()
+
+    @action(detail=False, methods=['post'], url_path='unsubscribe')
+    def unsubscribe(self, request):
+        user_id = request.data.get('id')
+        if not user_id:
+            return Response({"error": "User ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+        user = get_object_or_404(User, pk=user_id)
+        user.subscribed = False
+        user.save()
+        return Response({"success": "User unsubscribed"}, status=status.HTTP_200_OK)
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
@@ -452,7 +491,7 @@ class AdminViewset(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], url_path='approve-update')
     def approve_update(self, request, pk=None):
-        pending_update = get_object_or_404(PendingUsersUpdates, user_id=pk)
+        pending_update = PendingUsersUpdates.objects.get(user_id=pk)
         print(f"Approve update called for user: {pk}")
         user = pending_update.user
         user.first_name = pending_update.tmp_prenom
@@ -468,3 +507,9 @@ class AdminViewset(viewsets.ModelViewSet):
         pending_update.delete()
         return Response({'success': 'Update request declined'}, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['get'])
+    def send_newsLetter(self, request):
+        current_users = User.objects.filter(is_active=True)
+        for user in current_users:
+            newsletter_email(user)
+        return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
