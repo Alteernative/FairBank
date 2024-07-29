@@ -192,4 +192,4 @@ class AdminUsersSerializer(serializers.ModelSerializer):
 class PendingUsersUpdatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingUsersUpdates
-        fields = ('user', 'email', 'current_nom', 'current_prenom', 'tmp_nom', 'tmp_prenom')
+        fields = ('user', 'email', 'current_nom', 'current_prenom', 'tmp_nom', 'tmp_prenom', 'tmp_email')
