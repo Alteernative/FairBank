@@ -15,6 +15,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { CircleUser } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input.tsx";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
@@ -35,7 +36,7 @@ export default function ProfileSettings() {
       setFileName("");
     }
   };
-
+  console.log(user);
   const handleName = (data: FieldValues) => {
     console.log(data);
 
@@ -43,8 +44,9 @@ export default function ProfileSettings() {
     formData.append("email", user.email);
     formData.append("current_nom", user.last_name);
     formData.append("current_prenom", user.first_name);
-    formData.append("tmp_nom", data.first_name);
-    formData.append("tmp_prenom", data.last_name);
+    formData.append("tmp_nom", data.last_name);
+    formData.append("tmp_prenom", data.first_name);
+    formData.append("tmp_email", data.email);
 
     if (fileInputRef.current && fileInputRef.current.files[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
@@ -60,7 +62,7 @@ export default function ProfileSettings() {
         toast.success("Votre profil a été modifié.");
 
         // DEBUG: Temporary solution. Better solution: useState to update profile img dynamically?
-        setTimeout(() => window.location.reload(), 3500);
+        //  setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -105,6 +107,26 @@ export default function ProfileSettings() {
                 <CircleUser className="size-full rounded-full object-cover transition-all duration-200 hover:opacity-80" />
               </div>
             )}
+          </CardContent>
+        </Card>
+        <Separator />
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Courriel</CardTitle>
+            <CardDescription>
+              Contactez le support pour modifier votre courriel.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FloatingLabelInput
+              type="text"
+              id="email"
+              {...register("email")}
+              label="Nom"
+              className="h-12"
+            />
+
+            {/*<Input type="text" placeholder={user.email} className="h-12" />*/}
           </CardContent>
         </Card>
         <Separator />
