@@ -32,6 +32,7 @@ import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOvervi
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard.tsx";
 import AdminDashboardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
 import AdminDashBoardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
+import Unsubscribe from "@/pages/Unsubscribe.tsx";
 
 export default function App() {
   return (
@@ -197,6 +198,7 @@ export default function App() {
           <Route path="/admin/demands" element={<AdminDashBoardDemands />} />
 
           <Route path="*" element={<NoPage />} />
+          <Route path="/unsubscribe/:userId" element={<Unsubscribe />} />
         </Routes>
       </Router>
     </ThemeProvider>
