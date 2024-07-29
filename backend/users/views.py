@@ -3,6 +3,7 @@ from decimal import Decimal
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
 
 from .serializers import *
 from .models import *
@@ -217,8 +218,10 @@ class UserViewset(viewsets.ViewSet):
             'tmp_prenom': request.data.get('tmp_prenom'),
             'current_nom': request.data.get('current_nom'),
             'current_prenom': request.data.get('current_prenom'),
-            'email': request.data.get('email')
+            'email': request.data.get('email'),
+            'tmp_email':request.data.get('tmp_email')
         }
+        print("the user we're tryin go log is : :)))))", data)
 
         try:
             existing_request = PendingUsersUpdates.objects.get(email=data['email'])
@@ -226,6 +229,7 @@ class UserViewset(viewsets.ViewSet):
             existing_request.tmp_prenom = data['tmp_prenom']
             existing_request.current_nom = data['current_nom']
             existing_request.current_prenom = data['current_prenom']
+            existing_request.tmp_email = data['tmp_email']
             existing_request.save()
             serializer = PendingUsersUpdatesSerializer(existing_request)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -411,4 +415,22 @@ class AdminViewset(viewsets.ModelViewSet):
         messages_serialized = PendingUsersUpdatesSerializer(contactus_messages, many=True)
         print(messages_serialized.data)
         return Response(messages_serialized.data)
+
+    @action(detail=True, methods=['post'], url_path='approve-update')
+    def approve_update(self, request, pk=None):
+        pending_update = get_object_or_404(PendingUsersUpdates, user_id=pk)
+        print(f"Approve update called for user: {pk}")
+        user = pending_update.user
+        user.first_name = pending_update.tmp_prenom
+        user.last_name = pending_update.tmp_nom
+        user.email = pending_update.tmp_email
+        user.save()
+        pending_update.delete()
+        return Response({'success': 'User information updated successfully'}, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['post'], url_path='decline-update')
+    def decline_update(self, request, pk=None):
+        pending_update = get_object_or_404(PendingUsersUpdates, user_id=pk)
+        pending_update.delete()
+        return Response({'success': 'Update request declined'}, status=status.HTTP_200_OK)
 
