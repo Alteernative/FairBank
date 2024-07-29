@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -87,11 +87,14 @@ export default function DisplaySettings() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Annuler</AlertDialogCancel>
-                  <AlertDialogAction
-                    type="submit"
-                    className={buttonVariants({ variant: "destructive" })}
-                  >
-                    Confirmer
+                  <AlertDialogAction asChild>
+                    <Button
+                      type="submit"
+                      variant="destructive"
+                      onClick={handleSubmit(handleAccountDelete)}
+                    >
+                      Confirmer
+                    </Button>
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
