@@ -108,6 +108,40 @@ class RegisterViewset(viewsets.ViewSet):
         data = request.data.copy()
         if 'image' in request.FILES:
             data['image_url'] = request.FILES['image']
+
+        email = data.get('email')
+        existing_user = User.objects.filter(email=email).first()
+        if existing_user:
+            if not existing_user.is_active:
+                Transaction.objects.filter(sender=existing_user).delete()
+                Transaction.objects.filter(receiver=existing_user).delete()
+                PendingTransactions.objects.filter(sender=existing_user).delete()
+                PendingTransactions.objects.filter(receiver=existing_user).delete()
+                UserCurrency.objects.filter(user=existing_user).delete()
+
+                existing_user.is_active = True
+                existing_user.first_name = data.get('first_name', existing_user.first_name)
+                existing_user.last_name = data.get('last_name', existing_user.last_name)
+                existing_user.set_password(data.get('password'))
+                if 'image_url' in data:
+                    existing_user.image_url = data['image_url']
+                existing_user.save()
+
+                UserCurrency.objects.create(user=existing_user)
+
+                user_data = {
+                    "email": existing_user.email,
+                    "first_name": existing_user.first_name,
+                    "last_name": existing_user.last_name,
+                    "balance": existing_user.balance,
+                    "plan": existing_user.plan,
+                    "image_url": existing_user.image_url.url if existing_user.image_url else None,
+                }
+                welcome_message_send(existing_user)
+                return Response(user_data, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "User already exists and is active"}, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             user = serializer.save()
