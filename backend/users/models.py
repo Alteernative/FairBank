@@ -51,6 +51,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=200, null=True, blank=True)
     balance = models.IntegerField(default=0)
     image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    subscribed = models.BooleanField(default=True)
     objects = CustomUserManager()
 
     Plan = [
