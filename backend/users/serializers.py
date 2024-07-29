@@ -185,7 +185,7 @@ class AdminUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'sent_transactions', 'received_transactions',
+            'id', 'first_name', 'last_name', 'is_active', 'sent_transactions', 'received_transactions',
             'pending_sender_transactions', 'pending_received_transactions']
 
 
