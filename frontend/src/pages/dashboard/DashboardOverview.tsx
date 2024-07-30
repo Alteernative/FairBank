@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel.tsx";
-import { Card, CardHeader } from "@/components/ui/card.tsx";
+import {Card, CardDescription, CardHeader} from "@/components/ui/card.tsx";
 import { ProgressBar } from "./ProgressBar";
 
 const UPPER_LIMIT = 100;
@@ -52,12 +52,12 @@ export default function DashboardOverview() {
 
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
           <h2 className="mb-3 font-bold">Transactions mensuelles</h2>
+          <CardDescription className="mb-3">Progression actuelle </CardDescription>
           <ProgressBar
               transactionsCount={user.sent_transactions.length}
               upperLimit={UPPER_LIMIT}
+
           />
-
-
         </div>
         <div className="col-span-3 row-span-3 rounded-lg border p-4 shadow">
           <DashboardGraph />

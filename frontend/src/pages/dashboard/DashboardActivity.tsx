@@ -15,7 +15,6 @@ type Transaction = {
   amount: number;
   date: string;
   status: string;
-  // Add other properties if needed
 };
 
 export default function DashboardActivity() {

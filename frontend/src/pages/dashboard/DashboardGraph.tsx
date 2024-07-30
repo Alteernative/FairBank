@@ -1,5 +1,4 @@
 "use client"
-
 import { TrendingUp } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
@@ -41,7 +40,7 @@ type Transaction = {
 export default function DashboardGraph() {
   const { user } = useUserContext()
   const [balanceData, setBalanceData] = useState<
-    { month: string; balance: number }[]
+    { transactionNumber: number; balance: number }[]
   >([])
   const [JsonObj, setJsonObj] = useState<string>("")
 
@@ -65,9 +64,9 @@ export default function DashboardGraph() {
       )
 
       let currentBalance = user.balance
-      const balanceDataPoints: { month: string; balance: number }[] = []
+      const balanceDataPoints: { transactionNumber: number; balance: number }[] = []
 
-      transactions.forEach((transaction) => {
+      transactions.forEach((transaction, index) => {
         const amount = parseFloat(transaction.amount)
         if (transaction.type === "received") {
           currentBalance -= amount
@@ -75,7 +74,7 @@ export default function DashboardGraph() {
           currentBalance += amount
         }
         balanceDataPoints.unshift({
-          month: transaction.date,
+          transactionNumber: transactions.length - index,
           balance: currentBalance,
         })
       })
@@ -118,15 +117,20 @@ export default function DashboardGraph() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="month"
+              dataKey="transactionNumber"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => `${value}`}
+              tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
             />
-            <YAxis />
+            <YAxis
+            tickCount={6}
+            tickFormatter={(value) => `$${value}`}
+            tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
+            />
             <ChartTooltip
-              cursor={false}
+              cursor={true}
               content={<ChartTooltipContent indicator="line" />}
             />
             <Area
@@ -135,6 +139,7 @@ export default function DashboardGraph() {
               fill="var(--color-balance)"
               fillOpacity={0.4}
               stroke="var(--color-balance)"
+
             />
           </AreaChart>
         </ChartContainer>
@@ -148,19 +153,20 @@ export default function DashboardGraph() {
           >
             <FaFileDownload />
           </CSVLink>
-        </div>
-        {/* TODO: Faire calcul de l'etat du compte du mois precedent pour afficher tendance croissance ou descendante*/}
-        {/*<div className="flex w-full items-start gap-2 text-sm">*/}
-        {/*  <div className="grid gap-2">*/}
-        {/*    <div className="flex items-center gap-2 font-medium leading-none">*/}
-        {/*      Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />*/}
-        {/*    </div>*/}
-        {/*    <div className="flex items-center gap-2 leading-none text-muted-foreground">*/}
-        {/*      January - June 2024*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-      </CardFooter>
-    </Card>
+          </div>
+
+          {/* TODO: Faire calcul de l'etat du compte du mois precedent pour afficher tendance croissance ou descendante*/}
+          {/*<div className="flex w-full items-start gap-2 text-sm">*/}
+          {/*  <div className="grid gap-2">*/}
+          {/*    <div className="flex items-center gap-2 font-medium leading-none">*/}
+          {/*      Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />*/}
+          {/*    </div>*/}
+          {/*    <div className="flex items-center gap-2 leading-none text-muted-foreground">*/}
+          {/*      January - June 2024*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
+        </CardFooter>
+      </Card>
   )
 }
