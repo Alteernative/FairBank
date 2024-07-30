@@ -176,21 +176,21 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <Send size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">{t("sendFundsAction")}</p>
+                  <p className="mt-2 text-sm">{t("buttons.sendFunds")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={sendForm.handleSubmit(submission)}>
                   <DialogHeader>
-                    <DialogTitle>{t("sendFundsTitle")}</DialogTitle>
+                    <DialogTitle>{t("userPanel.sendFunds.title")}</DialogTitle>
                     <DialogDescription>
-                      {t("sendFundsDescription")}
+                      {t("userPanel.sendFunds.description")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        {t("fundsAmountInput")}
+                        {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
@@ -203,12 +203,12 @@ export default function UserPanel() {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
-                        {t("fundsEmailInput")}
+                        {t("input.fundsEmail")}
                       </Label>
                       <Input
                         id="username"
                         defaultValue=""
-                        placeholder={t("placeholderRecipient")}
+                        placeholder={t("input.recipient")}
                         className="col-span-3"
                         {...sendForm.register("receiver", { required: true })}
                       />
@@ -216,7 +216,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">{t("sendFundsAction")}</Button>
+                      <Button type="submit">{t("buttons.sendFunds")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -229,21 +229,23 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <HandCoins size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">{t("requestFundsAction")}</p>
+                  <p className="mt-2 text-sm">{t("buttons.requestFunds")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
                   <DialogHeader>
-                    <DialogTitle>{t("requestFundsTitle")}</DialogTitle>
+                    <DialogTitle>
+                      {t("userPanel.requestFunds.title")}
+                    </DialogTitle>
                     <DialogDescription>
-                      {t("requestFundsDescription")}
+                      {t("userPanel.requestFunds.description")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        {t("fundsAmountInput")}
+                        {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
@@ -256,12 +258,12 @@ export default function UserPanel() {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="username" className="text-right">
-                        {t("fundsEmailInput")}
+                        {t("input.fundsEmail")}
                       </Label>
                       <Input
                         id="sender"
                         defaultValue=""
-                        placeholder={t("placeholderRecipient")}
+                        placeholder={t("input.recipient")}
                         className="col-span-3"
                         {...requestForm.register("sender", { required: true })}
                       />
@@ -269,7 +271,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">{t("requestFundsAction")}</Button>
+                      <Button type="submit">{t("buttons.requestFunds")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -282,21 +284,23 @@ export default function UserPanel() {
                   <Button variant={"outline"} className="size-14 rounded-full">
                     <DollarSign size={20} />
                   </Button>
-                  <p className="mt-2 text-sm">{t("depositFundsAction")}</p>
+                  <p className="mt-2 text-sm">{t("buttons.depositFunds")}</p>
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <form onSubmit={depositForm.handleSubmit(deposer)}>
                   <DialogHeader>
-                    <DialogTitle>{t("depositFundsTitle")}</DialogTitle>
+                    <DialogTitle>
+                      {t("userPanel.depositFunds.title")}
+                    </DialogTitle>
                     <DialogDescription>
-                      {t("deposiFundsDescription")}
+                      {t("userPanel.depositFunds.description")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
-                        {t("fundsAmountInput")}
+                        {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
@@ -310,7 +314,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button type="submit">{t("depositFundsAction")}</Button>
+                      <Button type="submit">{t("buttons.depositFunds")}</Button>
                     </DialogClose>
                   </DialogFooter>
                 </form>
@@ -395,15 +399,17 @@ export default function UserPanel() {
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                       <form onSubmit={sendForm.handleSubmit(submission)}>
                         <DialogHeader>
-                          <DialogTitle>{t("sendFundsTitle")}</DialogTitle>
+                          <DialogTitle>
+                            {t("userPanel.sendFunds.title")}
+                          </DialogTitle>
                           <DialogDescription>
-                            {t("sendFundsDescription")}
+                            {t("userPanel.sendFunds.description")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              {t("fundsAmountInput")}
+                              {t("input.fundsAmount")}
                             </Label>
                             <Input
                               id="amount"
@@ -418,12 +424,12 @@ export default function UserPanel() {
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                              {t("fundsEmailInput")}
+                              {t("input.fundsEmail")}
                             </Label>
                             <Input
                               id="username"
                               defaultValue=""
-                              placeholder={t("placeholderRecipient")}
+                              placeholder={t("input.recipient")}
                               className="col-span-3"
                               {...sendForm.register("receiver", {
                                 required: true,
@@ -434,7 +440,7 @@ export default function UserPanel() {
                         <DialogFooter className="flex flex-row justify-end">
                           <DialogClose asChild>
                             <Button type="submit">
-                              {t("sendFundsAction")}
+                              {t("buttons.sendFunds")}
                             </Button>
                           </DialogClose>
                         </DialogFooter>
@@ -443,7 +449,7 @@ export default function UserPanel() {
                   </Dialog>
                 </TooltipTrigger>
                 <TooltipContent side="left">
-                  {t("sendFundsAction")}
+                  {t("buttons.sendFunds")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -459,15 +465,17 @@ export default function UserPanel() {
                         onSubmit={requestForm.handleSubmit(requestTransfer)}
                       >
                         <DialogHeader>
-                          <DialogTitle>{t("requestFundsTitle")}</DialogTitle>
+                          <DialogTitle>
+                            {t("userPanel.requestFunds.title")}
+                          </DialogTitle>
                           <DialogDescription>
-                            {t("requestFundsDescription")}
+                            {t("userPanel.requestFunds.description")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              {t("fundsAmountInput")}
+                              {t("input.fundsAmount")}
                             </Label>
                             <Input
                               id="amount"
@@ -482,12 +490,12 @@ export default function UserPanel() {
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="text-right">
-                              {t("fundsEmailInput")}
+                              {t("input.fundsEmail")}
                             </Label>
                             <Input
                               id="sender"
                               defaultValue=""
-                              placeholder={t("placeholderRecipient")}
+                              placeholder={t("input.recipient")}
                               className="col-span-3"
                               {...requestForm.register("sender", {
                                 required: true,
@@ -521,15 +529,17 @@ export default function UserPanel() {
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                       <form onSubmit={depositForm.handleSubmit(deposer)}>
                         <DialogHeader>
-                          <DialogTitle>{t("depositFundsTitle")}</DialogTitle>
+                          <DialogTitle>
+                            {t("userPanel.depositFunds.title")}
+                          </DialogTitle>
                           <DialogDescription>
-                            {t("depositFundsDescription")}
+                            {t("userPanel.depositFunds.description")}
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
-                              {t("fundsAmountInput")}
+                              {t("input.fundsAmount")}
                             </Label>
                             <Input
                               id="amount"
@@ -546,7 +556,7 @@ export default function UserPanel() {
                         <DialogFooter className="flex flex-row justify-end">
                           <DialogClose asChild>
                             <Button type="submit">
-                              {t("depositFundsAction")}
+                              {t("buttons.depositFunds")}
                             </Button>
                           </DialogClose>
                         </DialogFooter>
