@@ -193,3 +193,13 @@ class PendingUsersUpdatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingUsersUpdates
         fields = ('user', 'email', 'current_nom', 'current_prenom', 'tmp_nom', 'tmp_prenom', 'tmp_email')
+
+
+class PendingDeleteSerializer(serializers.ModelSerializer):
+    user_email = serializers.EmailField(source='user.email', read_only=True)
+    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
+    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
+
+    class Meta:
+        model = PendingDelete
+        fields = ('id', 'user_email', 'user_first_name', 'user_last_name', 'created_at', 'status')
