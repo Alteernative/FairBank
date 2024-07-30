@@ -122,6 +122,31 @@ def newsletter_email(user):
         print(f"Failed to send email: {e}")
 
 
+def delete_email(user):
+    print("we deleted the user and we sending the email", user)
+    sitelink = "http://localhost:5173/unsubscribe"
+
+    context = {
+
+        'email_adress': user.email,
+    }
+
+    html_message = render_to_string("backend/delete_notification.html")
+    plain_message = strip_tags(html_message)
+
+    msg = EmailMultiAlternatives(
+        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
+        body=plain_message,
+        from_email="Alteernative02@gmail.com",
+        to=[user.email]
+    )
+    msg.attach_alternative(html_message, "text/html")
+    try:
+        msg.send()
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+
+
 class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = User.objects.all()
@@ -318,6 +343,7 @@ class UnsubscribeUsers(viewsets.ModelViewSet):
         user.subscribed = False
         user.save()
         return Response({"success": "User unsubscribed"}, status=status.HTTP_200_OK)
+
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
@@ -532,6 +558,7 @@ class AdminViewset(viewsets.ModelViewSet):
 
         pending_delete.status = 'approved'
         pending_delete.save()
+        delete_email(pending_delete.user)
 
         return Response({"success": "User deleted successfully"}, status=status.HTTP_200_OK)
 
