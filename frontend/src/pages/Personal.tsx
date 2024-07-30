@@ -11,7 +11,7 @@ export default function Particuliers() {
   return (
     <div className="mb-32 mt-12">
       <h1 className="mb-4 text-center font-jomhuria text-6xl">
-        {t("personal.h1")}
+        {t("plans.h1")}
       </h1>
 
       {/* Pricing toggle */}
@@ -34,7 +34,7 @@ export default function Particuliers() {
             onClick={() => setIsYearly(true)}
             aria-pressed={isYearly}
           >
-            {t("personal.yearly")}{" "}
+            {t("plans.yearly")}{" "}
             <span
               className={
                 isYearly
@@ -52,7 +52,7 @@ export default function Particuliers() {
             onClick={() => setIsYearly(false)}
             aria-pressed={!isYearly}
           >
-            {t("personal.monthly")}
+            {t("plans.monthly")}
           </button>
         </div>
       </div>
