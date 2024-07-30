@@ -171,3 +171,12 @@ class PendingUsersUpdates(models.Model):
     def __str__(self):
         return (f'{self.user} - {self.current_nom} {self.current_prenom} - {self.tmp_nom} {self.tmp_prenom} - '
                 f'{self.email} {self.tmp_email}')
+
+
+class PendingDelete(models.Model):
+    user = models.ForeignKey(CustomUser, related_name='pending_delete', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('approved', 'Approved'), ('denied', 'Denied')], default='pending')
+
+    def __str__(self):
+        return (f'{self.user}')
