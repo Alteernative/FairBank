@@ -286,14 +286,21 @@ class UserViewset(viewsets.ViewSet):
             amount = float(amount)
             if amount <= 0:
                 return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
-        except ValueError:
+        except (ValueError, TypeError, Decimal.InvalidOperation):
             return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
 
+        transaction = Transaction(
+            sender=None,
+            receiver=user,
+            amount=amount,
+        )
+
+        transaction.save()
         user.balance += amount
         user.save()
 
         return Response(
-            {'success': 'Balance updated successfully', 'balance': user.balance},
+            {'success': 'Balance updated successfully', 'balance': user.balance, 'transaction_id': transaction.id},
             status=status.HTTP_200_OK
         )
 
