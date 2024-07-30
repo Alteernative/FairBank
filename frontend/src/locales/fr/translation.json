@@ -39,6 +39,8 @@
     "skip": "Passer",
     "save": "Sauvegarder",
     "ask": "Demander",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
 
     "sendFunds": "Envoyer",
     "requestFunds": "Demander",
@@ -261,8 +263,12 @@
     "security": {
       "h1": "Sécurité",
       "card1": {
-        "title": "card1",
-        "description": "card1"
+        "title": "Fermez votre compte",
+        "description": "<0>Attention: La fermeture de compte est finale.</0> <br /> Cliquez sur Demander pour envoyer une demande de fermeture à notre équipe de support.",
+        "alert": {
+          "title": "Êtes-vous sûr de vouloir fermer votre compte ?",
+          "description": "<0>Cette action est irréversible.</0> Une demande de fermeture de compte sera envoyée à notre équipe de support et sera traitée dans les plus brefs délais."
+        }
       }
     }
   },
