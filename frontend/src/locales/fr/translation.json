@@ -79,6 +79,42 @@
     "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles."
   },
 
+  "services": {
+    "h1": "Services Offerts",
+    "card1": {
+      "title": "Gestion de compte bancaire",
+      "description": "Gérez votre compte facilement et en toute sécurité."
+    },
+    "card2": {
+      "title": "Transferts de fonds",
+      "description": "Effectuez des transferts de fonds rapides et sécurisés."
+    },
+    "card3": {
+      "title": "Paiements de factures",
+      "description": "Paiements de factures des services publics et privés en toute simplicité."
+    },
+    "card4": {
+      "title": "Taux de change actuels",
+      "description": "Accédez aux taux de change actuels pour la conversion de devises."
+    },
+    "card5": {
+      "title": "Retraits sans frais",
+      "description": "Retraits gratuits à n'importe quel ATM au Canada."
+    },
+    "card6": {
+      "title": "Virements sans frais",
+      "description": "Virements d'argent sans payer des frais de transfert."
+    },
+    "card7": {
+      "title": "Tableau de bord personnalisé",
+      "description": "Tableau de bord avec statistiques pour suivre vos dépenses et revenus."
+    },
+    "card8": {
+      "title": "Sécurité garantie",
+      "description": "Fairbank utilise un système d'encryption avancées pour la protection de vos données personnelles."
+    }
+  },
+
   "aboutUs": {
     "h1": "Qui est Fairbank ?",
     "card1": {
