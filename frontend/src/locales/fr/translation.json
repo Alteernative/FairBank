@@ -27,12 +27,15 @@
   },
 
   "buttons": {
-    "signup": "Devenir membre",
-    "signin": "Se connecter",
-    "signout": "Se déconnecter",
+    "signUp": "Devenir membre",
+    "signIn": "Se connecter",
+    "signIn2": "S'identifier",
+    "signOut": "Se déconnecter",
     "dashboard": "Tableau de bord",
     "submit": "Soumettre",
     "return": "Retourner",
+    "next": "Suivant",
+    "skip": "Passer",
 
     "sendFunds": "Envoyer",
     "requestFunds": "Demander",

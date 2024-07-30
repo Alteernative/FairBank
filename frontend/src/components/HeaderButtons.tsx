@@ -39,7 +39,7 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             onClick={logoutUser}
           >
             <LogOut size={20} />
-            {t("buttons.signout")}
+            {t("buttons.signOut")}
           </Button>
         </>
       ) : (
@@ -49,10 +49,10 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="rounded-3xl font-semibold"
           >
-            <Link to={"/connexion"}>{t("buttons.signin")}</Link>
+            <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
           </Button>
           <Button asChild className="rounded-3xl">
-            <Link to={"/inscription"}>{t("buttons.signup")}</Link>
+            <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
           </Button>
         </>
       )}
