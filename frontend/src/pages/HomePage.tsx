@@ -37,7 +37,6 @@ function Hero() {
         <div className="flex w-full flex-col gap-5">
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">
             {t("homepage.hero.h1")}
-            {/* <Trans i18nKey={"heroH1"} /> */}
           </h1>
           <h2 className="text-xl tracking-tight lg:text-2xl">
             {t("homepage.hero.h2")}
