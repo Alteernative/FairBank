@@ -587,3 +587,33 @@ class AdminViewset(viewsets.ModelViewSet):
         for user in current_users:
             newsletter_email(user)
         return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
+
+
+class AdminLoginViewset(viewsets.ViewSet):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = LoginSerializer
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email'].lower()
+            password = serializer.validated_data['password']
+
+            user = authenticate(request, email=email, password=password, is_active=True)
+            if user and user.is_staff:
+                _, token = AuthToken.objects.create(user)
+                user_data = {
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                }
+                return Response(
+                    {
+                        "user": user_data,
+                        "token": token,
+                    }
+                )
+            else:
+                return Response({"error": "Invalid credentials or user is not an admin"}, status=401)
+        else:
+            return Response(serializer.errors, status=400)
