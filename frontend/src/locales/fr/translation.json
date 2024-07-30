@@ -37,6 +37,7 @@
     "returnHome": "Retourner à la page d'accueil",
     "next": "Suivant",
     "skip": "Passer",
+    "ask": "Demander",
 
     "sendFunds": "Envoyer",
     "requestFunds": "Demander",
@@ -195,25 +196,69 @@
     "transaction": "Historique",
     "activity": "Activité",
     "exchangeRate": "Taux de change",
-    "help": "Aide",
+    "help": "Aide"
+  },
 
-    "settings": {
-      "h1": "Paramètres",
-      "profile": "Profile",
-      "account": "Compte",
-      "appearance": "Apparence",
-      "notifications": "Notifications",
-      "security": "Sécurité"
+  "settings": {
+    "h1": "Paramètres",
+    "profile": {
+      "h1": "Profile",
+      "card1": {
+        "title": "Image de profil",
+        "description": "Modifiez votre image de profil."
+      },
+      "card2": {
+        "title": "Prénom",
+        "description": "Faire une demande pour modifier votre prénom."
+      },
+      "card3": {
+        "title": "Nom",
+        "description": "Faire une demande pour modifier votre nom."
+      }
+    },
+    "account": {
+      "h1": "Compte",
+      "card1": {
+        "title": "card1",
+        "description": "card1"
+      }
+    },
+    "appearance": {
+      "h1": "Apparence",
+      "card1": {
+        "title": "card1",
+        "description": "card1"
+      }
+    },
+    "notifications": {
+      "h1": "Notifications",
+      "card1": {
+        "title": "card1",
+        "description": "card1"
+      }
+    },
+    "security": {
+      "h1": "Sécurité",
+      "card1": {
+        "title": "card1",
+        "description": "card1"
+      }
     }
   },
 
   "userPanel": {
-    "sendFundsTitle": "Envoyer des fonds",
-    "sendFundsDescription": "Veuillez entrer le montant à envoyer, ainsi que le courriel du destinataire.",
-    "requestFundsTitle": "Demander des fonds",
-    "requestFundsDescription": "Veuillez entrer le montant à demander, ainsi que le courriel du destinataire.",
-    "depositFundsTitle": "Déposer des fonds",
-    "depositFundsDescription": "Veuillez entrer le montant à déposer."
+    "sendFunds": {
+      "title": "Envoyer des fonds",
+      "description": "Veuillez entrer le montant à envoyer, ainsi que le courriel du destinataire."
+    },
+    "requestFunds": {
+      "title": "Demander des fonds",
+      "description": "Veuillez entrer le montant à demander, ainsi que le courriel du destinataire."
+    },
+    "depositFunds": {
+      "title": "Déposer des fonds",
+      "description": "Veuillez entrer le montant à déposer."
+    }
   },
 
   "signIn": {

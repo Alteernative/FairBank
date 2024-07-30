@@ -26,7 +26,7 @@ export default function SettingsSidebar() {
     <aside className="fixed left-0 h-screen w-14 border-r py-5 lg:w-52">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
         <h1 className="cursor-default font-jomhuria text-6xl">
-          {t("sidebar.settings.h1")}
+          {t("settings.h1")}
         </h1>
 
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
@@ -38,7 +38,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <UserRoundPen size={20} />
-                {t("sidebar.settings.profile")}
+                {t("settings.profile.h1")}
               </Link>
             </Button>
             <Button
@@ -48,7 +48,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/account"}>
                 <Wallet size={20} />
-                {t("sidebar.settings.account")}
+                {t("settings.account.h1")}
               </Link>
             </Button>
             <Button
@@ -58,7 +58,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/appearance"}>
                 <Palette size={20} />
-                {t("sidebar.settings.appearance")}
+                {t("settings.appearance.h1")}
               </Link>
             </Button>
             <Button
@@ -68,7 +68,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/notifications"}>
                 <Bell size={20} />
-                {t("sidebar.settings.notifications")}
+                {t("settings.notifications.h1")}
               </Link>
             </Button>
             <Button
@@ -78,7 +78,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/security"}>
                 <LockIcon size={20} />
-                {t("sidebar.settings.security")}
+                {t("settings.security.h1")}
               </Link>
             </Button>
           </div>
@@ -119,7 +119,7 @@ export default function SettingsSidebar() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  {t("sidebar.settings.profile")}
+                  {t("settings.profile.h1")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -137,7 +137,7 @@ export default function SettingsSidebar() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  {t("sidebar.settings.account")}
+                  {t("settings.account.h1")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -155,7 +155,7 @@ export default function SettingsSidebar() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  {t("sidebar.settings.appearance")}
+                  {t("settings.appearance.h1")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -173,7 +173,7 @@ export default function SettingsSidebar() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  {t("sidebar.settings.notifications")}
+                  {t("settings.notifications.h1")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -191,7 +191,7 @@ export default function SettingsSidebar() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  {t("sidebar.settings.security")}
+                  {t("settings.security.h1")}
                 </TooltipContent>
               </Tooltip>
             </div>
