@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
 import { Loader } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type StepWrapperProps = {
   title: string;
@@ -24,6 +25,7 @@ export default function StepWrapper({
   isLastStep,
   isSubmitting,
 }: StepWrapperProps) {
+  const { t } = useTranslation();
   return (
     <Card className="h-[25rem] w-96 border-none shadow-none">
       <CardHeader>
@@ -42,10 +44,10 @@ export default function StepWrapper({
               isSubmitting ? (
                 <Loader size={20} className="animate-spin" />
               ) : (
-                "Soumettre"
+                `${t("buttons.submit")}`
               )
             ) : (
-              "Suivant"
+              `${t("buttons.next")}`
             )}
           </Button>
         </div>
