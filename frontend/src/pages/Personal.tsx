@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { CheckIcon } from "lucide-react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function Particuliers() {
@@ -11,7 +11,7 @@ export default function Particuliers() {
   return (
     <div className="mb-32 mt-12">
       <h1 className="mb-4 text-center font-jomhuria text-6xl">
-        {t("plansH1")}
+        {t("personal.h1")}
       </h1>
 
       {/* Pricing toggle */}
@@ -34,7 +34,7 @@ export default function Particuliers() {
             onClick={() => setIsYearly(true)}
             aria-pressed={isYearly}
           >
-            {t("annualBtn")}{" "}
+            {t("personal.yearly")}{" "}
             <span
               className={
                 isYearly
@@ -52,7 +52,7 @@ export default function Particuliers() {
             onClick={() => setIsYearly(false)}
             aria-pressed={!isYearly}
           >
-            {t("monthlyBtn")}
+            {t("personal.monthly")}
           </button>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function Particuliers() {
         <div className="h-full">
           <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
-              <div className="mb-1 font-semibold">Régulier</div>
+              <div className="mb-1 font-semibold">{t("plans.tier1.name")}</div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
                   ${isYearly ? "192" : "20"}
@@ -73,13 +73,13 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                {t("tier1Description")}
+                {t("plans.tier1.description")}
               </div>
               <Link
                 to={"/inscription"}
                 className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
               >
-                Choisir ce plan
+                {t("buttons.choosePlan")}
               </Link>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
@@ -89,18 +89,22 @@ export default function Particuliers() {
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  <b>20</b> transactions quotidiennes
+                  <Trans i18nKey={"plans.tier1.perk1"}>
+                    <b>20</b> transactions quotidiennes
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  <b>$5,000</b> en transactions quotidiennes
+                  <Trans i18nKey={"plans.tier1.perk2"}>
+                    <b>$5,000</b> en transactions quotidiennes.
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
-                <span>Support client</span>
+                <span>{t("plans.tier1.perk3")}</span>
               </li>
             </ul>
           </div>
@@ -117,7 +121,7 @@ export default function Particuliers() {
             </div>
             <div className="mb-5">
               <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
-                Premium
+                {t("plans.tier2.name")}
               </div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
@@ -132,14 +136,13 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan avancé pour les utilisateurs exigeants, offrant des
-                avantages supplémentaires.
+                {t("plans.tier2.description")}
               </div>
               <Link
                 to={"/inscription"}
                 className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
               >
-                Choisir ce plan
+                {t("buttons.choosePlan")}
               </Link>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
@@ -149,22 +152,26 @@ export default function Particuliers() {
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  Nombre <b>illimité</b> d'opérations par mois
+                  <Trans i18nKey={"plans.tier2.perk1"}>
+                    Nombre <b>illimité</b> d'opérations par mois.
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  <b>$15,000</b> en transactions quotidiennes
+                  <Trans i18nKey={"plans.tier2.perk2"}>
+                    <b>$15,000</b> en transactions quotidiennes.
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
-                <span>Support client</span>
+                <span>{t("plans.tier2.perk3")}</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
-                <span>Service de conversion de devises étrangères</span>
+                <span>{t("plans.tier2.perk4")}</span>
               </li>
             </ul>
           </div>
@@ -176,7 +183,7 @@ export default function Particuliers() {
           <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
             <div className="mb-5">
               <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
-                Ultime
+                {t("plans.tier3.name")}
               </div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
@@ -187,14 +194,13 @@ export default function Particuliers() {
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan exclusif pour les utilisateurs professionnels, incluant des
-                avantages premium.
+                {t("plans.tier3.description")}
               </div>
               <Link
                 to={"/inscription"}
                 className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
               >
-                Choisir ce plan
+                {t("buttons.choosePlan")}
               </Link>
             </div>
             <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
@@ -204,27 +210,33 @@ export default function Particuliers() {
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  Nombre <b>illimité</b> d'opérations par mois
+                  <Trans i18nKey={"plans.tier3.perk1"}>
+                    Nombre <b>illimité</b> d'opérations par mois
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  <b>$100,000</b> en transactions quotidiennes
+                  <Trans i18nKey={"plans.tier3.perk2"}>
+                    <b>$100,000</b> en transactions quotidiennes
+                  </Trans>
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
-                <span>Support client</span>
+                <span>{t("plans.tier3.perk3")}</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
-                <span>Service de conversion de devises étrangères</span>
+                <span>{t("plans.tier3.perk4")}</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
                 <span>
-                  Chèques, traites et autres services <b>gratuits</b>
+                  <Trans i18nKey={"plans.tier3.perk5"}>
+                    Chèques, traites et autres services <b>gratuits</b>
+                  </Trans>
                 </span>
               </li>
             </ul>

@@ -39,7 +39,9 @@
 
     "sendFunds": "Envoyer",
     "requestFunds": "Demander",
-    "depositFunds": "Déposer"
+    "depositFunds": "Déposer",
+
+    "choosePlan": "Choisir ce plan"
   },
 
   "input": {
@@ -69,14 +71,6 @@
     "mapsite": "Plan du site",
     "contactUs": "Contactez-nous",
     "copyright": "FairBank Inc. Tous droits réservés."
-  },
-
-  "personal": {
-    "h1": "Choisissez le plan qui correspond à vos besoins!",
-    "yearly": "Annuel",
-    "monthly": "Mensuel",
-
-    "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles."
   },
 
   "services": {
@@ -162,14 +156,32 @@
   },
 
   "plans": {
+    "h1": "Choisissez le plan qui correspond à vos besoins!",
+    "yearly": "Annuel",
+    "monthly": "Mensuel",
     "tier1": {
-      "name": "Régulier"
+      "name": "Régulier",
+      "description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles.",
+      "perk1": "<0>20</0> transactions quotidiennes.",
+      "perk2": "<0>$5,000</0> en transactions quotidiennes.",
+      "perk3": "Support client"
     },
     "tier2": {
-      "name": "Premium"
+      "name": "Premium",
+      "description": "Plan avancé pour les utilisateurs exigeants, offrant des avantages supplémentaires.",
+      "perk1": "Nombre <1>illimité</1> de transactions quotidiennes.",
+      "perk2": "<0>$15,000</0> en transactions quotidiennes.",
+      "perk3": "Support client",
+      "perk4": "Service de conversion de devises étrangères"
     },
     "tier3": {
-      "name": "Ultime"
+      "name": "Ultime",
+      "description": "Plan exclusif pour les utilisateurs professionnels, incluant des avantages premium.",
+      "perk1": "Nombre <1>illimité</1> de transactions quotidiennes.",
+      "perk2": "<0>$100,000</0> en transactions quotidiennes",
+      "perk3": "Support client",
+      "perk4": "Service de conversion de devises étrangères",
+      "perk5": "Chèques, traites et autres services <1>gratuits</1>"
     }
   },
 
