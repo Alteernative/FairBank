@@ -4,14 +4,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function FAQPage() {
   const { t } = useTranslation();
 
   return (
     <section className="mt-12 flex flex-col items-center justify-center">
-      <h1 className="font-jomhuria text-6xl">FAQ</h1>
+      <h1 className="font-jomhuria text-6xl">{t("header.faq")}</h1>
       <Accordion
         type="single"
         collapsible
@@ -19,82 +20,85 @@ export default function FAQPage() {
       >
         <AccordionItem value="item1" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ1")}
+            {t("faq.q1")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR1")}
+            <Trans i18nKey={"faqR1"}>
+              {t("faq.r1")}
+              <Link to={"/inscription"} className="hover:underline" />
+            </Trans>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item2" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ2")}
+            {t("faq.q2")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR2")}
+            {t("faq.r2")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item3" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ3")}
+            {t("faq.q3")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR3")}
+            {t("faq.r3")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item4" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ4")}
+            {t("faq.q4")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR4")}
+            {t("faq.r4")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item5" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ5")}
+            {t("faq.q5")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR5")}
+            {t("faq.r5")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item6" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ6")}
+            {t("faq.q6")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR6")}
+            {t("faq.r6")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item7" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ7")}
+            {t("faq.q7")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR7")}
+            {t("faq.r7")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item8" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ8")}
+            {t("faq.q8")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR8")}
+            {t("faq.r8")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item9" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ9")}
+            {t("faq.q9")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faqR9")}
+            {t("faq.r9")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item10" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            {t("faqQ10")}
+            {t("faq.q10")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq10")}
+            {t("faq.r10")}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
