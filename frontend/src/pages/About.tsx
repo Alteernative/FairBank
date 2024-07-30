@@ -7,7 +7,7 @@ export default function Apropos() {
   return (
     <section className="mb-32 mt-12 flex flex-col items-center justify-center">
       <h1 className="mb-10 font-jomhuria text-6xl text-primary">
-        {t("aboutUsH1")}
+        {t("aboutUs.h1")}
       </h1>
       <main className="flex flex-col lg:flex-row">
         <div className="mx-auto mb-8 flex flex-1 items-center lg:mr-20 lg:justify-start">
@@ -23,13 +23,13 @@ export default function Apropos() {
             <CardHeader>
               <CardTitle>
                 <h2 className="text-4xl font-semibold tracking-tight">
-                  {t("aboutUsMissionH2")}
+                  {t("aboutUs.card1.h2")}
                 </h2>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="leading-7">{t("aboutUsMissionP1")}</p>
-              <p className="leading-7">{t("aboutUsMissionP2")}</p>
+              <p className="leading-7">{t("aboutUs.card1.p1")}</p>
+              <p className="leading-7">{t("aboutUs.card1.p2")}</p>
             </CardContent>
           </Card>
 
@@ -37,7 +37,7 @@ export default function Apropos() {
             <CardHeader>
               <CardTitle>
                 <h2 className="text-4xl font-semibold tracking-tight">
-                  {t("aboutUsValueH2")}
+                  {t("aboutUs.card2.h2")}
                 </h2>
               </CardTitle>
             </CardHeader>
