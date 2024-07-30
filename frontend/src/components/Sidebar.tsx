@@ -114,7 +114,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
-                {t("sidebar.settings")}
+                {t("sidebar.settings.h1")}
               </Link>
             </Button>
             <Button
