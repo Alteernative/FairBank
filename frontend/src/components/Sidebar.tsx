@@ -114,7 +114,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
-                {t("sidebar.settings.h1")}
+                {t("settings.h1")}
               </Link>
             </Button>
             <Button
@@ -244,9 +244,7 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">
-                  {t("sidebar.settings.h1")}
-                </TooltipContent>
+                <TooltipContent side="right">{t("settings.h1")}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
