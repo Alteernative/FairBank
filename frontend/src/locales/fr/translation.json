@@ -37,6 +37,7 @@
     "returnHome": "Retourner à la page d'accueil",
     "next": "Suivant",
     "skip": "Passer",
+    "save": "Sauvegarder",
     "ask": "Demander",
 
     "sendFunds": "Envoyer",
@@ -219,8 +220,16 @@
     "account": {
       "h1": "Compte",
       "card1": {
-        "title": "card1",
-        "description": "card1"
+        "title": "Courriel",
+        "description": "Contactez le support pour modifier votre courriel."
+      },
+      "card2": {
+        "title": "Nouveau mot de passe",
+        "description": "Entrez un nouveau mot de passe."
+      },
+      "card3": {
+        "title": "Confirmer le nouveau mot de passe",
+        "description": "Confirmez le nouveau mot de passe."
       }
     },
     "appearance": {
