@@ -500,7 +500,7 @@ class ContactUsViewset(viewsets.ModelViewSet):
 
 
 class AdminViewset(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = AdminUsersSerializer
 
     queryset = User.objects.all()
