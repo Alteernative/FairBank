@@ -39,7 +39,9 @@ export default function DisplaySettings() {
       last_name: data.last_name,
     })
       .then(() => {
-        toast.success("Votre compte a été supprimé.");
+        toast.success(
+          "Une demande de fermeture de compte a été envoyée. Veuillez attendre la confirmation de fermeture de compte par courriel"
+        );
         setTimeout(() => {
           navigate("/");
         }, 2500);
