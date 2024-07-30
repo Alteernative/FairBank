@@ -1,7 +1,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import i18n from "@/utils/i8n";
 
-type Language = "fr" | "en";
+type Language =
+  | "ar"
+  | "de"
+  | "en"
+  | "es"
+  | "fr"
+  | "hi"
+  | "it"
+  | "ja"
+  | "pt"
+  | "ru"
+  | "zh";
 
 type LanguageProviderProps = {
   children: React.ReactNode;
