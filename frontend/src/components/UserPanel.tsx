@@ -59,9 +59,9 @@ export default function UserPanel() {
   const { t } = useTranslation();
 
   const planTitle: PlanTitle = {
-    tier1: t("tier1Title"),
-    tier2: t("tier2Title"),
-    tier3: t("tier3Title"),
+    tier1: t("plans.tier1.name"),
+    tier2: t("plans.tier2.name"),
+    tier3: t("plans.tier3.name"),
   };
 
   const submission = (data: FieldValues) => {
