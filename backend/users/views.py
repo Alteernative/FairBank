@@ -240,9 +240,14 @@ class UserViewset(viewsets.ViewSet):
         except CustomUser.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        user.is_active = False
-        user.save()
-        return Response({"success": "User deactivated"}, status=status.HTTP_200_OK)
+        if PendingDelete.objects.filter(user=user, status='pending').exists():
+            return Response({"error": "Pending delete request already exists for this user"},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        pending_delete = PendingDelete(user=user)
+        pending_delete.save()
+
+        return Response({"success": "Pending delete request created"}, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['post'])
     def add_balance(self, request):
@@ -506,6 +511,41 @@ class AdminViewset(viewsets.ModelViewSet):
         pending_update = get_object_or_404(PendingUsersUpdates, user_id=pk)
         pending_update.delete()
         return Response({'success': 'Update request declined'}, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['get'], url_path='pending-deletes')
+    def list_pending_deletes(self, request):
+        pending_deletes = PendingDelete.objects.filter(status='pending')
+        serializer = PendingDeleteSerializer(pending_deletes, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'], url_path='approve-delete')
+    def approve_delete(self, request, pk=None):
+        try:
+            print("the pk is : ", pk)
+            pending_delete = PendingDelete.objects.get(pk=pk, status='pending')
+        except PendingDelete.DoesNotExist:
+            return Response({"error": "Pending delete request not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        user = pending_delete.user
+        user.is_active = False
+        user.save()
+
+        pending_delete.status = 'approved'
+        pending_delete.save()
+
+        return Response({"success": "User deleted successfully"}, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['post'], url_path='deny-delete')
+    def deny_delete(self, request, pk=None):
+        try:
+            pending_delete = PendingDelete.objects.get(pk=pk, status='pending')
+        except PendingDelete.DoesNotExist:
+            return Response({"error": "Pending delete request not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        pending_delete.status = 'denied'
+        pending_delete.save()
+
+        return Response({"success": "Pending delete request denied"}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['get'])
     def send_newsLetter(self, request):
