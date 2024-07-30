@@ -254,8 +254,8 @@
     "notifications": {
       "h1": "Notifications",
       "card1": {
-        "title": "card1",
-        "description": "card1"
+        "title": "Préférences des notifications",
+        "description": "Séléctionner vos préférences de notifications."
       }
     },
     "security": {
