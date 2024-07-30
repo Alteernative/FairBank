@@ -46,6 +46,7 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "email": "Courriel",
+    "password": "Mot de passe",
     "recipient": "destinataire@courriel.com",
     "fundsAmount": "Montant",
     "fundsEmail": "Courriel"
@@ -151,5 +152,17 @@
     "requestFundsDescription": "Veuillez entrer le montant à demander, ainsi que le courriel du destinataire.",
     "depositFundsTitle": "Déposer des fonds",
     "depositFundsDescription": "Veuillez entrer le montant à déposer."
-  }
+  },
+
+  "signIn": {
+    "p": "Entrez votre courriel et mot de passe pour vous connecter.",
+    "forgot": "Mot de passe oublié?"
+  },
+
+  "signUp": {
+    "p": "Entrez votre courriel et mot de passe pour vous connecter.",
+    "forgot": "Mot de passe oublié?"
+  },
+
+  "toast": {}
 }
