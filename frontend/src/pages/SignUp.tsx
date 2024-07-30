@@ -14,6 +14,7 @@ import { toast, Toaster } from "sonner";
 import PlanForm from "./signup/PlanForm.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
 import { LanguageToggle } from "@/components/LanguageToggle.tsx";
+import { useTranslation } from "react-i18next";
 
 type FormValues = {
   email: string;
@@ -21,13 +22,11 @@ type FormValues = {
   last_name: string;
   password: string;
   re_password: string;
-  // birthday_year: number;
-  // birthday_month: string;
-  // birthday_day: number;
   plan: string;
 };
 
 export default function SignUp() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
@@ -122,7 +121,7 @@ export default function SignUp() {
               <LanguageToggle />
               <ModeToggle />
               <Button asChild variant={"ghost"} className="ml-2">
-                <Link to={"/connexion"}>Se connecter</Link>
+                <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
               </Button>
             </span>
           </div>
