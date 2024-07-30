@@ -167,13 +167,13 @@ class ContactUsSerializer(serializers.ModelSerializer):
 class SimpleTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['amount']
+        fields = ['amount', 'date']
 
 
 class SimplePendingTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PendingTransactions
-        fields = ['amount']
+        fields = ['amount', 'date']
 
 
 class AdminUsersSerializer(serializers.ModelSerializer):
