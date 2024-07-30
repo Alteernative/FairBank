@@ -6,9 +6,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import capitalize from "@/utils/capitalize";
 import { LANGUAGES } from "@/constants";
 import { useLanguage } from "@/provider/LanguageProvider";
+
+type Language =
+  | "ar"
+  | "de"
+  | "en"
+  | "es"
+  | "fr"
+  | "hi"
+  | "it"
+  | "ja"
+  | "pt"
+  | "ru"
+  | "zh";
 
 export function LanguageToggle() {
   const { setLanguage } = useLanguage();
@@ -22,8 +34,11 @@ export function LanguageToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {LANGUAGES.map(({ code, language }) => (
-          <DropdownMenuItem key={code} onClick={() => setLanguage(code)}>
-            {capitalize(language)}
+          <DropdownMenuItem
+            key={code}
+            onClick={() => setLanguage(code as Language)}
+          >
+            {language}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
