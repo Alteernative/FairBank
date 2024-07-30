@@ -1,111 +1,341 @@
 {
-  "heroH1": "Our bank's interest? Your financial well-being.",
-  "heroH2": "Open an account in minutes and say goodbye to interest.",
-  "sponsorsH2": "Shop at your favorite stores",
+  "homepage": {
+    "hero": {
+      "h1": "Our bank's interest? Your financial well-being.",
+      "h2": "Open an account in minutes and say goodbye to interest."
+    },
 
-  "signupBtn": "Become a member",
-  "signinBtn": "Log in",
-  "signoutBtn": "Log out",
-  "dashboardBtn": "Dashboard",
+    "sponsors": {
+      "h2": "Shop at your favorite stores"
+    },
+    "about": {
+      "h2": "Make your assets work for you",
+      "p": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, anytime."
+    },
+    "cta": {
+      "h2": "Get the banking services you deserve!",
+      "p": "Monthly fees? No way. Enjoy free withdrawals at any ATM in Canada and cashback on every purchase with the FairBank card."
+    },
+    "reviews": {
+      "h2": "Reviews from our members",
+      "1": "FairBank has transformed my financial management. Exceptional customer service!",
+      "2": "The simplicity of using FairBank is impressive.",
+      "3": "The exchange rate is competitive and frequently updated!",
+      "4": "Online services are always fast with FairBank.",
+      "5": "Excellent customer support, always listening."
+    }
+  },
 
-  "placeholderFirstName": "First name",
-  "placeholderLastName": "Last name",
-  "placeholderEmail": "Email",
-  "placeholderRecipient": "recipient@email.com",
+  "buttons": {
+    "signUp": "Become a member",
+    "signIn": "Sign In",
+    "signIn2": "Log In",
+    "signOut": "Sign Out",
+    "dashboard": "Dashboard",
+    "submit": "Submit",
+    "return": "Return",
+    "returnHome": "Return to Homepage",
+    "next": "Next",
+    "skip": "Skip",
+    "save": "Save",
+    "ask": "Ask",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
 
-  "aboutH2": "Value your assets",
-  "aboutP": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, to any moment.",
+    "sendFunds": "Send",
+    "requestFunds": "Request",
+    "depositFunds": "Deposit",
 
-  "ctaH2": "Get the banking services you deserve!",
-  "ctaP": "Monthly fees? No way. Enjoy free withdrawals from any ATM in Canada and cash back on every purchase with the FairBank card.",
+    "choosePlan": "Choose this plan"
+  },
 
-  "reviewsH2": "Reviews from our members",
-  "reviews1P": "FairBank has transformed my financial management. Exceptional customer service!",
-  "reviews2P": "The ease of use of FairBank is impressive.",
-  "reviews3P": "The exchange rate is competitive and frequently updated!",
-  "reviews4P": "Always fast online services at FairBank.",
-  "reviews5P": "Excellent customer support, always attentive.",
+  "input": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm",
+    "recipient": "recipient@email.com",
+    "fundsAmount": "Amount",
+    "fundsEmail": "Email",
+    "year": "Year",
+    "month": "Month",
+    "day": "Day"
+  },
 
-  "PlansNavLink": "Plans",
-  "ServicesNavLink": "Services",
-  "AboutUsNavLink": "About Us",
-  "FAQNavLink": "FAQ",
-  "PrivacyNavLink": "Privacy and security",
-  "footerSlogan": "Different bank, different future.",
-  "footerMapsite": "Sitemap",
-  "footerContactUs": "Contact us",
-  "footerSubmitBtn": "Submit",
-  "copyright": "FairBank Inc. All rights reserved.",
+  "header": {
+    "plans": "Plans",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "faq": "FAQ",
+    "privacy": "Privacy & Security"
+  },
 
-  "plansH1": "Choose the plan that suits your needs!",
-  "annualBtn": "Yearly",
-  "monthlyBtn": "Monthly",
+  "footer": {
+    "slogan": "Different bank, different future.",
+    "mapsite": "Sitemap",
+    "contactUs": "Contact Us",
+    "copyright": "FairBank Inc. All rights reserved."
+  },
 
-  "tier1Description": "Basic plan for individuals, with essential features.",
+  "services": {
+    "h1": "Offered Services",
+    "card1": {
+      "title": "Bank Account Management",
+      "description": "Manage your account easily and securely."
+    },
+    "card2": {
+      "title": "Fund Transfers",
+      "description": "Make quick and secure fund transfers."
+    },
+    "card3": {
+      "title": "Bill Payments",
+      "description": "Easily pay public and private service bills."
+    },
+    "card4": {
+      "title": "Current Exchange Rates",
+      "description": "Access current exchange rates for currency conversion."
+    },
+    "card5": {
+      "title": "No-Fee Withdrawals",
+      "description": "Free withdrawals at any ATM in Canada."
+    },
+    "card6": {
+      "title": "No-Fee Transfers",
+      "description": "Money transfers without paying transfer fees."
+    },
+    "card7": {
+      "title": "Personalized Dashboard",
+      "description": "Dashboard with statistics to track your expenses and income."
+    },
+    "card8": {
+      "title": "Guaranteed Security",
+      "description": "FairBank uses advanced encryption systems to protect your personal data."
+    }
+  },
 
-  "aboutUsH1": "Who is Fairbank?",
-  "aboutUsMissionH2": "Our Mission",
-  "aboutUsMissionP1": "To help our customers succeed by providing quality banking services and helping them achieve their financial goals.",
-  "aboutUsMissionP2": "We are committed to providing efficient banking services by ensuring the security of your data so that you can invest in your future.",
-  "aboutUsValueH2": "Our Values",
-  "aboutUsValueP1": "Our Values",
-  "aboutUsValueP2": "Our Values",
+  "aboutUs": {
+    "h1": "Who is FairBank?",
+    "card1": {
+      "h2": "Our Mission",
+      "p1": "Contribute to the success of our clients by offering quality banking services and helping them achieve their financial goals.",
+      "p2": "We are committed to providing efficient banking services by ensuring the security of your data so you can invest in your future."
+    },
+    "card2": {
+      "h2": "Our Values",
+      "p1": "Our Values",
+      "p2": "Our Values"
+    }
+  },
 
-  "faqQ1": "1. How do I open an account with FairBank?",
-  "faqR1": "It couldn't be easier! You can open an account by visiting fairbank.com/inscription and applying online.",
-  "faqQ2": "2. Who can open an account with FairBank?",
-  "faqR2": "Every customer at FairBank must be a Canadian resident and over 18 years of age.",
-  "faqQ3": "3. Do direct deposits have a hold period?",
-  "faqR3": "No, your funds are available as soon as they are deposited.",
-  "faqQ4": "4. My account is locked. What do I need to do to regain access?",
-  "faqR4": "To unlock your account, please contact the FairBank Customer Service team at 1-800-123-4567 or by email at contact@fairbank.com",
-  "faqQ5": "5. What type of products does FairBank offer?",
-  "faqR5": "We offer three types of accounts: Regular, Premium, Ultimate, each with unique benefits. With your Fairbank accounts, you can make bill payments, transfer money, and more!",
-  "faqQ6": "6. How do I find my account number?",
-  "faqR6": "Log in to the Fairbank portal and from the dashboard you will see your unique nine-digit number that is unique to each account.",
-  "faqQ7": "7. How is the US dollar conversion rate calculated at FairBank?",
-  "faqR7": "Exchange rates are constantly changing, but you can access our live US dollar exchange rate by logging into your account. We update our exchange rates every 15 minutes.",
-  "faqQ8": "8. Can I use FairBank services if I live outside of Canada?",
-  "faqR8": "You can continue to access your current account while you are traveling outside of Canada. However, all EQ Bank account holders must be Canadian residents in order to maintain their account.",
-  "faqQ9": "9. Where can I use my FairBank card?",
-  "faqR9": "You can use your card anywhere Visa cards are accepted, both in Canada and abroad.",
-  "faqQ10": "10. Where can I find my tax slips?",
-  "faqR10": "Once you are logged in, navigate to the \"My Accounts\" tab to download our transaction history.",
+  "faq": {
+    "q1": "1. How can I open an account at FairBank?",
+    "a1": "It's very simple! You can open an account by visiting <1>fairbank.com/signup</1> and submitting an online application.",
+    "q2": "2. Who can open an account at FairBank?",
+    "a2": "Every client at FairBank must be a Canadian resident and over 18 years old.",
+    "q3": "3. Do direct deposits have a hold period?",
+    "a3": "No, your funds are available as soon as they are deposited.",
+    "q4": "4. My account is locked. What should I do to regain access?",
+    "a4": "To unlock your account, please contact FairBank's Customer Service team at 1-800-123-4567 or via email at contact@fairbank.com",
+    "q5": "5. What types of products does FairBank offer?",
+    "a5": "We offer three types of accounts: Regular, Premium, Ultimate, each with unique benefits. With your FairBank accounts, you can make bill payments, fund transfers, and much more!",
+    "q6": "6. How can I find my account number?",
+    "a6": "Log in to the FairBank portal, and from the dashboard, you will see your unique nine-digit account number.",
+    "q7": "7. How is the USD exchange rate calculated at FairBank?",
+    "a7": "Exchange rates fluctuate constantly, but you can access our live USD exchange rate by logging into your account. We update our exchange rates every 15 minutes.",
+    "q8": "8. Can I use FairBank's services if I live outside of Canada?",
+    "a8": "You can continue to access your current account while traveling outside of Canada. However, all FairBank account holders must be Canadian residents to maintain their accounts.",
+    "q9": "9. Where can I use my FairBank card?",
+    "a9": "You can use your card anywhere Visa cards are accepted, both in Canada and abroad.",
+    "q10": "10. Where can I find my tax slips?",
+    "a10": "Once you have logged in, navigate to the 'My Accounts' tab to download your transaction history."
+  },
 
-  "toggleFR": "French",
-  "toggleEN": "English",
+  "toggle": {
+    "fr": "French",
+    "en": "English",
 
-  "lightMode": "Light",
-  "darkMode": "Dark",
-  "systemMode": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
 
-  "dashboardWelcome": "Hi",
+  "plans": {
+    "h1": "Choose the plan that suits your needs!",
+    "yearly": "Yearly",
+    "monthly": "Monthly",
+    "tier1": {
+      "name": "Regular",
+      "description": "Basic plan for individuals, with essential features.",
+      "perk1": "<0>20</0> daily transactions.",
+      "perk2": "<0>$5,000</0> in daily transactions.",
+      "perk3": "Customer support"
+    },
+    "tier2": {
+      "name": "Premium",
+      "description": "Advanced plan for demanding users, offering additional benefits.",
+      "perk1": "Unlimited daily transactions.",
+      "perk2": "<0>$15,000</0> in daily transactions.",
+      "perk3": "Customer support",
+      "perk4": "Foreign currency conversion service"
+    },
+    "tier3": {
+      "name": "Ultimate",
+      "description": "Exclusive plan for professional users, including premium benefits.",
+      "perk1": "Unlimited daily transactions.",
+      "perk2": "<0>$100,000</0> in daily transactions.",
+      "perk3": "Customer support",
+      "perk4": "Foreign currency conversion service",
+      "perk5": "Free checks, drafts, and other services"
+    }
+  },
 
-  "sidebarDashboard": "Overview",
-  "sidebarTransaction": "History",
-  "sidebarActivity": "Activity",
-  "sidebarExchangeRate": "Exchange Rates",
-  "sidebarHelp": "Help",
-  "sidebarSettings": "Settings",
-  "sidebarSettingsProfile": "Profile",
-  "sidebarSettingsAccount": "Account",
-  "sidebarSettingsAppearance": "Appearance",
-  "sidebarSettingsNotifications": "Notifications",
-  "sidebarSettingsSecurity": "Security",
-  "sidebarSettingsReturn": "Return",
+  "dashboard": {
+    "welcome": "Welcome"
+  },
 
-  "tier1Title": "Regular",
-  "tier2Title": "Premium",
-  "tier3Title": "Ultimate",
-  "sendFundsTitle": "Send Funds",
-  "sendFundsDescription": "Please enter the amount to send, as well as the recipient's email address.",
-  "sendFundsAction": "Send",
-  "requestFundsTitle": "Request Funds",
-  "requestFundsAction": "Request",
-  "requestFundsDescription": "Please enter the amount to request, as well as the recipient's email address.",
-  "depositFundsTitle": "Deposit Funds",
-  "depositFundsAction": "Deposit",
-  "depositFundsDescription": "Please enter the amount to deposit.",
-  "fundsAmountInput": "Amount",
-  "fundsEmailInput": "Email"
+  "sidebar": {
+    "dashboard": "Menu",
+    "transaction": "History",
+    "activity": "Activity",
+    "exchangeRate": "Exchange Rate",
+    "help": "Help"
+  },
+
+  "settings": {
+    "h1": "Settings",
+    "profile": {
+      "h1": "Profile",
+      "card1": {
+        "title": "Profile Image",
+        "description": "Edit your profile image."
+      },
+      "card2": {
+        "title": "First Name",
+        "description": "Make a request to change your first name."
+      },
+      "card3": {
+        "title": "Last Name",
+        "description": "Make a request to change your last name."
+      }
+    },
+    "account": {
+      "h1": "Account",
+      "card1": {
+        "title": "Email",
+        "description": "Contact support to change your email."
+      },
+      "card2": {
+        "title": "New Password",
+        "description": "Enter a new password."
+      },
+      "card3": {
+        "title": "Confirm New Password",
+        "description": "Confirm the new password."
+      }
+    },
+    "appearance": {
+      "h1": "Appearance",
+      "card1": {
+        "title": "Font Preferences",
+        "description": "Choose a font to personalize the site's appearance."
+      },
+      "card2": {
+        "title": "Language Preferences",
+        "description": "Choose a language."
+      },
+      "card3": {
+        "title": "Mode Preferences",
+        "description": "Choose between light mode, dark mode, or system mode."
+      },
+      "card4": {
+        "title": "Color Preferences",
+        "description": "Choose a color theme from the following palettes."
+      }
+    },
+    "notifications": {
+      "h1": "Notifications",
+      "card1": {
+        "title": "Notification Preferences",
+        "description": "Select your notification preferences."
+      }
+    },
+    "security": {
+      "h1": "Security",
+      "card1": {
+        "title": "Close Your Account",
+        "description": "<0>Warning: Closing your account is final.</0> <br /> Click on Request to send a closure request to our support team.",
+        "alert": {
+          "title": "Are you sure you want to close your account?",
+          "description": "<0>This action is irreversible.</0> A request to close your account will be sent to our support team and will be processed as soon as possible."
+        }
+      }
+    }
+  },
+
+  "userPanel": {
+    "sendFunds": {
+      "title": "Send Funds",
+      "description": "Please enter the amount to send, along with the recipient's email."
+    },
+    "requestFunds": {
+      "title": "Request Funds",
+      "description": "Please enter the amount to request, along with the recipient's email."
+    },
+    "depositFunds": {
+      "title": "Deposit Funds",
+      "description": "Please enter the amount to deposit."
+    }
+  },
+
+  "signIn": {
+    "p": "Enter your email and password to sign in.",
+    "forgot": "Forgot password?"
+  },
+
+  "signUp": {
+    "email": {
+      "title": "Sign Up",
+      "description": "Enter your email below to create your account."
+    },
+    "password": {
+      "title": "Password",
+      "description": "Enter a password below to create your account."
+    },
+    "imageUpload": {
+      "title": "Personalize your profile",
+      "description": "Add an image to your customer profile or skip to create your account.",
+      "add": "Choose a file",
+      "remove": "Remove image"
+    },
+    "name": {
+      "title": "Personal Information",
+      "description": "Enter your first name and last name below to create your account."
+    },
+    "birthday": {
+      "title": "Date of Birth",
+      "description": "Enter your date of birth below to create your account.",
+      "month": {
+        "1": "January",
+        "2": "February",
+        "3": "March",
+        "4": "April",
+        "5": "May",
+        "6": "June",
+        "7": "July",
+        "8": "August",
+        "9": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "plan": {
+      "title": "Banking Plan",
+      "description": "Choose one of our banking plans to create your account.",
+      "more": "More about the plans."
+    }
+  },
+
+  "toast": {}
 }
