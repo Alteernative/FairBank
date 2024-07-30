@@ -27,7 +27,7 @@ export default function Footer() {
         <section className="flex flex-1 flex-col">
           <span className="relative cursor-default select-none">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
-            <p className="absolute top-12">{t("footerSlogan")}</p>
+            <p className="absolute top-12">{t("footer.slogan")}</p>
           </span>
           <div className="mt-10 flex flex-col gap-2 lg:mt-14">
             <span className="flex items-center gap-3">
@@ -69,32 +69,32 @@ export default function Footer() {
         {/* Middle */}
         <section className="flex flex-1 flex-col text-start lg:mt-3 lg:items-center lg:text-center">
           <h3 className="mb-5 cursor-default text-xl font-semibold">
-            {t("footerMapsite")}
+            {t("footer.mapsite")}
           </h3>
           <nav className=" flex flex-col items-start gap-2 lg:items-center">
             <Button asChild variant="link">
               <Link to={"/particuliers"} onClick={scrollToTop}>
-                {t("PlansNavLink")}
+                {t("header.plans")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/services"} onClick={scrollToTop}>
-                {t("ServicesNavLink")}
+                {t("header.services")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/apropos"} onClick={scrollToTop}>
-                {t("AboutUsNavLink")}
+                {t("header.aboutUs")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/faq"} onClick={scrollToTop}>
-                {t("FAQNavLink")}
+                {t("header.faq")}
               </Link>
             </Button>
             <Button asChild variant="link">
               <Link to={"/politiques"} onClick={scrollToTop}>
-                {t("PrivacyNavLink")}
+                {t("header.privacy")}
               </Link>
             </Button>
           </nav>
@@ -102,26 +102,29 @@ export default function Footer() {
         {/* Right */}
         <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
           <h3 className="mb-5 cursor-default text-xl font-semibold">
-            {t("footerContactUs")}
+            {t("footer.contactUs")}
           </h3>
           <div className="flex gap-2">
             <Input
               id="first_name"
               type="text"
-              placeholder={t("placeholderFirstName")}
+              placeholder={t("input.firstName")}
+              autoComplete="off"
               className="h-12 w-1/2"
             />
             <Input
               id="last_name"
               type="text"
-              placeholder={t("placeholderLastName")}
+              placeholder={t("input.lastName")}
+              autoComplete="off"
               className="h-12 w-1/2"
             />
           </div>
           <Input
             id="email"
             type="text"
-            placeholder={t("placeholderEmail")}
+            placeholder={t("input.email")}
+            autoComplete="off"
             className="h-12 w-full"
           />
           <Textarea
@@ -129,12 +132,13 @@ export default function Footer() {
             autoComplete="off"
             className="h-24 resize-none"
           />
-          <Button className="mt-2">{t("footerSubmitBtn")}</Button>
+          <Button className="mt-2">{t("buttons.submit")}</Button>
         </section>
       </section>
 
       <p className="flex cursor-default items-center gap-2">
-        <Copyright size={16} /> {new Date().getFullYear()} {t("copyright")}
+        <Copyright size={16} /> {new Date().getFullYear()}{" "}
+        {t("footer.copyright")}
       </p>
     </footer>
   );
