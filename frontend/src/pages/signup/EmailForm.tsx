@@ -2,8 +2,10 @@ import { useFormContext } from "react-hook-form";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { CircleAlert } from "lucide-react";
 import StepWrapper from "./StepWrapper";
+import { useTranslation } from "react-i18next";
 
 export default function EmailForm() {
+  const { t } = useTranslation();
   const {
     register,
     formState: { errors },
@@ -12,14 +14,14 @@ export default function EmailForm() {
 
   return (
     <StepWrapper
-      title="S'inscrire"
-      description="Entrez votre courriel ci-dessous pour créer votre compte."
+      title={t("signUp.email.title")}
+      description={t("signUp.email.description")}
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput
           type="text"
           id="email"
-          label="Courriel"
+          label={t("input.email")}
           autoFocus
           {...register("email")}
           className="h-12"
