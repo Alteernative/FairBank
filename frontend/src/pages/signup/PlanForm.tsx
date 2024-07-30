@@ -4,8 +4,10 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import formatCurrency from "@/utils/formatCurrency";
 import { Link } from "react-router-dom";
 import { CircleAlert, Wallet, Award, Crown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function PlanForm({ isLastStep, isSubmitting }) {
+  const { t } = useTranslation();
   const {
     register,
     watch,
@@ -15,19 +17,19 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
   const plans = [
     {
       id: "tier1",
-      name: "Régulier",
+      name: `${t("plans.tier1.name")}`,
       icon: Wallet,
       price: 25,
     },
     {
       id: "tier2",
-      name: "Premium",
+      name: `${t("plans.tier2.name")}`,
       icon: Award,
       price: 40,
     },
     {
       id: "tier3",
-      name: "Ultime",
+      name: `${t("plans.tier3.name")}`,
       icon: Crown,
       price: 85,
     },
@@ -37,8 +39,8 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
 
   return (
     <StepWrapper
-      title="Plan bancaire"
-      description="Choisissez un de nos plans bancaires pour créer votre compte."
+      title={t("signUp.plan.title")}
+      description={t("signUp.plan.description")}
       isLastStep={isLastStep}
       isSubmitting={isSubmitting}
     >
@@ -78,7 +80,7 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
           target="_blank"
           className="absolute -bottom-11 left-0 rounded-md px-1 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
         >
-          Plus d'infos sur les plans.
+          {t("signUp.plan.more")}
         </Link>
       </div>
     </StepWrapper>

@@ -71,7 +71,7 @@
     "copyright": "FairBank Inc. Tous droits réservés."
   },
 
-  "plans": {
+  "personal": {
     "h1": "Choisissez le plan qui correspond à vos besoins!",
     "annual": "Annuel",
     "monthly": "Mensuel",
@@ -125,6 +125,18 @@
     "system": "Système"
   },
 
+  "plans": {
+    "tier1": {
+      "name": "Régulier"
+    },
+    "tier2": {
+      "name": "Premium"
+    },
+    "tier3": {
+      "name": "Ultime"
+    }
+  },
+
   "dashboard": {
     "welcome": "Bonjour"
   },
@@ -147,9 +159,6 @@
   },
 
   "userPanel": {
-    "tier1Title": "Régulier",
-    "tier2Title": "Premium",
-    "tier3Title": "Ultime",
     "sendFundsTitle": "Envoyer des fonds",
     "sendFundsDescription": "Veuillez entrer le montant à envoyer, ainsi que le courriel du destinataire.",
     "requestFundsTitle": "Demander des fonds",
@@ -199,6 +208,11 @@
         "11": "Novembre",
         "12": "Décembre"
       }
+    },
+    "plan": {
+      "title": "Plan bancaire",
+      "description": "Choisissez un de nos plans bancaires pour créer votre compte.",
+      "more": "Plus d'infos sur les plans."
     }
   },
 
