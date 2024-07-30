@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CircleAlert } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function BirthdayForm() {
   const { t } = useTranslation();
