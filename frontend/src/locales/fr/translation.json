@@ -235,8 +235,20 @@
     "appearance": {
       "h1": "Apparence",
       "card1": {
-        "title": "card1",
-        "description": "card1"
+        "title": "Préférences de police",
+        "description": "Choisissez une police pour personnaliser l'apparence du site."
+      },
+      "card2": {
+        "title": "Préférences de langue",
+        "description": "Choisissez la langue."
+      },
+      "card3": {
+        "title": "Préférences de mode",
+        "description": "Choisissez entre le mode clair, le mode sombre ou le mode système."
+      },
+      "card4": {
+        "title": "Préférences de couleurs",
+        "description": "Choisissez un thème de couleurs parmi les palettes suivantes."
       }
     },
     "notifications": {
