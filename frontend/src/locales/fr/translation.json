@@ -73,7 +73,7 @@
 
   "personal": {
     "h1": "Choisissez le plan qui correspond à vos besoins!",
-    "annual": "Annuel",
+    "yearly": "Annuel",
     "monthly": "Mensuel",
 
     "tier1Description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles."

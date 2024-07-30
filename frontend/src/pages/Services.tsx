@@ -2,22 +2,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Banknote,
   CircleDollarSign,
-  Landmark,
   LayoutDashboard,
   Lock,
   Receipt,
   Send,
   WalletMinimal,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { BsCurrencyExchange } from "react-icons/bs";
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <section className="mb-32 mt-12">
       <h1 className="mb-4 text-center font-jomhuria text-6xl">
-        Services Offerts
+        {t("services.h1")}
       </h1>
-      {/* <main className="mx-auto"> */}
       <main className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
         <Card>
           <CardHeader>
@@ -26,11 +27,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Gestion de compte bancaire
+              {t("services.card1.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Gérez votre compte facilement et en toute sécurité.
+            {t("services.card1.description")}
           </CardContent>
         </Card>
 
@@ -41,11 +42,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Transferts de fonds
+              {t("services.card2.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Effectuez des transferts de fonds rapides et sécurisés.
+            {t("services.card2.description")}
           </CardContent>
         </Card>
 
@@ -56,12 +57,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Paiements de factures
+              {t("services.card3.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Paiements de factures des services publics et privés en toute
-            simplicité.
+            {t("services.card3.description")}
           </CardContent>
         </Card>
 
@@ -72,11 +72,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Taux de change actuels
+              {t("services.card4.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Accédez aux taux de change actuels pour la conversion de devises.
+            {t("services.card4.description")}
           </CardContent>
         </Card>
 
@@ -87,11 +87,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Retraits sans frais
+              {t("services.card5.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Retraits gratuits à n'importe quel ATM au Canada.
+            {t("services.card5.description")}
           </CardContent>
         </Card>
 
@@ -102,28 +102,13 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Virements sans frais
+              {t("services.card6.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Virements d'argent sans payer des frais de transfert.
+            {t("services.card6.description")}
           </CardContent>
         </Card>
-
-        {/* <Card>
-          <CardHeader>
-            <Landmark
-              size={40}
-              className="mb-4 text-green-500 dark:text-green-600"
-            />
-            <CardTitle className="text-2xl leading-tight">
-              Remises en argent
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="leading-loose">
-            Remises en argent sur chaque achat fait avec la carte FairBank.
-          </CardContent>
-        </Card> */}
 
         <Card>
           <CardHeader>
@@ -132,12 +117,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Tableau de bord personnalisé
+              {t("services.card7.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Tableau de bord avec statistiques pour suivre vos dépenses et
-            revenus.
+            {t("services.card7.description")}
           </CardContent>
         </Card>
 
@@ -148,12 +132,11 @@ export default function Services() {
               className="mb-4 text-green-500 dark:text-green-600"
             />
             <CardTitle className="text-2xl leading-tight">
-              Sécurité garantie
+              {t("services.card8.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="leading-loose">
-            Fairbank utilise un système d'encryption avancées pour la protection
-            de vos données personnelles.
+            {t("services.card8.description")}
           </CardContent>
         </Card>
       </main>
