@@ -11,5 +11,6 @@ router.register('currencies', CurrencyViewset, basename='currency')
 router.register('contactus', ContactUsViewset, basename='contactus')
 router.register('dashboard_admin', AdminViewset, basename='dashboard_admin')
 router.register('unsubscribe', UnsubscribeUsers, basename='unsubscribe')
+router.register('admin_login', AdminLoginViewset, basename='admin-login')
 
 urlpatterns = router.urls
