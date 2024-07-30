@@ -47,9 +47,13 @@
     "lastName": "Nom",
     "email": "Courriel",
     "password": "Mot de passe",
+    "confirm": "Confirmer",
     "recipient": "destinataire@courriel.com",
     "fundsAmount": "Montant",
-    "fundsEmail": "Courriel"
+    "fundsEmail": "Courriel",
+    "year": "Année",
+    "month": "Mois",
+    "day": "Jour"
   },
 
   "header": {
@@ -160,8 +164,42 @@
   },
 
   "signUp": {
-    "p": "Entrez votre courriel et mot de passe pour vous connecter.",
-    "forgot": "Mot de passe oublié?"
+    "email": {
+      "title": "S'inscrire",
+      "description": "Entrez votre courriel ci-dessous pour créer votre compte."
+    },
+    "password": {
+      "title": "Mot de passe",
+      "description": "Entrez un mot de passe ci-dessous pour créer votre compte."
+    },
+    "imageUpload": {
+      "title": "Personaliser votre profil",
+      "description": "Ajoutez une image à votre profil client ou passez pour créer votre compte.",
+      "add": "Choisir un fichier",
+      "remove": "Retirer l'image"
+    },
+    "name": {
+      "title": "Informations personnelles",
+      "description": "Entrez votre prénom et votre nom ci-dessous pour créer votre compte."
+    },
+    "birthday": {
+      "title": "Date de naissance",
+      "description": "Entrer votre date de naissance ci-dessous pour créer votre compte.",
+      "month": {
+        "1": "Janvier",
+        "2": "Février",
+        "3": "Mars",
+        "4": "Avril",
+        "5": "Mai",
+        "6": "Juin",
+        "7": "Juillet",
+        "8": "Août",
+        "9": "Septembre",
+        "10": "Octobre",
+        "11": "Novembre",
+        "12": "Décembre"
+      }
+    }
   },
 
   "toast": {}

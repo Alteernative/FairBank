@@ -13,6 +13,7 @@ import {
 import { CircleAlert } from "lucide-react";
 
 export default function BirthdayForm() {
+  const { t } = useTranslation();
   const {
     register,
     formState: { errors },
@@ -22,15 +23,14 @@ export default function BirthdayForm() {
 
   return (
     <StepWrapper
-      // title="Renseignement de base"
-      title="Date de naissance"
-      description="Entrer votre date de naissance ci-dessous pour créer votre compte."
+      title={t("signUp.birthday.title")}
+      description={t("signUp.birthday.description")}
     >
       <section className="flex flex-col gap-4">
         <FloatingLabelInput
           type="text"
           id="birth_year"
-          label="Année"
+          label={t("input.year")}
           maxLength={4}
           autoFocus
           className="h-12"
@@ -51,23 +51,47 @@ export default function BirthdayForm() {
           render={({ field }) => (
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger className="h-12">
-                <SelectValue placeholder="Mois" />
+                <SelectValue placeholder={t("input.month")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Mois</SelectLabel>
-                  <SelectItem value="01">Janvier</SelectItem>
-                  <SelectItem value="02">Février</SelectItem>
-                  <SelectItem value="03">Mars</SelectItem>
-                  <SelectItem value="04">Avril</SelectItem>
-                  <SelectItem value="05">Mai</SelectItem>
-                  <SelectItem value="06">Juin</SelectItem>
-                  <SelectItem value="07">Juillet</SelectItem>
-                  <SelectItem value="08">Août</SelectItem>
-                  <SelectItem value="09">Septembre</SelectItem>
-                  <SelectItem value="10">Octobre</SelectItem>
-                  <SelectItem value="11">Novembre</SelectItem>
-                  <SelectItem value="12">Décembre</SelectItem>
+                  <SelectLabel>{t("input.month")}</SelectLabel>
+                  <SelectItem value="01">
+                    {t("signUp.birthday.month.1")}
+                  </SelectItem>
+                  <SelectItem value="02">
+                    {t("signUp.birthday.month.2")}
+                  </SelectItem>
+                  <SelectItem value="03">
+                    {t("signUp.birthday.month.3")}
+                  </SelectItem>
+                  <SelectItem value="04">
+                    {t("signUp.birthday.month.4")}
+                  </SelectItem>
+                  <SelectItem value="05">
+                    {t("signUp.birthday.month.5")}
+                  </SelectItem>
+                  <SelectItem value="06">
+                    {t("signUp.birthday.month.6")}
+                  </SelectItem>
+                  <SelectItem value="07">
+                    {t("signUp.birthday.month.7")}
+                  </SelectItem>
+                  <SelectItem value="08">
+                    {t("signUp.birthday.month.8")}
+                  </SelectItem>
+                  <SelectItem value="09">
+                    {t("signUp.birthday.month.9")}
+                  </SelectItem>
+                  <SelectItem value="10">
+                    {t("signUp.birthday.month.10")}
+                  </SelectItem>
+                  <SelectItem value="11">
+                    {t("signUp.birthday.month.11")}
+                  </SelectItem>
+                  <SelectItem value="12">
+                    {t("signUp.birthday.month.12")}
+                  </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -83,7 +107,7 @@ export default function BirthdayForm() {
         <FloatingLabelInput
           type="text"
           id="birth_day"
-          label="Jour"
+          label={t("input.day")}
           maxLength={2}
           className="h-12"
           {...register("birth_day")}
@@ -95,8 +119,6 @@ export default function BirthdayForm() {
             {errors.birth_day.message && String(errors.birth_day.message)}
           </span>
         )}
-
-        {/* TODO: Country Select ? */}
       </section>
     </StepWrapper>
   );
