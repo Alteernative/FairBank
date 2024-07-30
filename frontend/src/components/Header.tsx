@@ -52,7 +52,7 @@ export default function Header() {
   };
 
   return (
-    <header className="mt-7 flex items-center justify-between">
+    <header className="mt-7 flex items-baseline justify-between">
       <Link to="/" className="flex items-center">
         <h1 className="font-jomhuria text-6xl text-primary">FairBank</h1>
       </Link>
@@ -63,7 +63,7 @@ export default function Header() {
               to="/particuliers"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              {t("PlansNavLink")}
+              {t("header.plans")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -71,7 +71,7 @@ export default function Header() {
               to="/services"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              {t("ServicesNavLink")}
+              {t("header.services")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -79,7 +79,7 @@ export default function Header() {
               to="/apropos"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              {t("AboutUsNavLink")}
+              {t("header.aboutUs")}
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
@@ -87,7 +87,7 @@ export default function Header() {
               to="/faq"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
-              {t("FAQNavLink")}
+              {t("header.faq")}
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -124,22 +124,22 @@ export default function Header() {
             <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
               <SheetClose asChild>
                 <Link to="/particuliers" className="hover:underline">
-                  {t("PlansNavLink")}
+                  {t("header.plans")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/services" className="hover:underline">
-                  {t("ServicesNavLink")}
+                  {t("header.services")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/apropos" className="hover:underline">
-                  {t("AboutUsNavLink")}
+                  {t("header.aboutUs")}
                 </Link>
               </SheetClose>
               <SheetClose asChild>
                 <Link to="/faq" className="hover:underline">
-                  {t("FAQNavLink")}
+                  {t("header.faq")}
                 </Link>
               </SheetClose>
             </nav>
