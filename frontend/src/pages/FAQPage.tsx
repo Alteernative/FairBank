@@ -24,7 +24,7 @@ export default function FAQPage() {
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
             <Trans i18nKey={"faqR1"}>
-              {t("faq.r1")}
+              {t("faq.a1")}
               <Link to={"/inscription"} className="hover:underline" />
             </Trans>
           </AccordionContent>
@@ -34,7 +34,7 @@ export default function FAQPage() {
             {t("faq.q2")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r2")}
+            {t("faq.a2")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item3" className="p-4">
@@ -42,7 +42,7 @@ export default function FAQPage() {
             {t("faq.q3")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r3")}
+            {t("faq.a3")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item4" className="p-4">
@@ -50,7 +50,7 @@ export default function FAQPage() {
             {t("faq.q4")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r4")}
+            {t("faq.a4")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item5" className="p-4">
@@ -58,7 +58,7 @@ export default function FAQPage() {
             {t("faq.q5")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r5")}
+            {t("faq.a5")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item6" className="p-4">
@@ -66,7 +66,7 @@ export default function FAQPage() {
             {t("faq.q6")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r6")}
+            {t("faq.a6")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item7" className="p-4">
@@ -74,7 +74,7 @@ export default function FAQPage() {
             {t("faq.q7")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r7")}
+            {t("faq.a7")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item8" className="p-4">
@@ -82,7 +82,7 @@ export default function FAQPage() {
             {t("faq.q8")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r8")}
+            {t("faq.a8")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item9" className="p-4">
@@ -90,7 +90,7 @@ export default function FAQPage() {
             {t("faq.q9")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r9")}
+            {t("faq.a9")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item10" className="p-4">
@@ -98,7 +98,7 @@ export default function FAQPage() {
             {t("faq.q10")}
           </AccordionTrigger>
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
-            {t("faq.r10")}
+            {t("faq.a10")}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
