@@ -25,14 +25,14 @@ export function ModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          {t("lightMode")}
+          {t("toggle.light")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          {t("darkMode")}
+          {t("toggle.dark")}
         </DropdownMenuItem>
         {/* FIXME: Requires refresh to apply theme */}
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          {t("systemMode")}
+          {t("toggle.system")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

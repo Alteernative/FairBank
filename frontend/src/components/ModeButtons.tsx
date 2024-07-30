@@ -20,7 +20,7 @@ export function ModeButtons({ className }: ModeButtonsProps) {
         onClick={() => setTheme("light")}
       >
         <Sun className="h-[1.2rem] w-[1.2rem]" />
-        <p>{t("lightMode")}</p>
+        <p>{t("toggle.light")}</p>
         <span className="sr-only">Light mode</span>
       </Button>
       <Button
@@ -29,7 +29,7 @@ export function ModeButtons({ className }: ModeButtonsProps) {
         onClick={() => setTheme("dark")}
       >
         <Moon className="h-[1.2rem] w-[1.2rem]" />
-        <p>{t("darkMode")}</p>
+        <p>{t("toggle.dark")}</p>
         <span className="sr-only">Dark mode</span>
       </Button>
       <Button
@@ -38,7 +38,7 @@ export function ModeButtons({ className }: ModeButtonsProps) {
         onClick={() => setTheme("system")}
       >
         <SunMoon className="h-[1.2rem] w-[1.2rem]" />
-        <p>{t("systemMode")}</p>
+        <p>{t("toggle.system")}</p>
         <span className="sr-only">System mode</span>
       </Button>
     </div>
