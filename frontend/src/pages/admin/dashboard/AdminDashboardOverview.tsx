@@ -1,3 +1,7 @@
+import AdminDashboard from "@/pages/admin/dashboard/AdminDashboard.tsx";
+import AdminTransactionsChart from "@/pages/admin/dashboard/AdminTransactionsChart.tsx";
+import AdminVisitorsChart from "@/pages/admin/dashboard/AdminVisitorsChart.tsx";
+
 export default function AdminDashboardOverview() {
   return (
     <main className="h-full w-full bg-muted/20 px-16 py-5 lg:ml-60 lg:mr-72 lg:px-5">
@@ -9,11 +13,11 @@ export default function AdminDashboardOverview() {
         </div>
 
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
-          Graphe 2
+            <AdminVisitorsChart />
         </div>
 
         <div className="col-span-3 row-span-3 rounded-lg border p-4 shadow">
-          Graphe 3
+          <AdminTransactionsChart />
         </div>
       </div>
     </main>
