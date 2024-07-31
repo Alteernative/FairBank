@@ -4,7 +4,7 @@ import { z } from "zod";
 export default function SignInSchema() {
   const { t } = useTranslation();
 
-  z.object({
+  return z.object({
     email: z
       .string()
       .min(1, {
