@@ -349,6 +349,52 @@
         "min": "Mot de passe requis.",
         "invalid": "Mot de passe invalide."
       }
+    },
+    "signUp": {
+      "email": {
+        "min": "Adresse courriel requise.",
+        "invalid": "Adresse courriel invalide."
+      },
+      "password": {
+        "min": "Mot de passe requis.",
+        "invalid": "Mot de passe invalide.",
+        "upper": "Mot de passe doit contenir au moins une majuscule",
+        "lower": "Mot de passe doit contenir au moins une minuscule",
+        "special": "Mot de passe doit contenir au moins un caractère spécial.",
+        "confirm": "Les mots de passe ne sont pas identiques."
+      },
+      "imageUpload": {
+        "min": "Mot de passe requis."
+      },
+      "name": {
+        "firstName": {
+          "min": "Prénom requis.",
+          "invalid": "Prénom invalide."
+        },
+        "lastName": {
+          "min": "Nom requis.",
+          "invalid": "Nom invalide."
+        }
+      },
+      "birthday": {
+        "year": {
+          "min": "Année invalide.",
+          "max": "Année invalide.",
+          "invalid": "Année invalide.",
+          "age": "Avoir au moins 18 ans."
+        },
+        "month": {
+          "invalid": "Sélectionner le mois."
+        },
+        "day": {
+          "min": "Jour invalide.",
+          "max": "Jour invalide.",
+          "invalid": "Jour invalide."
+        }
+      },
+      "plan": {
+        "invalid": "Choisir un plan."
+      }
     }
   }
 }
