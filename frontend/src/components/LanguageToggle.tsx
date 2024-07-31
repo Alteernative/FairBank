@@ -11,13 +11,8 @@ import { LANGUAGES } from "@/constants";
 import { useLanguage } from "@/provider/LanguageProvider";
 
 export function LanguageToggle() {
-  // const { setLanguage } = useLanguage();
+  const { setLanguage } = useLanguage();
 
-  const languages = {
-    // francais: "fr",
-    français: "fr",
-    anglais: "en",
-  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -26,11 +21,8 @@ export function LanguageToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {Object.entries(languages).map(([language, langCode]) => (
-          <DropdownMenuItem
-            key={langCode}
-            onClick={() => setLanguage(langCode)}
-          >
+        {LANGUAGES.map(({ code, language }) => (
+          <DropdownMenuItem key={code} onClick={() => setLanguage(code)}>
             {capitalize(language)}
           </DropdownMenuItem>
         ))}
