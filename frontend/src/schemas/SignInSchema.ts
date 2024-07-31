@@ -1,21 +1,24 @@
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
+
+const { t } = useTranslation();
 
 export const signInSchema = z.object({
   email: z
     .string()
     .min(1, {
-      message: "Adresse courriel requise.",
+      message: `${t("zod.signIn.email.min")}`,
     })
     .email({
-      message: "Adresse courriel invalide.",
+      message: `${t("zod.signIn.email.invalid")}`,
     }),
 
   password: z
     .string()
     .min(1, {
-      message: "Mot de passe requis.",
+      message: `${t("zod.signIn.password.min")}`,
     })
     .min(8, {
-      message: "Mot de passe invalide.",
+      message: `${t("zod.signIn.password.invalid")}`,
     }),
 });

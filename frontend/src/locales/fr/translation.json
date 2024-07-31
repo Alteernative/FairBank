@@ -337,5 +337,18 @@
     }
   },
 
-  "toast": {}
+  "toast": {},
+
+  "zod": {
+    "signIn": {
+      "email": {
+        "min": "Adresse courriel requise.",
+        "invalid": "Adresse courriel invalide."
+      },
+      "password": {
+        "min": "Mot de passe requis.",
+        "invalid": "Mot de passe invalide."
+      }
+    }
+  }
 }
