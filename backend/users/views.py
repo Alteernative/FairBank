@@ -362,6 +362,7 @@ class UnsubscribeUsers(viewsets.ModelViewSet):
         user.save()
         return Response({"success": "User subscribed"}, status=status.HTTP_200_OK)
 
+
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     permission_classes = [permissions.IsAuthenticated]
