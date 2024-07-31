@@ -105,6 +105,7 @@ def newsletter_email(user):
         'full_link': full_link,
         'email_adress': user.email,
     }
+    print("sending an newsletter email....\n")
     print(full_link)
     html_message = render_to_string("backend/newsletter.html", context=context)
     plain_message = strip_tags(html_message)
@@ -351,6 +352,15 @@ class UnsubscribeUsers(viewsets.ModelViewSet):
         user.save()
         return Response({"success": "User unsubscribed"}, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['post'], url_path='subscribe')
+    def subscribe(self, request):
+        user_id = request.data.get('id')
+        if not user_id:
+            return Response({"error": "User ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+        user = get_object_or_404(User, pk=user_id)
+        user.subscribed = True
+        user.save()
+        return Response({"success": "User subscribed"}, status=status.HTTP_200_OK)
 
 class TransactionViewset(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
@@ -500,7 +510,7 @@ class ContactUsViewset(viewsets.ModelViewSet):
 
 
 class AdminViewset(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.AllowAny]
     serializer_class = AdminUsersSerializer
 
     queryset = User.objects.all()
