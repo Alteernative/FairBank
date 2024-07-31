@@ -363,7 +363,22 @@
     }
   },
 
-  "toast": {},
+  "toast": {
+    "userPanel": {
+      "sendFunds": {
+        "success": "Funds have been sent.",
+        "error": "An error occurred while sending the funds."
+      },
+      "requestFunds": {
+        "success": "Funds have been requested.",
+        "error": "An error occurred while requesting the funds."
+      },
+      "depositFunds": {
+        "success": "Funds have been deposited into your account.",
+        "error": "An error occurred while depositing the funds."
+      }
+    }
+  },
 
   "zod": {
     "signIn": {

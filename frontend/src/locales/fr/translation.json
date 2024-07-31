@@ -363,7 +363,22 @@
     }
   },
 
-  "toast": {},
+  "toast": {
+    "userPanel": {
+      "sendFunds": {
+        "success": "Les fonds ont été envoyés.",
+        "error": "Une erreur est survenue lors de l'envoie des fonds."
+      },
+      "requestFunds": {
+        "success": "Les fonds ont été demandé.",
+        "error": "Une erreur est survenue lors de la demande de fonds."
+      },
+      "depositFunds": {
+        "success": "Les fonds ont été déposés dans votre compte.",
+        "error": "Une erreur est survenue lors du dépôt des fonds."
+      }
+    }
+  },
 
   "zod": {
     "signIn": {

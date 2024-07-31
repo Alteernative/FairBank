@@ -93,11 +93,11 @@ export default function UserPanel() {
           sent_transactions: [...user.sent_transactions, newTransaction],
         };
         setUser(updatedUser);
-        toast.success("Les fonds ont été envoyés.");
+        toast.success(`${t("toast.userPanel.sendFunds.success")}`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
-        toast.error("Les fonds n'ont pas été envoyés.");
+        toast.error(`${t("toast.userPanel.sendFunds.error")}`);
       });
   };
 
@@ -117,11 +117,11 @@ export default function UserPanel() {
     )
       .then((response) => {
         console.log("Transaction successful:", response.data);
-        toast.info("Les fonds ont été demandé.");
+        toast.info(`${t("toast.userPanel.requestFunds.success")}`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
-        toast.error("Les fonds n'ont pas été demandé.");
+        toast.error(`${t("toast.userPanel.requestFunds.error")}`);
       });
   };
 
@@ -142,11 +142,11 @@ export default function UserPanel() {
           balance: user.balance + parseFloat(data.amount),
         };
         setUser(updatedUser);
-        toast.success("Le montant a été déposé dans votre compte.");
+        toast.success(`${t("toast.userPanel.depositFunds.success")}`);
       })
       .catch((error) => {
         console.error("Error:", error.message);
-        toast.error("Une erreur est survenu lors du dépôt.");
+        toast.error(`${t("toast.userPanel.depositFunds.error")}`);
       });
   };
 
