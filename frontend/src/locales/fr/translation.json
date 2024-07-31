@@ -191,7 +191,33 @@
   },
 
   "dashboard": {
-    "welcome": "Bonjour"
+    "welcome": "Bonjour",
+
+    "help": {
+      "q1": "1. Comment acheter des devises étrangères?",
+      "a1": {
+        "p1": "En appuyant sur les \"Taux de change\" dans l'aperçu de compte, le choix de devises étrangères achetables s'affichera.",
+        "p2": "En entrant le montant en $CAD à convertir, le bouton Convertir fera l'échange avec le taux immédiat du marché et votre balance de devises étrangères sera mise à jour."
+      },
+      "q2": "2. Comment modifier mes informations personelles?",
+      "a2": "En appuyant sur les \"Paramètres\" dans le Dashboard et \"Compte\", vous pourrez entrer votre nouveau mot de passe ou faire une demande de changement de courriel.",
+      "q3": "3. Comment faire une demande de fonds?",
+      "a3": {
+        "p1": "Dans l'aperçu du compte, en appuyant sur le buton \"Demander\" et en rentrant les informations d'un autre client Fairbank avec le montant désiré, vous enverrez une demande à celui-ci.",
+        "p2": "Lorsqu'il acceptera votre demande, les fonds vous seront déposés dans les minutes suivant l'acceptation."
+      },
+      "q4": "4. Puis-je transmettre des devises étrangères?",
+      "a4": "Non, notre système actuel ne permet pas les transactions en devises étrangères entre comptes. Seulement les transactions en $CAD sont permises pour le moment.",
+      "q5": "5. Comment fermer mon compte Fairbank?",
+      "a5": {
+        "p1": "En appuyant sur les \"Paramètres\" dans le Dashboard et \"Sécurité\", vous trouverez le bouton de demande de fermeture de compte.",
+        "p2": "Un employé Fairbank examinera et procédera à la fermeture de votre compte dans les plus amples délais."
+      },
+      "q6": "6. Comment télécharger l'historique de mes transactions?",
+      "a6": "Dans l'aperçu du compte, un bouton vert est présent sur le côté droit du graphique qui lancera un téléchargement de votre historique de transactions sous le format Excel.",
+      "q7": "7. Comment changer l'apparence de l'application?",
+      "a7": "En appuyant sur les \"Paramètres\" dans le Dashboard et \"Apparence\", le choix de polices, mode sombre ou clair ainsi que les options de préférence des couleurs y sont présentes."
+    }
   },
 
   "sidebar": {

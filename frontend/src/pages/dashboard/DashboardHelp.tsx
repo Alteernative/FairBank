@@ -4,8 +4,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardHelp() {
+  const { t } = useTranslation();
   return (
     <main className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">Centre d'aide</h1>
@@ -16,83 +18,68 @@ export default function DashboardHelp() {
       >
         <AccordionItem value="item1" className="px-4 pb-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment acheter des devises étrangères?
+            {t("dashboard.help.q1")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            En appuyant sur les "Taux de change" dans l'aperçu de compte, le
-            choix de devises étrangères achetables s'affichera.
-          </AccordionContent>
-          <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            En entrant le montant en $CAD à convertir, le bouton Convertir fera
-            l'échange avec le taux immédiat du marché et votre balance de
-            devises étrangères sera mise à jour.
+            <p>{t("dashboard.help.a1.p1")}</p>
+            <br />
+            <p>{t("dashboard.help.a1.p2")}</p>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item2" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment modifier mes informations personelles?
+            {t("dashboard.help.q2")}
+            {/* Comment modifier mes informations personelles? */}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            En appuyant sur les "Paramètres" dans le Dashboard et "Compte", vous
+            {t("dashboard.help.a2")}
+            {/* En appuyant sur les "Paramètres" dans le Dashboard et "Compte", vous
             pourrez entrer votre nouveau mot de passe ou faire une demande de
-            changement de courriel.
+            changement de courriel. */}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item3" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment faire une demande de fonds?
+            {t("dashboard.help.q3")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            Dans l'aperçu du compte, en appuyant sur le buton "Demander" et en
-            rentrant les informations d'un autre client Fairbank avec le montant
-            désiré, vous enverrez une demande à celui-ci.
-          </AccordionContent>
-          <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            Lorsqu'il acceptera votre demande, les fonds vous seront déposés
-            dans les minutes suivant l'acceptation.
+            <p>{t("dashboard.help.a3.p1")}</p>
+            <br />
+            <p>{t("dashboard.help.a3.p2")}</p>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item4" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Puis-je transmettre des devises étrangères?
+            {t("dashboard.help.q4")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            Non, notre système actuel ne permet pas les transactions en devises
-            étrangères entre comptes. Seulement les transactions en $CAD sont
-            permises pour le moment.
+            {t("dashboard.help.a4")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item5" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment fermer mon compte Fairbank?
+            {t("dashboard.help.q5")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            En appuyant sur les "Paramètres" dans le Dashboard et "Sécurité",
-            vous trouverez le bouton de demande de fermeture de compte.
-          </AccordionContent>
-          <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            Un employé Fairbank examinera et procédera à la fermeture de votre
-            compte dans les plus amples délais.
+            <p>{t("dashboard.help.a5.p1")}</p>
+            <br />
+            <p>{t("dashboard.help.a5.p2")}</p>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item6" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment télécharger l'historique de mes transactions?
+            {t("dashboard.help.q6")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            Dans l'aperçu du compte, un bouton vert est présent sur le côté
-            droit du graphique qui lancera un téléchargement de votre historique
-            de transactions sous le format Excel.
+            {t("dashboard.help.a6")}
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item7" className="p-4">
           <AccordionTrigger className="text-start text-lg tracking-tight">
-            Comment changer l'apparence de l'application?
+            {t("dashboard.help.q7")}
           </AccordionTrigger>
           <AccordionContent className="leading-relaxed tracking-wider sm:w-5/6">
-            En appuyant sur les "Paramètres" dans le Dashboard et "Apparence",
-            le choix de polices, mode sombre ou clair ainsi que les options de
-            préférence des couleurs y sont présentes.
+            {t("dashboard.help.a7")}
           </AccordionContent>
         </AccordionItem>
       </Accordion>

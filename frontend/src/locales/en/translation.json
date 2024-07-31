@@ -191,7 +191,33 @@
   },
 
   "dashboard": {
-    "welcome": "Welcome"
+    "welcome": "Hello",
+
+    "help": {
+      "q1": "1. How to buy foreign currencies?",
+      "a1": {
+        "p1": "By pressing on 'Exchange Rates' in the account overview, the choice of purchasable foreign currencies will be displayed.",
+        "p2": "By entering the amount in $CAD to convert, the Convert button will make the exchange at the immediate market rate, and your foreign currency balance will be updated."
+      },
+      "q2": "2. How to change my personal information?",
+      "a2": "By pressing on 'Settings' in the Dashboard and 'Account', you can enter your new password or request an email change.",
+      "q3": "3. How to request funds?",
+      "a3": {
+        "p1": "In the account overview, by pressing the 'Request' button and entering another Fairbank client's information with the desired amount, you will send a request to them.",
+        "p2": "When they accept your request, the funds will be deposited into your account within minutes of acceptance."
+      },
+      "q4": "4. Can I transfer foreign currencies?",
+      "a4": "No, our current system does not allow foreign currency transactions between accounts. Only $CAD transactions are allowed at the moment.",
+      "q5": "5. How to close my Fairbank account?",
+      "a5": {
+        "p1": "By pressing on 'Settings' in the Dashboard and 'Security', you will find the account closure request button.",
+        "p2": "A Fairbank employee will review and process your account closure as soon as possible."
+      },
+      "q6": "6. How to download my transaction history?",
+      "a6": "In the account overview, a green button is present on the right side of the graph which will launch a download of your transaction history in Excel format.",
+      "q7": "7. How to change the appearance of the application?",
+      "a7": "By pressing on 'Settings' in the Dashboard and 'Appearance', you will find options for fonts, dark or light mode, as well as color preference options."
+    }
   },
 
   "sidebar": {
