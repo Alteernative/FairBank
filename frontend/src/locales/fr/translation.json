@@ -376,6 +376,10 @@
       "depositFunds": {
         "success": "Les fonds ont été déposés dans votre compte.",
         "error": "Une erreur est survenue lors du dépôt des fonds."
+      },
+      "signUp": {
+        "success": "Inscription complétée.",
+        "error": "Inscription refusé, le courriel existe déjà."
       }
     }
   },

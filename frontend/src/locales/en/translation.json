@@ -377,6 +377,10 @@
         "success": "Funds have been deposited into your account.",
         "error": "An error occurred while depositing the funds."
       }
+    },
+    "signUp": {
+      "success": "Sign up completed.",
+      "error": "Sign up refused, the email already exists."
     }
   },
 

@@ -76,7 +76,7 @@ export default function SignUp() {
           },
         });
         if (response) {
-          toast.success("Inscription complétée.");
+          toast.success(`${t("toast.signUp.success")}`);
           setTimeout(() => {
             navigate(`/connexion`);
           }, 3500);
@@ -94,7 +94,7 @@ export default function SignUp() {
               "user with this email already exists."
             )
           ) {
-            toast.error("Inscription refusé, le courriel existe déjà.");
+            toast.error(`${t("toast.signUp.error")}`);
             setTimeout(() => {
               window.location.reload();
             }, 3500);
