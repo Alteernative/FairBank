@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export default function SignUpSchema(step) {
+type StepProps = 1 | 2 | 3 | 4 | 5 | 6;
+
+export default function SignUpSchema(step: StepProps) {
   const { t } = useTranslation();
 
   const emailSchema = z.object({
