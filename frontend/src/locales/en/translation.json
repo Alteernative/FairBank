@@ -337,5 +337,64 @@
     }
   },
 
-  "toast": {}
+  "toast": {},
+
+  "zod": {
+    "signIn": {
+      "email": {
+        "min": "Email address required.",
+        "invalid": "Invalid email address."
+      },
+      "password": {
+        "min": "Password required.",
+        "invalid": "Invalid password."
+      }
+    },
+    "signUp": {
+      "email": {
+        "min": "Email address required.",
+        "invalid": "Invalid email address."
+      },
+      "password": {
+        "min": "Password required.",
+        "invalid": "Invalid password.",
+        "upper": "Password must contain at least one uppercase letter.",
+        "lower": "Password must contain at least one lowercase letter.",
+        "special": "Password must contain at least one special character.",
+        "confirm": "Passwords do not match."
+      },
+      "imageUpload": {
+        "min": "Password required."
+      },
+      "name": {
+        "firstName": {
+          "min": "First name required.",
+          "invalid": "Invalid first name."
+        },
+        "lastName": {
+          "min": "Last name required.",
+          "invalid": "Invalid last name."
+        }
+      },
+      "birthday": {
+        "year": {
+          "min": "Invalid year.",
+          "max": "Invalid year.",
+          "invalid": "Invalid year.",
+          "age": "Must be at least 18 years old."
+        },
+        "month": {
+          "invalid": "Select a month."
+        },
+        "day": {
+          "min": "Invalid day.",
+          "max": "Invalid day.",
+          "invalid": "Invalid day."
+        }
+      },
+      "plan": {
+        "invalid": "Select a plan."
+      }
+    }
+  }
 }
