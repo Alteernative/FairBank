@@ -3,7 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema } from "@/schemas/SignUpSchema.ts";
+import SignUpSchema from "@/schemas/SignUpSchema.ts";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
@@ -25,12 +25,14 @@ type FormValues = {
   plan: string;
 };
 
+type Step = 1 | 2 | 3 | 4 | 5 | 6;
+
 export default function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
-  const stepSchema = signUpSchema(step);
+  const stepSchema = SignUpSchema(step as Step);
   const MAX_STEPS = 6;
   const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
