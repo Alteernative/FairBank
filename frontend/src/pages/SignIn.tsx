@@ -77,7 +77,7 @@ export default function SignIn() {
             responseErrorData.error ===
             "Invalid credentials or User is not active"
           ) {
-            const errorMessage = "Email ou mot de passe invalide.";
+            const errorMessage = `${t("zod.signIn.root.message")}`;
             setError("root", {
               type: "server",
               message: errorMessage,
@@ -187,7 +187,7 @@ export default function SignIn() {
                 {errors.root && (
                   <Alert variant={"destructive"}>
                     <TriangleAlert size={20} />
-                    <AlertTitle>Erreur</AlertTitle>
+                    <AlertTitle>{t("zod.signIn.root.title")}</AlertTitle>
                     <AlertDescription>{errors.root.message}</AlertDescription>
                   </Alert>
                 )}

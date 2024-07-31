@@ -348,6 +348,10 @@
       "password": {
         "min": "Mot de passe requis.",
         "invalid": "Mot de passe invalide."
+      },
+      "root": {
+        "title": "Erreur",
+        "message": "Email ou mot de passe invalide."
       }
     },
     "signUp": {

@@ -348,6 +348,10 @@
       "password": {
         "min": "Password required.",
         "invalid": "Invalid password."
+      },
+      "root": {
+        "title": "Error",
+        "message": "Invalid email or password."
       }
     },
     "signUp": {
