@@ -1,0 +1,44 @@
+{
+  "heroH1": "Our bank's interest? Your financial well-being.",
+  "heroH1_2": "Our bank's interest&nbsp;?<br />Your financial well-being.",
+  "heroH2": "Open an account in minutes and say goodbye to interest.",
+  "sponsorsH2": "Shop at your favorite stores",
+
+  "signupBtn": "Become a member",
+  "siginpBtn": "Log in",
+  "signoutBtn": "Log out",
+  "dashboardBtn": "Dashboard",
+
+  "aboutH2": "Value your assets",
+  "aboutP": "We are committed to providing efficient banking services to let you invest in your future. Send money without paying any transfer fees. Our services are easily accessible from anywhere, to any moment.",
+
+  "ctaH2": "Get the banking services you deserve!",
+  "ctaP": "Monthly fees? No way. Enjoy free withdrawals from any ATM in Canada and cash back on every purchase with the FairBank card.",
+
+  "reviewsH2": "Reviews from our members",
+  "reviews1P": "FairBank has transformed my financial management. Exceptional customer service!",
+  "reviews2P": "The ease of use of FairBank is impressive.",
+  "reviews3P": "The exchange rate is competitive and frequently updated!",
+  "reviews4P": "Always fast online services at FairBank.",
+  "reviews5P": "Excellent customer support, always attentive.",
+
+  "footerSlogan": "Different bank, different future.",
+  "footerMapsite": "Sitemap",
+  "footerPlans": "Plans",
+  "footerServices": "Services",
+  "footerAboutUs": "About",
+  "footerFAQ": "FAQ",
+  "footerPrivacy": "Privacy and security",
+  "footerContactUs": "Contact us",
+  "footerSubmitBtn": "Submit",
+  "copyright": "FairBank Inc. All rights reserved.",
+
+  "plansH1": "Choose the plan that suits your needs!",
+  "annualBtn": "Yearly",
+  "monthlyBtn": "Monthly",
+
+  "tier1Description": "Basic plan for individuals, with essential features.",
+
+  "toggleFR": "French",
+  "toggleEN": "English"
+}

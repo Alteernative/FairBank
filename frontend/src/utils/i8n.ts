@@ -1,18 +1,19 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';	
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationFR from "@/locales/fr/translation.json";
+import translationEN from "@/locales/en/translation.json";
 
-i18n
-    .init({
-    lng: 'fr', // if you're using a language detector, do not define the lng option
-    debug: true,
-    fallbackLng: 'fr',
-    resources: {
-      en: {
-        translation: {
-          "key": "hello world"
-        }
-      }
-    }
-  });
-  
-export default i18n;  
+i18n.use(initReactI18next).init({
+  lng: "fr",
+  fallbackLng: "fr",
+  resources: {
+    fr: {
+      translation: translationFR,
+    },
+    en: {
+      translation: translationEN,
+    },
+  },
+});
+
+export default i18n;

@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 
 export default function Settings({ children }: { children: React.ReactNode }) {
   return (
-    <section className="flex h-screen w-screen">
+    <section className="flex h-full w-full">
       <UserContextProvider>
         <SettingsSidebar />
         {children}

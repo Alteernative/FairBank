@@ -13,8 +13,11 @@ import { Copyright, Mail, Phone } from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { toast, Toaster } from "sonner";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0 });
   };
@@ -54,9 +57,7 @@ export default function Footer() {
           <section className="flex flex-1 flex-col">
             <span className="relative cursor-default select-none">
               <h1 className="font-jomhuria text-6xl">FairBank</h1>
-              <p className="absolute top-12">
-                Banque différente, avenir&nbsp;différent.
-              </p>
+              <p className="absolute top-12">{t("footerSlogan")}</p>
             </span>
             <div className="mt-10 flex flex-col gap-2 lg:mt-14">
               <span className="flex items-center gap-3">
@@ -98,40 +99,40 @@ export default function Footer() {
           {/* Middle */}
           <section className="flex flex-1 flex-col text-start lg:mt-3 lg:items-center lg:text-center">
             <h3 className="mb-5 cursor-default text-xl font-semibold">
-              Plan du site
+              {t("footerMapsite")}
             </h3>
             <nav className=" flex flex-col items-start gap-2 lg:items-center">
               <Button asChild variant="link">
                 <Link to={"/particuliers"} onClick={scrollToTop}>
-                  Plans
+                  {t("footerPlans")}
                 </Link>
               </Button>
               <Button asChild variant="link">
                 <Link to={"/services"} onClick={scrollToTop}>
-                  Services
+                  {t("footerServices")}
                 </Link>
               </Button>
               <Button asChild variant="link">
                 <Link to={"/apropos"} onClick={scrollToTop}>
-                  À Propos
+                  {t("footerAboutUs")}
                 </Link>
               </Button>
               <Button asChild variant="link">
                 <Link to={"/faq"} onClick={scrollToTop}>
-                  FAQ
+                  {t("footerFAQ")}
                 </Link>
               </Button>
               <Button asChild variant="link">
                 <Link to={"/politiques"} onClick={scrollToTop}>
-                  Confidentialité et sécurité
+                  {t("footerPrivacy")}
                 </Link>
               </Button>
             </nav>
           </section>
           {/* Right */}
-          <section className="flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
+          <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
             <h3 className="mb-5 cursor-default text-xl font-semibold">
-              Contactez-nous
+              {t("footerContactUs")}
             </h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -166,14 +167,15 @@ export default function Footer() {
                 className="h-24 resize-none"
                 {...register("message")}
               />
-              <Button className="mt-2">Soumettre</Button>
+              <Button className="mt-2" onSubmit={handleSubmit}>
+                {t("footerSubmitBtn")}
+              </Button>
             </form>
           </section>
         </section>
 
         <p className="flex cursor-default items-center gap-2">
-          <Copyright size={16} /> {new Date().getFullYear()} FairBank Inc. Tous
-          droits réservés.
+          <Copyright size={16} /> {new Date().getFullYear()} {t("copyright")}
         </p>
       </footer>
       <Toaster closeButton richColors position="bottom-left" />

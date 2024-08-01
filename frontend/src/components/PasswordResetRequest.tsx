@@ -18,6 +18,7 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { ModeToggle } from "./ModeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 
 const PasswordFields = () => {
   const {
@@ -89,16 +90,15 @@ const PasswordReset = () => {
         </aside>
 
         <main className="flex w-80 flex-1 items-center justify-center">
-          <span className="absolute right-36 top-0 m-5">
-            <ModeToggle />
-          </span>
-          <Button
-            asChild
-            variant={"ghost"}
-            className="absolute right-0 top-0 m-5"
-          >
-            <Link to={"/inscription"}>Devenir membre</Link>
-          </Button>
+          <div className="absolute right-0 top-4 m-5">
+            <span className="flex items-end justify-start gap-2">
+              <LanguageToggle />
+              <ModeToggle />
+              <Button asChild variant={"ghost"} className="ml-2">
+                <Link to={"/inscription"}>Devenir membre</Link>
+              </Button>
+            </span>
+          </div>
           <h1 className="absolute left-7 top-7 font-jomhuria text-6xl lg:hidden">
             <Link to={"/"}>FairBank</Link>
           </h1>

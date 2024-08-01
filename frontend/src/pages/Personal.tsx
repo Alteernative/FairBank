@@ -1,20 +1,18 @@
 import { Badge } from "@/components/ui/badge";
 import { CheckIcon } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function Particuliers() {
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [isYearly, setIsYearly] = useState(true);
+  const { t } = useTranslation();
 
   return (
-    <div className="mb-32 dark:bg-slate-950 dark:text-white">
-      <section className="py-12">
-        <div className="container mx-auto text-center">
-          <h1 className="mb-4 font-jomhuria text-6xl text-primary">
-            Choisissez le plan qui correspond à vos besoins!
-          </h1>
-        </div>
-      </section>
+    <div className="mb-32 mt-12">
+      <h1 className="mb-4 text-center font-jomhuria text-6xl">
+        {t("plansH1")}
+      </h1>
 
       {/* Pricing toggle */}
       <div className="m-auto mb-8 flex max-w-[14rem] justify-center lg:mb-16">
@@ -25,21 +23,21 @@ export default function Particuliers() {
           >
             <span
               className={`absolute inset-0 w-1/2 transform rounded-full bg-green-500 shadow-sm shadow-indigo-950/10 transition-transform duration-150 ease-in-out ${
-                isAnnual ? "translate-x-0" : "translate-x-full"
+                isYearly ? "translate-x-0" : "translate-x-full"
               }`}
             ></span>
           </span>
           <button
             className={`relative h-8 flex-1 rounded-full text-sm font-medium transition-colors duration-150 ease-in-out ${
-              isAnnual ? "text-white" : "text-black dark:text-slate-400"
+              isYearly ? "text-white" : "text-black dark:text-slate-400"
             }`}
-            onClick={() => setIsAnnual(true)}
-            aria-pressed={isAnnual}
+            onClick={() => setIsYearly(true)}
+            aria-pressed={isYearly}
           >
-            Annuel{" "}
+            {t("annualBtn")}{" "}
             <span
               className={
-                isAnnual
+                isYearly
                   ? "text-slate-100"
                   : "text-slate-400 dark:text-slate-500"
               }
@@ -49,12 +47,12 @@ export default function Particuliers() {
           </button>
           <button
             className={`relative h-8 flex-1 rounded-full text-sm font-medium transition-colors duration-150 ease-in-out ${
-              isAnnual ? "text-black dark:text-slate-400" : "text-white"
+              isYearly ? "text-black dark:text-slate-400" : "text-white"
             }`}
-            onClick={() => setIsAnnual(false)}
-            aria-pressed={!isAnnual}
+            onClick={() => setIsYearly(false)}
+            aria-pressed={!isYearly}
           >
-            Mensuel
+            {t("monthlyBtn")}
           </button>
         </div>
       </div>
@@ -68,15 +66,14 @@ export default function Particuliers() {
               <div className="mb-1 font-semibold">Régulier</div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isAnnual ? "192" : "20"}
+                  ${isYearly ? "192" : "20"}
                 </span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/an" : "/mo"}
+                  {isYearly ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
-                Plan de base pour les particuliers, avec des fonctionnalités
-                essentielles.
+                {t("tier1Description")}
               </div>
               <Link
                 to={"/inscription"}
@@ -124,14 +121,14 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isAnnual ? "384" : "40"}
+                  ${isYearly ? "384" : "40"}
                 </span>
                 <span
                   className="text-4xl font-bold text-slate-900 dark:text-slate-200"
-                  v-text="isAnnual ? '49' : '55'"
+                  v-text="isYearly ? '49' : '55'"
                 ></span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/an" : "/mo"}
+                  {isYearly ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
@@ -183,10 +180,10 @@ export default function Particuliers() {
               </div>
               <div className="mb-2 inline-flex select-none items-baseline">
                 <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isAnnual ? "816" : "85"}
+                  ${isYearly ? "816" : "85"}
                 </span>
                 <span className="font-medium text-slate-500">
-                  {isAnnual ? "/an" : "/mo"}
+                  {isYearly ? "/an" : "/mo"}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">

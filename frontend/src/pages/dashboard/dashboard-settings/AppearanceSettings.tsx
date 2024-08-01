@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ModeToggle } from "@/components/ModeToggle";
+import { ModeButtons } from "@/components/ModeButtons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,12 +26,12 @@ export default function AppearanceSettings() {
   };
 
   return (
-    <main className="flex w-full flex-col gap-4 bg-muted/20 pl-10 pt-[7rem] lg:ml-60">
-      <Card className="w-10/12">
+    <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Choix de polices</CardTitle>
+          <CardTitle>Préférences de police</CardTitle>
           <CardDescription>
-            Choisissez une police pour modifier l'apparence du site.
+            Choisissez une police pour personnaliser l'apparence du site.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -50,85 +50,92 @@ export default function AppearanceSettings() {
           </Select>
         </CardContent>
       </Card>
-      <Card className="w-10/12">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Mode sombre</CardTitle>
+          <CardTitle>Préférences de mode</CardTitle>
           <CardDescription>
-            Choisissez entre un mode sombre, clair, ou système.
+            Choisissez entre le mode clair, le mode sombre ou le mode système.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ModeToggle />
+          <ModeButtons className="max-w-[20rem]" />
         </CardContent>
       </Card>
-      <Card className="w-10/12">
+      <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Préférence de couleurs</CardTitle>
+          <CardTitle>Préférences de couleurs</CardTitle>
           <CardDescription>
-            Choisissez un thème de couleurs parmis les palettes suivantes.
+            Choisissez un thème de couleurs parmi les palettes suivantes.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <section className="flex flex-wrap gap-2">
+          <section className="flex max-w-[20rem] flex-wrap gap-2">
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-green-500"></div>
               <p className="ml-3">Vert</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-blue-500"></div>
               <p className="ml-3">Bleu</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-red-500"></div>
               <p className="ml-3">Rouge</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-yellow-500"></div>
               <p className="ml-3">Jaune</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-orange-500"></div>
               <p className="ml-3">Orange</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-rose-500"></div>
               <p className="ml-3">Rose</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-purple-500"></div>
               <p className="ml-3">Violet</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-gray-500"></div>
               <p className="ml-3">Gris</p>
             </Button>
             <Button
               variant={"outline"}
-              className="flex w-32 items-center justify-start"
+              className="flex w-full items-center justify-start sm:w-32"
+            >
+              <div className="size-6 rounded-full border bg-slate-500"></div>
+              <p className="ml-3">Ardoise</p>
+            </Button>
+            <Button
+              variant={"outline"}
+              className="flex w-full items-center justify-start sm:w-32"
             >
               <div className="size-6 rounded-full border bg-neutral-500"></div>
               <p className="ml-3">Neutre</p>
