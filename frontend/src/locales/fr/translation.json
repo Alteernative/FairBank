@@ -222,6 +222,11 @@
       "pending": "En attente"
     },
 
+    "exchangeRate": {
+      "h1": "Taux de change",
+      "h2": "Taux de change actuel"
+    },
+
     "help": {
       "q1": "1. Comment acheter des devises étrangères?",
       "a1": {

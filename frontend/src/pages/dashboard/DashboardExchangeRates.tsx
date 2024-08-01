@@ -1,4 +1,3 @@
-import * as React from "react";
 import axios from "axios";
 import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
@@ -30,6 +29,8 @@ import {
 } from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const chartConfig = {
   rate: {
@@ -39,13 +40,14 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DashboardExchangeRates() {
-  const [exchangeRates, setExchangeRates] = React.useState({});
-  const [chartData, setChartData] = React.useState([]);
+  const [exchangeRates, setExchangeRates] = useState({});
+  const [chartData, setChartData] = useState([]);
   const { user } = useUserContext();
-  const [amount, setAmount] = React.useState(0);
-  const [convertedAmount, setConvertedAmount] = React.useState(0);
-  const [selectedCurrency, setSelectedCurrency] = React.useState("");
+  const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
+  const [selectedCurrency, setSelectedCurrency] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // API KEY apilayer.com
   const apiKey = "9PjsviRD106mo1VyTg79UwJkaMNFFNXW";
@@ -174,7 +176,7 @@ export default function DashboardExchangeRates() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchExchangeRates();
     fetchHistoryExchangeRates();
   }, []);
@@ -200,10 +202,12 @@ export default function DashboardExchangeRates() {
 
   return (
     <main className="mx-14 h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
-      <h1 className="mb-10 w-full font-jomhuria text-6xl">Taux de change</h1>
-      <p className="mb-2 w-full text-center text-3xl font-bold">
-        Taux actuels selon le CAD 🇨🇦:
-      </p>
+      <h1 className="mb-10 w-full font-jomhuria text-6xl">
+        {t("dashboard.exchangeRate.h1")}
+      </h1>
+      <h2 className="mb-2 w-full text-center text-3xl font-bold">
+        {t("dashboard.exchangeRate.h2")}
+      </h2>
 
       {Object.keys(chartData).map((currency) => (
         <Dialog key={currency}>

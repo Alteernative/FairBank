@@ -222,6 +222,11 @@
       "pending": "Pending"
     },
 
+    "exchangeRate": {
+      "h1": "Exchange rate",
+      "h2": "Current exchange rates"
+    },
+
     "help": {
       "q1": "1. How to buy foreign currencies?",
       "a1": {
