@@ -164,6 +164,8 @@
     "h1": "Choisissez le plan qui correspond à vos besoins!",
     "yearly": "Annuel",
     "monthly": "Mensuel",
+    "perYear": "/an",
+    "perMonth": "/mois",
     "tier1": {
       "name": "Régulier",
       "description": "Plan de base pour les particuliers, avec des fonctionnalités essentielles.",
@@ -191,7 +193,7 @@
   },
 
   "dashboard": {
-    "welcome": "Bonjour",
+    "welcome": "Bonjour ",
 
     "help": {
       "q1": "1. Comment acheter des devises étrangères?",

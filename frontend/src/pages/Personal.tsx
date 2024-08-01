@@ -60,54 +60,50 @@ export default function Particuliers() {
       <div className="mx-auto grid max-w-sm items-start gap-6 lg:max-w-none lg:grid-cols-3">
         {/* Pricing table 1*/}
 
-        <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
-            <div className="mb-5">
-              <div className="mb-1 font-semibold">{t("plans.tier1.name")}</div>
-              <div className="mb-2 inline-flex select-none items-baseline">
-                <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isYearly ? "192" : "20"}
-                </span>
-                <span className="font-medium text-slate-500">
-                  {isYearly ? "/an" : "/mo"}
-                </span>
-              </div>
-              <div className="mb-5 text-sm text-slate-500">
-                {t("plans.tier1.description")}
-              </div>
-              <Link
-                to={"/inscription"}
-                className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
-              >
-                {t("buttons.choosePlan")}
-              </Link>
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+          <div className="mb-5">
+            <div className="mb-1 font-semibold">{t("plans.tier1.name")}</div>
+            <div className="mb-2 inline-flex select-none items-baseline">
+              <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
+                ${isYearly ? "192" : "20"}
+              </span>
+              <span className="font-medium text-slate-500">
+                {isYearly ? `${t("plans.perYear")}` : `${t("plans.perMonth")}`}
+              </span>
             </div>
-            <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Inclus
+            <div className="mb-5 text-sm text-slate-500">
+              {t("plans.tier1.description")}
             </div>
-            <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier1.perk1"}>
-                    <b>20</b> transactions quotidiennes
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier1.perk2"}>
-                    <b>$5,000</b> en transactions quotidiennes.
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>{t("plans.tier1.perk3")}</span>
-              </li>
-            </ul>
+            <Link
+              to={"/inscription"}
+              className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
+            >
+              {t("buttons.choosePlan")}
+            </Link>
           </div>
+
+          <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier1.perk1"}>
+                  <b>20</b> transactions quotidiennes
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier1.perk2"}>
+                  <b>$5,000</b> en transactions quotidiennes.
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>{t("plans.tier1.perk3")}</span>
+            </li>
+          </ul>
         </div>
 
         {/* Pricing table 2*/}
@@ -132,7 +128,9 @@ export default function Particuliers() {
                   v-text="isYearly ? '49' : '55'"
                 ></span>
                 <span className="font-medium text-slate-500">
-                  {isYearly ? "/an" : "/mo"}
+                  {isYearly
+                    ? `${t("plans.perYear")}`
+                    : `${t("plans.perMonth")}`}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
@@ -145,9 +143,7 @@ export default function Particuliers() {
                 {t("buttons.choosePlan")}
               </Link>
             </div>
-            <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Inclus
-            </div>
+
             <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />
@@ -190,7 +186,9 @@ export default function Particuliers() {
                   ${isYearly ? "816" : "85"}
                 </span>
                 <span className="font-medium text-slate-500">
-                  {isYearly ? "/an" : "/mo"}
+                  {isYearly
+                    ? `${t("plans.perYear")}`
+                    : `${t("plans.perMonth")}`}
                 </span>
               </div>
               <div className="mb-5 text-sm text-slate-500">
@@ -203,9 +201,7 @@ export default function Particuliers() {
                 {t("buttons.choosePlan")}
               </Link>
             </div>
-            <div className="mb-3 font-medium text-slate-900 dark:text-slate-200">
-              Inclus
-            </div>
+
             <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
               <li className="flex items-center gap-2">
                 <CheckIcon size={20} className="text-green-500" />

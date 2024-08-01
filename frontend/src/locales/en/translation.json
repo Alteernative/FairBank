@@ -164,6 +164,8 @@
     "h1": "Choose the plan that suits your needs!",
     "yearly": "Yearly",
     "monthly": "Monthly",
+    "perYear": "/yr.",
+    "perMonth": "/mo.",
     "tier1": {
       "name": "Regular",
       "description": "Basic plan for individuals, with essential features.",
@@ -191,7 +193,7 @@
   },
 
   "dashboard": {
-    "welcome": "Hello",
+    "welcome": "Welcome ",
 
     "help": {
       "q1": "1. How to buy foreign currencies?",
