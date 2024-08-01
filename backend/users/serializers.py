@@ -176,17 +176,25 @@ class SimplePendingTransactionSerializer(serializers.ModelSerializer):
         fields = ['amount', 'date']
 
 
+class SimpleCurrenciesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCurrency
+        fields = ['balance_usd', 'balance_jpy', 'balance_eur', 'balance_gbp', 'balance_cny', 'balance_inr']
+
+
 class AdminUsersSerializer(serializers.ModelSerializer):
     sent_transactions = SimpleTransactionSerializer(many=True, read_only=True)
     received_transactions = SimpleTransactionSerializer(many=True, read_only=True)
     pending_received_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
     pending_sender_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
+    currencies = SimpleCurrenciesSerializer(source='currency_balances', many=True, read_only=True)
 
     class Meta:
         model = User
         fields = [
-            'id', 'first_name', 'last_name', 'is_active', 'plan', 'sent_transactions', 'received_transactions',
-            'pending_sender_transactions', 'pending_received_transactions']
+            'id', 'first_name', 'last_name', 'is_active', 'plan', 'currencies', 'sent_transactions',
+            'received_transactions', 'pending_sender_transactions', 'pending_received_transactions'
+        ]
 
 
 class PendingUsersUpdatesSerializer(serializers.ModelSerializer):
