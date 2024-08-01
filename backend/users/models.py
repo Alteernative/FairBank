@@ -88,9 +88,9 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Request for resetting password for {title}".format(title=reset_password_token.user.email),
+        subject="Demande de changement de mot de passe pour {title}".format(title=reset_password_token.user.email),
         body=plain_message,
-        from_email="alteernative@gmail.com",
+        from_email="admin@fairbank.com",
         to=[reset_password_token.user.email]
     )
 
