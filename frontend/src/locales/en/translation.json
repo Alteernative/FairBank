@@ -35,6 +35,7 @@
     "submit": "Submit",
     "return": "Return",
     "returnHome": "Return to Homepage",
+    "back": "Back",
     "next": "Next",
     "skip": "Skip",
     "save": "Save",
@@ -198,6 +199,20 @@
       "balance": "Balance",
       "transactions": "Transactions",
       "exchangeRate": "Foreign currency balance"
+    },
+
+    "history": {
+      "h1": "History of transactions",
+      "column": {
+        "col1": "Status",
+        "col2": "Email",
+        "col3": "Amount",
+        "col4": "Date"
+      },
+      "status": {
+        "sent": "Sent",
+        "received": "Received"
+      }
     },
 
     "activity": {

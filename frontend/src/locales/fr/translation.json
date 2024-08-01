@@ -35,6 +35,7 @@
     "submit": "Soumettre",
     "return": "Retourner",
     "returnHome": "Retourner à la page d'accueil",
+    "back": "Précedent",
     "next": "Suivant",
     "skip": "Passer",
     "save": "Sauvegarder",
@@ -198,6 +199,20 @@
       "balance": "Balance",
       "transactions": "Transactions",
       "exchangeRate": "Balance des devises étrangères"
+    },
+
+    "history": {
+      "h1": "Historique des transactions",
+      "column": {
+        "col1": "Statut",
+        "col2": "Courriel",
+        "col3": "Montant",
+        "col4": "Date"
+      },
+      "status": {
+        "sent": "Envoyée",
+        "received": "Reçue"
+      }
     },
 
     "activity": {
