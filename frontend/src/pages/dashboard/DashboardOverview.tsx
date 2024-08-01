@@ -1,15 +1,15 @@
 import { useUserContext } from "@/contexts/UserContext";
 import { useState } from "react";
-import DashboardGraph from "./DashboardGraph";
+import DashboardGraph from "@/components/DashboardGraph";
 import CountUp from "react-countup";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel.tsx";
-import { Card, CardDescription, CardHeader } from "@/components/ui/card.tsx";
-import { ProgressBar } from "./ProgressBar";
-import { Trans, useTranslation } from "react-i18next";
+import { Card, CardHeader } from "@/components/ui/card.tsx";
+import { ProgressBar } from "@/components/ProgressBar";
+import { useTranslation } from "react-i18next";
 
 const UPPER_LIMIT = 100;
 
