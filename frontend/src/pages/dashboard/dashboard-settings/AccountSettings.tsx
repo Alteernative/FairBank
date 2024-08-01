@@ -97,7 +97,12 @@ export default function AccountSettings() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Input type="text" placeholder={user.email} className="h-12" />
+            <Input
+              type="text"
+              placeholder={user.email}
+              className="h-12"
+              {...register("email")}
+            />
           </CardContent>
         </Card>
         <Button type="submit" className="mt-3 w-32">
