@@ -66,6 +66,12 @@ export default function DashboardGraph() {
       let currentBalance = user.balance
       const balanceDataPoints: { transactionNumber: number; balance: number }[] = []
 
+
+      balanceDataPoints.push({
+            transactionNumber: transactions.length,
+            balance: user.balance,
+          });
+
       transactions.forEach((transaction, index) => {
         const amount = parseFloat(transaction.amount)
         if (transaction.type === "received") {
