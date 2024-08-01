@@ -111,6 +111,14 @@ class Transaction(models.Model):
     def __str__(self):
         return f'Transaction from {self.sender} to {self.receiver} for {self.amount} on {self.date}'
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # Ensure it's a new transaction
+            if self.sender:
+                self.sender.balance -= self.amount
+                self.sender.save()
+            self.receiver.balance += self.amount
+            self.receiver.save()
+        super().save(*args, **kwargs)
 
 class PendingTransactions(models.Model):
     sender = models.ForeignKey(CustomUser, related_name='pending_sender_transactions', on_delete=models.CASCADE)
