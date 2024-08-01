@@ -5,6 +5,7 @@ import translationEN from "@/locales/en/translation.json";
 import translationES from "@/locales/es/translation.json";
 import translationAR from "@/locales/ar/translation.json";
 import translationDE from "@/locales/de/translation.json";
+import translationIT from "@/locales/it/translation.json";
 
 i18n.use(initReactI18next).init({
   lng: "fr",
@@ -24,6 +25,9 @@ i18n.use(initReactI18next).init({
     },
     de: {
       translation: translationDE,
+    },
+    it: {
+      translation: translationIT,
     },
   },
 });
