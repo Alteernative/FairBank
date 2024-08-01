@@ -3,10 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
-import capitalize from "@/utils/capitalize";
 import formatCurrency from "@/utils/formatCurrency";
 import formatDate from "@/utils/formatDate";
 import { Check, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type Transaction = {
   id: number;
@@ -15,11 +15,11 @@ type Transaction = {
   amount: number;
   date: string;
   status: string;
-  // Add other properties if needed
 };
 
 export default function DashboardActivity() {
   const { user } = useUserContext();
+  const { t } = useTranslation();
 
   const updateTransactionStatus = (
     transaction: Transaction,
@@ -44,11 +44,13 @@ export default function DashboardActivity() {
 
   return (
     <section className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
-      <h1 className="mb-10 font-jomhuria text-6xl">Activités</h1>
+      <h1 className="mb-10 font-jomhuria text-6xl">
+        {t("dashboard.activity.h1")}
+      </h1>
       <main className="flex flex-col gap-10">
         <div className="mb-5 w-full">
           <h2 className="mb-3 text-lg font-semibold tracking-tight">
-            Demande reçue
+            {t("dashboard.activity.received")}
           </h2>
           <div className="space-y-2 rounded-lg border px-5 py-3 shadow">
             {user?.pending_sender_transactions?.map(
@@ -90,13 +92,6 @@ export default function DashboardActivity() {
                       <X />
                     </Button>
                   </div>
-
-                  {/* TODO: Is this necessary? */}
-                  {/* <p className="select-none font-medium text-blue-500">
-                      {transaction.status === "pending"
-                        ? "En attente"
-                        : capitalize(transaction.status)}
-                    </p> */}
                   <Separator />
                 </div>
               )
@@ -106,7 +101,7 @@ export default function DashboardActivity() {
 
         <div className="mb-5 w-full">
           <h2 className="mb-3 text-lg font-semibold tracking-tight">
-            Demande envoyée
+            {t("dashboard.activity.sent")}
           </h2>
           <div className="space-y-2 rounded-lg border px-5 py-3 shadow">
             {user?.pending_received_transactions?.map(
@@ -127,7 +122,7 @@ export default function DashboardActivity() {
 
                   <Badge className=" select-none bg-blue-500 text-sm font-medium text-white hover:bg-blue-500">
                     {transaction.status === "pending"
-                      ? "En attente"
+                      ? `${t("dashboard.activity.pending")}`
                       : transaction.status}
                   </Badge>
                   <Separator />

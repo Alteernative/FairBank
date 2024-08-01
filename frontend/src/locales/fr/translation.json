@@ -200,6 +200,13 @@
       "exchangeRate": "Balance des devises étrangères"
     },
 
+    "activity": {
+      "h1": "Activités",
+      "received": "Demande envoyée",
+      "sent": "Demande reçue",
+      "pending": "En attente"
+    },
+
     "help": {
       "q1": "1. Comment acheter des devises étrangères?",
       "a1": {

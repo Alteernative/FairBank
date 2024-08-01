@@ -200,6 +200,13 @@
       "exchangeRate": "Foreign currency balance"
     },
 
+    "activity": {
+      "h1": "Activity",
+      "received": "Request sent",
+      "sent": "Request received",
+      "pending": "Pending"
+    },
+
     "help": {
       "q1": "1. How to buy foreign currencies?",
       "a1": {
