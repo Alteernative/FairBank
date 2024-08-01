@@ -1,0 +1,464 @@
+{
+  "homepage": {
+    "hero": {
+      "h1": "¿El interés de nuestro banco? Su bienestar financiero.",
+      "h2": "Abra una cuenta en minutos y diga adiós a los intereses."
+    },
+    "sponsors": {
+      "h2": "Compra en tus tiendas favoritas"
+    },
+    "about": {
+      "h2": "Haz que tus activos trabajen para ti",
+      "p": "Nos comprometemos a proporcionar servicios bancarios eficientes para que pueda invertir en su futuro. Envíe dinero sin pagar tarifas de transferencia. Nuestros servicios son fácilmente accesibles desde cualquier lugar, en cualquier momento."
+    },
+    "cta": {
+      "h2": "¡Obtenga los servicios bancarios que se merece!",
+      "p": "¿Cuotas mensuales? De ninguna manera. Disfrute de retiros gratuitos en cualquier cajero automático en Canadá y reembolsos en cada compra con la tarjeta FairBank."
+    },
+    "reviews": {
+      "h2": "Opiniones de nuestros miembros",
+      "1": "FairBank ha transformado mi gestión financiera. ¡Servicio al cliente excepcional!",
+      "2": "La simplicidad de usar FairBank es impresionante.",
+      "3": "¡El tipo de cambio es competitivo y se actualiza con frecuencia!",
+      "4": "Los servicios en línea siempre son rápidos con FairBank.",
+      "5": "Excelente soporte al cliente, siempre escuchando."
+    }
+  },
+  "buttons": {
+    "signUp": "Hazte miembro",
+    "signIn": "Iniciar sesión",
+    "signIn2": "Acceder",
+    "signOut": "Cerrar sesión",
+    "dashboard": "Tablero",
+    "submit": "Enviar",
+    "return": "Regresar",
+    "returnHome": "Volver a la página principal",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "skip": "Saltar",
+    "save": "Guardar",
+    "ask": "Preguntar",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "sendFunds": "Enviar",
+    "requestFunds": "Solicitar",
+    "depositFunds": "Depositar",
+    "choosePlan": "Elige este plan"
+  },
+  "input": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirm": "Confirmar",
+    "recipient": "destinatario@correo.com",
+    "fundsAmount": "Cantidad",
+    "fundsEmail": "Correo electrónico",
+    "year": "Año",
+    "month": "Mes",
+    "day": "Día"
+  },
+  "header": {
+    "plans": "Planes",
+    "services": "Servicios",
+    "aboutUs": "Sobre nosotros",
+    "faq": "Preguntas frecuentes",
+    "privacy": "Privacidad y seguridad"
+  },
+  "footer": {
+    "slogan": "Banco diferente, futuro diferente.",
+    "mapsite": "Mapa del sitio",
+    "contactUs": "Contáctanos",
+    "copyright": "FairBank Inc. Todos los derechos reservados."
+  },
+  "services": {
+    "h1": "Servicios ofrecidos",
+    "card1": {
+      "title": "Gestión de cuenta bancaria",
+      "description": "Gestiona tu cuenta de manera fácil y segura."
+    },
+    "card2": {
+      "title": "Transferencias de fondos",
+      "description": "Realiza transferencias de fondos rápidas y seguras."
+    },
+    "card3": {
+      "title": "Pago de facturas",
+      "description": "Paga fácilmente las facturas de servicios públicos y privados."
+    },
+    "card4": {
+      "title": "Tipos de cambio actuales",
+      "description": "Accede a los tipos de cambio actuales para la conversión de divisas."
+    },
+    "card5": {
+      "title": "Retiros sin comisiones",
+      "description": "Retiros gratuitos en cualquier cajero automático en Canadá."
+    },
+    "card6": {
+      "title": "Transferencias sin comisiones",
+      "description": "Transferencias de dinero sin pagar tarifas de transferencia."
+    },
+    "card7": {
+      "title": "Tablero personalizado",
+      "description": "Tablero con estadísticas para rastrear tus gastos e ingresos."
+    },
+    "card8": {
+      "title": "Seguridad garantizada",
+      "description": "FairBank utiliza sistemas de cifrado avanzados para proteger tus datos personales."
+    }
+  },
+  "aboutUs": {
+    "h1": "¿Quién es FairBank?",
+    "card1": {
+      "h2": "Nuestra misión",
+      "p1": "Contribuir al éxito de nuestros clientes ofreciendo servicios bancarios de calidad y ayudándolos a alcanzar sus objetivos financieros.",
+      "p2": "Nos comprometemos a proporcionar servicios bancarios eficientes garantizando la seguridad de tus datos para que puedas invertir en tu futuro."
+    },
+    "card2": {
+      "h2": "Nuestros valores",
+      "p1": "Nuestros valores",
+      "p2": "Nuestros valores"
+    }
+  },
+  "faq": {
+    "q1": "1. ¿Cómo puedo abrir una cuenta en FairBank?",
+    "a1": "¡Es muy sencillo! Puedes abrir una cuenta visitando <1>fairbank.com/signup</1> y enviando una solicitud en línea.",
+    "q2": "2. ¿Quién puede abrir una cuenta en FairBank?",
+    "a2": "Todo cliente de FairBank debe ser residente canadiense y mayor de 18 años.",
+    "q3": "3. ¿Los depósitos directos tienen un período de retención?",
+    "a3": "No, tus fondos están disponibles tan pronto como se depositan.",
+    "q4": "4. Mi cuenta está bloqueada. ¿Qué debo hacer para recuperar el acceso?",
+    "a4": "Para desbloquear tu cuenta, comunícate con el equipo de servicio al cliente de FairBank al 1-800-123-4567 o por correo electrónico a contact@fairbank.com",
+    "q5": "5. ¿Qué tipos de productos ofrece FairBank?",
+    "a5": "Ofrecemos tres tipos de cuentas: Regular, Premium, Ultimate, cada una con beneficios únicos. Con tus cuentas de FairBank, puedes realizar pagos de facturas, transferencias de fondos y mucho más.",
+    "q6": "6. ¿Cómo puedo encontrar mi número de cuenta?",
+    "a6": "Inicia sesión en el portal de FairBank y, desde el tablero, verás tu número de cuenta único de nueve dígitos.",
+    "q7": "7. ¿Cómo se calcula el tipo de cambio USD en FairBank?",
+    "a7": "Los tipos de cambio fluctúan constantemente, pero puedes acceder a nuestro tipo de cambio USD en vivo iniciando sesión en tu cuenta. Actualizamos nuestros tipos de cambio cada 15 minutos.",
+    "q8": "8. ¿Puedo usar los servicios de FairBank si vivo fuera de Canadá?",
+    "a8": "Puedes continuar accediendo a tu cuenta actual mientras viajas fuera de Canadá. Sin embargo, todos los titulares de cuentas de FairBank deben ser residentes canadienses para mantener sus cuentas.",
+    "q9": "9. ¿Dónde puedo usar mi tarjeta FairBank?",
+    "a9": "Puedes usar tu tarjeta en cualquier lugar donde se acepten tarjetas Visa, tanto en Canadá como en el extranjero.",
+    "q10": "10. ¿Dónde puedo encontrar mis resguardos fiscales?",
+    "a10": "Una vez que hayas iniciado sesión, navega a la pestaña 'Mis cuentas' para descargar tu historial de transacciones."
+  },
+  "toggle": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "plans": {
+    "h1": "¡Elige el plan que se adapte a tus necesidades!",
+    "yearly": "Anual",
+    "monthly": "Mensual",
+    "perYear": "/año",
+    "perMonth": "/mes",
+    "tier1": {
+      "name": "Regular",
+      "description": "Plan básico para individuos, con características esenciales.",
+      "perk1": "<0>20</0> transacciones diarias.",
+      "perk2": "<0>$5,000</0> en transacciones diarias.",
+      "perk3": "Atención al cliente"
+    },
+    "tier2": {
+      "name": "Premium",
+      "description": "Plan avanzado para usuarios exigentes, que ofrece beneficios adicionales.",
+      "perk1": "Transacciones diarias ilimitadas.",
+      "perk2": "<0>$15,000</0> en transacciones diarias.",
+      "perk3": "Atención al cliente",
+      "perk4": "Servicio de conversión de divisas"
+    },
+    "tier3": {
+      "name": "Ultimate",
+      "description": "Plan exclusivo para usuarios profesionales, que incluye beneficios premium.",
+      "perk1": "Transacciones diarias ilimitadas.",
+      "perk2": "<0>$100,000</0> en transacciones diarias.",
+      "perk3": "Atención al cliente",
+      "perk4": "Servicio de conversión de divisas",
+      "perk5": "Cheques y otros servicios gratuitos"
+    }
+  },
+
+  "dashboard": {
+    "overview": {
+      "welcome": "Bienvenido ",
+      "balance": "Saldo",
+      "transactions": "Transacciones",
+      "exchangeRate": "Saldo en divisas"
+    },
+
+    "history": {
+      "h1": "Historial de transacciones",
+      "column": {
+        "col1": "Estado",
+        "col2": "Correo electrónico",
+        "col3": "Cantidad",
+        "col4": "Fecha"
+      },
+      "status": {
+        "sent": "Enviado",
+        "received": "Recibido"
+      }
+    },
+
+    "activity": {
+      "h1": "Actividad",
+      "received": "Solicitud enviada",
+      "sent": "Solicitud recibida",
+      "pending": "Pendiente"
+    },
+
+    "exchangeRate": {
+      "h1": "Tipo de cambio",
+      "h2": "Tipos de cambio actuales"
+    },
+
+    "help": {
+      "q1": "1. ¿Cómo comprar divisas?",
+      "a1": {
+        "p1": "Presionando en 'Tipos de cambio' en el resumen de la cuenta, se mostrará la elección de divisas comprables.",
+        "p2": "Al ingresar la cantidad en $CAD para convertir, el botón Convertir realizará el cambio a la tasa de mercado inmediata, y su saldo en divisas se actualizará."
+      },
+      "q2": "2. ¿Cómo cambiar mi información personal?",
+      "a2": "Presionando en 'Configuración' en el Dashboard y 'Cuenta', puede ingresar su nueva contraseña o solicitar un cambio de correo electrónico.",
+      "q3": "3. ¿Cómo solicitar fondos?",
+      "a3": {
+        "p1": "En el resumen de la cuenta, presionando el botón 'Solicitar' e ingresando la información de otro cliente de Fairbank con la cantidad deseada, le enviará una solicitud.",
+        "p2": "Cuando acepten su solicitud, los fondos se depositarán en su cuenta dentro de unos minutos después de la aceptación."
+      },
+      "q4": "4. ¿Puedo transferir divisas?",
+      "a4": "No, nuestro sistema actual no permite transacciones en divisas entre cuentas. Solo se permiten transacciones en $CAD por el momento.",
+      "q5": "5. ¿Cómo cerrar mi cuenta de Fairbank?",
+      "a5": {
+        "p1": "Presionando en 'Configuración' en el Dashboard y 'Seguridad', encontrará el botón de solicitud de cierre de cuenta.",
+        "p2": "Un empleado de Fairbank revisará y procesará el cierre de su cuenta lo antes posible."
+      },
+      "q6": "6. ¿Cómo descargar mi historial de transacciones?",
+      "a6": "En el resumen de la cuenta, hay un botón verde en el lado derecho del gráfico que iniciará la descarga de su historial de transacciones en formato Excel.",
+      "q7": "7. ¿Cómo cambiar la apariencia de la aplicación?",
+      "a7": "Presionando en 'Configuración' en el Dashboard y 'Apariencia', encontrará opciones para fuentes, modo oscuro o claro, así como opciones de preferencias de color."
+    }
+  },
+
+  "sidebar": {
+    "dashboard": "Menú",
+    "transaction": "Historial",
+    "activity": "Actividad",
+    "exchangeRate": "Tipo de Cambio",
+    "help": "Ayuda"
+  },
+
+  "settings": {
+    "h1": "Configuración",
+    "profile": {
+      "h1": "Perfil",
+      "card1": {
+        "title": "Imagen de Perfil",
+        "description": "Edita tu imagen de perfil."
+      },
+      "card2": {
+        "title": "Nombre",
+        "description": "Haz una solicitud para cambiar tu nombre."
+      },
+      "card3": {
+        "title": "Apellido",
+        "description": "Haz una solicitud para cambiar tu apellido."
+      }
+    },
+    "account": {
+      "h1": "Cuenta",
+      "card1": {
+        "title": "Correo electrónico",
+        "description": "Contacta a soporte para cambiar tu correo electrónico."
+      },
+      "card2": {
+        "title": "Nueva Contraseña",
+        "description": "Ingresa una nueva contraseña."
+      },
+      "card3": {
+        "title": "Confirmar Nueva Contraseña",
+        "description": "Confirma la nueva contraseña."
+      }
+    },
+    "appearance": {
+      "h1": "Apariencia",
+      "card1": {
+        "title": "Preferencias de Fuente",
+        "description": "Elige una fuente para personalizar la apariencia del sitio."
+      },
+      "card2": {
+        "title": "Preferencias de Idioma",
+        "description": "Elige un idioma."
+      },
+      "card3": {
+        "title": "Preferencias de Modo",
+        "description": "Elige entre modo claro, oscuro o modo del sistema."
+      },
+      "card4": {
+        "title": "Preferencias de Color",
+        "description": "Elige un tema de color de las siguientes paletas."
+      }
+    },
+    "notifications": {
+      "h1": "Notificaciones",
+      "card1": {
+        "title": "Preferencias de Notificación",
+        "description": "Selecciona tus preferencias de notificación."
+      }
+    },
+    "security": {
+      "h1": "Seguridad",
+      "card1": {
+        "title": "Cerrar tu Cuenta",
+        "description": "<0>Advertencia: Cerrar tu cuenta es definitivo.</0> <br /> Haz clic en Solicitar para enviar una solicitud de cierre a nuestro equipo de soporte.",
+        "alert": {
+          "title": "¿Estás seguro de que deseas cerrar tu cuenta?",
+          "description": "<0>Esta acción es irreversible.</0> Se enviará una solicitud para cerrar tu cuenta a nuestro equipo de soporte y se procesará lo antes posible."
+        }
+      }
+    }
+  },
+
+  "userPanel": {
+    "sendFunds": {
+      "title": "Enviar Fondos",
+      "description": "Por favor ingresa la cantidad a enviar, junto con el correo electrónico del destinatario."
+    },
+    "requestFunds": {
+      "title": "Solicitar Fondos",
+      "description": "Por favor ingresa la cantidad a solicitar, junto con el correo electrónico del destinatario."
+    },
+    "depositFunds": {
+      "title": "Depositar Fondos",
+      "description": "Por favor ingresa la cantidad a depositar."
+    }
+  },
+  "signIn": {
+    "p": "Introduce tu correo electrónico y contraseña para iniciar sesión.",
+    "forgot": "¿Olvidaste la contraseña?"
+  },
+  "signUp": {
+    "email": {
+      "title": "Registrarse",
+      "description": "Introduce tu correo electrónico a continuación para crear tu cuenta."
+    },
+    "password": {
+      "title": "Contraseña",
+      "description": "Introduce una contraseña a continuación para crear tu cuenta."
+    },
+    "imageUpload": {
+      "title": "Personaliza tu perfil",
+      "description": "Añade una imagen a tu perfil de cliente o sáltalo para crear tu cuenta.",
+      "add": "Elegir un archivo",
+      "remove": "Eliminar imagen"
+    },
+    "name": {
+      "title": "Información Personal",
+      "description": "Introduce tu nombre y apellido a continuación para crear tu cuenta."
+    },
+    "birthday": {
+      "title": "Fecha de Nacimiento",
+      "description": "Introduce tu fecha de nacimiento a continuación para crear tu cuenta.",
+      "month": {
+        "1": "Enero",
+        "2": "Febrero",
+        "3": "Marzo",
+        "4": "Abril",
+        "5": "Mayo",
+        "6": "Junio",
+        "7": "Julio",
+        "8": "Agosto",
+        "9": "Septiembre",
+        "10": "Octubre",
+        "11": "Noviembre",
+        "12": "Diciembre"
+      }
+    },
+    "plan": {
+      "title": "Plan Bancario",
+      "description": "Elige uno de nuestros planes bancarios para crear tu cuenta.",
+      "more": "Más sobre los planes."
+    }
+  },
+  "toast": {
+    "userPanel": {
+      "sendFunds": {
+        "success": "Los fondos han sido enviados.",
+        "error": "Ocurrió un error al enviar los fondos."
+      },
+      "requestFunds": {
+        "success": "Los fondos han sido solicitados.",
+        "error": "Ocurrió un error al solicitar los fondos."
+      },
+      "depositFunds": {
+        "success": "Los fondos han sido depositados en tu cuenta.",
+        "error": "Ocurrió un error al depositar los fondos."
+      }
+    },
+    "signUp": {
+      "success": "Registro completado.",
+      "error": "Registro rechazado, el correo electrónico ya existe."
+    }
+  },
+  "zod": {
+    "signIn": {
+      "email": {
+        "min": "Se requiere dirección de correo electrónico.",
+        "invalid": "Dirección de correo electrónico inválida."
+      },
+      "password": {
+        "min": "Se requiere contraseña.",
+        "invalid": "Contraseña inválida."
+      },
+      "root": {
+        "title": "Error",
+        "message": "Correo electrónico o contraseña inválidos."
+      }
+    },
+    "signUp": {
+      "email": {
+        "min": "Se requiere dirección de correo electrónico.",
+        "invalid": "Dirección de correo electrónico inválida."
+      },
+      "password": {
+        "min": "Se requiere contraseña.",
+        "invalid": "Contraseña inválida.",
+        "upper": "La contraseña debe contener al menos una letra mayúscula.",
+        "lower": "La contraseña debe contener al menos una letra minúscula.",
+        "special": "La contraseña debe contener al menos un carácter especial.",
+        "confirm": "Las contraseñas no coinciden."
+      },
+      "imageUpload": {
+        "min": "Se requiere contraseña."
+      },
+      "name": {
+        "firstName": {
+          "min": "Se requiere nombre.",
+          "invalid": "Nombre inválido."
+        },
+        "lastName": {
+          "min": "Se requiere apellido.",
+          "invalid": "Apellido inválido."
+        }
+      },
+      "birthday": {
+        "year": {
+          "min": "Año inválido.",
+          "max": "Año inválido.",
+          "invalid": "Año inválido.",
+          "age": "Debe tener al menos 18 años."
+        },
+        "month": {
+          "invalid": "Selecciona un mes."
+        },
+        "day": {
+          "min": "Día inválido.",
+          "max": "Día inválido.",
+          "invalid": "Día inválido."
+        }
+      },
+      "plan": {
+        "invalid": "Selecciona un plan."
+      }
+    }
+  }
+}
