@@ -108,135 +108,127 @@ export default function Particuliers() {
 
         {/* Pricing table 2*/}
 
-        <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
-            <div className="absolute right-0 top-0 -mt-4 mr-6">
-              <Badge className="cursor-default rounded-full bg-green-500 text-white hover:bg-green-500">
-                Le plus populaire
-              </Badge>
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+          <span className="absolute right-0 top-0 -mt-4 mr-6">
+            <Badge className="cursor-default rounded-full bg-green-500 text-white hover:bg-green-500">
+              Le plus populaire
+            </Badge>
+          </span>
+          <div className="mb-5">
+            <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
+              {t("plans.tier2.name")}
             </div>
-            <div className="mb-5">
-              <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
-                {t("plans.tier2.name")}
-              </div>
-              <div className="mb-2 inline-flex select-none items-baseline">
-                <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isYearly ? "384" : "40"}
-                </span>
-                <span
-                  className="text-4xl font-bold text-slate-900 dark:text-slate-200"
-                  v-text="isYearly ? '49' : '55'"
-                ></span>
-                <span className="font-medium text-slate-500">
-                  {isYearly
-                    ? `${t("plans.perYear")}`
-                    : `${t("plans.perMonth")}`}
-                </span>
-              </div>
-              <div className="mb-5 text-sm text-slate-500">
-                {t("plans.tier2.description")}
-              </div>
-              <Link
-                to={"/inscription"}
-                className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
-              >
-                {t("buttons.choosePlan")}
-              </Link>
+            <div className="mb-2 inline-flex select-none items-baseline">
+              <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
+                ${isYearly ? "384" : "40"}
+              </span>
+              <span
+                className="text-4xl font-bold text-slate-900 dark:text-slate-200"
+                v-text="isYearly ? '49' : '55'"
+              ></span>
+              <span className="font-medium text-slate-500">
+                {isYearly ? `${t("plans.perYear")}` : `${t("plans.perMonth")}`}
+              </span>
             </div>
-
-            <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier2.perk1"}>
-                    Nombre <b>illimité</b> d'opérations par mois.
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier2.perk2"}>
-                    <b>$15,000</b> en transactions quotidiennes.
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>{t("plans.tier2.perk3")}</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>{t("plans.tier2.perk4")}</span>
-              </li>
-            </ul>
+            <div className="mb-5 text-sm text-slate-500">
+              {t("plans.tier2.description")}
+            </div>
+            <Link
+              to={"/inscription"}
+              className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
+            >
+              {t("buttons.choosePlan")}
+            </Link>
           </div>
+
+          <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier2.perk1"}>
+                  Nombre <b>illimité</b> d'opérations par mois.
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier2.perk2"}>
+                  <b>$15,000</b> en transactions quotidiennes.
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>{t("plans.tier2.perk3")}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>{t("plans.tier2.perk4")}</span>
+            </li>
+          </ul>
         </div>
 
         {/* Pricing table 3*/}
 
-        <div className="h-full">
-          <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
-            <div className="mb-5">
-              <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
-                {t("plans.tier3.name")}
-              </div>
-              <div className="mb-2 inline-flex select-none items-baseline">
-                <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
-                  ${isYearly ? "816" : "85"}
-                </span>
-                <span className="font-medium text-slate-500">
-                  {isYearly
-                    ? `${t("plans.perYear")}`
-                    : `${t("plans.perMonth")}`}
-                </span>
-              </div>
-              <div className="mb-5 text-sm text-slate-500">
-                {t("plans.tier3.description")}
-              </div>
-              <Link
-                to={"/inscription"}
-                className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
-              >
-                {t("buttons.choosePlan")}
-              </Link>
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+          <div className="mb-5">
+            <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
+              {t("plans.tier3.name")}
             </div>
-
-            <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier3.perk1"}>
-                    Nombre <b>illimité</b> d'opérations par mois
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier3.perk2"}>
-                    <b>$100,000</b> en transactions quotidiennes
-                  </Trans>
-                </span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>{t("plans.tier3.perk3")}</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>{t("plans.tier3.perk4")}</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckIcon size={20} className="text-green-500" />
-                <span>
-                  <Trans i18nKey={"plans.tier3.perk5"}>
-                    Chèques, traites et autres services <b>gratuits</b>
-                  </Trans>
-                </span>
-              </li>
-            </ul>
+            <div className="mb-2 inline-flex select-none items-baseline">
+              <span className="text-3xl font-bold text-slate-900 dark:text-slate-200">
+                ${isYearly ? "816" : "85"}
+              </span>
+              <span className="font-medium text-slate-500">
+                {isYearly ? `${t("plans.perYear")}` : `${t("plans.perMonth")}`}
+              </span>
+            </div>
+            <div className="mb-5 text-sm text-slate-500">
+              {t("plans.tier3.description")}
+            </div>
+            <Link
+              to={"/inscription"}
+              className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
+            >
+              {t("buttons.choosePlan")}
+            </Link>
           </div>
+
+          <ul className="grow space-y-3 text-sm text-slate-600 dark:text-slate-400">
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier3.perk1"}>
+                  Nombre <b>illimité</b> d'opérations par mois
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier3.perk2"}>
+                  <b>$100,000</b> en transactions quotidiennes
+                </Trans>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>{t("plans.tier3.perk3")}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>{t("plans.tier3.perk4")}</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckIcon size={20} className="text-green-500" />
+              <span>
+                <Trans i18nKey={"plans.tier3.perk5"}>
+                  Chèques, traites et autres services <b>gratuits</b>
+                </Trans>
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
