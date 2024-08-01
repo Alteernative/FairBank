@@ -16,7 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { FaApple, FaAmazon, FaShopify, FaMicrosoft } from "react-icons/fa";
 import { SiWalmart, SiZara, SiMercedes, SiTesla } from "react-icons/si";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   return (
@@ -31,6 +31,7 @@ export default function Home() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="mr-10 flex flex-1 items-start justify-start">
@@ -59,6 +60,7 @@ function Hero() {
 }
 
 function Sponsors() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex flex-col gap-7 text-center opacity-70 dark:opacity-50">
       <h2 className="font-bold tracking-wide">{t("homepage.sponsors.h2")}</h2>
@@ -77,6 +79,7 @@ function Sponsors() {
 }
 
 function About() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex items-center">
       <div className="hidden flex-1 items-center justify-center md:flex">
@@ -95,6 +98,7 @@ function About() {
 }
 
 function CTA() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-start justify-center">
@@ -113,6 +117,7 @@ function CTA() {
 }
 
 function Reviews() {
+  const { t } = useTranslation();
   return (
     <section className="mx-10 my-20 flex flex-col items-center justify-center">
       <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70 dark:opacity-50">
