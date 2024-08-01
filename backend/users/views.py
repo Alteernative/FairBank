@@ -297,8 +297,6 @@ class UserViewset(viewsets.ViewSet):
         )
 
         transaction.save()
-        user.balance += amount
-        user.save()
 
         return Response(
             {'success': 'Balance updated successfully', 'balance': user.balance, 'transaction_id': transaction.id},
