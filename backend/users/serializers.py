@@ -156,3 +156,50 @@ class UserCurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCurrency
         fields = ('balance_usd', 'balance_jpy', 'balance_eur', 'balance_gbp', 'balance_cny', 'balance_inr')
+
+
+class ContactUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactUsMessages
+        fields = ('id', 'nom', 'prenom', 'email', 'message')
+
+
+class SimpleTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['amount', 'date']
+
+
+class SimplePendingTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PendingTransactions
+        fields = ['amount', 'date']
+
+
+class AdminUsersSerializer(serializers.ModelSerializer):
+    sent_transactions = SimpleTransactionSerializer(many=True, read_only=True)
+    received_transactions = SimpleTransactionSerializer(many=True, read_only=True)
+    pending_received_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
+    pending_sender_transactions = SimplePendingTransactionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'id', 'first_name', 'last_name', 'is_active', 'plan', 'sent_transactions', 'received_transactions',
+            'pending_sender_transactions', 'pending_received_transactions']
+
+
+class PendingUsersUpdatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PendingUsersUpdates
+        fields = ('user', 'email', 'current_nom', 'current_prenom', 'tmp_nom', 'tmp_prenom', 'tmp_email')
+
+
+class PendingDeleteSerializer(serializers.ModelSerializer):
+    user_email = serializers.EmailField(source='user.email', read_only=True)
+    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
+    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
+
+    class Meta:
+        model = PendingDelete
+        fields = ('id', 'user_email', 'user_first_name', 'user_last_name', 'created_at', 'status')

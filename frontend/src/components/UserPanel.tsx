@@ -373,7 +373,7 @@ export default function UserPanel() {
             ))}
           </div>
         </div>
-      </aside>
+      </section>
 
       <aside className="flex h-full w-full flex-col items-center lg:hidden">
         {user.image_url ? (

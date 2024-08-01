@@ -67,14 +67,24 @@ export default function ProfileSettings() {
   };
 
   // TODO: Update this code to send a request to the admin.
+
+  console.log(user);
   const handleName = (data: FieldValues) => {
     console.log(data);
 
     const formData = new FormData();
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
+    formData.append("email", user.email);
+    formData.append("current_nom", user.last_name);
+    formData.append("current_prenom", user.first_name);
+    formData.append("tmp_nom", data.last_name);
+    formData.append("tmp_prenom", data.first_name);
+    formData.append("tmp_email", data.email);
 
-    AxiosInstance.put(`users/${user.id}/`, formData, {
+    if (fileInputRef.current && fileInputRef.current.files[0]) {
+      formData.append("image_url", fileInputRef.current.files[0]);
+    }
+
+    AxiosInstance.post(`users/request_update/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -82,6 +92,7 @@ export default function ProfileSettings() {
       .then((response) => {
         console.log("Update successful:", response.data);
         toast.success("Votre demande a été envoyé.");
+        setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -146,7 +157,6 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="first_name"
-              disabled
               {...register("first_name")}
               label={t("input.firstName")}
               className="h-12"
@@ -164,7 +174,6 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="last_name"
-              disabled
               {...register("last_name")}
               label={t("input.lastName")}
               className="h-12"

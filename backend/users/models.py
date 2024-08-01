@@ -51,6 +51,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=200, null=True, blank=True)
     balance = models.IntegerField(default=0)
     image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    subscribed = models.BooleanField(default=True)
     objects = CustomUserManager()
 
     Plan = [
@@ -87,9 +88,9 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Request for resetting password for {title}".format(title=reset_password_token.user.email),
+        subject="Demande de changement de mot de passe pour {title}".format(title=reset_password_token.user.email),
         body=plain_message,
-        from_email="alteernative@gmail.com",
+        from_email="admin@fairbank.com",
         to=[reset_password_token.user.email]
     )
 
@@ -101,7 +102,8 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
 
 
 class Transaction(models.Model):
-    sender = models.ForeignKey(CustomUser, related_name='sent_transactions', on_delete=models.CASCADE)
+    sender = models.ForeignKey(CustomUser, related_name='sent_transactions', on_delete=models.CASCADE, null=True,
+                               blank=True)
     receiver = models.ForeignKey(CustomUser, related_name='received_transactions', on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateTimeField(auto_now_add=True)
@@ -111,12 +113,12 @@ class Transaction(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is None:  # Ensure it's a new transaction
-            self.sender.balance -= self.amount
+            if self.sender:
+                self.sender.balance -= self.amount
+                self.sender.save()
             self.receiver.balance += self.amount
-            self.sender.save()
             self.receiver.save()
         super().save(*args, **kwargs)
-
 
 class PendingTransactions(models.Model):
     sender = models.ForeignKey(CustomUser, related_name='pending_sender_transactions', on_delete=models.CASCADE)
@@ -147,3 +149,37 @@ class UserCurrency(models.Model):
     def __str__(self):
         return f'{self.user.email} currency balances'
 
+
+class ContactUsMessages(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200, unique=False)
+    message = models.TextField(max_length=500)
+
+    def __str__(self):
+        return f'{self.nom} {self.prenom} {self.email} {self.message}'
+
+
+class PendingUsersUpdates(models.Model):
+    user = models.ForeignKey(CustomUser, related_name='pending_updates', on_delete=models.CASCADE)
+    current_nom = models.CharField(max_length=255, null=True, blank=True)
+    current_prenom = models.CharField(max_length=255, null=True, blank=True)
+    tmp_nom = models.CharField(max_length=255, null=True, blank=True)
+    tmp_prenom = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField()
+    tmp_email = models.EmailField(blank=True)
+
+    def __str__(self):
+        return (f'{self.user} - {self.current_nom} {self.current_prenom} - {self.tmp_nom} {self.tmp_prenom} - '
+                f'{self.email} {self.tmp_email}')
+
+
+class PendingDelete(models.Model):
+    user = models.ForeignKey(CustomUser, related_name='pending_delete', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20,
+                              choices=[('pending', 'Pending'), ('approved', 'Approved'), ('denied', 'Denied')],
+                              default='pending')
+
+    def __str__(self):
+        return (f'{self.user}')

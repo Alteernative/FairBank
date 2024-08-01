@@ -10,6 +10,9 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa6";
 import { Copyright, Mail, Phone } from "lucide-react";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
+import { toast, Toaster } from "sonner";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export default function Footer() {
@@ -17,6 +20,32 @@ export default function Footer() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0 });
+  };
+
+  const { register, handleSubmit } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    AxiosInstance.post(
+      "contactus/",
+      {
+        prenom: data.prenom,
+        nom: data.nom,
+        email: data.email,
+        message: data.message,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        toast.success("Merci de votre commentaire.");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Erreur! Veuillez réessayer plus tard.");
+      });
   };
 
   return (
@@ -28,24 +57,25 @@ export default function Footer() {
           <span className="relative cursor-default select-none">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
             <p className="absolute top-12">{t("footer.slogan")}</p>
-          </span>
-          <div className="mt-10 flex flex-col gap-2 lg:mt-14">
-            <span className="flex items-center gap-3">
-              <Phone size={"20"} />
-              <Link to="tel:1-800-123-4567" className="hover:underline">
-                1-800-123-4567
-              </Link>
+
             </span>
-            <span className="flex items-center gap-3">
-              <Mail size={"20"} />
-              <Link
-                to="mailto: contact@fairbank.com "
-                className="hover:underline"
-              >
-                contact@fairbank.com
-              </Link>
-            </span>
-          </div>
+            <div className="mt-10 flex flex-col gap-2 lg:mt-14">
+              <span className="flex items-center gap-3">
+                <Phone size={"20"} />
+                <Link to="tel:1-800-123-4567" className="hover:underline">
+                  1-800-123-4567
+                </Link>
+              </span>
+              <span className="flex items-center gap-3">
+                <Mail size={"20"} />
+                <Link
+                  to="mailto: contact@fairbank.com "
+                  className="hover:underline"
+                >
+                  contact@fairbank.com
+                </Link>
+              </span>
+            </div>
 
           {/* Socials */}
           <div className="mt-10 flex gap-3 lg:mt-auto">
@@ -99,47 +129,58 @@ export default function Footer() {
             </Button>
           </nav>
         </section>
-        {/* Right */}
-        <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
-          <h3 className="mb-5 cursor-default text-xl font-semibold">
-            {t("footer.contactUs")}
-          </h3>
-          <div className="flex gap-2">
-            <Input
-              id="first_name"
-              type="text"
-              placeholder={t("input.firstName")}
-              autoComplete="off"
-              className="h-12 w-1/2"
-            />
-            <Input
-              id="last_name"
-              type="text"
-              placeholder={t("input.lastName")}
-              autoComplete="off"
-              className="h-12 w-1/2"
-            />
-          </div>
-          <Input
-            id="email"
-            type="text"
-            placeholder={t("input.email")}
-            autoComplete="off"
-            className="h-12 w-full"
-          />
-          <Textarea
-            placeholder="Message"
-            autoComplete="off"
-            className="h-24 resize-none"
-          />
-          <Button className="mt-2">{t("buttons.submit")}</Button>
+          {/* Right */}
+          <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
+            <h3 className="mb-5 cursor-default text-xl font-semibold">
+              {t("footer.contactUs")}
+            </h3>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-full flex-col gap-2"
+            >
+              <div className="flex gap-2">
+                <Input
+                  id="first_name"
+                  type="text"
+                  placeholder={t("input.firstName")}
+                  className="h-12 w-1/2"
+                  {...register("prenom")}
+                />
+                <Input
+                  id="last_name"
+                  type="text"
+                  placeholder={t("input.lastName")}
+                  className="h-12 w-1/2"
+                  {...register("nom")}
+                />
+              </div>
+              <Input
+                id="email"
+                type="text"
+                placeholder={t("input.email")}
+                className="h-12 w-full"
+                {...register("email")}
+              />
+              <Textarea
+                placeholder="Message"
+                autoComplete="off"
+                className="h-24 resize-none"
+                {...register("message")}
+              />
+              <Button className="mt-2" onSubmit={handleSubmit}>
+                {t("buttons.submit")}
+              </Button>
+            </form>
+          </section>
         </section>
-      </section>
 
       <p className="flex cursor-default items-center gap-2">
         <Copyright size={16} /> {new Date().getFullYear()}{" "}
         {t("footer.copyright")}
       </p>
     </footer>
+      <Toaster closeButton richColors position="bottom-left" />
+    </>
+
   );
 }
