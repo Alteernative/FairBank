@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogClose,
@@ -11,7 +12,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { CircleUser, Send, HandCoins, DollarSign } from "lucide-react";
+import {
+  CircleUser,
+  Send,
+  HandCoins,
+  CircleDollarSign,
+  DollarSign,
+} from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { useUserContext } from "@/contexts/UserContext";
@@ -24,12 +31,6 @@ import Tier2VisaV from "../assets/images/cards/vertical/tier2/2/Visa.svg";
 import Tier3VisaV from "../assets/images/cards/vertical/tier3/4/Visa.svg";
 import capitalize from "@/utils/capitalize";
 import { Badge } from "./ui/badge";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 // import formatDate from "@/utils/formatDate.ts";
 // import { Link } from "react-router-dom";
 // import formatCurrency from "@/utils/formatCurrency";
@@ -180,7 +181,7 @@ export default function UserPanel() {
   console.log(user);
   return (
     <>
-      <aside className="fixed right-0 hidden h-screen w-72 flex-col items-center justify-between px-3 py-5 lg:flex lg:border-l">
+      <section className="fixed right-0 hidden h-screen w-72 flex-col items-center justify-between px-3 py-5 lg:flex lg:border-l">
         <div className="flex w-full flex-col items-center gap-3">
           {user.image_url ? (
             <img
@@ -399,191 +400,7 @@ export default function UserPanel() {
             ))}
           </div>
         </div>
-      </aside>
-
-      <aside className="fixed right-0 h-screen w-14 border-l py-5 lg:w-72">
-        <div className="flex h-full w-full flex-col items-center lg:hidden">
-          {user.image_url ? (
-            <img
-              src={`${baseUrl}${user.image_url}`}
-              alt={`${capitalize(user.first_name)} ${capitalize(user.last_name)}`}
-              className="mt-2 size-10 cursor-pointer rounded-full"
-            />
-          ) : (
-            <CircleUser className="mt-2 size-10 cursor-pointer" />
-          )}
-          <nav className="mb-5 mt-[4.5rem] flex h-full flex-col items-center justify-between">
-            <TooltipProvider>
-              <div className="flex flex-col items-center gap-10">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
-                          <Send size={20} />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                        <form onSubmit={sendForm.handleSubmit(submission)}>
-                          <DialogHeader>
-                            <DialogTitle>Envoyer des fonds</DialogTitle>
-                            <DialogDescription>
-                              Veuillez entrer le montant à envoyer, ainsi que le
-                              courriel du destinataire.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
-                                Montant
-                              </Label>
-                              <Input
-                                id="amount"
-                                defaultValue=""
-                                placeholder="$100.00"
-                                autoComplete="off"
-                                className="col-span-3"
-                                {...sendForm.register("amount", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="username" className="text-right">
-                                Courriel
-                              </Label>
-                              <Input
-                                id="username"
-                                defaultValue=""
-                                placeholder="destinataire@email.com"
-                                className="col-span-3"
-                                {...sendForm.register("receiver", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                          </div>
-                          <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
-                              <Button type="submit">Envoyer</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </form>
-                      </DialogContent>
-                    </Dialog>
-                  </TooltipTrigger>
-                  <TooltipContent side="left">Envoyer</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
-                          <HandCoins size={20} />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                        <form
-                          onSubmit={requestForm.handleSubmit(requestTransfer)}
-                        >
-                          <DialogHeader>
-                            <DialogTitle>Demander des fonds</DialogTitle>
-                            <DialogDescription>
-                              Veuillez entrer le montant à demander, ainsi que
-                              le courriel du destinataire.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
-                                Montant
-                              </Label>
-                              <Input
-                                id="amount"
-                                defaultValue=""
-                                placeholder="$100.00"
-                                autoComplete="off"
-                                className="col-span-3"
-                                {...requestForm.register("amount", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="username" className="text-right">
-                                Courriel
-                              </Label>
-                              <Input
-                                id="sender"
-                                defaultValue=""
-                                placeholder="destinataire@email.com"
-                                className="col-span-3"
-                                {...requestForm.register("sender", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                          </div>
-                          <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
-                              <Button type="submit">Demander</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </form>
-                      </DialogContent>
-                    </Dialog>
-                  </TooltipTrigger>
-                  <TooltipContent side="left">Demander</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
-                          <DollarSign size={20} />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                        <form onSubmit={depositForm.handleSubmit(deposer)}>
-                          <DialogHeader>
-                            <DialogTitle>Déposer des fonds</DialogTitle>
-                            <DialogDescription>
-                              Veuillez entrer le montant à déposer.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
-                                Montant
-                              </Label>
-                              <Input
-                                id="amount"
-                                defaultValue=""
-                                placeholder="$100.00"
-                                autoComplete="off"
-                                className="col-span-3"
-                                {...depositForm.register("amount", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                          </div>
-                          <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
-                              <Button type="submit">Déposer</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </form>
-                      </DialogContent>
-                    </Dialog>
-                  </TooltipTrigger>
-                  <TooltipContent side="left">Déposer</TooltipContent>
-                </Tooltip>
-              </div>
-            </TooltipProvider>
-          </nav>
-        </div>
-      </aside>
+      </section>
       <Toaster richColors />
     </>
   );
