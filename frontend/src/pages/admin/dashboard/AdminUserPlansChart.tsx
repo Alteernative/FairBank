@@ -114,12 +114,18 @@ const chartConfig = {
               type="category"
               tickLine={false}
               tickMargin={10}
-              axisLine={false}
+              axisLine={true}
               tickFormatter={(value) =>
                 chartConfig[value as keyof typeof chartConfig]?.label
               }
             />
-            <XAxis dataKey="Utilisateurs" type="number" />
+            <XAxis
+              dataKey="Utilisateurs"
+              type="number"
+              domain={[0, 'dataMax']}
+              allowDecimals={false}
+              tickCount={6} // Adjust based on your preference
+            />
             <ChartTooltip
               cursor={{ fill: 'rgba(255, 255, 255, 0.5)' }}
               content={<ChartTooltipContent />}

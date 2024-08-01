@@ -36,15 +36,15 @@ const ActiveAccountsChart: React.FC = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
   return (
     <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Total Comptes Actifs</CardTitle>
-          {activeCount}
-        </div>
+      <CardHeader className="text-center">
+        <CardTitle>Comptes Actifs</CardTitle>
+        <CardDescription>Total des utilisateurs actifs de FairBank</CardDescription>
       </CardHeader>
+      <CardContent className="flex justify-center items-center h-30">
+        <div className="text-6xl font-bold">{activeCount}</div>
+      </CardContent>
     </Card>
   );
 };
