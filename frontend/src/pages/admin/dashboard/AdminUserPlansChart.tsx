@@ -16,9 +16,7 @@ import {
 } from "@/components/ui/chart"
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
-
-
+import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts"
 
 const AccountTypesChart: React.FC = () => {
   const [regularUserCount, setRegularUserCount] = useState<number>(0);
@@ -99,40 +97,44 @@ const chartConfig = {
         <CardDescription>Types des plans des utilisateurs actifs actuellement</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart
-            width={600}
-            height={300}
-            data={chartData}
-            layout="vertical"
-            margin={{
-              top: 5, right: 30, left: 20, bottom: 5,
-            }}
-          >
-            <YAxis
-              dataKey="type"
-              type="category"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={true}
-              tickFormatter={(value) =>
-                chartConfig[value as keyof typeof chartConfig]?.label
-              }
-            />
-            <XAxis
-              dataKey="Utilisateurs"
-              type="number"
-              domain={[0, 'dataMax']}
-              allowDecimals={false}
-              tickCount={6} // Adjust based on your preference
-            />
-            <ChartTooltip
-              cursor={{ fill: 'rgba(255, 255, 255, 0.5)' }}
-              content={<ChartTooltipContent />}
-            />
-            <Bar dataKey="Utilisateurs" fill="#8884d8" />
-          </BarChart>
-        </ChartContainer>
+        <div style={{width: "100%", height: 200}}>
+          <ResponsiveContainer>
+            <ChartContainer config={chartConfig}>
+              <BarChart
+                  width={600}
+                  height={300}
+                  data={chartData}
+                  layout="vertical"
+                  margin={{
+                    top: 5, right: 30, left: 20, bottom: 5,
+                  }}
+              >
+                <YAxis
+                    dataKey="type"
+                    type="category"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={true}
+                    tickFormatter={(value) =>
+                        chartConfig[value as keyof typeof chartConfig]?.label
+                    }
+                />
+                <XAxis
+                    dataKey="Utilisateurs"
+                    type="number"
+                    domain={[0, 'dataMax']}
+                    allowDecimals={false}
+                    tickCount={6} // Adjust based on your preference
+                />
+                <ChartTooltip
+                    cursor={{fill: 'rgba(255, 255, 255, 0.5)'}}
+                    content={<ChartTooltipContent/>}
+                />
+                <Bar dataKey="Utilisateurs" fill="#8884d8"/>
+              </BarChart>
+            </ChartContainer>
+          </ResponsiveContainer>
+        </div>
       </CardContent>
       {/*<CardFooter className="flex-col items-start gap-2 text-sm">*/}
       {/*  <div className="flex gap-2 font-medium leading-none">*/}

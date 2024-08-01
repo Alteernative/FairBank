@@ -9,6 +9,7 @@ import {
   YAxis,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import {
   Card,
@@ -81,6 +82,7 @@ const AdminTransactionsChart = () => {
 
   return (
     <Card>
+
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Graphe Transactions Quotidiennes</CardTitle>
@@ -119,35 +121,38 @@ const AdminTransactionsChart = () => {
 
       <CardContent className="px-2 sm:p-6">
         {error ? (
-          <div className="text-red-500">Error: {error}</div>
+          <div>{error}</div>
         ) : (
-          // TODO: Make Bar Chart width extend / adjust based on screen size
-          <BarChart
-            width={750}
-            height={250}
-            data={chartData}
-            margin={{ left: 12, right: 12 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="date"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              minTickGap={32}
-              tickFormatter={(value) => {
-                const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                });
-              }}
-            />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey={activeChart} fill="hsl(var(--chart-1))" />
-          </BarChart>
+          <div style={{ width: "100%", height: 200 }}>
+            <ResponsiveContainer>
+              <BarChart
+                width={750}
+                height={250}
+                data={chartData}
+                margin={{ left: 12, right: 12 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  minTickGap={32}
+                  tickFormatter={(value) => {
+                    const date = new Date(value);
+                    return date.toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    });
+                  }}
+                />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey={activeChart} fill="hsl(var(--chart-1))" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         )}
       </CardContent>
     </Card>
