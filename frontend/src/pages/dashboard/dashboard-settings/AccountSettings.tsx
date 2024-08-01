@@ -33,6 +33,35 @@ export default function AccountSettings() {
     }
   };
 
+  const handleEmail = (data: FieldValues) => {
+    console.log(data);
+
+    const formData = new FormData();
+    formData.append("email", user.email);
+    formData.append("current_nom", user.last_name);
+    formData.append("current_prenom", user.first_name);
+    formData.append("tmp_nom", user.last_name);
+    formData.append("tmp_prenom", user.first_name);
+    formData.append("tmp_email", data.email);
+
+    AxiosInstance.post(`users/request_update/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        console.log("Update successful:", response.data);
+        toast.success("Votre demande a été envoyée.");
+        setTimeout(() => window.location.reload(), 3500);
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+        toast.error(
+          "Une erreur est survenue lors de la demande de modification de votre courriel."
+        );
+      });
+  };
+
   const handlePassword = async (data: FieldValues) => {
     try {
       const formData = new FormData();
@@ -56,22 +85,30 @@ export default function AccountSettings() {
 
   return (
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
-      <Card className="w-full sm:w-10/12">
-        <CardHeader>
-          <CardTitle>{t("settings.account.card1.title")}</CardTitle>
-          <CardDescription>
-            {t("settings.account.card1.description")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Input
-            type="text"
-            disabled
-            placeholder={user.email}
-            className="h-12"
-          />
-        </CardContent>
-      </Card>
+      <form
+        onSubmit={handleSubmit(handleEmail)}
+        className="flex flex-col gap-4"
+      >
+        <Card className="w-full sm:w-10/12">
+          <CardHeader>
+            <CardTitle>{t("settings.account.card1.title")}</CardTitle>
+            <CardDescription>
+              {t("settings.account.card1.description")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Input
+              type="text"
+              placeholder={user.email}
+              className="h-12"
+              {...register("email")}
+            />
+          </CardContent>
+        </Card>
+        <Button type="submit" className="mt-3 w-32">
+          {t("buttons.ask")}
+        </Button>
+      </form>
       <Separator />
       <form
         onSubmit={handleSubmit(handlePassword)}
