@@ -40,8 +40,7 @@ export default function ProfileSettings() {
     }
   };
 
-
-   const handleImage = (data: FieldValues) => {
+  const handleImage = (data: FieldValues) => {
     console.log(data);
 
     const formData = new FormData();
@@ -93,7 +92,6 @@ export default function ProfileSettings() {
         console.log("Update successful:", response.data);
         toast.success("Votre demande a été envoyé.");
         setTimeout(() => window.location.reload(), 3500);
-
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -163,46 +161,45 @@ export default function ProfileSettings() {
             {/*<Input type="text" placeholder={user.email} className="h-12" />*/}
           </CardContent>
         </Card>
-      <Separator />;
-      <Card className="w-10/12">
-        <CardHeader>
-          <CardTitle>Prénom</CardTitle>
-          <CardDescription>
-            Faire une demande pour modifier votre prénom.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <FloatingLabelInput
-            type="text"
-            id="first_name"
-            {...register("first_name")}
-            label="Prénom"
-            className="h-12"
-          />
-        </CardContent>
-      </Card>;
-      <Card className="w-full sm:w-10/12">
-        <CardHeader>
-          <CardTitle>Nom</CardTitle>
-          <CardDescription>
-            Faire une demande pour modifier votre nom.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <FloatingLabelInput
-            type="text"
-            id="last_name"
-            {...register("last_name")}
-            label="Nom"
-            className="h-12"
-          />
-        </CardContent>
-      </Card>;
-      <Button type="submit" className="mt-3 w-40">
-        Demander
-      </Button>;
-    </form>
-</main>
-)
-  ;
+        <Separator />
+        <Card className="w-10/12">
+          <CardHeader>
+            <CardTitle>Prénom</CardTitle>
+            <CardDescription>
+              Faire une demande pour modifier votre prénom.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FloatingLabelInput
+              type="text"
+              id="first_name"
+              {...register("first_name")}
+              label="Prénom"
+              className="h-12"
+            />
+          </CardContent>
+        </Card>
+        <Card className="w-full sm:w-10/12">
+          <CardHeader>
+            <CardTitle>Nom</CardTitle>
+            <CardDescription>
+              Faire une demande pour modifier votre nom.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <FloatingLabelInput
+              type="text"
+              id="last_name"
+              {...register("last_name")}
+              label="Nom"
+              className="h-12"
+            />
+          </CardContent>
+        </Card>
+        <Button type="submit" className="mt-3 w-40">
+          Demander
+        </Button>
+      </form>
+    </main>
+  );
 }
