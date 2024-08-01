@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "@/components/AxiosInstance";
-import { signInSchema } from "@/schemas/SignInSchema.ts";
+import SignInSchema from "@/schemas/SignInSchema.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input.tsx";
 import { useState } from "react";
@@ -26,6 +26,7 @@ type FormData = {
 
 export default function AdminSignIn() {
   const [passwordType, setPasswordType] = useState("password");
+  const signInSchema = SignInSchema();
   const {
     handleSubmit,
     register,
