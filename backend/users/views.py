@@ -86,9 +86,9 @@ def welcome_message_send(user):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
+        subject="Bienvenue {title}".format(title=user.first_name + " " + user.last_name),
         body=plain_message,
-        from_email="alteernative@gmail.com",
+        from_email="admin@fairbank.com",
         to=[user.email]
     )
     msg.attach_alternative(html_message, "text/html")
@@ -111,9 +111,9 @@ def newsletter_email(user):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
+        subject="Newsletter {title}".format(title=user.first_name + " " + user.last_name),
         body=plain_message,
-        from_email="Alteernative02@gmail.com",
+        from_email="admin@fairbank.com",
         to=[user.email]
     )
     msg.attach_alternative(html_message, "text/html")
@@ -125,20 +125,13 @@ def newsletter_email(user):
 
 def delete_email(user):
     print("we deleted the user and we sending the email", user)
-    sitelink = "http://localhost:5173/unsubscribe"
-
-    context = {
-
-        'email_adress': user.email,
-    }
-
     html_message = render_to_string("backend/delete_notification.html")
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Welcome {title}".format(title=user.first_name + " " + user.last_name),
+        subject="Confirmation de suppresion de compte pour {title}".format(title=user.first_name + " " + user.last_name),
         body=plain_message,
-        from_email="Alteernative02@gmail.com",
+        from_email="admin@fairbank.com",
         to=[user.email]
     )
     msg.attach_alternative(html_message, "text/html")
