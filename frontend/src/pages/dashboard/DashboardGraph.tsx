@@ -67,7 +67,7 @@ export default function DashboardGraph() {
       const balanceDataPoints: { transactionNumber: number; balance: number }[] = []
 
       balanceDataPoints.push({
-            transactionNumber: transactions.length + 1,
+            transactionNumber: transactions.length,
             balance: user.balance,
           });
 
@@ -79,7 +79,7 @@ export default function DashboardGraph() {
           currentBalance += amount
         }
         balanceDataPoints.unshift({
-          transactionNumber: transactions.length - index,
+          transactionNumber: transactions.length - index - 1,
           balance: currentBalance,
         })
       })
