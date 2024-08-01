@@ -324,7 +324,6 @@
       "description": "Por favor, insira o valor a depositar."
     }
   },
-
   "signIn": {
     "p": "Insira seu email e senha para entrar.",
     "forgot": "Esqueceu a senha?"

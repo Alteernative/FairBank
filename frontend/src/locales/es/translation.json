@@ -177,7 +177,6 @@
       "perk5": "Cheques y otros servicios gratuitos"
     }
   },
-
   "dashboard": {
     "overview": {
       "welcome": "Bienvenido ",
@@ -185,7 +184,6 @@
       "transactions": "Transacciones",
       "exchangeRate": "Saldo en divisas"
     },
-
     "history": {
       "h1": "Historial de transacciones",
       "column": {
@@ -199,19 +197,16 @@
         "received": "Recibido"
       }
     },
-
     "activity": {
       "h1": "Actividad",
       "received": "Solicitud enviada",
       "sent": "Solicitud recibida",
       "pending": "Pendiente"
     },
-
     "exchangeRate": {
       "h1": "Tipo de cambio",
       "h2": "Tipos de cambio actuales"
     },
-
     "help": {
       "q1": "1. ¿Cómo comprar divisas?",
       "a1": {
@@ -238,7 +233,6 @@
       "a7": "Presionando en 'Configuración' en el Dashboard y 'Apariencia', encontrará opciones para fuentes, modo oscuro o claro, así como opciones de preferencias de color."
     }
   },
-
   "sidebar": {
     "dashboard": "Menú",
     "transaction": "Historial",
@@ -246,7 +240,6 @@
     "exchangeRate": "Tipo de Cambio",
     "help": "Ayuda"
   },
-
   "settings": {
     "h1": "Configuración",
     "profile": {
@@ -317,7 +310,6 @@
       }
     }
   },
-
   "userPanel": {
     "sendFunds": {
       "title": "Enviar Fondos",
