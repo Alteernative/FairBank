@@ -15,16 +15,19 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsSidebar() {
   const location = useLocation();
-
   const isActive = (path: string) => location.pathname === path;
+  const { t } = useTranslation();
 
   return (
     <aside className="fixed left-0 h-screen w-14 border-r py-5 lg:w-52">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
-        <h1 className="cursor-default font-jomhuria text-6xl">Paramètres</h1>
+        <h1 className="cursor-default font-jomhuria text-6xl">
+          {t("settings.h1")}
+        </h1>
 
         <nav className="mb-5 mt-10 flex h-full flex-col justify-between">
           <div className="flex flex-col gap-5">
@@ -35,7 +38,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <UserRoundPen size={20} />
-                Profile
+                {t("settings.profile.h1")}
               </Link>
             </Button>
             <Button
@@ -45,7 +48,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/account"}>
                 <Wallet size={20} />
-                Compte
+                {t("settings.account.h1")}
               </Link>
             </Button>
             <Button
@@ -55,7 +58,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/appearance"}>
                 <Palette size={20} />
-                Apparence
+                {t("settings.appearance.h1")}
               </Link>
             </Button>
             <Button
@@ -65,7 +68,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/notifications"}>
                 <Bell size={20} />
-                Notifications
+                {t("settings.notifications.h1")}
               </Link>
             </Button>
             <Button
@@ -75,7 +78,7 @@ export default function SettingsSidebar() {
             >
               <Link to={"/dashboard/settings/security"}>
                 <LockIcon size={20} />
-                Sécurité
+                {t("settings.security.h1")}
               </Link>
             </Button>
           </div>
@@ -87,7 +90,7 @@ export default function SettingsSidebar() {
           >
             <Link to={"/dashboard"}>
               <ArrowLeft size={20} />
-              Retouner
+              {t("buttons.return")}
             </Link>
           </Button>
         </nav>
@@ -115,7 +118,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Profile</TooltipContent>
+                <TooltipContent side="right">
+                  {t("settings.profile.h1")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -131,7 +136,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Compte</TooltipContent>
+                <TooltipContent side="right">
+                  {t("settings.account.h1")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -147,7 +154,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Apparence</TooltipContent>
+                <TooltipContent side="right">
+                  {t("settings.appearance.h1")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -163,7 +172,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Notifications</TooltipContent>
+                <TooltipContent side="right">
+                  {t("settings.notifications.h1")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -179,7 +190,9 @@ export default function SettingsSidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Sécurité</TooltipContent>
+                <TooltipContent side="right">
+                  {t("settings.security.h1")}
+                </TooltipContent>
               </Tooltip>
             </div>
 
@@ -197,7 +210,9 @@ export default function SettingsSidebar() {
                   </Link>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">Retouner</TooltipContent>
+              <TooltipContent side="right">
+                {t("buttons.return")}
+              </TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </nav>

@@ -16,9 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useTranslation } from "react-i18next";
 
 // FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
 export default function AppearanceSettings() {
+  const { t } = useTranslation();
   const [currentFont, setCurrentFont] = useState("Inter");
   const handleFontChange = (value: string) => {
     document.documentElement.style.setProperty("--font-family", value);
@@ -29,9 +32,9 @@ export default function AppearanceSettings() {
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
       <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Préférences de police</CardTitle>
+          <CardTitle>{t("settings.appearance.card1.title")}</CardTitle>
           <CardDescription>
-            Choisissez une police pour personnaliser l'apparence du site.
+            {t("settings.appearance.card1.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -52,9 +55,20 @@ export default function AppearanceSettings() {
       </Card>
       <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Préférences de mode</CardTitle>
+          <CardTitle>{t("settings.appearance.card2.title")}</CardTitle>
           <CardDescription>
-            Choisissez entre le mode clair, le mode sombre ou le mode système.
+            {t("settings.appearance.card2.description")}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <LanguageToggle />
+        </CardContent>
+      </Card>
+      <Card className="w-full sm:w-10/12">
+        <CardHeader>
+          <CardTitle>{t("settings.appearance.card3.title")}</CardTitle>
+          <CardDescription>
+            {t("settings.appearance.card3.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,9 +77,9 @@ export default function AppearanceSettings() {
       </Card>
       <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Préférences de couleurs</CardTitle>
+          <CardTitle>{t("settings.appearance.card4.title")}</CardTitle>
           <CardDescription>
-            Choisissez un thème de couleurs parmi les palettes suivantes.
+            {t("settings.appearance.card4.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>

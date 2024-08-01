@@ -4,8 +4,10 @@ import { FaCircleExclamation } from "react-icons/fa6";
 import StepWrapper from "./StepWrapper";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 export default function ImageUpload() {
+  const { t } = useTranslation();
   const {
     register,
     setValue,
@@ -36,8 +38,8 @@ export default function ImageUpload() {
 
   return (
     <StepWrapper
-      title="Personaliser votre profil"
-      description="Ajoutez une image à votre profil client ou passez pour créer votre compte."
+      title={t("signUp.imageUpload.title")}
+      description={t("signUp.imageUpload.description")}
     >
       <section className="relative flex flex-col gap-4">
         <input
@@ -51,7 +53,7 @@ export default function ImageUpload() {
           htmlFor="image"
           className="flex cursor-pointer items-center justify-center rounded-lg border p-5"
         >
-          {fileName || "Choisir un fichier"}
+          {fileName || `${t("signUp.imageUpload.add")}`}
         </Label>
         {fileName && (
           <Button
@@ -60,7 +62,7 @@ export default function ImageUpload() {
             onClick={handleRemoveFile}
             className="absolute -bottom-[3.75rem] left-0 w-32"
           >
-            Retirer l'image
+            {t("signUp.imageUpload.add")}
           </Button>
         )}
         {!fileName && (
@@ -69,7 +71,7 @@ export default function ImageUpload() {
             variant={"outline"}
             className="absolute -bottom-[3.75rem] left-0 w-32"
           >
-            Passez
+            {t("buttons.skip")}
           </Button>
         )}
 

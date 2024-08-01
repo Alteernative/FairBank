@@ -15,7 +15,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { CircleUser, Pen } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
@@ -23,6 +23,7 @@ export default function ProfileSettings() {
   const baseUrl = "http://127.0.0.1:8000";
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     setValue("first_name", user.first_name);
@@ -109,8 +110,10 @@ export default function ProfileSettings() {
       >
         <Card className="w-full sm:w-10/12">
           <CardHeader>
-            <CardTitle>Image de profil</CardTitle>
-            <CardDescription>Modifiez votre image de profil.</CardDescription>
+            <CardTitle>{t("settings.profile.card1.title")}</CardTitle>
+            <CardDescription>
+              {t("settings.profile.card1.description")}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="relative size-16">
@@ -145,28 +148,9 @@ export default function ProfileSettings() {
       <form onSubmit={handleSubmit(handleName)} className="flex flex-col gap-4">
         <Card className="w-full sm:w-10/12">
           <CardHeader>
-            <CardTitle>Courriel</CardTitle>
+            <CardTitle>{t("settings.profile.card2.title")}</CardTitle>
             <CardDescription>
-              Contactez le support pour modifier votre courriel.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <FloatingLabelInput
-              type="text"
-              id="email"
-              {...register("email")}
-              label="Nom"
-              className="h-12"
-            />
-            {/*<Input type="text" placeholder={user.email} className="h-12" />*/}
-          </CardContent>
-        </Card>
-        <Separator />
-        <Card className="w-10/12">
-          <CardHeader>
-            <CardTitle>Prénom</CardTitle>
-            <CardDescription>
-              Faire une demande pour modifier votre prénom.
+              {t("settings.profile.card2.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -174,16 +158,16 @@ export default function ProfileSettings() {
               type="text"
               id="first_name"
               {...register("first_name")}
-              label="Prénom"
+              label={t("input.firstName")}
               className="h-12"
             />
           </CardContent>
         </Card>
         <Card className="w-full sm:w-10/12">
           <CardHeader>
-            <CardTitle>Nom</CardTitle>
+            <CardTitle>{t("settings.profile.card3.title")}</CardTitle>
             <CardDescription>
-              Faire une demande pour modifier votre nom.
+              {t("settings.profile.card3.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -191,13 +175,13 @@ export default function ProfileSettings() {
               type="text"
               id="last_name"
               {...register("last_name")}
-              label="Nom"
+              label={t("input.lastName")}
               className="h-12"
             />
           </CardContent>
         </Card>
         <Button type="submit" className="mt-3 w-40">
-          Demander
+          {t("buttons.ask")}
         </Button>
       </form>
     </main>

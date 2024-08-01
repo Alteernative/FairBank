@@ -17,11 +17,8 @@ import { Link } from "react-router-dom";
 import { FaApple, FaAmazon, FaShopify, FaMicrosoft } from "react-icons/fa";
 import { SiWalmart, SiZara, SiMercedes, SiTesla } from "react-icons/si";
 import { useTranslation } from "react-i18next";
-import { t } from "i18next";
 
 export default function Home() {
-  const { t } = useTranslation();
-
   return (
     <main className="mt-10">
       {Hero()}
@@ -34,26 +31,27 @@ export default function Home() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            {t("heroH1")}
-            {/* <Trans i18nKey={"heroH1"} /> */}
+            {t("homepage.hero.h1")}
           </h1>
-          <h2 className="text-xl tracking-tight lg:text-2xl">{t("heroH2")}</h2>
+          <h2 className="text-xl tracking-tight lg:text-2xl">
+            {t("homepage.hero.h2")}
+          </h2>
           <Button
             asChild
             variant={"default"}
             size={"lg"}
             className="min-w-52 max-w-72 rounded-3xl"
           >
-            <Link to={"/inscription"}>{t("signupBtn")}</Link>
+            <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
           </Button>
         </div>
       </div>
-      {/* <div className="flex flex-1 items-center justify-center"> */}
       <div className="hidden flex-1 items-center justify-center md:flex">
         <img src="/images/hero.svg" alt="Hero section image" />
       </div>
@@ -62,9 +60,10 @@ function Hero() {
 }
 
 function Sponsors() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex flex-col gap-7 text-center opacity-70 dark:opacity-50">
-      <h2 className="font-semibold tracking-wide">{t("sponsorsH2")}</h2>
+      <h2 className="font-bold tracking-wide">{t("homepage.sponsors.h2")}</h2>
       <div className="md: grid grid-cols-2 items-center justify-items-center gap-y-10 md:grid-cols-4 lg:grid-cols-8">
         <FaApple size={50} />
         <FaAmazon size={50} />
@@ -80,6 +79,7 @@ function Sponsors() {
 }
 
 function About() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex items-center">
       <div className="hidden flex-1 items-center justify-center md:flex">
@@ -87,10 +87,10 @@ function About() {
       </div>
       <div className="flex flex-1 flex-col items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
-            {t("aboutH2")}
+          <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
+            {t("homepage.about.h2")}
           </h2>
-          <p className="leading-loose">{t("aboutP")}</p>
+          <p className="leading-loose">{t("homepage.about.p")}</p>
         </div>
       </div>
     </section>
@@ -98,14 +98,15 @@ function About() {
 }
 
 function CTA() {
+  const { t } = useTranslation();
   return (
     <section className="mt-24 flex items-center">
       <div className="flex flex-1 items-start justify-center">
         <div className="mx-auto flex w-3/4 flex-col gap-7">
-          <h2 className="text-3xl font-semibold tracking-tight lg:text-4xl">
-            {t("ctaH2")}
+          <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
+            {t("homepage.cta.h2")}
           </h2>
-          <p className="leading-loose">{t("ctaP")}</p>
+          <p className="leading-loose">{t("homepage.cta.p")}</p>
         </div>
       </div>
       <div className="hidden flex-1 items-center justify-center md:flex">
@@ -116,10 +117,11 @@ function CTA() {
 }
 
 function Reviews() {
+  const { t } = useTranslation();
   return (
     <section className="mx-10 my-20 flex flex-col items-center justify-center">
       <h2 className="mb-3 text-lg font-bold tracking-tight opacity-70 dark:opacity-50">
-        {t("reviewsH2")}
+        {t("homepage.reviews.h2")}
       </h2>
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
@@ -134,7 +136,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>27/01/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">{t("reviews1P")}</p>
+                <p className="leading-relaxed">{t("homepage.reviews.1")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -149,7 +151,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>3/12/2023</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">{t("reviews2P")}</p>
+                <p className="leading-relaxed">{t("homepage.reviews.2")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -164,7 +166,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>23/02/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">{t("reviews3P")}</p>
+                <p className="leading-relaxed">{t("homepage.reviews.3")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -179,7 +181,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>19/03/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">{t("reviews4P")}</p>
+                <p className="leading-relaxed">{t("homepage.reviews.4")}</p>
               </CardContent>
             </Card>
           </CarouselItem>
@@ -194,7 +196,7 @@ function Reviews() {
               </CardHeader>
               <CardDescription>11/04/2024</CardDescription>
               <CardContent className="text-center">
-                <p className="leading-relaxed">{t("reviews5P")}</p>
+                <p className="leading-relaxed">{t("homepage.reviews.5")}</p>
               </CardContent>
             </Card>
           </CarouselItem>

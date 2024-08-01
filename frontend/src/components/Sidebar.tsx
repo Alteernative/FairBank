@@ -5,7 +5,6 @@ import {
   CircleHelp,
   Settings,
   LogOut,
-  Menu,
   Home,
 } from "lucide-react";
 import { BsCurrencyExchange } from "react-icons/bs";
@@ -13,24 +12,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AxiosInstance from "@/components/AxiosInstance";
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from "./ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -66,7 +58,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard"}>
                 <LayoutDashboard size={20} />
-                Menu
+                {t("sidebar.dashboard")}
               </Link>
             </Button>
             <Button
@@ -76,7 +68,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/transactions"}>
                 <ScrollText size={20} />
-                Historique
+                {t("sidebar.transaction")}
               </Link>
             </Button>
             <Button
@@ -86,7 +78,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/activity"}>
                 <Radio size={20} />
-                Activité
+                {t("sidebar.activity")}
               </Link>
             </Button>
             <Button
@@ -96,7 +88,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/exchange-rates"}>
                 <BsCurrencyExchange size={20} />
-                Taux de change
+                {t("sidebar.exchangeRate")}
               </Link>
             </Button>
           </div>
@@ -110,7 +102,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/help"}>
                 <CircleHelp size={20} />
-                Aide
+                {t("sidebar.help")}
               </Link>
             </Button>
             <Button
@@ -122,7 +114,7 @@ export default function Sidebar() {
             >
               <Link to={"/dashboard/settings"}>
                 <Settings size={20} />
-                Paramètres
+                {t("settings.h1")}
               </Link>
             </Button>
             <Button
@@ -131,7 +123,7 @@ export default function Sidebar() {
               className="flex w-full items-center justify-start gap-2"
             >
               <LogOut size={20} />
-              Se déconnecter
+              {t("buttons.signOut")}
             </Button>
           </div>
         </nav>
@@ -159,7 +151,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Menu</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebar.dashboard")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -175,7 +169,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Historique</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebar.transaction")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -191,7 +187,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Activité</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebar.activity")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -207,7 +205,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Taux de change</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebar.exchangeRate")}
+                </TooltipContent>
               </Tooltip>
             </div>
 
@@ -226,7 +226,9 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Aide</TooltipContent>
+                <TooltipContent side="right">
+                  {t("sidebar.help")}
+                </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -242,7 +244,7 @@ export default function Sidebar() {
                     </Link>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="right">Paramètres</TooltipContent>
+                <TooltipContent side="right">{t("settings.h1")}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -258,7 +260,7 @@ export default function Sidebar() {
                   side="right"
                   className="bg-destructive text-white"
                 >
-                  Se déconnecter
+                  {t("buttons.signOut")}
                 </TooltipContent>
               </Tooltip>
             </div>

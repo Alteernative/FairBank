@@ -49,15 +49,15 @@ export default function Footer() {
   };
 
   return (
-    <>
-      <footer className="mb-3 mt-10 flex flex-col gap-7 lg:items-center">
-        {/* Top footer */}
-        <section className="flex w-full max-w-screen-xl flex-col gap-14 lg:flex-row lg:gap-0">
-          {/* Left */}
-          <section className="flex flex-1 flex-col">
-            <span className="relative cursor-default select-none">
-              <h1 className="font-jomhuria text-6xl">FairBank</h1>
-              <p className="absolute top-12">{t("footerSlogan")}</p>
+    <footer className="mb-3 mt-10 flex flex-col gap-7 lg:items-center">
+      {/* Top footer */}
+      <section className="flex w-full max-w-screen-xl flex-col gap-14 lg:flex-row lg:gap-0">
+        {/* Left */}
+        <section className="flex flex-1 flex-col">
+          <span className="relative cursor-default select-none">
+            <h1 className="font-jomhuria text-6xl">FairBank</h1>
+            <p className="absolute top-12">{t("footer.slogan")}</p>
+
             </span>
             <div className="mt-10 flex flex-col gap-2 lg:mt-14">
               <span className="flex items-center gap-3">
@@ -77,62 +77,62 @@ export default function Footer() {
               </span>
             </div>
 
-            {/* Socials */}
-            <div className="mt-10 flex gap-3 lg:mt-auto">
-              <Link to="https://facebook.com">
-                <FaFacebookF className="cursor-pointer hover:opacity-70" />
+          {/* Socials */}
+          <div className="mt-10 flex gap-3 lg:mt-auto">
+            <Link to="https://facebook.com">
+              <FaFacebookF className="cursor-pointer hover:opacity-70" />
+            </Link>
+            <Link to="https://instagram.com">
+              <FaInstagram className="cursor-pointer hover:opacity-70" />
+            </Link>
+            <Link to="https://x.com">
+              <FaXTwitter className="cursor-pointer hover:opacity-70" />
+            </Link>
+            <Link to="https://youtube.com">
+              <FaYoutube className="cursor-pointer hover:opacity-70" />
+            </Link>
+            <Link to="https://linkedin.com">
+              <FaLinkedinIn className="cursor-pointer hover:opacity-70" />
+            </Link>
+          </div>
+        </section>
+        {/* Middle */}
+        <section className="flex flex-1 flex-col text-start lg:mt-3 lg:items-center lg:text-center">
+          <h3 className="mb-5 cursor-default text-xl font-semibold">
+            {t("footer.mapsite")}
+          </h3>
+          <nav className=" flex flex-col items-start gap-2 lg:items-center">
+            <Button asChild variant="link">
+              <Link to={"/particuliers"} onClick={scrollToTop}>
+                {t("header.plans")}
               </Link>
-              <Link to="https://instagram.com">
-                <FaInstagram className="cursor-pointer hover:opacity-70" />
+            </Button>
+            <Button asChild variant="link">
+              <Link to={"/services"} onClick={scrollToTop}>
+                {t("header.services")}
               </Link>
-              <Link to="https://x.com">
-                <FaXTwitter className="cursor-pointer hover:opacity-70" />
+            </Button>
+            <Button asChild variant="link">
+              <Link to={"/apropos"} onClick={scrollToTop}>
+                {t("header.aboutUs")}
               </Link>
-              <Link to="https://youtube.com">
-                <FaYoutube className="cursor-pointer hover:opacity-70" />
+            </Button>
+            <Button asChild variant="link">
+              <Link to={"/faq"} onClick={scrollToTop}>
+                {t("header.faq")}
               </Link>
-              <Link to="https://linkedin.com">
-                <FaLinkedinIn className="cursor-pointer hover:opacity-70" />
+            </Button>
+            <Button asChild variant="link">
+              <Link to={"/politiques"} onClick={scrollToTop}>
+                {t("header.privacy")}
               </Link>
-            </div>
-          </section>
-          {/* Middle */}
-          <section className="flex flex-1 flex-col text-start lg:mt-3 lg:items-center lg:text-center">
-            <h3 className="mb-5 cursor-default text-xl font-semibold">
-              {t("footerMapsite")}
-            </h3>
-            <nav className=" flex flex-col items-start gap-2 lg:items-center">
-              <Button asChild variant="link">
-                <Link to={"/particuliers"} onClick={scrollToTop}>
-                  {t("footerPlans")}
-                </Link>
-              </Button>
-              <Button asChild variant="link">
-                <Link to={"/services"} onClick={scrollToTop}>
-                  {t("footerServices")}
-                </Link>
-              </Button>
-              <Button asChild variant="link">
-                <Link to={"/apropos"} onClick={scrollToTop}>
-                  {t("footerAboutUs")}
-                </Link>
-              </Button>
-              <Button asChild variant="link">
-                <Link to={"/faq"} onClick={scrollToTop}>
-                  {t("footerFAQ")}
-                </Link>
-              </Button>
-              <Button asChild variant="link">
-                <Link to={"/politiques"} onClick={scrollToTop}>
-                  {t("footerPrivacy")}
-                </Link>
-              </Button>
-            </nav>
-          </section>
+            </Button>
+          </nav>
+        </section>
           {/* Right */}
           <section className="text-stard flex w-full flex-1 flex-col gap-2 lg:ml-14 lg:mt-3 lg:text-center">
             <h3 className="mb-5 cursor-default text-xl font-semibold">
-              {t("footerContactUs")}
+              {t("footer.contactUs")}
             </h3>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -142,14 +142,14 @@ export default function Footer() {
                 <Input
                   id="first_name"
                   type="text"
-                  placeholder="Prénom"
+                  placeholder={t("input.firstName")}
                   className="h-12 w-1/2"
                   {...register("prenom")}
                 />
                 <Input
                   id="last_name"
                   type="text"
-                  placeholder="Nom"
+                  placeholder={t("input.lastName")}
                   className="h-12 w-1/2"
                   {...register("nom")}
                 />
@@ -157,7 +157,7 @@ export default function Footer() {
               <Input
                 id="email"
                 type="text"
-                placeholder="Email"
+                placeholder={t("input.email")}
                 className="h-12 w-full"
                 {...register("email")}
               />
@@ -168,17 +168,19 @@ export default function Footer() {
                 {...register("message")}
               />
               <Button className="mt-2" onSubmit={handleSubmit}>
-                {t("footerSubmitBtn")}
+                {t("buttons.submit")}
               </Button>
             </form>
           </section>
         </section>
 
-        <p className="flex cursor-default items-center gap-2">
-          <Copyright size={16} /> {new Date().getFullYear()} {t("copyright")}
-        </p>
-      </footer>
+      <p className="flex cursor-default items-center gap-2">
+        <Copyright size={16} /> {new Date().getFullYear()}{" "}
+        {t("footer.copyright")}
+      </p>
+    </footer>
       <Toaster closeButton richColors position="bottom-left" />
     </>
+
   );
 }

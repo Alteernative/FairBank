@@ -3,7 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema } from "@/schemas/SignUpSchema.ts";
+import SignUpSchema from "@/schemas/SignUpSchema.ts";
 import AxiosInstance from "../components/AxiosInstance.tsx";
 import EmailForm from "./signup/EmailForm.tsx";
 import PasswordForm from "./signup/PasswordForm.tsx";
@@ -14,6 +14,7 @@ import { toast, Toaster } from "sonner";
 import PlanForm from "./signup/PlanForm.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
 import { LanguageToggle } from "@/components/LanguageToggle.tsx";
+import { useTranslation } from "react-i18next";
 
 type FormValues = {
   email: string;
@@ -21,17 +22,17 @@ type FormValues = {
   last_name: string;
   password: string;
   re_password: string;
-  // birthday_year: number;
-  // birthday_month: string;
-  // birthday_day: number;
   plan: string;
 };
 
+type Step = 1 | 2 | 3 | 4 | 5 | 6;
+
 export default function SignUp() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
-  const stepSchema = signUpSchema(step);
+  const stepSchema = SignUpSchema(step as Step);
   const MAX_STEPS = 6;
   const methods = useForm<FormValues>({
     resolver: zodResolver(stepSchema),
@@ -75,7 +76,7 @@ export default function SignUp() {
           },
         });
         if (response) {
-          toast.success("Inscription complétée.");
+          toast.success(`${t("toast.signUp.success")}`);
           setTimeout(() => {
             navigate(`/connexion`);
           }, 3500);
@@ -93,7 +94,7 @@ export default function SignUp() {
               "user with this email already exists."
             )
           ) {
-            toast.error("Inscription refusé, le courriel existe déjà.");
+            toast.error(`${t("toast.signUp.error")}`);
             setTimeout(() => {
               window.location.reload();
             }, 3500);
@@ -122,7 +123,7 @@ export default function SignUp() {
               <LanguageToggle />
               <ModeToggle />
               <Button asChild variant={"ghost"} className="ml-2">
-                <Link to={"/connexion"}>Se connecter</Link>
+                <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
               </Button>
             </span>
           </div>

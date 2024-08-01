@@ -10,13 +10,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+// TODO: Use const { t } = useTranslation() instead
+import { t } from "i18next";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+const sentStatus = t("dashboard.history.status.sent");
+const receivedStatus = t("dashboard.history.status.received");
+
 export type Payment = {
   id: string;
   amount: number;
-  status: "Envoyé" | "Reçu";
+  status: typeof sentStatus | typeof receivedStatus;
   email: string;
   date: string;
   type: "sent" | "received";
@@ -31,7 +34,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Statut
+          {t("dashboard.history.column.col1")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -51,7 +54,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Courriel
+          {t("dashboard.history.column.col2")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -65,7 +68,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          <div className="text-right">Montant</div>
+          <p className="text-right">{t("dashboard.history.column.col3")}</p>
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -96,7 +99,7 @@ export const columns: ColumnDef<Payment>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          {t("dashboard.history.column.col4")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );

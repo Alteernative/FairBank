@@ -1,30 +1,62 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import i18n from "@/utils/i8n";
 
-type code = "fr" | "en";
+type Language =
+  | "ar"
+  | "de"
+  | "en"
+  | "es"
+  | "fr"
+  | "hi"
+  | "it"
+  | "ja"
+  | "pt"
+  | "ru"
+  | "zh";
 
-type LanguageProviderState = {
-  language: string;
-  setLanguage: (code: code) => void;
+type LanguageProviderProps = {
+  children: React.ReactNode;
+  defaultLanguage?: Language;
+  storageKey?: string;
 };
 
-const LanguageProviderContext = createContext<
-  LanguageProviderState | undefined
->(undefined);
+type LanguageProviderState = {
+  language: Language;
+  setLanguage: (language: Language) => void;
+};
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState(i18n.language);
+const initialState: LanguageProviderState = {
+  language: "fr",
+  setLanguage: () => null,
+};
 
-  const changeLanguage = (code: string) => {
-    setLanguage(code);
-    i18n.changeLanguage(code);
-    // i18n.changeLanguage(language);
+const LanguageProviderContext =
+  createContext<LanguageProviderState>(initialState);
+
+export function LanguageProvider({
+  children,
+  defaultLanguage = "fr",
+  storageKey = "app-language",
+  ...props
+}: LanguageProviderProps) {
+  const [language, setLanguage] = useState<Language>(
+    () => (localStorage.getItem(storageKey) as Language) || defaultLanguage
+  );
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
+
+  const value = {
+    language,
+    setLanguage: (language: Language) => {
+      localStorage.setItem(storageKey, language);
+      setLanguage(language);
+    },
   };
 
   return (
-    <LanguageProviderContext.Provider
-      value={{ language, setLanguage: changeLanguage }}
-    >
+    <LanguageProviderContext.Provider {...props} value={value}>
       {children}
     </LanguageProviderContext.Provider>
   );

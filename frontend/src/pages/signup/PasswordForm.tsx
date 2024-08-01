@@ -4,14 +4,17 @@ import { useFormContext } from "react-hook-form";
 import { useState } from "react";
 import StepWrapper from "./StepWrapper";
 import { CircleAlert, Eye, EyeOff } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function PasswordForm() {
+  const { t } = useTranslation();
+  const [passwordType, setPasswordType] = useState("password");
   const {
     register,
     formState: { errors },
     clearErrors,
   } = useFormContext();
-  const [passwordType, setPasswordType] = useState("password");
+
   const handleClick = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -22,8 +25,8 @@ export default function PasswordForm() {
 
   return (
     <StepWrapper
-      title="Mot de passe"
-      description="Entrez un mot de passe ci-dessous pour créer votre compte."
+      title={t("signUp.password.title")}
+      description={t("signUp.password.description")}
     >
       <section className="flex flex-col gap-4">
         <div className="relative">
@@ -31,7 +34,7 @@ export default function PasswordForm() {
             type={passwordType}
             id="password"
             autoComplete="off"
-            label="Mot de passe"
+            label={t("input.password")}
             {...register("password")}
             autoFocus
             className="h-12 pr-11"
@@ -64,7 +67,7 @@ export default function PasswordForm() {
             type={passwordType}
             id="re_password"
             autoComplete="off"
-            label="Confirmer"
+            label={t("input.confirm")}
             {...register("re_password")}
             className="h-12 pr-11"
             onChange={() => clearErrors("re_password")}

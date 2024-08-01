@@ -29,17 +29,17 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
           <Button
             asChild
             variant={"ghost"}
-            className="rounded-3xl font-semibold"
+            className="w-full rounded-3xl font-semibold"
           >
-            <Link to={"/dashboard"}>{t("dashboardBtn")}</Link>
+            <Link to={"/dashboard"}>{t("buttons.dashboard")}</Link>
           </Button>
           <Button
             variant={"destructive"}
-            className="flex items-center gap-2 rounded-3xl"
+            className="flex w-full items-center gap-2 rounded-3xl"
             onClick={logoutUser}
           >
             <LogOut size={20} />
-            {t("signoutBtn")}
+            {t("buttons.signOut")}
           </Button>
         </>
       ) : (
@@ -47,12 +47,12 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
           <Button
             asChild
             variant={"ghost"}
-            className="rounded-3xl font-semibold"
+            className="w-full rounded-3xl font-semibold"
           >
-            <Link to={"/connexion"}>{t("signinBtn")}</Link>
+            <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
           </Button>
-          <Button asChild className="rounded-3xl">
-            <Link to={"/inscription"}>{t("signupBtn")}</Link>
+          <Button asChild className="w-full rounded-3xl">
+            <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
           </Button>
         </>
       )}

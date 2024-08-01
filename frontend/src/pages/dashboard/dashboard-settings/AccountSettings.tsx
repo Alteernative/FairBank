@@ -14,6 +14,7 @@ import { useUserContext } from "@/contexts/UserContext";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -22,6 +23,7 @@ export default function AccountSettings() {
   const { handleSubmit, register } = useForm();
   const [passwordType, setPasswordType] = useState("password");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     if (passwordType === "password") {
@@ -56,9 +58,9 @@ export default function AccountSettings() {
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
       <Card className="w-full sm:w-10/12">
         <CardHeader>
-          <CardTitle>Courriel</CardTitle>
+          <CardTitle>{t("settings.account.card1.title")}</CardTitle>
           <CardDescription>
-            Contactez le support pour modifier votre courriel.
+            {t("settings.account.card1.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -77,35 +79,18 @@ export default function AccountSettings() {
       >
         <Card className="w-full sm:w-10/12">
           <CardHeader>
-            <CardTitle>Nouveau mot de passe</CardTitle>
-            <CardDescription>Entrez un nouveau mot de passe</CardDescription>
+            <CardTitle>{t("settings.account.card2.title")}</CardTitle>
+            <CardDescription>
+              {t("settings.account.card2.description")}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            {/* <FloatingLabelInput
-                type={passwordType}
-                id="password"
-                autoComplete="off"
-                {...register("password")}
-                label="Nouveau mot de passe"
-                className="h-12"
-              />
-              <span className="absolute right-3 top-0 flex h-full items-center justify-center">
-                <Button
-                  type="button"
-                  variant={"ghost"}
-                  size={"icon"}
-                  className="size-7 select-none rounded-full"
-                  onClick={handleClick}
-                >
-                  {passwordType === "password" ? <Eye /> : <EyeOff />}
-                </Button>
-              </span> */}
             <div className="relative">
               <FloatingLabelInput
                 type={passwordType}
                 id="password"
                 autoComplete="off"
-                label="Mot de passe"
+                label={t("input.password")}
                 {...register("password")}
                 className="h-12 pr-12"
                 onChange={() => {
@@ -132,9 +117,9 @@ export default function AccountSettings() {
         </Card>
         <Card className="w-full sm:w-10/12">
           <CardHeader>
-            <CardTitle>Confirmer le nouveau mot de passe</CardTitle>
+            <CardTitle>{t("settings.account.card3.title")}</CardTitle>
             <CardDescription>
-              Confirmez le nouveau mot de passe.
+              {t("settings.account.card3.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -143,7 +128,7 @@ export default function AccountSettings() {
                 type={passwordType}
                 id="re_password"
                 {...register("re_password")}
-                label="Confirmer"
+                label={t("input.confirm")}
                 className="h-12"
               />
               <span className="absolute right-3 top-0 flex h-full items-center justify-center">
@@ -165,7 +150,7 @@ export default function AccountSettings() {
           </CardContent>
         </Card>
         <Button type="submit" className="mt-3 w-32">
-          Sauvegarder
+          {t("buttons.save")}
         </Button>
       </form>
     </main>

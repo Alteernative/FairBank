@@ -1,10 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
 export default function Apropos() {
+  const { t } = useTranslation();
+
   return (
     <section className="mb-32 mt-12 flex flex-col items-center justify-center">
       <h1 className="mb-10 font-jomhuria text-6xl text-primary">
-        Qui est Fairbank ?
+        {t("aboutUs.h1")}
       </h1>
       <main className="flex flex-col lg:flex-row">
         <div className="mx-auto mb-8 flex flex-1 items-center lg:mr-20 lg:justify-start">
@@ -19,31 +22,23 @@ export default function Apropos() {
           <Card className="max-w-[50rem] border-none">
             <CardHeader>
               <CardTitle>
-                <h1 className="text-4xl font-semibold tracking-tight">
-                  Notre Mission
-                </h1>
+                <h2 className="text-4xl font-semibold tracking-tight">
+                  {t("aboutUs.card1.h2")}
+                </h2>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="leading-7">
-                Contribuer à la réussite des nos clients en leur offrant des
-                services bancaires de qualité et en les aidant à atteindre leurs
-                objectifs financiers.
-              </p>
-              <p className="leading-7">
-                Nous nous engageons à offrir des services bancaires efficaces en
-                assurant la sécurité de vos données pour que vous puissiez
-                investir dans votre futur.
-              </p>
+              <p className="leading-7">{t("aboutUs.card1.p1")}</p>
+              <p className="leading-7">{t("aboutUs.card1.p2")}</p>
             </CardContent>
           </Card>
 
           <Card className="max-w-[50rem] border-none">
             <CardHeader>
               <CardTitle>
-                <h1 className="text-4xl font-semibold tracking-tight">
-                  Nos Valeurs
-                </h1>
+                <h2 className="text-4xl font-semibold tracking-tight">
+                  {t("aboutUs.card2.h2")}
+                </h2>
               </CardTitle>
             </CardHeader>
             <CardContent>
