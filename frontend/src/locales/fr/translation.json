@@ -153,9 +153,6 @@
   },
 
   "toggle": {
-    "fr": "Français",
-    "en": "Anglais",
-
     "light": "Clair",
     "dark": "Sombre",
     "system": "Système"
