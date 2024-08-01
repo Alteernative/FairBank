@@ -78,11 +78,7 @@ export default function ProfileSettings() {
     formData.append("current_prenom", user.first_name);
     formData.append("tmp_nom", data.last_name);
     formData.append("tmp_prenom", data.first_name);
-    formData.append("tmp_email", data.email);
-
-    if (fileInputRef.current && fileInputRef.current.files[0]) {
-      formData.append("image_url", fileInputRef.current.files[0]);
-    }
+    formData.append("tmp_email", user.email);
 
     AxiosInstance.post(`users/request_update/`, formData, {
       headers: {
