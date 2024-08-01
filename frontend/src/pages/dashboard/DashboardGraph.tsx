@@ -53,12 +53,12 @@ export default function DashboardGraph() {
         ...(user.received_transactions ?? []).map((t) => ({
           ...t,
           type: "received" as const,
-          date: formatDate(t.date),
+          date: t.date,
         })),
         ...(user.sent_transactions ?? []).map((t) => ({
           ...t,
           type: "sent" as const,
-          date: formatDate(t.date),
+          date: t.date,
         })),
       ];
 
