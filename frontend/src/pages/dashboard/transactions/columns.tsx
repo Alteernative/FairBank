@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+// TODO: Use const { t } = useTranslation() instead
 import { t } from "i18next";
 
 const sentStatus = t("dashboard.history.status.sent");
