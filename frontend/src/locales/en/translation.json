@@ -193,7 +193,12 @@
   },
 
   "dashboard": {
-    "welcome": "Welcome ",
+    "overview": {
+      "welcome": "Welcome ",
+      "balance": "Balance",
+      "transactions": "Transactions",
+      "exchangeRate": "Foreign currency balance"
+    },
 
     "help": {
       "q1": "1. How to buy foreign currencies?",

@@ -193,7 +193,12 @@
   },
 
   "dashboard": {
-    "welcome": "Bonjour ",
+    "overview": {
+      "welcome": "Bonjour ",
+      "balance": "Balance",
+      "transactions": "Transactions",
+      "exchangeRate": "Balance des devises étrangères"
+    },
 
     "help": {
       "q1": "1. Comment acheter des devises étrangères?",

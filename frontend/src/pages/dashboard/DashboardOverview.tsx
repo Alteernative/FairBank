@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/carousel.tsx";
 import { Card, CardHeader } from "@/components/ui/card.tsx";
 import { ProgressBar } from "./ProgressBar";
+import { Trans, useTranslation } from "react-i18next";
 
 const UPPER_LIMIT = 100;
 
 export default function DashboardOverview() {
   const { user } = useUserContext();
+  const { t } = useTranslation();
   const [balances, setBalances] = useState([
     { currency: "CAD", amount: user.balance },
   ]);
@@ -35,11 +37,14 @@ export default function DashboardOverview() {
   return (
     <main className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">
-        Bonjour {user.first_name}
+        {/* TODO: Pass the props to i18n */}
+        {/* Bonjour {user.first_name} */}
+        {t("dashboard.overview.welcome")}
+        {user.first_name}!
       </h1>
       <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-2 row-span-1 rounded-lg border p-4 shadow">
-          <h2 className="mb-3 font-bold">Balance</h2>
+          <h2 className="mb-3 font-bold">{t("dashboard.overview.balance")}</h2>
           <CountUp
             start={0}
             end={user.balance}
@@ -52,7 +57,9 @@ export default function DashboardOverview() {
 
         {/* TODO: Add condition for upper limit of transactions amount based on account type */}
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
-          <h2>Quantité de transactions</h2>
+          <h2 className="mb-3 font-bold">
+            {t("dashboard.overview.transactions")}
+          </h2>
           <ProgressBar
             transactionsCount={user.sent_transactions.length}
             upperLimit={UPPER_LIMIT}
@@ -67,7 +74,9 @@ export default function DashboardOverview() {
         </div> */}
 
         <div className="col-span-3 row-span-1 rounded-lg border p-4 shadow">
-          <h2 className="mb-0 font-bold">Balance des devises étrangères:</h2>
+          <h2 className="mb-0 font-bold">
+            {t("dashboard.overview.exchangeRate")}
+          </h2>
 
           <Carousel className="w-full">
             <CarouselContent className="-ml-1">
