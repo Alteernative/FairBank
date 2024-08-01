@@ -1,52 +1,49 @@
-import { Line } from "react-chartjs-2";
+"use client"
+import { TrendingUp } from "lucide-react"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { useUserContext } from "@/contexts/UserContext";
-import { useEffect, useState } from "react";
-import { CSVLink, CSVDownload } from "react-csv";
-import formatDate from "@/utils/formatDate"; // Adjust the import path according to your project structure
-import { FaFileDownload } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-// Register the necessary components from Chart.js
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import { useUserContext } from "@/contexts/UserContext"
+import { useEffect, useState } from "react"
+import { CSVLink } from "react-csv"
+import formatDate from "@/utils/formatDate"
+import { FaFileDownload } from "react-icons/fa"
+
+const chartConfig = {
+  balance: {
+    label: "Balance",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig
 
 type Transaction = {
-  id: number;
-  sender: string;
-  receiver: string;
-  amount: string;
-  date: string;
-  type: "received" | "sent";
-};
+  id: number
+  sender: string
+  receiver: string
+  amount: string
+  date: string
+  type: "received" | "sent"
+}
 
 export default function DashboardGraph() {
-  const { user } = useUserContext();
-  const [balanceData, setBalanceData] = useState<{
-    labels: number[];
-    datasets: any[];
-  }>({
-    labels: [],
-    datasets: [],
-  });
-  const [JsonObj, setJsonObj] = useState<string>("");
+  const { user } = useUserContext()
+  const [balanceData, setBalanceData] = useState<
+    { transactionNumber: number; balance: number }[]
+  >([])
+  const [JsonObj, setJsonObj] = useState<string>("")
 
-  // TODO: Does not update the graph dynamically :
   useEffect(() => {
     if (user) {
       const transactions: Transaction[] = [
@@ -60,106 +57,116 @@ export default function DashboardGraph() {
           type: "sent" as const,
           date: t.date,
         })),
-      ];
+      ]
 
       transactions.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
+      )
 
-      let currentBalance = user.balance;
+      let currentBalance = user.balance
+      const balanceDataPoints: { transactionNumber: number; balance: number }[] = []
 
-      const balanceDataLabels: number[] = [];
-      const balanceDataPoints: number[] = [];
-
-      balanceDataPoints.push(user.balance);
-      balanceDataLabels.push(0);
       transactions.forEach((transaction, index) => {
-        const amount = parseFloat(transaction.amount);
+        const amount = parseFloat(transaction.amount)
         if (transaction.type === "received") {
-          currentBalance -= amount;
+          currentBalance -= amount
         } else if (transaction.type === "sent") {
-          currentBalance += amount;
+          currentBalance += amount
         }
-        balanceDataLabels.unshift(index + 1);
-        balanceDataPoints.unshift(currentBalance);
-      });
-      balanceDataLabels.reverse();
-      setBalanceData({
-        labels: balanceDataLabels,
-        datasets: [
-          {
-            label: "Balance",
-            data: balanceDataPoints,
-            borderColor: "rgb(80,189,76)",
-            backgroundColor: "rgba(74,182,69,0.5)",
-            tension: 0.4,
-          },
-        ],
-      });
+        balanceDataPoints.unshift({
+          transactionNumber: transactions.length - index,
+          balance: currentBalance,
+        })
+      })
+
+      setBalanceData(balanceDataPoints)
 
       const transactionsWithoutType = transactions.map(
         ({ type, ...rest }) => rest
-      );
+      )
 
       const transactionsForCsv = transactionsWithoutType.map((transaction) => ({
         ...transaction,
         amount: transaction.amount + "$",
-      }));
+      }))
       const additionalData = {
         user_id: user.id,
-        user_name: user.first_name, // TODO: Why?
+        user_name: user.first_name,
         transactions: transactionsForCsv,
         transactionCount: transactions.length,
-      };
-      const formattedJsonObj = JSON.stringify(additionalData, null, 2);
-      const header = "User Transactions Data\n";
-      setJsonObj(header + formattedJsonObj);
-      console.log(JsonObj);
+      }
+      const formattedJsonObj = JSON.stringify(additionalData, null, 2)
+      const header = "User Transactions Data\n"
+      setJsonObj(header + formattedJsonObj)
+      console.log(JsonObj)
     }
-  }, [user]);
+  }, [user])
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: false,
-        text: "Graphe de la balance",
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Transactions",
-        },
-      },
-      y: {
-        title: {
-          display: false,
-          text: "Balance",
-        },
-      },
-    },
-  };
-
-  // console.log(balanceData)
   return (
-    <>
-      <div className="flex flex-row justify-end">
-        <CSVLink
-          filename={"Historiquetransactions.csv"}
-          data={JsonObj}
-          className="flex size-7 items-center justify-center rounded-md bg-green-500 text-white transition-colors duration-300 hover:bg-green-600"
-        >
-          <FaFileDownload />
-        </CSVLink>
-      </div>
-      <div className="h-full w-full flex-grow">
-        <Line options={options} data={balanceData} className="h-full w-full" />
-      </div>
-    </>
-  );
+    <Card>
+      <CardHeader>
+        <CardTitle>Graphique du solde</CardTitle>
+        <CardDescription>Progression de la balance de ce mois-ci</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <AreaChart
+            accessibilityLayer
+            data={balanceData}
+            margin={{ left: 12, right: 12 }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="transactionNumber"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => `${value}`}
+              tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
+            />
+            <YAxis
+            tickCount={6}
+            tickFormatter={(value) => `$${value}`}
+            tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
+            />
+            <ChartTooltip
+              cursor={true}
+              content={<ChartTooltipContent indicator="line" />}
+            />
+            <Area
+              dataKey="balance"
+              type="natural"
+              fill="var(--color-balance)"
+              fillOpacity={0.4}
+              stroke="var(--color-balance)"
+
+            />
+          </AreaChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter>
+        <div className="flex flex-row justify-end">
+          <CSVLink
+            filename={"Historiquetransactions.csv"}
+            data={JsonObj}
+            className="flex size-7 items-center justify-center rounded-md bg-green-500 text-white transition-colors duration-300 hover:bg-green-600"
+          >
+            <FaFileDownload />
+          </CSVLink>
+          </div>
+
+          {/* TODO: Faire calcul de l'etat du compte du mois precedent pour afficher tendance croissance ou descendante*/}
+          {/*<div className="flex w-full items-start gap-2 text-sm">*/}
+          {/*  <div className="grid gap-2">*/}
+          {/*    <div className="flex items-center gap-2 font-medium leading-none">*/}
+          {/*      Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />*/}
+          {/*    </div>*/}
+          {/*    <div className="flex items-center gap-2 leading-none text-muted-foreground">*/}
+          {/*      January - June 2024*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
+        </CardFooter>
+      </Card>
+  )
 }

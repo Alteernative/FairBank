@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel.tsx";
-import { Card, CardHeader } from "@/components/ui/card.tsx";
+import {Card, CardDescription, CardHeader} from "@/components/ui/card.tsx";
 import { ProgressBar } from "./ProgressBar";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -55,14 +55,14 @@ export default function DashboardOverview() {
           />
         </div>
 
-        {/* TODO: Add condition for upper limit of transactions amount based on account type */}
         <div className="col-span-1 row-span-1 rounded-lg border p-4 shadow">
           <h2 className="mb-3 font-bold">
             {t("dashboard.overview.transactions")}
           </h2>
           <ProgressBar
-            transactionsCount={user.sent_transactions.length}
-            upperLimit={UPPER_LIMIT}
+              transactionsCount={user.sent_transactions.length}
+              upperLimit={UPPER_LIMIT}
+
           />
         </div>
         <div className="col-span-3 row-span-3 rounded-lg border p-4 shadow">
