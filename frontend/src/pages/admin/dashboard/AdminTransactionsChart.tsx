@@ -1,9 +1,24 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import axios from 'axios';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import axios from "axios";
+import AxiosInstance from "@/components/AxiosInstance.tsx";
 
 const AdminTransactionsChart = () => {
   const [chartData, setChartData] = useState([]);
@@ -13,17 +28,19 @@ const AdminTransactionsChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/dashboard_admin/list_all_users/');
+        const response = await AxiosInstance.get(
+          "dashboard_admin/list_all_users/"
+        );
         const data = response.data;
-        console.log('Reponse Backend fetch API Users:', data);
+        console.log("Reponse Backend fetch API Users:", data);
         if (Array.isArray(data)) {
           const transformedData = transformData(data);
           setChartData(transformedData);
         } else {
-          throw new Error('Invalid data: Expected array');
+          throw new Error("Invalid data: Expected array");
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setError(error.message);
       }
     };
@@ -34,9 +51,9 @@ const AdminTransactionsChart = () => {
   const transformData = (data) => {
     const transactionsPerDay = {};
 
-    data.forEach(user => {
-      user.received_transactions.forEach(transaction => {
-        const date = new Date(transaction.date).toISOString().split('T')[0];
+    data.forEach((user) => {
+      user.received_transactions.forEach((transaction) => {
+        const date = new Date(transaction.date).toISOString().split("T")[0];
         if (!transactionsPerDay[date]) {
           transactionsPerDay[date] = { date, montantTotal: 0 };
         }
@@ -45,7 +62,9 @@ const AdminTransactionsChart = () => {
     });
 
     // Sort par date
-    return Object.values(transactionsPerDay).sort((a, b) => new Date(a.date) - new Date(b.date));
+    return Object.values(transactionsPerDay).sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
   };
 
   const total = React.useMemo(
@@ -54,14 +73,11 @@ const AdminTransactionsChart = () => {
   );
 
   // Format date  YYYY-MM-DD
-  const today = new Date().toISOString().split('T')[0];
-  const currentDayTotal = React.useMemo(
-    () => {
-      const todayData = chartData.find(data => data.date === today);
-      return todayData ? todayData.montantTotal : 0;
-    },
-    [chartData, today]
-  );
+  const today = new Date().toISOString().split("T")[0];
+  const currentDayTotal = React.useMemo(() => {
+    const todayData = chartData.find((data) => data.date === today);
+    return todayData ? todayData.montantTotal : 0;
+  }, [chartData, today]);
 
   return (
     <Card>
@@ -78,9 +94,11 @@ const AdminTransactionsChart = () => {
             className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
             onClick={() => setActiveChart("montantTotal")}
           >
-            <span className="text-xs text-muted-foreground">Montant Quotidien</span>
+            <span className="text-xs text-muted-foreground">
+              Montant Quotidien
+            </span>
             <span className="text-lg font-bold leading-none sm:text-3xl">
-             {currentDayTotal.toLocaleString()}$
+              {currentDayTotal.toLocaleString()}$
             </span>
           </button>
         </div>
