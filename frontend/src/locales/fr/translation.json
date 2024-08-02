@@ -437,6 +437,10 @@
           "success": "Votre mot de passe a été modifié avec succès.",
           "error": "Une erreur est survenue lors de la modification de votre mot de passe."
         }
+      },
+      "security": {
+        "success": "Votre demande de fermeture a été envoyée avec succès.",
+        "error": "Une erreur est survenue lors de la demande de fermeture de votre compte."
       }
     },
     "passwordReset": {

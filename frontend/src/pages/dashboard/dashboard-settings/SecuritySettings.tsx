@@ -41,18 +41,14 @@ export default function DisplaySettings() {
       last_name: data.last_name,
     })
       .then(() => {
-        toast.success(
-          "Une demande de fermeture de compte a été envoyée. Veuillez attendre la confirmation de fermeture de compte par courriel"
-        );
+        toast.success(`${t("toast.settings.security.success")}`);
         setTimeout(() => {
           navigate("/");
         }, 2500);
         localStorage.removeItem("Token");
       })
       .catch((error) => {
-        toast.error(
-          "Une erreur est survenue lors de la fermeture de votre compte."
-        );
+        toast.error(`${t("toast.settings.security.error")}`);
         console.error("Error updating user:", error);
       });
   };
@@ -104,7 +100,6 @@ export default function DisplaySettings() {
                     onClick={handleSubmit(handleAccountDelete)}
                   >
                     {t("buttons.confirm")}
-
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

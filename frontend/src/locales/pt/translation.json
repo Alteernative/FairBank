@@ -414,6 +414,10 @@
           "success": "Sua senha foi alterada com sucesso.",
           "error": "Ocorreu um erro ao alterar sua senha."
         }
+      },
+      "security": {
+        "success": "Sua solicitação de fechamento foi enviada com sucesso.",
+        "error": "Ocorreu um erro ao solicitar o fechamento de sua conta."
       }
     },
     "passwordReset": {
