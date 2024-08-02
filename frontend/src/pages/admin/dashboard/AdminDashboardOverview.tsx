@@ -1,4 +1,3 @@
-import AdminDashboard from "@/pages/admin/dashboard/AdminDashboard.tsx";
 import AdminTransactionsChart from "@/pages/admin/dashboard/AdminTransactionsChart.tsx";
 import AdminVisitorsChart from "@/pages/admin/dashboard/AdminVisitorsChart.tsx";
 import AdminUserPlansChart from "@/pages/admin/dashboard/AdminUserPlansChart.tsx";
