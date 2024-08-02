@@ -437,6 +437,10 @@
           "success": "Your password has been changed successfully.",
           "error": "An error occurred while changing your password."
         }
+      },
+      "security": {
+        "success": "Your closure request has been sent successfully.",
+        "error": "An error occurred while requesting the closure of your account."
       }
     },
     "passwordReset": {
