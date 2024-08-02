@@ -594,12 +594,21 @@ class AdminViewset(viewsets.ModelViewSet):
             newsletter_email(user)
         return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
 
-    @action(detail=False, methods=['post'])
+    @action(detail=False, methods=['post'], url_path='verify-token')
     def verify_token(self, request):
-        users = User.objects.all()
-        if request.data.get['token'] not in users.token:
-            return Response({"error": "Token not found"}, status=status.HTTP_400_BAD_REQUEST)
-        print("We got one boizzz")
+        token = request.data.get('token')
+        if not token:
+            return Response({"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            print("time to check token")
+            print(token[:8])
+            AuthToken.objects.get(token_key=token[:8], expiry__gt=timezone.now())
+            return Response({"success": "Token is valid"}, status=status.HTTP_200_OK)
+        except AuthToken.DoesNotExist:
+            print("it's not working")
+            return Response({"error": "Token not found or expired"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class AdminLoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
