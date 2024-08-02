@@ -603,7 +603,10 @@ class AdminViewset(viewsets.ModelViewSet):
         try:
             print("time to check token")
             print(token[:8])
-            AuthToken.objects.get(token_key=token[:8], expiry__gt=timezone.now())
+            auth_token = AuthToken.objects.get(token_key=token[:8], expiry__gt=timezone.now())
+            user = auth_token.user
+            if not user.is_staff:
+                return Response({"error": "not an admin"}, status=status.HTTP_400_BAD_REQUEST)
             return Response({"success": "Token is valid"}, status=status.HTTP_200_OK)
         except AuthToken.DoesNotExist:
             print("it's not working")
