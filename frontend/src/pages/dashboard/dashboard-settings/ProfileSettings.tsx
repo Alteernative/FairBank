@@ -21,8 +21,6 @@ import ModifyNameSchema from "@/schemas/ModifyNameSchema";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
-  // TODO: Is this necessary? Why not pass the function directly?
-  const modifyNameSchema = ModifyNameSchema();
   const {
     handleSubmit,
     register,
@@ -31,7 +29,7 @@ export default function ProfileSettings() {
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(modifyNameSchema),
+    resolver: zodResolver(ModifyNameSchema()),
     mode: "onSubmit",
   });
   const baseUrl = "http://127.0.0.1:8000";
