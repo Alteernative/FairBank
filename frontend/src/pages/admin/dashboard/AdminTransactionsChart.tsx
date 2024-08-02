@@ -121,8 +121,7 @@ const AdminTransactionsChart = () => {
         {error ? (
           <div>{error}</div>
         ) : (
-          // <div style={{ width: "100%", height: 200 }}>
-          <div className="h-[200] w-full">
+          <div className="h-[200px] w-full">
             <ResponsiveContainer>
               <BarChart
                 width={750}
