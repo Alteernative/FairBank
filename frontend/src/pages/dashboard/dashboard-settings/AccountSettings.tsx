@@ -51,14 +51,12 @@ export default function AccountSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success("Votre demande a été envoyée.");
+        toast.success(`${t("toast.settings.account.error")}`);
         setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
-        toast.error(
-          "Une erreur est survenue lors de la demande de modification de votre courriel."
-        );
+        toast.error(`${t("toast.settings.account.error")}`);
       });
   };
 
@@ -72,14 +70,14 @@ export default function AccountSettings() {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Votre mot de passe a été modifié.");
+      toast.success(`${t("toast.settings.account.password.success")}`);
       localStorage.removeItem("Token");
       setTimeout(() => {
         navigate("/");
       }, 2500);
     } catch (error) {
       console.error("Error updating user:", error);
-      toast.error("Une erreur est survenue lors de la modification.");
+      toast.error(`${t("toast.settings.account.password.error")}`);
     }
   };
 
