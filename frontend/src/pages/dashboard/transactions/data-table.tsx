@@ -60,10 +60,10 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm bg-background"
         />
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border bg-background">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -116,17 +116,17 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
-          size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          // className={table.getCanPreviousPage() ? "block" : "hidden"}
         >
           {t("buttons.back")}
         </Button>
         <Button
           variant="outline"
-          size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          // className={table.getCanNextPage() ? "block" : "hidden"}
         >
           {t("buttons.next")}
         </Button>
