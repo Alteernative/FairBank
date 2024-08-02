@@ -1,5 +1,7 @@
+from django.utils import timezone
 from decimal import Decimal
 
+from datetime import datetime, timedelta, time
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
@@ -129,7 +131,8 @@ def delete_email(user):
     plain_message = strip_tags(html_message)
 
     msg = EmailMultiAlternatives(
-        subject="Confirmation de suppresion de compte pour {title}".format(title=user.first_name + " " + user.last_name),
+        subject="Confirmation de suppresion de compte pour {title}".format(
+            title=user.first_name + " " + user.last_name),
         body=plain_message,
         from_email="admin@fairbank.com",
         to=[user.email]
@@ -282,6 +285,29 @@ class UserViewset(viewsets.ViewSet):
                 return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
         except (ValueError, TypeError, Decimal.InvalidOperation):
             return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
+
+        tier_limits = {
+            'tier1': 5000,
+            'tier2': 15000,
+            'tier3': 100000
+        }
+        daily_limit = tier_limits.get(user.plan)
+
+        today__day = timezone.now().day
+        today__month = timezone.now().month
+        print(today__day)
+        print(today__month)
+
+        all_transactions = Transaction.objects.all()
+        filtered_transactions = [transaction for transaction in all_transactions
+                                 if transaction.date.day == today__day and transaction.date.month == today__month]
+        total_today = Decimal('0')
+        for transaction in filtered_transactions:
+            total_today += transaction.amount
+        print(total_today + Decimal(amount))
+        if total_today + Decimal(amount) > daily_limit:
+            print("it's too much buddy")
+            return Response({'error': 'Daily limit exceeded'}, status=status.HTTP_400_BAD_REQUEST)
 
         transaction = Transaction(
             sender=None,
