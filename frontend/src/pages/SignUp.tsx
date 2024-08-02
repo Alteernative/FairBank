@@ -90,9 +90,7 @@ export default function SignUp() {
 
           if (
             error.response.status === 400 &&
-            responseErrorData.email.includes(
-              "user with this email already exists."
-            )
+            responseErrorData.error === "User already exists and is active"
           ) {
             toast.error(`${t("toast.signUp.error")}`);
             setTimeout(() => {

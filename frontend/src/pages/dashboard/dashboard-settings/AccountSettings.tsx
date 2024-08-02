@@ -8,11 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
+import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleAlert, Eye, EyeOff, Loader } from "lucide-react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -20,10 +22,32 @@ import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useUserContext();
-  const { handleSubmit, register } = useForm();
-  const [passwordType, setPasswordType] = useState("password");
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [passwordType, setPasswordType] = useState("password");
+  const {
+    handleSubmit: handleEmailSubmit,
+    register: registerEmail,
+    setValue: setValueEmail,
+    clearErrors: clearErrorsEmail,
+    formState: { errors: errorsEmail, isSubmitting: isSubmittingEmail },
+  } = useForm({
+    resolver: zodResolver(ModifyEmailSchema()),
+  });
+
+  const {
+    handleSubmit: handlePasswordSubmit,
+    register: registerPassword,
+    setError: setErrorPassword,
+    clearErrors: clearErrorsPassword,
+    formState: { errors: errorsPassword, isSubmitting: isSubmittingPassword },
+  } = useForm({
+    resolver: zodResolver(ModifyPasswordSchema()),
+  });
+
+  useEffect(() => {
+    setValueEmail("email", user.email);
+  }, [user, setValueEmail]);
 
   const handleClick = () => {
     if (passwordType === "password") {
@@ -33,27 +57,32 @@ export default function AccountSettings() {
     }
   };
 
-  const handleEmail = (data: FieldValues) => {
-    console.log(data);
+  const handleEmail = async (data: FieldValues) => {
+    try {
+      console.log(data);
 
-    const tmp_email = data.email || user.email;
 
-    const formData = new FormData();
-    formData.append("tmp_email", tmp_email);
-    AxiosInstance.post(`users/request_update_email/`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        console.log("Update successful:", response.data);
-        toast.success(`${t("toast.settings.account.success")}`);
-        //    setTimeout(() => window.location.reload(), 3500);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-        toast.error(`${t("toast.settings.account.error")}`);
-      });
+      const tmp_email = data.email || user.email;
+
+      const formData = new FormData();
+
+      formData.append("tmp_email", tmp_email);
+
+      const response = await AxiosInstance.post(
+        `users/request_update_email/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Update successful:", response.data);
+      toast.success(`${t("toast.settings.account.email.success")}`);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error(`${t("toast.settings.account.email.error")}`);
+    }
   };
 
   const handlePassword = async (data: FieldValues) => {
@@ -80,7 +109,7 @@ export default function AccountSettings() {
   return (
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
       <form
-        onSubmit={handleSubmit(handleEmail)}
+        onSubmit={handleEmailSubmit(handleEmail)}
         className="flex flex-col gap-4"
       >
         <Card className="w-full sm:w-10/12">
@@ -91,26 +120,42 @@ export default function AccountSettings() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Input
+            <FloatingLabelInput
               type="text"
-              placeholder={user.email}
+              id="email"
+              label={t("input.email")}
               className="h-12"
-              {...register("email")}
+              {...registerEmail("email")}
+              onChange={() => clearErrorsEmail("email")}
             />
             <input
               type="hidden"
               value={user.email}
-              {...register("default_email")}
+              {...registerEmail("default_email")}
             />
+            {errorsEmail.email && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errorsEmail.email.message && String(errorsEmail.email.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-3 w-32">
-          {t("buttons.ask")}
+        <Button
+          type="submit"
+          disabled={isSubmittingEmail}
+          className="mt-2 w-40 select-none"
+        >
+          {isSubmittingEmail ? (
+            <Loader size={20} className="animate-spin" />
+          ) : (
+            `${t("buttons.ask")}`
+          )}
         </Button>
       </form>
       <Separator />
       <form
-        onSubmit={handleSubmit(handlePassword)}
+        onSubmit={handlePasswordSubmit(handlePassword)}
         className="flex flex-col gap-4"
       >
         <Card className="w-full sm:w-10/12">
@@ -127,10 +172,10 @@ export default function AccountSettings() {
                 id="password"
                 autoComplete="off"
                 label={t("input.password")}
-                {...register("password")}
+                {...registerPassword("password")}
                 className="h-12 pr-12"
                 onChange={() => {
-                  // clearErrors("password");
+                  clearErrorsPassword("password");
                 }}
               />
               <span className="absolute right-3 top-0 flex h-full items-center justify-center">
@@ -149,6 +194,13 @@ export default function AccountSettings() {
                 </Button>
               </span>
             </div>
+            {errorsPassword.password && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errorsPassword.password.message &&
+                  String(errorsPassword.password.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
         <Card className="w-full sm:w-10/12">
@@ -163,9 +215,11 @@ export default function AccountSettings() {
               <FloatingLabelInput
                 type={passwordType}
                 id="re_password"
-                {...register("re_password")}
+                autoComplete="off"
                 label={t("input.confirm")}
                 className="h-12"
+                {...registerPassword("re_password")}
+                onChange={() => clearErrorsPassword("re_password")}
               />
               <span className="absolute right-3 top-0 flex h-full items-center justify-center">
                 <Button
@@ -183,10 +237,25 @@ export default function AccountSettings() {
                 </Button>
               </span>
             </div>
+            {errorsPassword.re_password && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errorsPassword.re_password.message &&
+                  String(errorsPassword.re_password.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-3 w-32">
-          {t("buttons.save")}
+        <Button
+          type="submit"
+          disabled={isSubmittingPassword}
+          className="mt-2 w-40 select-none"
+        >
+          {isSubmittingPassword ? (
+            <Loader size={20} className="animate-spin" />
+          ) : (
+            `${t("buttons.ask")}`
+          )}
         </Button>
       </form>
     </main>
