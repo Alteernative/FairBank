@@ -24,8 +24,16 @@ export default function DashboardOverview() {
         const today = new Date().toISOString().split('T')[0];
 
         const dailyTransactions = user.sent_transactions.filter(transaction => {
-            const transactionDate = new Date(transaction.date);
-        return transactionDate.toISOString().split('T')[0] === today;
+            try {
+                const transactionDate = new Date(transaction.date);
+                if (isNaN(transactionDate)) {
+                    throw new Error("Invalid date");
+                }
+                return transactionDate.toISOString().split('T')[0] === today;
+            } catch (error) {
+                console.error(`Error processing transaction date: ${transaction.date}`, error);
+                return false;
+            }
         });
 
         const dailySum = dailyTransactions.reduce((sum, transaction) => {
