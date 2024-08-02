@@ -226,7 +226,9 @@ export default function App() {
               path="/admin/demands"
               element={
                 <AdminProtectedRoute>
-                  <AdminDashboardDemands />
+                  <AdminDashboard>
+                    <AdminDashboardDemands />
+                  </AdminDashboard>
                 </AdminProtectedRoute>
               }
             />
