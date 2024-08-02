@@ -235,8 +235,16 @@ export default function AccountSettings() {
             )}
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-2 w-40 select-none">
-          {t("buttons.save")}
+        <Button
+          type="submit"
+          disabled={isSubmittingPassword}
+          className="mt-2 w-40 select-none"
+        >
+          {isSubmittingPassword ? (
+            <Loader size={20} className="animate-spin" />
+          ) : (
+            `${t("buttons.ask")}`
+          )}
         </Button>
       </form>
     </main>
