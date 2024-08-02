@@ -81,12 +81,10 @@ export default function ProfileSettings() {
       console.log(data);
 
       const formData = new FormData();
-      formData.append("email", user.email);
       formData.append("current_nom", user.last_name);
       formData.append("current_prenom", user.first_name);
       formData.append("tmp_nom", data.last_name);
       formData.append("tmp_prenom", data.first_name);
-      formData.append("tmp_email", user.email);
 
       const response = await AxiosInstance.post(
         `users/request_update/`,
