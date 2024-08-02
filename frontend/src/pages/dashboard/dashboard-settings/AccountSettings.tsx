@@ -165,7 +165,7 @@ export default function AccountSettings() {
                 {...registerPassword("password")}
                 className="h-12 pr-12"
                 onChange={() => {
-                  // clearErrors("password");
+                  clearErrorsPassword("password");
                 }}
               />
               <span className="absolute right-3 top-0 flex h-full items-center justify-center">
@@ -184,6 +184,13 @@ export default function AccountSettings() {
                 </Button>
               </span>
             </div>
+            {errorsPassword.password && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errorsPassword.password.message &&
+                  String(errorsPassword.password.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
         <Card className="w-full sm:w-10/12">
@@ -198,9 +205,10 @@ export default function AccountSettings() {
               <FloatingLabelInput
                 type={passwordType}
                 id="re_password"
-                {...register("re_password")}
                 label={t("input.confirm")}
                 className="h-12"
+                {...registerPassword("re_password")}
+                onChange={() => clearErrorsPassword("re_password")}
               />
               <span className="absolute right-3 top-0 flex h-full items-center justify-center">
                 <Button
@@ -218,6 +226,13 @@ export default function AccountSettings() {
                 </Button>
               </span>
             </div>
+            {errorsPassword.re_password && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errorsPassword.re_password.message &&
+                  String(errorsPassword.re_password.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
         <Button type="submit" className="mt-2 w-40 select-none">
