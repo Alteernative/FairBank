@@ -107,7 +107,7 @@ export default function SignIn() {
             <LanguageToggle />
             <ModeToggle />
             <Button asChild variant={"ghost"} className="ml-2">
-              <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
+              <Link to={"/signup"}>{t("buttons.signUp")}</Link>
             </Button>
           </span>
         </div>

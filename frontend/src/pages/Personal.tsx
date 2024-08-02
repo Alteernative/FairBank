@@ -75,7 +75,7 @@ export default function Particuliers() {
               {t("plans.tier1.description")}
             </div>
             <Link
-              to={"/inscription"}
+              to={"/signup"}
               className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
             >
               {t("buttons.choosePlan")}
@@ -134,7 +134,7 @@ export default function Particuliers() {
               {t("plans.tier2.description")}
             </div>
             <Link
-              to={"/inscription"}
+              to={"/signup"}
               className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
             >
               {t("buttons.choosePlan")}
@@ -188,7 +188,7 @@ export default function Particuliers() {
               {t("plans.tier3.description")}
             </div>
             <Link
-              to={"/inscription"}
+              to={"/signup"}
               className="flex items-center justify-center whitespace-nowrap rounded-full bg-green-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:bg-green-600"
             >
               {t("buttons.choosePlan")}

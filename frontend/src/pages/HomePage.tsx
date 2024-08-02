@@ -48,7 +48,7 @@ function Hero() {
             size={"lg"}
             className="min-w-52 max-w-72 rounded-3xl"
           >
-            <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
+            <Link to={"/signup"}>{t("buttons.signUp")}</Link>
           </Button>
         </div>
       </div>

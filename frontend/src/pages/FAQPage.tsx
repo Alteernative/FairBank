@@ -25,7 +25,7 @@ export default function FAQPage() {
           <AccordionContent className="w-4/5 leading-7 tracking-wider">
             <Trans i18nKey={"faqR1"}>
               {t("faq.a1")}
-              <Link to={"/inscription"} className="hover:underline" />
+              <Link to={"/signup"} className="hover:underline" />
             </Trans>
           </AccordionContent>
         </AccordionItem>

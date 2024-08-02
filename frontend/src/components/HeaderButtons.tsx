@@ -49,10 +49,10 @@ export const HeaderButtons: React.FC<HeaderButtonsProps> = ({
             variant={"ghost"}
             className="w-full rounded-3xl font-semibold"
           >
-            <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
+            <Link to={"/signin"}>{t("buttons.signIn")}</Link>
           </Button>
           <Button asChild className="w-full rounded-3xl">
-            <Link to={"/inscription"}>{t("buttons.signUp")}</Link>
+            <Link to={"/signup"}>{t("buttons.signUp")}</Link>
           </Button>
         </>
       )}

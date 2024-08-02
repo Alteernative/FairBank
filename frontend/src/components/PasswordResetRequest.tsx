@@ -95,7 +95,7 @@ const PasswordReset = () => {
               <LanguageToggle />
               <ModeToggle />
               <Button asChild variant={"ghost"} className="ml-2">
-                <Link to={"/inscription"}>Devenir membre</Link>
+                <Link to={"/signup"}>Devenir membre</Link>
               </Button>
             </span>
           </div>
