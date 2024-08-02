@@ -56,19 +56,14 @@ export default function ProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success("Votre image de profil a été modifiée.");
+        toast.success(`${t("toast.settings.profile.image.success")}`);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
-        toast.error(
-          "Une erreur est survenue lors de la modification de votre image de profil."
-        );
+        toast.error(`${t("toast.settings.profile.image.error")}`);
       });
   };
 
-  // TODO: Update this code to send a request to the admin.
-
-  console.log(user);
   const handleName = (data: FieldValues) => {
     console.log(data);
 
@@ -87,14 +82,12 @@ export default function ProfileSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success("Votre demande a été envoyé.");
+        toast.success(`${t("toast.settings.profile.name.success")}`);
         setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
-        toast.error(
-          "Une erreur est survenue lors de la demande de modification de votre nom."
-        );
+        toast.error(`${t("toast.settings.profile.name.error")}`);
       });
   };
 

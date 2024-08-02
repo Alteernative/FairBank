@@ -372,23 +372,61 @@
     }
   },
   "toast": {
+    "footer": {
+      "success": "Il messaggio è stato inviato con successo.",
+      "error": "Si è verificato un errore durante l'invio del messaggio."
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "I fondi sono stati inviati.",
+        "success": "I fondi sono stati inviati con successo.",
         "error": "Si è verificato un errore durante l'invio dei fondi."
       },
       "requestFunds": {
-        "success": "I fondi sono stati richiesti.",
+        "success": "I fondi sono stati richiesti con successo.",
         "error": "Si è verificato un errore durante la richiesta dei fondi."
       },
       "depositFunds": {
-        "success": "I fondi sono stati depositati nel tuo account.",
+        "success": "I fondi sono stati depositati nel tuo conto con successo.",
         "error": "Si è verificato un errore durante il deposito dei fondi."
+      },
+      "signUp": {
+        "success": "Iscrizione completata con successo.",
+        "error": "Iscrizione rifiutata, l'email esiste già."
       }
     },
-    "signUp": {
-      "success": "Registrazione completata.",
-      "error": "Registrazione rifiutata, l'email esiste già."
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "L'immagine del profilo è stata modificata con successo.",
+          "error": "Si è verificato un errore durante la modifica dell'immagine del profilo."
+        },
+        "name": {
+          "success": "La tua richiesta è stata inviata con successo.",
+          "error": "Si è verificato un errore durante la richiesta di modifica del tuo nome."
+        }
+      },
+      "account": {
+        "email": {
+          "success": "La tua richiesta è stata inviata con successo.",
+          "error": "Si è verificato un errore durante la richiesta di modifica della tua email."
+        },
+        "password": {
+          "success": "La tua password è stata modificata con successo.",
+          "error": "Si è verificato un errore durante la modifica della tua password."
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "La password è stata reimpostata con successo.",
+      "error": "Si è verificato un errore durante il reset della tua password."
+    },
+    "passwordRequestReset": {
+      "success": "Una email di reset è stata inviata.",
+      "error": "Si è verificato un errore durante la richiesta di reset della password."
+    },
+    "unsubscribe": {
+      "success": "Sei stato disiscritto con successo.",
+      "error": "Si è verificato un errore durante la disiscrizione."
     }
   },
   "zod": {

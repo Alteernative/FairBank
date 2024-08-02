@@ -372,23 +372,61 @@
     }
   },
   "toast": {
+    "footer": {
+      "success": "A mensagem foi enviada com sucesso.",
+      "error": "Ocorreu um erro ao enviar a mensagem."
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "Fundos foram enviados.",
+        "success": "Os fundos foram enviados com sucesso.",
         "error": "Ocorreu um erro ao enviar os fundos."
       },
       "requestFunds": {
-        "success": "Fundos foram solicitados.",
+        "success": "Os fundos foram solicitados com sucesso.",
         "error": "Ocorreu um erro ao solicitar os fundos."
       },
       "depositFunds": {
-        "success": "Fundos foram depositados na sua conta.",
+        "success": "Os fundos foram depositados em sua conta com sucesso.",
         "error": "Ocorreu um erro ao depositar os fundos."
+      },
+      "signUp": {
+        "success": "Inscrição concluída com sucesso.",
+        "error": "Inscrição recusada, o e-mail já existe."
       }
     },
-    "signUp": {
-      "success": "Inscrição concluída.",
-      "error": "Inscrição recusada, o email já existe."
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "Sua imagem de perfil foi alterada com sucesso.",
+          "error": "Ocorreu um erro ao alterar a imagem do perfil."
+        },
+        "name": {
+          "success": "Sua solicitação foi enviada com sucesso.",
+          "error": "Ocorreu um erro ao solicitar a alteração do seu nome."
+        }
+      },
+      "account": {
+        "email": {
+          "success": "Sua solicitação foi enviada com sucesso.",
+          "error": "Ocorreu um erro ao solicitar a alteração do seu e-mail."
+        },
+        "password": {
+          "success": "Sua senha foi alterada com sucesso.",
+          "error": "Ocorreu um erro ao alterar sua senha."
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "A senha foi redefinida com sucesso.",
+      "error": "Ocorreu um erro ao redefinir sua senha."
+    },
+    "passwordRequestReset": {
+      "success": "Um e-mail de redefinição foi enviado.",
+      "error": "Ocorreu um erro ao solicitar a redefinição da senha."
+    },
+    "unsubscribe": {
+      "success": "Você foi desinscrito com sucesso.",
+      "error": "Ocorreu um erro ao desinscrever-se."
     }
   },
   "zod": {

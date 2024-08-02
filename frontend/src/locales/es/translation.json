@@ -372,23 +372,61 @@
     }
   },
   "toast": {
+    "footer": {
+      "success": "El mensaje ha sido enviado con éxito.",
+      "error": "Se produjo un error al enviar el mensaje."
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "Los fondos han sido enviados.",
-        "error": "Ocurrió un error al enviar los fondos."
+        "success": "Los fondos han sido enviados con éxito.",
+        "error": "Se produjo un error al enviar los fondos."
       },
       "requestFunds": {
-        "success": "Los fondos han sido solicitados.",
-        "error": "Ocurrió un error al solicitar los fondos."
+        "success": "Los fondos han sido solicitados con éxito.",
+        "error": "Se produjo un error al solicitar los fondos."
       },
       "depositFunds": {
-        "success": "Los fondos han sido depositados en tu cuenta.",
-        "error": "Ocurrió un error al depositar los fondos."
+        "success": "Los fondos han sido depositados en su cuenta con éxito.",
+        "error": "Se produjo un error al depositar los fondos."
+      },
+      "signUp": {
+        "success": "Registro completado con éxito.",
+        "error": "Registro rechazado, el correo electrónico ya existe."
       }
     },
-    "signUp": {
-      "success": "Registro completado.",
-      "error": "Registro rechazado, el correo electrónico ya existe."
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "Su imagen de perfil ha sido cambiada con éxito.",
+          "error": "Se produjo un error al cambiar la imagen de perfil."
+        },
+        "name": {
+          "success": "Su solicitud ha sido enviada con éxito.",
+          "error": "Se produjo un error al solicitar el cambio de su nombre."
+        }
+      },
+      "account": {
+        "email": {
+          "success": "Su solicitud ha sido enviada con éxito.",
+          "error": "Se produjo un error al solicitar el cambio de su correo electrónico."
+        },
+        "password": {
+          "success": "Su contraseña ha sido cambiada con éxito.",
+          "error": "Se produjo un error al cambiar su contraseña."
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "La contraseña ha sido restablecida con éxito.",
+      "error": "Se produjo un error al restablecer su contraseña."
+    },
+    "passwordRequestReset": {
+      "success": "Se ha enviado un correo electrónico de restablecimiento.",
+      "error": "Se produjo un error al solicitar el restablecimiento de la contraseña."
+    },
+    "unsubscribe": {
+      "success": "Se ha dado de baja con éxito.",
+      "error": "Se produjo un error al darse de baja."
     }
   },
   "zod": {

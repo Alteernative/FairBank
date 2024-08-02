@@ -395,26 +395,63 @@
   },
 
   "toast": {
+    "footer": {
+      "success": "The message has been sent successfully.",
+      "error": "An error occurred while sending the message."
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "Funds have been sent.",
+        "success": "Funds have been sent successfully.",
         "error": "An error occurred while sending the funds."
       },
       "requestFunds": {
-        "success": "Funds have been requested.",
+        "success": "Funds have been requested successfully.",
         "error": "An error occurred while requesting the funds."
       },
       "depositFunds": {
-        "success": "Funds have been deposited into your account.",
+        "success": "Funds have been deposited into your account successfully.",
         "error": "An error occurred while depositing the funds."
+      },
+      "signUp": {
+        "success": "Sign-up completed successfully.",
+        "error": "Sign-up declined, email already exists."
       }
     },
-    "signUp": {
-      "success": "Sign up completed.",
-      "error": "Sign up refused, the email already exists."
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "Your profile image has been changed successfully.",
+          "error": "An error occurred while changing the profile image."
+        },
+        "name": {
+          "success": "Your request has been sent successfully.",
+          "error": "An error occurred while requesting to change your name."
+        }
+      },
+      "account": {
+        "email": {
+          "success": "Your request has been sent successfully.",
+          "error": "An error occurred while requesting to change your email."
+        },
+        "password": {
+          "success": "Your password has been changed successfully.",
+          "error": "An error occurred while changing your password."
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "Password has been reset successfully.",
+      "error": "An error occurred while resetting your password."
+    },
+    "passwordRequestReset": {
+      "success": "A reset email has been sent.",
+      "error": "An error occurred while requesting a password reset."
+    },
+    "unsubscribe": {
+      "success": "You have been unsubscribed successfully.",
+      "error": "An error occurred while unsubscribing."
     }
   },
-
   "zod": {
     "signIn": {
       "email": {

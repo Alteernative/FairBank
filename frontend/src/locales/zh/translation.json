@@ -373,23 +373,61 @@
     }
   },
   "toast": {
+    "footer": {
+      "success": "消息已成功发送。",
+      "error": "发送消息时发生错误。"
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "资金已发送。",
+        "success": "资金已成功发送。",
         "error": "发送资金时发生错误。"
       },
       "requestFunds": {
-        "success": "资金已请求。",
+        "success": "资金已成功请求。",
         "error": "请求资金时发生错误。"
       },
       "depositFunds": {
-        "success": "资金已存入您的账户。",
+        "success": "资金已成功存入您的账户。",
         "error": "存入资金时发生错误。"
+      },
+      "signUp": {
+        "success": "注册已成功完成。",
+        "error": "注册被拒绝，电子邮件已存在。"
       }
     },
-    "signUp": {
-      "success": "注册完成。",
-      "error": "注册失败，该邮箱已存在。"
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "您的个人资料图片已成功更改。",
+          "error": "更改个人资料图片时发生错误。"
+        },
+        "name": {
+          "success": "您的请求已成功发送。",
+          "error": "请求更改您的名字时发生错误。"
+        }
+      },
+      "account": {
+        "email": {
+          "success": "您的请求已成功发送。",
+          "error": "请求更改您的电子邮件时发生错误。"
+        },
+        "password": {
+          "success": "您的密码已成功更改。",
+          "error": "更改您的密码时发生错误。"
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "密码已成功重置。",
+      "error": "重置密码时发生错误。"
+    },
+    "passwordRequestReset": {
+      "success": "重置电子邮件已发送。",
+      "error": "请求重置密码时发生错误。"
+    },
+    "unsubscribe": {
+      "success": "您已成功退订。",
+      "error": "退订时发生错误。"
     }
   },
   "zod": {

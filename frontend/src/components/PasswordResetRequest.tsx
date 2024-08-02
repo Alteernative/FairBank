@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card.tsx";
 import { ModeToggle } from "./ModeToggle";
 import { LanguageToggle } from "./LanguageToggle";
+import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {
   const {
@@ -54,6 +55,7 @@ const PasswordReset = () => {
   const { token } = useParams();
   const [ShowMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const onSubmit = (data) => {
     console.log(data.email);
@@ -63,15 +65,13 @@ const PasswordReset = () => {
 
       .then(() => {
         setShowMessage(true);
-        toast.success("Un couriel de réinitisalisation a été envoyé.");
+        toast.success(`${t("toast.passwordRequestReset.success")}`);
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 2500);
       })
       .catch(() => {
-        toast.error(
-          "Une erreur est survenu lors de la réinitialisation du mot de passe."
-        );
+        toast.error(`${t("toast.passwordRequestReset.error")}`);
       });
   };
 
@@ -128,7 +128,7 @@ const PasswordReset = () => {
           </Card>
         </main>
       </section>
-      <Toaster richColors />
+      <Toaster richColors duration={2500} />
     </>
   );
 };
