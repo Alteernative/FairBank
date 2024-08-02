@@ -205,6 +205,7 @@ export default function AccountSettings() {
               <FloatingLabelInput
                 type={passwordType}
                 id="re_password"
+                autoComplete="off"
                 label={t("input.confirm")}
                 className="h-12"
                 {...registerPassword("re_password")}
