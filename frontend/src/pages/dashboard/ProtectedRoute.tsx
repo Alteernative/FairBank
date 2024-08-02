@@ -30,8 +30,7 @@ const ProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ element }) => {
     return <div>Loading...</div>;
   }
 
-  // return isAuthenticated ? element : <Navigate to="/signin" />;
-  return isAuthenticated ? element : <Navigate to="/connexion" />;
+  return isAuthenticated ? element : <Navigate to="/signin" />;
 };
 
 export default ProtectedRoute;
