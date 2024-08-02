@@ -64,7 +64,7 @@ export default function UserPanel() {
     tier3: t("plans.tier3.name"),
   };
 
-  const submission = (data: FieldValues) => {
+  const sendTransaction = (data: FieldValues) => {
     console.log("Data being sent:", {
       sender: data.sender,
       receiver: data.receiver,
@@ -101,7 +101,7 @@ export default function UserPanel() {
       });
   };
 
-  const requestTransfer = (data: FieldValues) => {
+  const requestTransaction = (data: FieldValues) => {
     AxiosInstance.post(
       "request/",
       {
@@ -125,7 +125,7 @@ export default function UserPanel() {
       });
   };
 
-  const deposer = (data: FieldValues) => {
+  const depositTransaction = (data: FieldValues) => {
     AxiosInstance.post(
       `users/add_balance/`,
       { amount: parseFloat(data.amount) },
@@ -180,7 +180,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={sendForm.handleSubmit(submission)}>
+                <form onSubmit={sendForm.handleSubmit(sendTransaction)}>
                   <DialogHeader>
                     <DialogTitle>{t("userPanel.sendFunds.title")}</DialogTitle>
                     <DialogDescription>
@@ -233,7 +233,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={requestForm.handleSubmit(requestTransfer)}>
+                <form onSubmit={requestForm.handleSubmit(requestTransaction)}>
                   <DialogHeader>
                     <DialogTitle>
                       {t("userPanel.requestFunds.title")}
@@ -288,7 +288,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={depositForm.handleSubmit(deposer)}>
+                <form onSubmit={depositForm.handleSubmit(depositTransaction)}>
                   <DialogHeader>
                     <DialogTitle>
                       {t("userPanel.depositFunds.title")}
@@ -397,7 +397,7 @@ export default function UserPanel() {
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                      <form onSubmit={sendForm.handleSubmit(submission)}>
+                      <form onSubmit={sendForm.handleSubmit(sendTransaction)}>
                         <DialogHeader>
                           <DialogTitle>
                             {t("userPanel.sendFunds.title")}
@@ -462,7 +462,7 @@ export default function UserPanel() {
                     </DialogTrigger>
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                       <form
-                        onSubmit={requestForm.handleSubmit(requestTransfer)}
+                        onSubmit={requestForm.handleSubmit(requestTransaction)}
                       >
                         <DialogHeader>
                           <DialogTitle>
@@ -527,7 +527,9 @@ export default function UserPanel() {
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                      <form onSubmit={depositForm.handleSubmit(deposer)}>
+                      <form
+                        onSubmit={depositForm.handleSubmit(depositTransaction)}
+                      >
                         <DialogHeader>
                           <DialogTitle>
                             {t("userPanel.depositFunds.title")}
