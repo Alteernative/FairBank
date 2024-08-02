@@ -40,11 +40,11 @@ export default function Footer() {
     )
       .then((response) => {
         console.log(response);
-        toast.success("Merci de votre commentaire.");
+        toast.success(`${t("toast.footer.success")}`);
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Erreur! Veuillez réessayer plus tard.");
+        toast.error(`${t("toast.footer.error")}`);
       });
   };
 
