@@ -131,7 +131,7 @@
 
   "faq": {
     "q1": "1. Comment puis-je ouvrir un compte à FairBank?",
-    "a1": "Rien de plus simple! Vous pouvez ouvrir un compte en visitant <1>fairbank.com/inscription</1> et en présentant une demande en ligne.",
+    "a1": "Rien de plus simple! Vous pouvez ouvrir un compte en visitant <1>fairbank.com/signup</1> et en présentant une demande en ligne.",
     "q2": "2. Qui peut ouvrir un compte à FairBank?",
     "a2": "Chaque client chez FairBank doit être un résident canadien et avoir plus de 18 ans.",
     "q3": "3. Les dépôts directs ont-ils une période de retenue?",
@@ -343,6 +343,10 @@
       "title": "Déposer des fonds",
       "description": "Veuillez entrer le montant à déposer."
     }
+  },
+
+  "admin": {
+    "signIn": {}
   },
 
   "signIn": {

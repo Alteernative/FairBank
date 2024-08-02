@@ -74,8 +74,8 @@ export default function App() {
                 </Layout>
               }
             />
-            <Route path="/connexion" element={<SignIn />} />
-            <Route path="/inscription" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route
               path="/faq"
               element={

@@ -119,7 +119,7 @@ const PasswordReset = () => {
         toast.success(`${t("toast.passwordReset.success")}`);
         setShowMessage(true);
         setTimeout(() => {
-          navigate("/connexion");
+          navigate("/signin");
         }, 2500);
       })
       .catch((error) => {

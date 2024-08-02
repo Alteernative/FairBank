@@ -78,7 +78,7 @@ export default function SignUp() {
         if (response) {
           toast.success(`${t("toast.signUp.success")}`);
           setTimeout(() => {
-            navigate(`/connexion`);
+            navigate(`/signin`);
           }, 3500);
         }
       } catch (error: any) {
@@ -123,7 +123,7 @@ export default function SignUp() {
               <LanguageToggle />
               <ModeToggle />
               <Button asChild variant={"ghost"} className="ml-2">
-                <Link to={"/connexion"}>{t("buttons.signIn")}</Link>
+                <Link to={"/signin"}>{t("buttons.signIn")}</Link>
               </Button>
             </span>
           </div>
