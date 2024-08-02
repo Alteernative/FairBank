@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/card";
 import axios from "axios";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
+import formatCurrency from "@/utils/formatCurrency";
 
 const AdminTransactionsChart = () => {
   const [chartData, setChartData] = useState([]);
@@ -82,7 +83,6 @@ const AdminTransactionsChart = () => {
 
   return (
     <Card>
-
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Graphe Transactions Quotidiennes</CardTitle>
@@ -99,9 +99,9 @@ const AdminTransactionsChart = () => {
             <span className="text-xs text-muted-foreground">
               Montant Quotidien
             </span>
-            <span className="text-lg font-bold leading-none sm:text-3xl">
-              {currentDayTotal.toLocaleString()}$
-            </span>
+            <p className="font-jomhuria text-5xl">
+              {formatCurrency(currentDayTotal)}
+            </p>
           </button>
         </div>
 
@@ -112,9 +112,7 @@ const AdminTransactionsChart = () => {
             onClick={() => setActiveChart("montantTotal")}
           >
             <span className="text-xs text-muted-foreground">Montant Total</span>
-            <span className="text-lg font-bold leading-none sm:text-3xl">
-              {total.toLocaleString()}$
-            </span>
+            <p className="font-jomhuria text-5xl">{formatCurrency(total)}</p>
           </button>
         </div>
       </CardHeader>
@@ -123,7 +121,7 @@ const AdminTransactionsChart = () => {
         {error ? (
           <div>{error}</div>
         ) : (
-          <div style={{ width: "100%", height: 200 }}>
+          <div className="h-[200px] w-full">
             <ResponsiveContainer>
               <BarChart
                 width={750}
@@ -131,7 +129,6 @@ const AdminTransactionsChart = () => {
                 data={chartData}
                 margin={{ left: 12, right: 12 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
                   tickLine={false}

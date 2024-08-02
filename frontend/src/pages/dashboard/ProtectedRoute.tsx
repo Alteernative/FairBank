@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import AxiosInstance from "@/components/AxiosInstance";
+import { Loader2 } from "lucide-react";
 
-interface AdminProtectedRouteProps {
-  element: React.ReactElement;
-}
+type ProtectedRouteProps = {
+  children: React.ReactNode;
+};
 
-const ProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ element }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -27,11 +28,14 @@ const ProtectedRoute: React.FC<AdminProtectedRouteProps> = ({ element }) => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>;
+    return (
+      <span className="flex h-screen w-screen items-center justify-center">
+        <Loader2 size={50} className="animate-spin" />
+      </span>
+    );
   }
 
-  // return isAuthenticated ? element : <Navigate to="/signin" />;
-  return isAuthenticated ? element : <Navigate to="/signin" />;
+  return isAuthenticated ? <>{children}</> : <Navigate to="/signin" />;
 };
 
 export default ProtectedRoute;

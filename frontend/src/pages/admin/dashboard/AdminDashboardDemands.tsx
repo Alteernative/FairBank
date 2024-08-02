@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "@/components/AxiosInstance.tsx";
-import AdminSidebar from "@/components/AdminSidebar";
+import { Button } from "@/components/ui/button";
+import { Check, X } from "lucide-react";
 
 export default function AdminDashBoardDemands() {
   const [updateRequests, setUpdateRequests] = useState([]);
@@ -92,12 +93,11 @@ export default function AdminDashBoardDemands() {
   };
 
   return (
-    <div className="admin-dashboard grid min-h-screen grid-cols-12">
-      <aside className="sidebar col-span-2 bg-gray-800 p-4 text-white">
-        <AdminSidebar />
-      </aside>
-      <main className="content col-span-10 p-4">
-        <div className="requests">
+    // <section className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
+    <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
+      <h1 className="mb-10 font-jomhuria text-6xl">Requests</h1>
+      <section className="flex flex-col items-start gap-10">
+        <div>
           <h2 className="mb-4 text-xl font-bold">Pending User Updates</h2>
           {updateRequests.length > 0 ? (
             <ul className="space-y-4">
@@ -110,26 +110,29 @@ export default function AdminDashBoardDemands() {
                     <strong>Email:</strong> {request.email}
                   </p>
                   <p>
-                    <strong>Current Name:</strong> {request.current_nom}{" "}
+                    <strong>Current Name:</strong> {request.current_nom}
+                    {", "}
                     {request.current_prenom}
                   </p>
                   <p>
-                    <strong>Requested Name:</strong> {request.tmp_nom}{" "}
+                    <strong>Requested Name:</strong> {request.tmp_nom}
+                    {", "}
                     {request.tmp_prenom}
                   </p>
-                  <div className="mt-4">
-                    <button
+                  <div className="mt-4 flex gap-4">
+                    <Button
+                      className="w-full bg-green-500 text-white shadow-sm hover:bg-green-500/90 dark:bg-green-900 dark:hover:bg-green-900/90"
                       onClick={() => handleApproveUpdate(request.user)}
-                      className="mr-2 rounded bg-green-500 px-4 py-2 text-white"
                     >
-                      Approve
-                    </button>
-                    <button
+                      <Check size={20} />
+                    </Button>
+                    <Button
+                      variant={"destructive"}
+                      className=" w-full"
                       onClick={() => handleDeclineUpdate(request.user)}
-                      className="rounded bg-red-500 px-4 py-2 text-white"
                     >
-                      Decline
-                    </button>
+                      <X size={20} />
+                    </Button>
                   </div>
                 </li>
               ))}
@@ -139,7 +142,7 @@ export default function AdminDashBoardDemands() {
           )}
         </div>
 
-        <div className="delete-requests mt-8">
+        <div>
           <h2 className="mb-4 text-xl font-bold">Pending Delete Requests</h2>
           {deleteRequests.length > 0 ? (
             <ul className="space-y-4">
@@ -176,7 +179,7 @@ export default function AdminDashBoardDemands() {
             <p>No pending delete requests</p>
           )}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
