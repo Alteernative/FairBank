@@ -12,8 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
 import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
+import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react";
+import { CircleAlert, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -23,13 +24,22 @@ import { toast } from "sonner";
 export default function AccountSettings() {
   const { user } = useUserContext();
   const {
-    handleSubmit,
-    register,
-    setError,
-    clearErrors,
-    formState: { errors, isSubmitting },
+    handleSubmit: handleEmailSubmit,
+    register: registerEmail,
+    setError: setErrorEmail,
+    clearErrors: clearErrors:Email,
+    formState: { errors: errorsEmail, isSubmitting: isSubmittingEmail },
   } = useForm({
-    // resolver: zodResolver(ModifyEmailSchema),
+    resolver: zodResolver(ModifyEmailSchema()),
+  });
+  const {
+    handleSubmit: handlePasswordSubmit,
+    register: registerPassword,
+    setError: setErrorPassword,
+    clearErrors: clearErrorsPassword,
+    formState: { errors: errorsPassword, isSubmitting: isSubmittingPassword },
+  } = useForm({
+    resolver: zodResolver(ModifyPasswordSchema()),
   });
   const [passwordType, setPasswordType] = useState("password");
   const navigate = useNavigate();
@@ -93,7 +103,7 @@ export default function AccountSettings() {
   return (
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
       <form
-        onSubmit={handleSubmit(handleEmail)}
+        onSubmit={handleEmailSubmit(handleEmail)}
         className="flex flex-col gap-4"
       >
         <Card className="w-full sm:w-10/12">
@@ -108,8 +118,14 @@ export default function AccountSettings() {
               type="text"
               placeholder={user.email}
               className="h-12"
-              {...register("email")}
+              {...registerEmail("email")}
             />
+            {errorsEmail.email && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+              <CircleAlert size={20} />
+              {errorsEmail.email.message && String(errorsEmail.email.message)}
+            </span>
+            )}
           </CardContent>
         </Card>
         <Button type="submit" className="mt-2 w-40 select-none">
@@ -118,7 +134,7 @@ export default function AccountSettings() {
       </form>
       <Separator />
       <form
-        onSubmit={handleSubmit(handlePassword)}
+        onSubmit={handlePasswordSubmit(handlePassword)}
         className="flex flex-col gap-4"
       >
         <Card className="w-full sm:w-10/12">
@@ -135,7 +151,7 @@ export default function AccountSettings() {
                 id="password"
                 autoComplete="off"
                 label={t("input.password")}
-                {...register("password")}
+                {...registerPassword("password")}
                 className="h-12 pr-12"
                 onChange={() => {
                   // clearErrors("password");
