@@ -12,14 +12,28 @@ import { useUserContext } from "@/contexts/UserContext";
 import capitalize from "@/utils/capitalize";
 import { useEffect, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import { CircleUser, Pen } from "lucide-react";
+import { CircleAlert, CircleUser, Loader, Pen } from "lucide-react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ModifyNameSchema from "@/schemas/ModifyNameSchema";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
-  const { register, handleSubmit, setValue } = useForm();
+  // TODO: Is this necessary? Why not pass the function directly?
+  const modifyNameSchema = ModifyNameSchema();
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(modifyNameSchema),
+    mode: "onSubmit",
+  });
   const baseUrl = "http://127.0.0.1:8000";
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState("");
@@ -64,31 +78,34 @@ export default function ProfileSettings() {
       });
   };
 
-  const handleName = (data: FieldValues) => {
-    console.log(data);
+  const handleName = async (data: FieldValues) => {
+    try {
+      console.log(data);
 
-    const formData = new FormData();
-    formData.append("email", user.email);
-    formData.append("current_nom", user.last_name);
-    formData.append("current_prenom", user.first_name);
-    formData.append("tmp_nom", data.last_name);
-    formData.append("tmp_prenom", data.first_name);
-    formData.append("tmp_email", user.email);
+      const formData = new FormData();
+      formData.append("email", user.email);
+      formData.append("current_nom", user.last_name);
+      formData.append("current_prenom", user.first_name);
+      formData.append("tmp_nom", data.last_name);
+      formData.append("tmp_prenom", data.first_name);
+      formData.append("tmp_email", user.email);
 
-    AxiosInstance.post(`users/request_update/`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        console.log("Update successful:", response.data);
-        toast.success(`${t("toast.settings.profile.name.success")}`);
-        setTimeout(() => window.location.reload(), 3500);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-        toast.error(`${t("toast.settings.profile.name.error")}`);
-      });
+      const response = await AxiosInstance.post(
+        `users/request_update/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Name change request successful:", response.data);
+      toast.success(`${t("toast.settings.profile.name.success")}`);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error(`${t("toast.settings.profile.name.error")}`);
+    }
   };
 
   return (
@@ -146,10 +163,17 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="first_name"
-              {...register("first_name")}
               label={t("input.firstName")}
               className="h-12"
+              {...register("first_name")}
+              onChange={() => clearErrors("first_name")}
             />
+            {errors.first_name && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errors.first_name.message && String(errors.first_name.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
         <Card className="w-full sm:w-10/12">
@@ -163,14 +187,29 @@ export default function ProfileSettings() {
             <FloatingLabelInput
               type="text"
               id="last_name"
-              {...register("last_name")}
               label={t("input.lastName")}
               className="h-12"
+              {...register("last_name")}
+              onChange={() => clearErrors("last_name")}
             />
+            {errors.last_name && (
+              <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                <CircleAlert size={20} />
+                {errors.last_name.message && String(errors.last_name.message)}
+              </span>
+            )}
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-3 w-40">
-          {t("buttons.ask")}
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="mt-2 w-40 select-none"
+        >
+          {isSubmitting ? (
+            <Loader size={20} className="animate-spin" />
+          ) : (
+            `${t("buttons.ask")}`
+          )}
         </Button>
       </form>
     </main>
