@@ -35,6 +35,7 @@ import Unsubscribe from "@/pages/Unsubscribe.tsx";
 import "./utils/i8n.ts";
 import { LanguageProvider } from "./provider/LanguageProvider.tsx";
 import AdminProtectedRoute from "@/pages/admin/AdminProtectedRoute";
+import ProtectedRoute from "./pages/dashboard/ProtectedRoute.tsx";
 
 export default function App() {
   return (
@@ -92,98 +93,140 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/dashboard"
               element={
-                <DashboardLayout>
-                  <DashboardOverview />
-                </DashboardLayout>
+                <ProtectedRoute
+                  element={
+                    <DashboardLayout>
+                      <DashboardOverview />
+                    </DashboardLayout>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/transactions"
               element={
-                <DashboardLayout>
-                  <TransactionContextProvider>
-                    <DashboardTransactions />
-                  </TransactionContextProvider>
-                </DashboardLayout>
+                <ProtectedRoute
+                  element={
+                    <DashboardLayout>
+                      <TransactionContextProvider>
+                        <DashboardTransactions />
+                      </TransactionContextProvider>
+                    </DashboardLayout>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/activity"
               element={
-                <DashboardLayout>
-                  <DashboardActivity />
-                </DashboardLayout>
+                <ProtectedRoute
+                  element={
+                    <DashboardLayout>
+                      <DashboardActivity />
+                    </DashboardLayout>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/exchange-rates"
               element={
-                <DashboardLayout>
-                  <DashboardExchangeRates />
-                </DashboardLayout>
+                <ProtectedRoute
+                  element={
+                    <DashboardLayout>
+                      <DashboardExchangeRates />
+                    </DashboardLayout>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/help"
               element={
-                <DashboardLayout>
-                  <DashboardHelp />
-                </DashboardLayout>
+                <ProtectedRoute
+                  element={
+                    <DashboardLayout>
+                      <DashboardHelp />
+                    </DashboardLayout>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/settings"
               element={
-                <UserContextProvider>
-                  <Settings>
-                    <ProfileSettings />
-                  </Settings>
-                </UserContextProvider>
+                <ProtectedRoute
+                  element={
+                    <UserContextProvider>
+                      <Settings>
+                        <ProfileSettings />
+                      </Settings>
+                    </UserContextProvider>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/settings/account"
               element={
-                <UserContextProvider>
-                  <Settings>
-                    <AccountSettings />
-                  </Settings>
-                </UserContextProvider>
+                <ProtectedRoute
+                  element={
+                    <UserContextProvider>
+                      <Settings>
+                        <AccountSettings />
+                      </Settings>
+                    </UserContextProvider>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/settings/appearance"
               element={
-                <UserContextProvider>
-                  <Settings>
-                    <AppearanceSettings />
-                  </Settings>
-                </UserContextProvider>
+                <ProtectedRoute
+                  element={
+                    <UserContextProvider>
+                      <Settings>
+                        <AppearanceSettings />
+                      </Settings>
+                    </UserContextProvider>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/settings/notifications"
               element={
-                <UserContextProvider>
-                  <Settings>
-                    <NotificationsSettings />
-                  </Settings>
-                </UserContextProvider>
+                <ProtectedRoute
+                  element={
+                    <UserContextProvider>
+                      <Settings>
+                        <NotificationsSettings />
+                      </Settings>
+                    </UserContextProvider>
+                  }
+                />
               }
             />
             <Route
               path="/dashboard/settings/security"
               element={
-                <UserContextProvider>
-                  <Settings>
-                    <SecuritySettings />
-                  </Settings>
-                </UserContextProvider>
+                <ProtectedRoute
+                  element={
+                    <UserContextProvider>
+                      <Settings>
+                        <SecuritySettings />
+                      </Settings>
+                    </UserContextProvider>
+                  }
+                />
               }
             />
+
             <Route path="/password-reset/:token" element={<PasswordReset />} />
             <Route
               path="/request/password-reset/"
