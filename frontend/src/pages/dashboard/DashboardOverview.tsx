@@ -25,7 +25,7 @@ export default function DashboardOverview() {
 
         const dailyTransactions = user.sent_transactions.filter(transaction => {
             const transactionDate = new Date(transaction.date);
-            transactionDate.toISOString().split('T')[0] === today;
+        return transactionDate.toISOString().split('T')[0] === today;
         });
 
         const dailySum = dailyTransactions.reduce((sum, transaction) => {
