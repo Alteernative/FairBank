@@ -1,22 +1,21 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts"
+import { TrendingUp } from "lucide-react";
+import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const AccountTypesChart: React.FC = () => {
   const [regularUserCount, setRegularUserCount] = useState<number>(0);
@@ -31,9 +30,15 @@ const AccountTypesChart: React.FC = () => {
       );
       if (Array.isArray(response.data)) {
         // Collect user plan types
-        const regularUsers = response.data.filter((user: any) => user.plan === "tier1");
-        const premiumUsers = response.data.filter((user: any) => user.plan === "tier2");
-        const ultimateUsers = response.data.filter((user: any) => user.plan === "tier3");
+        const regularUsers = response.data.filter(
+          (user: any) => user.plan === "tier1"
+        );
+        const premiumUsers = response.data.filter(
+          (user: any) => user.plan === "tier2"
+        );
+        const ultimateUsers = response.data.filter(
+          (user: any) => user.plan === "tier3"
+        );
 
         setRegularUserCount(regularUsers.length);
         setPremiumUserCount(premiumUsers.length);
@@ -72,65 +77,70 @@ const AccountTypesChart: React.FC = () => {
     },
   ];
 
-const chartConfig = {
-  Utilisateurs: {
-    label: "Utilisateurs",
-  },
-  Régulier: {
-    label: "Régulier",
-    color: "hsl(var(--chart-2))",
-  },
-  Premium: {
-    label: "Premium",
-    color: "hsl(var(--chart-3))",
-  },
-  Ultime: {
-    label: "Ultime",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig
+  const chartConfig = {
+    Utilisateurs: {
+      label: "Utilisateurs",
+    },
+    Régulier: {
+      label: "Régulier",
+      color: "hsl(142.1 70.6% 45.3%)",
+    },
+    Premium: {
+      label: "Premium",
+      color: "hsl(220 8.9% 46.1%)",
+    },
+    Ultime: {
+      label: "Ultime",
+      color: "hsl(45.4 93.4% 47.5%)",
+    },
+  } satisfies ChartConfig;
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Plans des Utilisateurs</CardTitle>
-        <CardDescription>Types des plans des utilisateurs actifs actuellement</CardDescription>
+        <CardDescription>
+          Types des plans des utilisateurs actifs actuellement
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <div style={{width: "100%", height: 200}}>
+        <div style={{ width: "100%", height: 200 }}>
           <ResponsiveContainer>
             <ChartContainer config={chartConfig}>
               <BarChart
-                  width={600}
-                  height={300}
-                  data={chartData}
-                  layout="vertical"
-                  margin={{
-                    top: 5, right: 30, left: 20, bottom: 5,
-                  }}
+                width={600}
+                height={300}
+                data={chartData}
+                layout="vertical"
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
               >
                 <YAxis
-                    dataKey="type"
-                    type="category"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={true}
-                    tickFormatter={(value) =>
-                        chartConfig[value as keyof typeof chartConfig]?.label
-                    }
+                  dataKey="type"
+                  type="category"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={true}
+                  tickFormatter={(value) =>
+                    chartConfig[value as keyof typeof chartConfig]?.label
+                  }
                 />
                 <XAxis
-                    dataKey="Utilisateurs"
-                    type="number"
-                    domain={[0, 'dataMax']}
-                    allowDecimals={false}
-                    tickCount={6} // Adjust based on your preference
+                  dataKey="Utilisateurs"
+                  type="number"
+                  domain={[0, "dataMax"]}
+                  allowDecimals={false}
+                  tickCount={6} // Adjust based on your preference
                 />
                 <ChartTooltip
-                    cursor={{fill: 'rgba(255, 255, 255, 0.5)'}}
-                    content={<ChartTooltipContent/>}
+                  cursor={{ fill: "rgba(255, 255, 255, 0.5)" }}
+                  content={<ChartTooltipContent />}
                 />
-                <Bar dataKey="Utilisateurs" fill="#8884d8"/>
+                <Bar dataKey="Utilisateurs" fill="#8884d8" />
               </BarChart>
             </ChartContainer>
           </ResponsiveContainer>
