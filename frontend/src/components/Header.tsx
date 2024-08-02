@@ -60,7 +60,7 @@ export default function Header() {
         <NavigationMenuList className="hidden gap-5 lg:flex">
           <NavigationMenuItem asChild>
             <Link
-              to="/particuliers"
+              to="/plans"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               {t("header.plans")}
@@ -123,7 +123,7 @@ export default function Header() {
             </SheetHeader>
             <nav className="mt-20 flex flex-col items-start justify-start gap-10 text-xl font-medium">
               <SheetClose asChild>
-                <Link to="/particuliers" className="hover:underline">
+                <Link to="/plans" className="hover:underline">
                   {t("header.plans")}
                 </Link>
               </SheetClose>

@@ -103,7 +103,7 @@ export default function Footer() {
             </h3>
             <nav className=" flex flex-col items-start gap-2 lg:items-center">
               <Button asChild variant="link">
-                <Link to={"/particuliers"} onClick={scrollToTop}>
+                <Link to={"/plans"} onClick={scrollToTop}>
                   {t("header.plans")}
                 </Link>
               </Button>

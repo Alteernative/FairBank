@@ -52,7 +52,7 @@ export default function App() {
               }
             />
             <Route
-              path="/particuliers"
+              path="/plans"
               element={
                 <Layout>
                   <Personal />
