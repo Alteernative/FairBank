@@ -74,6 +74,23 @@ class LoginViewset(viewsets.ViewSet):
         else:
             return Response(serializer.errors, status=400)
 
+    @action(detail=False, methods=['post'], url_path='user-verify-token')
+    def verify_token(self, request):
+        token = request.data.get('token')
+        if not token:
+            return Response({"error": "Token is required"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            print("time to check token")
+            print(token[:8])
+            auth_token = AuthToken.objects.get(token_key=token[:8], expiry__gt=timezone.now())
+            user = auth_token.user
+            if user.is_staff:
+                return Response({"error": "user is an admin"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"success": "Token is valid"}, status=status.HTTP_200_OK)
+        except AuthToken.DoesNotExist:
+            print("it's not working")
+            return Response({"error": "Token not found or expired"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 def welcome_message_send(user):
     sitelink = "http://localhost:5173/"
