@@ -3,7 +3,7 @@ import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import Personal from "./pages/Personal";
 import Services from "./pages/Services";
-import About from "./pages/About";
+import AboutUs from "./pages/AboutUs.tsx";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
@@ -68,10 +68,10 @@ export default function App() {
               }
             />
             <Route
-              path="/apropos"
+              path="/about-us"
               element={
                 <Layout>
-                  <About />
+                  <AboutUs />
                 </Layout>
               }
             />

@@ -76,7 +76,7 @@ export default function Header() {
           </NavigationMenuItem>
           <NavigationMenuItem asChild>
             <Link
-              to="/apropos"
+              to="/about-us"
               className="duration-250 font-semibold transition-all hover:text-primary/70"
             >
               {t("header.aboutUs")}
@@ -133,7 +133,7 @@ export default function Header() {
                 </Link>
               </SheetClose>
               <SheetClose asChild>
-                <Link to="/apropos" className="hover:underline">
+                <Link to="/about-us" className="hover:underline">
                   {t("header.aboutUs")}
                 </Link>
               </SheetClose>

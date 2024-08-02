@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 
-export default function Apropos() {
+export default function AboutUs() {
   const { t } = useTranslation();
 
   return (

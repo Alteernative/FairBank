@@ -113,7 +113,7 @@ export default function Footer() {
                 </Link>
               </Button>
               <Button asChild variant="link">
-                <Link to={"/apropos"} onClick={scrollToTop}>
+                <Link to={"/about-us"} onClick={scrollToTop}>
                   {t("header.aboutUs")}
                 </Link>
               </Button>
