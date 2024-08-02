@@ -14,7 +14,7 @@ import { useUserContext } from "@/contexts/UserContext";
 import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
 import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CircleAlert, Eye, EyeOff } from "lucide-react";
+import { CircleAlert, Eye, EyeOff, Loader } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -26,8 +26,7 @@ export default function AccountSettings() {
   const {
     handleSubmit: handleEmailSubmit,
     register: registerEmail,
-    setError: setErrorEmail,
-    clearErrors: clearErrors:Email,
+    clearErrors: clearErrorsEmail,
     formState: { errors: errorsEmail, isSubmitting: isSubmittingEmail },
   } = useForm({
     resolver: zodResolver(ModifyEmailSchema()),
@@ -53,30 +52,33 @@ export default function AccountSettings() {
     }
   };
 
-  const handleEmail = (data: FieldValues) => {
-    console.log(data);
+  const handleEmail = async (data: FieldValues) => {
+    try {
+      console.log(data);
 
-    const formData = new FormData();
-    formData.append("email", user.email);
-    formData.append("current_nom", user.last_name);
-    formData.append("current_prenom", user.first_name);
-    formData.append("tmp_nom", user.last_name);
-    formData.append("tmp_prenom", user.first_name);
-    formData.append("tmp_email", data.email);
+      const formData = new FormData();
+      formData.append("email", user.email);
+      formData.append("current_nom", user.last_name);
+      formData.append("current_prenom", user.first_name);
+      formData.append("tmp_nom", user.last_name);
+      formData.append("tmp_prenom", user.first_name);
+      formData.append("tmp_email", data.email);
 
-    AxiosInstance.post(`users/request_update/`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        console.log("Update successful:", response.data);
-        toast.success(`${t("toast.settings.account.email.success")}`);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-        toast.error(`${t("toast.settings.account.email.error")}`);
-      });
+      const response = await AxiosInstance.post(
+        `users/request_update/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Update successful:", response.data);
+      toast.success(`${t("toast.settings.account.email.success")}`);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error(`${t("toast.settings.account.email.error")}`);
+    }
   };
 
   const handlePassword = async (data: FieldValues) => {
@@ -119,17 +121,26 @@ export default function AccountSettings() {
               placeholder={user.email}
               className="h-12"
               {...registerEmail("email")}
+              onChange={() => clearErrorsEmail("email")}
             />
             {errorsEmail.email && (
               <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
-              <CircleAlert size={20} />
-              {errorsEmail.email.message && String(errorsEmail.email.message)}
-            </span>
+                <CircleAlert size={20} />
+                {errorsEmail.email.message && String(errorsEmail.email.message)}
+              </span>
             )}
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-2 w-40 select-none">
-          {t("buttons.ask")}
+        <Button
+          type="submit"
+          disabled={isSubmittingEmail}
+          className="mt-2 w-40 select-none"
+        >
+          {isSubmittingEmail ? (
+            <Loader size={20} className="animate-spin" />
+          ) : (
+            `${t("buttons.ask")}`
+          )}
         </Button>
       </form>
       <Separator />
