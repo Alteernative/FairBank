@@ -18,6 +18,7 @@ import { toast, Toaster } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
 import { ModeToggle } from "./ModeToggle";
 import { LanguageToggle } from "./LanguageToggle";
+import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {
   const {
@@ -106,6 +107,7 @@ const PasswordReset = () => {
   const { token } = useParams();
   const [ShowMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const onSubmit = (data) => {
     AxiosInstance.post(`api/password_reset/confirm/`, {
@@ -114,16 +116,14 @@ const PasswordReset = () => {
     })
       .then((response) => {
         console.log("Response from server:", response);
-        toast.success("Votre mot de passe a été réinitialisé avec succès.");
+        toast.success(`${t("toast.passwordReset.success")}`);
         setShowMessage(true);
         setTimeout(() => {
           navigate("/connexion");
-        }, 3000);
+        }, 2500);
       })
       .catch((error) => {
-        toast.error(
-          "Une erreur est survenu lors de la réinitialisation de votre mot de passe"
-        );
+        toast.error(`${t("toast.passwordReset.error")}`);
         console.error("Error during form submission:", error);
       });
   };
@@ -175,7 +175,7 @@ const PasswordReset = () => {
           </CardContent>
         </Card>
       </main>
-      <Toaster richColors />
+      <Toaster richColors duration={2500} />
     </section>
   );
 };
