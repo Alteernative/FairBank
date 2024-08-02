@@ -75,7 +75,7 @@ export default function AdminSignIn() {
         if (responseErrorData.error) {
           if (
             responseErrorData.error ===
-            "Invalid credentials or User is not active"
+            "Invalid credentials or user is not an admin"
           ) {
             const errorMessage = `${t("zod.signIn.root.message")}`;
             setError("root", {
