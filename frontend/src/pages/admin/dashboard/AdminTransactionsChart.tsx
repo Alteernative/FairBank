@@ -129,7 +129,6 @@ const AdminTransactionsChart = () => {
                 data={chartData}
                 margin={{ left: 12, right: 12 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
                   tickLine={false}
