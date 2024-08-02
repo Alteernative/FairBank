@@ -11,6 +11,8 @@ import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
+import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -20,7 +22,15 @@ import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useUserContext();
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    setError,
+    clearErrors,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    // resolver: zodResolver(ModifyEmailSchema),
+  });
   const [passwordType, setPasswordType] = useState("password");
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -51,12 +61,11 @@ export default function AccountSettings() {
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success(`${t("toast.settings.account.error")}`);
-        setTimeout(() => window.location.reload(), 3500);
+        toast.success(`${t("toast.settings.account.email.success")}`);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
-        toast.error(`${t("toast.settings.account.error")}`);
+        toast.error(`${t("toast.settings.account.email.error")}`);
       });
   };
 
@@ -103,7 +112,7 @@ export default function AccountSettings() {
             />
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-3 w-32">
+        <Button type="submit" className="mt-2 w-40 select-none">
           {t("buttons.ask")}
         </Button>
       </form>
@@ -184,7 +193,7 @@ export default function AccountSettings() {
             </div>
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-3 w-32">
+        <Button type="submit" className="mt-2 w-40 select-none">
           {t("buttons.save")}
         </Button>
       </form>
