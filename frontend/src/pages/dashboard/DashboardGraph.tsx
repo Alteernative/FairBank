@@ -127,12 +127,12 @@ export default function DashboardGraph() {
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => `${value}`}
-              tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
+              tick={{ fontSize: 12, fontWeight: 'bold' }}
             />
             <YAxis
             tickCount={6}
             tickFormatter={(value) => `$${value}`}
-            tick={{ fontSize: 12, fontWeight: 'bold' }} // Customize the tick labels here
+            tick={{ fontSize: 12, fontWeight: 'bold' }}
             />
             <ChartTooltip
               cursor={true}
