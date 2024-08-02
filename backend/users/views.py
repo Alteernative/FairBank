@@ -608,7 +608,8 @@ class AdminViewset(viewsets.ModelViewSet):
     def send_newsLetter(self, request):
         current_users = User.objects.filter(is_active=True, subscribed=True)
         for user in current_users:
-            newsletter_email(user)
+            if not user.is_staff:
+                newsletter_email(user)
         return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=['post'], url_path='verify-token')
