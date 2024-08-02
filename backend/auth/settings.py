@@ -106,12 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # the email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "fairbanktmp@gmail.com"
-EMAIL_HOST_PASSWORD = "qpbn lyrh hxok enze"
-DEFAULT_FROM_EMAIL = "fairbanktmp@gmail.com"
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'admin@fairbank.com'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
