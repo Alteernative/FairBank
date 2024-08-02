@@ -347,6 +347,22 @@ class UserViewset(viewsets.ViewSet):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(detail=False, methods=['post'], url_path='update-plan')
+    def update_plan(self, request):
+        print("it's time to update the plan")
+        plan = request.data.get('plan')
+        user_id = request.data.get('id')
+        valid_plans = dict(CustomUser.Plan)
+        if plan not in valid_plans:
+            return Response({'error': 'Invalid plan'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.get(pk=user_id)
+            user.plan = plan
+            user.save()
+            return Response({'success': 'Plan updated successfully'}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
 class UnsubscribeUsers(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
