@@ -25,7 +25,6 @@ export default function ProfileSettings() {
     handleSubmit,
     register,
     setValue,
-    setError,
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -42,7 +41,6 @@ export default function ProfileSettings() {
     setValue("last_name", user.last_name);
     setValue("email", user.email);
     setValue("id", user.id);
-    // setSelectedImage(`${baseUrl}${user.image_url}`);
     setSelectedImage(user.image_url ? `${baseUrl}${user.image_url}` : "");
   }, [user, setValue]);
 
