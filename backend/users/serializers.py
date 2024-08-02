@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from decimal import Decimal
 
 User = get_user_model()
 
@@ -136,6 +138,18 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
         sender = data.get('sender')
         receiver = data.get('receiver')
         amount = data.get('amount')
+        tier_limits = {
+            'tier1': 5000,
+            'tier2': 15000,
+            'tier3': 100000
+        }
+        daily_limit = tier_limits.get(sender.plan)
+        today__day = timezone.now().day
+        today__month = timezone.now().month
+        all_transactions = Transaction.objects.all()
+        filtered_transactions = [transaction for transaction in all_transactions
+                                 if transaction.date.day == today__day and transaction.date.month == today__month]
+        total_today = Decimal('0')
 
         if sender == receiver:
             raise serializers.ValidationError("Sender and receiver must be different users.")
@@ -148,6 +162,11 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
 
         if sender.balance < amount:
             raise serializers.ValidationError("Insufficient balance.")
+
+        for transaction in filtered_transactions:
+            total_today += transaction.amount
+        if total_today + Decimal(amount) > daily_limit:
+            raise serializers.ValidationError("it's too much buddy.")
 
         return data
 
