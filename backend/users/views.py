@@ -325,18 +325,68 @@ class UserViewset(viewsets.ViewSet):
             'tmp_prenom': request.data.get('tmp_prenom'),
             'current_nom': request.data.get('current_nom'),
             'current_prenom': request.data.get('current_prenom'),
-            'email': request.data.get('email'),
-            'tmp_email': request.data.get('tmp_email')
+            'email': request.user.email,
+            'tmp_email': request.user.email,
         }
         print("the user we're tryin go log is : :)))))", data)
 
         try:
-            existing_request = PendingUsersUpdates.objects.get(email=data['email'])
+            existing_request = PendingUsersUpdates.objects.get(user_id=user.id)
+            existing_request.tmp_nom = data['tmp_nom']
+            existing_request.tmp_prenom = data['tmp_prenom']
+            existing_request.current_nom = data['current_nom']
+            existing_request.current_prenom = data['current_prenom']
+            existing_request.tmp_email = existing_request.email
+
+            if (
+                    existing_request.tmp_nom == existing_request.current_nom and
+                    existing_request.tmp_prenom == existing_request.current_prenom
+            ):
+                return Response({'error': 'Temporary names and current names are identical'},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+            existing_request.save()
+            serializer = PendingUsersUpdatesSerializer(existing_request)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except PendingUsersUpdates.DoesNotExist:
+            serializer = PendingUsersUpdatesSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['post'])
+    def request_update_email(self, request):
+        print(request.user)
+        user = request.user
+        user = CustomUser.objects.get(pk=user.id)
+
+        data = {
+            'user': user.id,
+            'tmp_nom': user.first_name,
+            'tmp_prenom': user.last_name,
+            'current_nom': user.first_name,
+            'current_prenom': user.last_name,
+            'email': request.user.email,
+            'tmp_email': request.data.get('tmp_email'),
+        }
+        print("the user we're tryin go log is : :)))))", data)
+
+        try:
+            existing_request = PendingUsersUpdates.objects.get(user_id=user.id)
             existing_request.tmp_nom = data['tmp_nom']
             existing_request.tmp_prenom = data['tmp_prenom']
             existing_request.current_nom = data['current_nom']
             existing_request.current_prenom = data['current_prenom']
             existing_request.tmp_email = data['tmp_email']
+
+
+            if (
+                    existing_request.tmp_email == existing_request.email
+            ):
+                print("emails are identical boiz")
+                return Response({'error': 'Temporary names and current names are identical'},
+                                status=status.HTTP_400_BAD_REQUEST)
             existing_request.save()
             serializer = PendingUsersUpdatesSerializer(existing_request)
             return Response(serializer.data, status=status.HTTP_200_OK)
