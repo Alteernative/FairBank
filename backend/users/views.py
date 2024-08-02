@@ -611,7 +611,7 @@ class AdminViewset(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def send_newsLetter(self, request):
-        current_users = User.objects.filter(is_active=True)
+        current_users = User.objects.filter(is_active=True, subscribed=True)
         for user in current_users:
             newsletter_email(user)
         return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
