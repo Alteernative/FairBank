@@ -14,7 +14,7 @@ import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
 import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleAlert, Eye, EyeOff, Loader } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,9 @@ export default function AccountSettings() {
     resolver: zodResolver(ModifyPasswordSchema()),
   });
 
-  setValueEmail("email", user.email);
+  useEffect(() => {
+    setValueEmail("email", user.email);
+  }, [user, setValueEmail]);
 
   const handleClick = () => {
     if (passwordType === "password") {
