@@ -36,23 +36,19 @@ export default function AccountSettings() {
   const handleEmail = (data: FieldValues) => {
     console.log(data);
 
-    const formData = new FormData();
-    formData.append("email", user.email);
-    formData.append("current_nom", user.last_name);
-    formData.append("current_prenom", user.first_name);
-    formData.append("tmp_nom", user.last_name);
-    formData.append("tmp_prenom", user.first_name);
-    formData.append("tmp_email", data.email);
+    const tmp_email = data.email || user.email;
 
-    AxiosInstance.post(`users/request_update/`, formData, {
+    const formData = new FormData();
+    formData.append("tmp_email", tmp_email);
+    AxiosInstance.post(`users/request_update_email/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
       .then((response) => {
         console.log("Update successful:", response.data);
-        toast.success(`${t("toast.settings.account.error")}`);
-        setTimeout(() => window.location.reload(), 3500);
+        toast.success(`${t("toast.settings.account.success")}`);
+        //    setTimeout(() => window.location.reload(), 3500);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
@@ -100,6 +96,11 @@ export default function AccountSettings() {
               placeholder={user.email}
               className="h-12"
               {...register("email")}
+            />
+            <input
+              type="hidden"
+              value={user.email}
+              {...register("default_email")}
             />
           </CardContent>
         </Card>
