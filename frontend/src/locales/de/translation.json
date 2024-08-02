@@ -414,6 +414,10 @@
           "success": "Ihr Passwort wurde erfolgreich geändert.",
           "error": "Beim Ändern Ihres Passwortes ist ein Fehler aufgetreten."
         }
+      },
+      "security": {
+        "success": "Ihre Anfrage zur Schließung wurde erfolgreich gesendet.",
+        "error": "Bei der Anfrage zur Schließung Ihres Kontos ist ein Fehler aufgetreten."
       }
     },
     "passwordReset": {

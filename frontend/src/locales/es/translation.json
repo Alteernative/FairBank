@@ -414,6 +414,10 @@
           "success": "Su contraseña ha sido cambiada con éxito.",
           "error": "Se produjo un error al cambiar su contraseña."
         }
+      },
+      "security": {
+        "success": "Su solicitud de cierre ha sido enviada con éxito.",
+        "error": "Se produjo un error al solicitar el cierre de su cuenta."
       }
     },
     "passwordReset": {

@@ -414,6 +414,10 @@
           "success": "La tua password è stata modificata con successo.",
           "error": "Si è verificato un errore durante la modifica della tua password."
         }
+      },
+      "security": {
+        "success": "La tua richiesta di chiusura è stata inviata con successo.",
+        "error": "Si è verificato un errore durante la richiesta di chiusura del tuo account."
       }
     },
     "passwordReset": {
