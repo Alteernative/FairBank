@@ -286,29 +286,6 @@ class UserViewset(viewsets.ViewSet):
         except (ValueError, TypeError, Decimal.InvalidOperation):
             return Response({'error': 'Invalid amount value'}, status=status.HTTP_400_BAD_REQUEST)
 
-        tier_limits = {
-            'tier1': 5000,
-            'tier2': 15000,
-            'tier3': 100000
-        }
-        daily_limit = tier_limits.get(user.plan)
-
-        today__day = timezone.now().day
-        today__month = timezone.now().month
-        print(today__day)
-        print(today__month)
-
-        all_transactions = Transaction.objects.all()
-        filtered_transactions = [transaction for transaction in all_transactions
-                                 if transaction.date.day == today__day and transaction.date.month == today__month]
-        total_today = Decimal('0')
-        for transaction in filtered_transactions:
-            total_today += transaction.amount
-        print(total_today + Decimal(amount))
-        if total_today + Decimal(amount) > daily_limit:
-            print("it's too much buddy")
-            return Response({'error': 'Daily limit exceeded'}, status=status.HTTP_400_BAD_REQUEST)
-
         transaction = Transaction(
             sender=None,
             receiver=user,
@@ -393,6 +370,7 @@ class TransactionViewset(viewsets.ModelViewSet):
         print("Received data:", request.data)
         serializer = self.get_serializer_class()(data=request.data)
         if serializer.is_valid():
+
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
@@ -616,6 +594,12 @@ class AdminViewset(viewsets.ModelViewSet):
             newsletter_email(user)
         return Response({'success': 'Newsletter Emails are sent'}, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['post'])
+    def verify_token(self, request):
+        users = User.objects.all()
+        if request.data.get['token'] not in users.token:
+            return Response({"error": "Token not found"}, status=status.HTTP_400_BAD_REQUEST)
+        print("We got one boizzz")
 
 class AdminLoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
