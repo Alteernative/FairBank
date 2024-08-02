@@ -54,13 +54,13 @@ export default function AdminSignIn() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const response = await AxiosInstance.post("login/", {
+      const response = await AxiosInstance.post("admin_login/", {
         email: data.email,
         password: data.password,
       });
       if (response && response.data && response.data.token) {
         localStorage.setItem("Token", response.data.token);
-        navigate("/dashboard");
+        navigate("/admin");
       } else {
         console.log("Invalid response structure:", response);
       }
