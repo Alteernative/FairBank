@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Unsubscribe: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     console.log(userId);
@@ -15,14 +17,14 @@ const Unsubscribe: React.FC = () => {
       })
         .then((response) => {
           console.log(response);
-          toast.success("Unsubscribed successfully.");
+          toast.success(`${t("toast.unsubscribe.success")}`);
           setTimeout(() => {
             navigate("/");
           }, 1000);
         })
         .catch((error) => {
           console.log(error);
-          toast.error("There was an error processing your request.");
+          toast.error(`${t("toast.unsubscribe.error")}`);
         });
     }
   }, [userId]);
