@@ -372,23 +372,61 @@
     }
   },
   "toast": {
+    "footer": {
+      "success": "Die Nachricht wurde erfolgreich gesendet.",
+      "error": "Beim Senden der Nachricht ist ein Fehler aufgetreten."
+    },
     "userPanel": {
       "sendFunds": {
-        "success": "Gelder wurden gesendet.",
+        "success": "Die Gelder wurden erfolgreich gesendet.",
         "error": "Beim Senden der Gelder ist ein Fehler aufgetreten."
       },
       "requestFunds": {
-        "success": "Gelder wurden angefordert.",
+        "success": "Die Gelder wurden erfolgreich angefordert.",
         "error": "Beim Anfordern der Gelder ist ein Fehler aufgetreten."
       },
       "depositFunds": {
-        "success": "Gelder wurden auf Ihr Konto eingezahlt.",
+        "success": "Die Gelder wurden erfolgreich auf Ihr Konto eingezahlt.",
         "error": "Beim Einzahlen der Gelder ist ein Fehler aufgetreten."
+      },
+      "signUp": {
+        "success": "Die Anmeldung wurde erfolgreich abgeschlossen.",
+        "error": "Anmeldung abgelehnt, die E-Mail existiert bereits."
       }
     },
-    "signUp": {
-      "success": "Registrierung abgeschlossen.",
-      "error": "Registrierung abgelehnt, die E-Mail existiert bereits."
+    "settings": {
+      "profile": {
+        "image": {
+          "success": "Ihr Profilbild wurde erfolgreich geändert.",
+          "error": "Beim Ändern des Profilbildes ist ein Fehler aufgetreten."
+        },
+        "name": {
+          "success": "Ihre Anfrage wurde erfolgreich gesendet.",
+          "error": "Beim Ändern Ihres Namens ist ein Fehler aufgetreten."
+        }
+      },
+      "account": {
+        "email": {
+          "success": "Ihre Anfrage wurde erfolgreich gesendet.",
+          "error": "Beim Ändern Ihrer E-Mail ist ein Fehler aufgetreten."
+        },
+        "password": {
+          "success": "Ihr Passwort wurde erfolgreich geändert.",
+          "error": "Beim Ändern Ihres Passwortes ist ein Fehler aufgetreten."
+        }
+      }
+    },
+    "passwordReset": {
+      "success": "Das Passwort wurde erfolgreich zurückgesetzt.",
+      "error": "Beim Zurücksetzen Ihres Passworts ist ein Fehler aufgetreten."
+    },
+    "passwordRequestReset": {
+      "success": "Eine E-Mail zum Zurücksetzen wurde gesendet.",
+      "error": "Beim Anfordern des Zurücksetzens des Passworts ist ein Fehler aufgetreten."
+    },
+    "unsubscribe": {
+      "success": "Sie wurden erfolgreich abgemeldet.",
+      "error": "Beim Abmelden ist ein Fehler aufgetreten."
     }
   },
   "zod": {
