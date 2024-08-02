@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
 import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
@@ -23,14 +22,19 @@ import { toast } from "sonner";
 
 export default function AccountSettings() {
   const { user } = useUserContext();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [passwordType, setPasswordType] = useState("password");
   const {
     handleSubmit: handleEmailSubmit,
     register: registerEmail,
+    setValue: setValueEmail,
     clearErrors: clearErrorsEmail,
     formState: { errors: errorsEmail, isSubmitting: isSubmittingEmail },
   } = useForm({
     resolver: zodResolver(ModifyEmailSchema()),
   });
+
   const {
     handleSubmit: handlePasswordSubmit,
     register: registerPassword,
@@ -40,9 +44,8 @@ export default function AccountSettings() {
   } = useForm({
     resolver: zodResolver(ModifyPasswordSchema()),
   });
-  const [passwordType, setPasswordType] = useState("password");
-  const navigate = useNavigate();
-  const { t } = useTranslation();
+
+  setValueEmail("email", user.email);
 
   const handleClick = () => {
     if (passwordType === "password") {
@@ -116,9 +119,10 @@ export default function AccountSettings() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Input
+            <FloatingLabelInput
               type="text"
-              placeholder={user.email}
+              id="email"
+              label={t("input.email")}
               className="h-12"
               {...registerEmail("email")}
               onChange={() => clearErrorsEmail("email")}
