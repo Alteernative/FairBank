@@ -76,7 +76,7 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
         )}
 
         <Link
-          to="/particuliers"
+          to="/plans"
           target="_blank"
           className="absolute -bottom-11 left-0 rounded-md px-1 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
         >

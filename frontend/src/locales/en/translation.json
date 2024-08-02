@@ -220,7 +220,7 @@
     },
 
     "exchangeRate": {
-      "h1": "Exchange rate",
+      "h1": "Exchange rates",
       "h2": "Current exchange rates"
     },
 
@@ -255,7 +255,7 @@
     "dashboard": "Menu",
     "transaction": "History",
     "activity": "Activity",
-    "exchangeRate": "Exchange Rate",
+    "exchangeRate": "Exchange Rates",
     "help": "Help"
   },
 
