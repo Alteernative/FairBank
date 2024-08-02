@@ -31,10 +31,10 @@ import AdminSignIn from "./pages/admin/AdminSignIn.tsx";
 import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview.tsx";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard.tsx";
 import AdminDashboardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
-import AdminDashBoardDemands from "@/pages/admin/dashboard/AdminDashboardDemands.tsx";
 import Unsubscribe from "@/pages/Unsubscribe.tsx";
 import "./utils/i8n.ts";
 import { LanguageProvider } from "./provider/LanguageProvider.tsx";
+import AdminProtectedRoute from "@/pages/admin/AdminProtectedRoute";
 
 export default function App() {
   return (
@@ -193,12 +193,21 @@ export default function App() {
             <Route
               path="/admin"
               element={
-                <AdminDashboard>
-                  <AdminDashboardOverview />
-                </AdminDashboard>
+                <AdminProtectedRoute
+                  element={
+                    <AdminDashboard>
+                      <AdminDashboardOverview />
+                    </AdminDashboard>
+                  }
+                />
               }
             />
-            <Route path="/admin/demands" element={<AdminDashBoardDemands />} />
+            <Route
+              path="/admin/demands"
+              element={
+                <AdminProtectedRoute element={<AdminDashboardDemands />} />
+              }
+            />
             <Route path="/unsubscribe/:userId" element={<Unsubscribe />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
