@@ -1,5 +1,5 @@
 import { useUserContext } from "@/contexts/UserContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardGraph from "@/components/DashboardGraph";
 import CountUp from "react-countup";
 import {
@@ -8,10 +8,9 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel.tsx";
 import { Card, CardHeader } from "@/components/ui/card.tsx";
-import { ProgressBar } from "@/components/ProgressBar";
 import { useTranslation } from "react-i18next";
-
-const UPPER_LIMIT = 100;
+import { Progress } from "@/components/ui/progress.tsx";
+import formatCurrency from "@/utils/formatCurrency";
 
 export default function DashboardOverview() {
   const { user } = useUserContext();
@@ -19,11 +18,34 @@ export default function DashboardOverview() {
   const [balances, setBalances] = useState([
     { currency: "CAD", amount: user.balance },
   ]);
+  const [dailyTransactionsSum, setDailyTransactionsSum] = useState(0);
 
-  const handleBalanceConversion = (currency, rate) => {
-    const convertedAmount = user.balance * rate;
-    setBalances([...balances, { currency, amount: convertedAmount }]);
-  };
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+
+    const dailyTransactions = user.sent_transactions.filter((transaction) => {
+      try {
+        const transactionDate = new Date(transaction.date);
+        if (isNaN(transactionDate)) {
+          throw new Error("Invalid date");
+        }
+        return transactionDate.toISOString().split("T")[0] === today;
+      } catch (error) {
+        console.error(
+          `Error processing transaction date: ${transaction.date}`,
+          error
+        );
+        return false;
+      }
+    });
+
+    const dailySum = dailyTransactions.reduce((sum, transaction) => {
+      const amount = parseFloat(transaction.amount);
+      return sum + amount;
+    }, 0);
+
+    setDailyTransactionsSum(dailySum);
+  }, [user.sent_transactions]);
 
   const currencySymbols = {
     USD: "$",
@@ -33,6 +55,14 @@ export default function DashboardOverview() {
     CNY: "¥",
     INR: "₹",
   };
+
+  const transactionsLimits = {
+    tier1: 5000,
+    tier2: 15000,
+    tier3: 100000,
+  };
+  const transactionsLimit = transactionsLimits[user.plan];
+  const progress = (dailyTransactionsSum / transactionsLimit) * 100;
 
   return (
     <main className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
@@ -55,15 +85,16 @@ export default function DashboardOverview() {
           />
         </div>
 
-        <div className="rounded-lg border bg-background p-4 shadow lg:col-span-1 lg:row-span-1">
-          <h2 className="mb-3 font-bold">
-            {t("dashboard.overview.transactions")}
-          </h2>
-          <ProgressBar
-            transactionsCount={user.sent_transactions.length}
-            upperLimit={UPPER_LIMIT}
-          />
+        {/* TRANSACTION LIMIT */}
+        <div className="col-span-1 row-span-1 rounded-lg border bg-background p-4 shadow">
+          <h2 className="mb-3 font-bold">Limite quotidienne</h2>
+          <Progress value={progress} className="w-[100%]" />
+          <p className="mt-4 font-jomhuria text-3xl">
+            {`${formatCurrency(dailyTransactionsSum)} / ${formatCurrency(transactionsLimit)}`}
+          </p>
         </div>
+
+        {/* BALANCE GRAPH */}
         <div className="rounded-lg shadow lg:col-span-3 lg:row-span-3">
           <DashboardGraph />
         </div>

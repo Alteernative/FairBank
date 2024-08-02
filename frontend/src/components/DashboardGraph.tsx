@@ -18,7 +18,6 @@ import {
 import { useUserContext } from "@/contexts/UserContext";
 import { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
-import formatDate from "@/utils/formatDate";
 import { FaFileDownload } from "react-icons/fa";
 
 const chartConfig = {
@@ -133,12 +132,12 @@ export default function DashboardGraph() {
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => `${value}`}
-              tick={{ fontSize: 12, fontWeight: "bold" }} // Customize the tick labels here
+              tick={{ fontSize: 12, fontWeight: "bold" }}
             />
             <YAxis
               tickCount={6}
               tickFormatter={(value) => `$${value}`}
-              tick={{ fontSize: 12, fontWeight: "bold" }} // Customize the tick labels here
+              tick={{ fontSize: 12, fontWeight: "bold" }}
             />
             <ChartTooltip
               cursor={true}
