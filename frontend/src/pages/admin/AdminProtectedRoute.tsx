@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import AxiosInstance from "@/components/AxiosInstance";
 
-interface AdminProtectedRouteProps {
-  element: React.ReactElement;
-}
+type AdminProtectedRouteProps = {
+  children: React.ReactElement;
+};
 
 const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({
-  element,
+  children,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
@@ -32,7 +32,7 @@ const AdminProtectedRoute: React.FC<AdminProtectedRouteProps> = ({
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? element : <Navigate to="/admin/signin" />;
+  return isAuthenticated ? <>{children}</> : <Navigate to="/admin/signin" />;
 };
 
 export default AdminProtectedRoute;

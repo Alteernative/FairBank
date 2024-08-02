@@ -93,137 +93,116 @@ export default function App() {
                 </Layout>
               }
             />
-
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute
-                  element={
-                    <DashboardLayout>
-                      <DashboardOverview />
-                    </DashboardLayout>
-                  }
-                />
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <DashboardOverview />
+                  </DashboardLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/transactions"
               element={
-                <ProtectedRoute
-                  element={
-                    <DashboardLayout>
-                      <TransactionContextProvider>
-                        <DashboardTransactions />
-                      </TransactionContextProvider>
-                    </DashboardLayout>
-                  }
-                />
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <TransactionContextProvider>
+                      <DashboardTransactions />
+                    </TransactionContextProvider>
+                  </DashboardLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/activity"
               element={
-                <ProtectedRoute
-                  element={
-                    <DashboardLayout>
-                      <DashboardActivity />
-                    </DashboardLayout>
-                  }
-                />
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <DashboardActivity />
+                  </DashboardLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/exchange-rates"
               element={
-                <ProtectedRoute
-                  element={
-                    <DashboardLayout>
-                      <DashboardExchangeRates />
-                    </DashboardLayout>
-                  }
-                />
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <DashboardExchangeRates />
+                  </DashboardLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/help"
               element={
-                <ProtectedRoute
-                  element={
-                    <DashboardLayout>
-                      <DashboardHelp />
-                    </DashboardLayout>
-                  }
-                />
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <DashboardHelp />
+                  </DashboardLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/settings"
               element={
-                <ProtectedRoute
-                  element={
-                    <UserContextProvider>
-                      <Settings>
-                        <ProfileSettings />
-                      </Settings>
-                    </UserContextProvider>
-                  }
-                />
+                <ProtectedRoute>
+                  <UserContextProvider>
+                    <Settings>
+                      <ProfileSettings />
+                    </Settings>
+                  </UserContextProvider>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/settings/account"
               element={
-                <ProtectedRoute
-                  element={
-                    <UserContextProvider>
-                      <Settings>
-                        <AccountSettings />
-                      </Settings>
-                    </UserContextProvider>
-                  }
-                />
+                <ProtectedRoute>
+                  <UserContextProvider>
+                    <Settings>
+                      <AccountSettings />
+                    </Settings>
+                  </UserContextProvider>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/settings/appearance"
               element={
-                <ProtectedRoute
-                  element={
-                    <UserContextProvider>
-                      <Settings>
-                        <AppearanceSettings />
-                      </Settings>
-                    </UserContextProvider>
-                  }
-                />
+                <ProtectedRoute>
+                  <UserContextProvider>
+                    <Settings>
+                      <AppearanceSettings />
+                    </Settings>
+                  </UserContextProvider>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/settings/notifications"
               element={
-                <ProtectedRoute
-                  element={
-                    <UserContextProvider>
-                      <Settings>
-                        <NotificationsSettings />
-                      </Settings>
-                    </UserContextProvider>
-                  }
-                />
+                <ProtectedRoute>
+                  <UserContextProvider>
+                    <Settings>
+                      <NotificationsSettings />
+                    </Settings>
+                  </UserContextProvider>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/dashboard/settings/security"
               element={
-                <ProtectedRoute
-                  element={
-                    <UserContextProvider>
-                      <Settings>
-                        <SecuritySettings />
-                      </Settings>
-                    </UserContextProvider>
-                  }
-                />
+                <ProtectedRoute>
+                  <UserContextProvider>
+                    <Settings>
+                      <SecuritySettings />
+                    </Settings>
+                  </UserContextProvider>
+                </ProtectedRoute>
               }
             />
 
@@ -236,19 +215,19 @@ export default function App() {
             <Route
               path="/admin"
               element={
-                <AdminProtectedRoute
-                  element={
-                    <AdminDashboard>
-                      <AdminDashboardOverview />
-                    </AdminDashboard>
-                  }
-                />
+                <AdminProtectedRoute>
+                  <AdminDashboard>
+                    <AdminDashboardOverview />
+                  </AdminDashboard>
+                </AdminProtectedRoute>
               }
             />
             <Route
               path="/admin/demands"
               element={
-                <AdminProtectedRoute element={<AdminDashboardDemands />} />
+                <AdminProtectedRoute>
+                  <AdminDashboardDemands />
+                </AdminProtectedRoute>
               }
             />
             <Route path="/unsubscribe/:userId" element={<Unsubscribe />} />
