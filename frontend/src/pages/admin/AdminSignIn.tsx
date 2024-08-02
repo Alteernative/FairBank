@@ -18,6 +18,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert.tsx";
 import { ModeToggle } from "@/components/ModeToggle.tsx";
 import { CircleAlert, Eye, EyeOff, TriangleAlert, Loader } from "lucide-react";
 import { LanguageToggle } from "@/components/LanguageToggle.tsx";
+import { useTranslation } from "react-i18next";
 
 type FormData = {
   email: string;
@@ -25,6 +26,8 @@ type FormData = {
 };
 
 export default function AdminSignIn() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [passwordType, setPasswordType] = useState("password");
   const signInSchema = SignInSchema();
   const {
@@ -41,8 +44,6 @@ export default function AdminSignIn() {
       password: "",
     },
   });
-
-  const navigate = useNavigate();
 
   const handleClick = () => {
     if (passwordType === "password") {
@@ -76,7 +77,7 @@ export default function AdminSignIn() {
             responseErrorData.error ===
             "Invalid credentials or User is not active"
           ) {
-            const errorMessage = "Email ou mot de passe invalide.";
+            const errorMessage = `${t("zod.signIn.root.message")}`;
             setError("root", {
               type: "server",
               message: errorMessage,
@@ -111,7 +112,9 @@ export default function AdminSignIn() {
 
         <Card className="h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
-            <CardTitle className="text-center text-2xl">Se connecter</CardTitle>
+            <CardTitle className="text-center text-2xl">
+              {t("buttons.signIn")}
+            </CardTitle>
             <CardDescription className="text-center">
               Entrez votre courriel administrateur et mot de passe pour vous
               connecter.
@@ -123,7 +126,7 @@ export default function AdminSignIn() {
                 <FloatingLabelInput
                   type="text"
                   id="email"
-                  label="Courriel"
+                  label={t("input.email")}
                   {...register("email")}
                   className="h-12"
                   autoFocus
@@ -145,7 +148,7 @@ export default function AdminSignIn() {
                     type={passwordType}
                     id="password"
                     autoComplete="off"
-                    label="Mot de passe"
+                    label={t("input.password")}
                     {...register("password")}
                     className="h-12 pr-12"
                     onChange={() => {
@@ -180,7 +183,7 @@ export default function AdminSignIn() {
                 {errors.root && (
                   <Alert variant={"destructive"}>
                     <TriangleAlert size={20} />
-                    <AlertTitle>Erreur</AlertTitle>
+                    <AlertTitle>{t("zod.signIn.root.title")}</AlertTitle>
                     <AlertDescription>{errors.root.message}</AlertDescription>
                   </Alert>
                 )}
@@ -192,7 +195,7 @@ export default function AdminSignIn() {
                   {isSubmitting ? (
                     <Loader size={20} className="animate-spin" />
                   ) : (
-                    "S'identifier"
+                    `${t("buttons.signIn2")}`
                   )}
                 </Button>
               </div>
