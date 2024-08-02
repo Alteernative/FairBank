@@ -70,7 +70,7 @@ export default function DashboardGraph() {
       }[] = [];
 
       balanceDataPoints.push({
-        transactionNumber: transactions.length + 1,
+        transactionNumber: transactions.length,
         balance: user.balance,
       });
 
