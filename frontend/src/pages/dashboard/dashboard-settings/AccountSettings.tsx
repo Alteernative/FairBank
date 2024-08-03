@@ -61,7 +61,6 @@ export default function AccountSettings() {
     try {
       console.log(data);
 
-
       const tmp_email = data.email || user.email;
 
       const formData = new FormData();
@@ -254,7 +253,7 @@ export default function AccountSettings() {
           {isSubmittingPassword ? (
             <Loader size={20} className="animate-spin" />
           ) : (
-            `${t("buttons.ask")}`
+            `${t("buttons.save")}`
           )}
         </Button>
       </form>
