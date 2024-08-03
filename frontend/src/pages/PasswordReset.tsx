@@ -4,7 +4,7 @@ import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FaCircleExclamation } from "react-icons/fa6";
-import AxiosInstance from "./AxiosInstance";
+import AxiosInstance from "../components/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/card.tsx";
 import { toast, Toaster } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
-import { LanguageToggle } from "./LanguageToggle";
+import { ModeToggle } from "../components/ModeToggle";
+import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {

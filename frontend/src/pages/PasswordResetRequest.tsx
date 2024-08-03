@@ -5,8 +5,8 @@ import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaCircleExclamation } from "react-icons/fa6";
-import StepWrapper from "../pages/signup/StepWrapper";
-import AxiosInstance from "./AxiosInstance";
+import StepWrapper from "./signup/StepWrapper";
+import AxiosInstance from "../components/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 
@@ -17,8 +17,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import { ModeToggle } from "./ModeToggle";
-import { LanguageToggle } from "./LanguageToggle";
+import { ModeToggle } from "../components/ModeToggle";
+import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {
