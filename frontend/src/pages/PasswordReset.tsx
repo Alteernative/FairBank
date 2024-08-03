@@ -1,6 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FaCircleExclamation } from "react-icons/fa6";
@@ -21,11 +26,12 @@ import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {
+  const { t } = useTranslation();
+  const [passwordType, setPasswordType] = useState("password");
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  const [passwordType, setPasswordType] = useState("password");
 
   const handleClick = () => {
     setPasswordType((prevType) =>
@@ -40,7 +46,7 @@ const PasswordFields = () => {
           type={passwordType}
           id="password"
           autoComplete="off"
-          label="Mot de passe"
+          label={t("input.password")}
           {...register("password")}
           autoFocus
           className="h-12 pr-12"
@@ -72,7 +78,7 @@ const PasswordFields = () => {
           type={passwordType}
           id="re_password"
           autoComplete="off"
-          label="Confirmer"
+          label={t("input.re_password")}
           {...register("re_password")}
           className="h-12 pr-12"
         />
@@ -102,30 +108,27 @@ const PasswordFields = () => {
   );
 };
 
-const PasswordReset = () => {
+export default function PasswordReset() {
   const methods = useForm();
   const { token } = useParams();
-  const [ShowMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const onSubmit = (data) => {
-    AxiosInstance.post(`api/password_reset/confirm/`, {
-      password: data.password,
-      token: token,
-    })
-      .then((response) => {
-        console.log("Response from server:", response);
-        toast.success(`${t("toast.passwordReset.success")}`);
-        setShowMessage(true);
-        setTimeout(() => {
-          navigate("/signin");
-        }, 2500);
-      })
-      .catch((error) => {
-        toast.error(`${t("toast.passwordReset.error")}`);
-        console.error("Error during form submission:", error);
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      const response = await AxiosInstance.post(`api/password_reset/confirm/`, {
+        password: data.password,
+        token: token,
       });
+      console.log("Response from server:", response);
+      toast.success(`${t("toast.passwordReset.success")}`);
+      setTimeout(() => {
+        navigate("/signin");
+      }, 2500);
+    } catch (error) {
+      toast.error(`${t("toast.passwordReset.error")}`);
+      console.error("Error during form submission:", error);
+    }
   };
 
   return (
@@ -178,6 +181,4 @@ const PasswordReset = () => {
       <Toaster richColors duration={2500} />
     </section>
   );
-};
-
-export default PasswordReset;
+}
