@@ -134,7 +134,7 @@ const AccountTypesChart: React.FC = () => {
                   type="number"
                   domain={[0, "dataMax"]}
                   allowDecimals={false}
-                  tickCount={6} // Adjust based on your preference
+                  tickCount={6}
                 />
                 <ChartTooltip
                   cursor={{ fill: "rgba(255, 255, 255, 0.5)" }}
