@@ -27,13 +27,6 @@ const PasswordFields = () => {
     register,
     formState: { errors },
   } = useFormContext();
-  const [passwordType, setPasswordType] = useState("password");
-
-  const handleClick = () => {
-    setPasswordType((prevType) =>
-      prevType === "password" ? "text" : "password"
-    );
-  };
 
   return (
     <section className="ml-2 mr-2 flex flex-col gap-4">
@@ -54,7 +47,6 @@ const PasswordFields = () => {
 const PasswordReset = () => {
   const methods = useForm();
   const { token } = useParams();
-  const [ShowMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -65,7 +57,6 @@ const PasswordReset = () => {
     })
 
       .then(() => {
-        setShowMessage(true);
         toast.success(`${t("toast.passwordRequestReset.success")}`);
         setTimeout(() => {
           navigate("/");
