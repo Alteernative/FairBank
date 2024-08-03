@@ -50,7 +50,7 @@
     "lastName": "Sobrenome",
     "email": "E-mail",
     "password": "Senha",
-    "confirm": "Confirmar",
+    "re_password": "Confirmar",
     "recipient": "destinatario@email.com",
     "fundsAmount": "Quantia",
     "fundsEmail": "E-mail",
@@ -371,6 +371,16 @@
       "more": "Mais sobre os planos."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Redefina sua senha",
+      "description": "Digite seu e-mail abaixo para redefinir sua senha."
+    },
+    "password": {
+      "title": "Redefina sua senha",
+      "description": "Digite sua nova senha abaixo para completar a redefinição."
+    }
+  },
   "toast": {
     "footer": {
       "success": "A mensagem foi enviada com sucesso.",
@@ -388,11 +398,11 @@
       "depositFunds": {
         "success": "Os fundos foram depositados em sua conta com sucesso.",
         "error": "Ocorreu um erro ao depositar os fundos."
-      },
-      "signUp": {
-        "success": "Inscrição concluída com sucesso.",
-        "error": "Inscrição recusada, o e-mail já existe."
       }
+    },
+    "signUp": {
+      "success": "Inscrição concluída com sucesso.",
+      "error": "Inscrição recusada, o e-mail já existe."
     },
     "settings": {
       "profile": {

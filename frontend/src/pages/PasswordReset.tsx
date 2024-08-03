@@ -1,10 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FaCircleExclamation } from "react-icons/fa6";
-import AxiosInstance from "./AxiosInstance";
+import AxiosInstance from "../components/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -15,17 +20,21 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { toast, Toaster } from "sonner";
-import { Eye, EyeOff } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
-import { LanguageToggle } from "./LanguageToggle";
+import { Eye, EyeOff, Loader } from "lucide-react";
+import { ModeToggle } from "../components/ModeToggle";
+import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
 
 const PasswordFields = () => {
+  const { t } = useTranslation();
+  const [passwordType, setPasswordType] = useState("password");
   const {
     register,
+    clearErrors,
     formState: { errors },
   } = useFormContext();
-  const [passwordType, setPasswordType] = useState("password");
 
   const handleClick = () => {
     setPasswordType((prevType) =>
@@ -40,10 +49,11 @@ const PasswordFields = () => {
           type={passwordType}
           id="password"
           autoComplete="off"
-          label="Mot de passe"
+          label={t("input.password")}
           {...register("password")}
           autoFocus
           className="h-12 pr-12"
+          onChange={() => clearErrors("password")}
         />
         <span className="absolute right-3 top-0 flex h-full items-center justify-center">
           <Button
@@ -72,9 +82,10 @@ const PasswordFields = () => {
           type={passwordType}
           id="re_password"
           autoComplete="off"
-          label="Confirmer"
+          label={t("input.re_password")}
           {...register("re_password")}
           className="h-12 pr-12"
+          onChange={() => clearErrors("re_password")}
         />
         <span className="absolute right-3 top-0 flex h-full items-center justify-center">
           <Button
@@ -102,35 +113,34 @@ const PasswordFields = () => {
   );
 };
 
-const PasswordReset = () => {
-  const methods = useForm();
+export default function PasswordReset() {
+  const methods = useForm({
+    resolver: zodResolver(ModifyPasswordSchema()),
+  });
   const { token } = useParams();
-  const [ShowMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const onSubmit = (data) => {
-    AxiosInstance.post(`api/password_reset/confirm/`, {
-      password: data.password,
-      token: token,
-    })
-      .then((response) => {
-        console.log("Response from server:", response);
-        toast.success(`${t("toast.passwordReset.success")}`);
-        setShowMessage(true);
-        setTimeout(() => {
-          navigate("/signin");
-        }, 2500);
-      })
-      .catch((error) => {
-        toast.error(`${t("toast.passwordReset.error")}`);
-        console.error("Error during form submission:", error);
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      const response = await AxiosInstance.post(`api/password_reset/confirm/`, {
+        password: data.password,
+        token: token,
       });
+      console.log("Response from server:", response);
+      toast.success(`${t("toast.passwordReset.success")}`);
+      setTimeout(() => {
+        navigate("/signin");
+      }, 2500);
+    } catch (error) {
+      toast.error(`${t("toast.passwordReset.error")}`);
+      console.error("Error during form submission:", error);
+    }
   };
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] lg:flex">
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>
@@ -154,11 +164,10 @@ const PasswordReset = () => {
         <Card className="h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
             <CardTitle className="ml-1 text-center text-2xl">
-              Réinitialisez votre mot de passe
+              {t("password-reset.password.title")}
             </CardTitle>
             <CardDescription className="text-center">
-              Entrez votre nouveau mot de passe ci-dessous pour compléter la
-              réinitialisation.
+              {t("password-reset.password.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -166,8 +175,16 @@ const PasswordReset = () => {
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-4">
                   <PasswordFields />
-                  <Button type="submit" className="mt-2 select-none">
-                    {"Soumettre"}
+                  <Button
+                    type="submit"
+                    disabled={methods.formState.isSubmitting}
+                    className="mt-2 select-none"
+                  >
+                    {methods.formState.isSubmitting ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      `${t("buttons.submit")}`
+                    )}
                   </Button>
                 </div>
               </form>
@@ -178,6 +195,4 @@ const PasswordReset = () => {
       <Toaster richColors duration={2500} />
     </section>
   );
-};
-
-export default PasswordReset;
+}

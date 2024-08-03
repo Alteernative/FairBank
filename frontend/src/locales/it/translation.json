@@ -50,7 +50,7 @@
     "lastName": "Cognome",
     "email": "Email",
     "password": "Password",
-    "confirm": "Conferma",
+    "re_password": "Conferma",
     "recipient": "destinatario@email.com",
     "fundsAmount": "Importo",
     "fundsEmail": "Email",
@@ -371,6 +371,16 @@
       "more": "Maggiori informazioni sui piani."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Reimposta la tua password",
+      "description": "Inserisci la tua email qui sotto per reimpostare la tua password."
+    },
+    "password": {
+      "title": "Reimposta la tua password",
+      "description": "Inserisci la tua nuova password qui sotto per completare il reset."
+    }
+  },
   "toast": {
     "footer": {
       "success": "Il messaggio è stato inviato con successo.",
@@ -388,11 +398,11 @@
       "depositFunds": {
         "success": "I fondi sono stati depositati nel tuo conto con successo.",
         "error": "Si è verificato un errore durante il deposito dei fondi."
-      },
-      "signUp": {
-        "success": "Iscrizione completata con successo.",
-        "error": "Iscrizione rifiutata, l'email esiste già."
       }
+    },
+    "signUp": {
+      "success": "Iscrizione completata con successo.",
+      "error": "Iscrizione rifiutata, l'email esiste già."
     },
     "settings": {
       "profile": {

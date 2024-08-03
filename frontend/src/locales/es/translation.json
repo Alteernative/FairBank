@@ -50,7 +50,7 @@
     "lastName": "Apellido",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "confirm": "Confirmar",
+    "re_password": "Confirmar",
     "recipient": "destinatario@correo.com",
     "fundsAmount": "Cantidad",
     "fundsEmail": "Correo electrónico",
@@ -371,6 +371,16 @@
       "more": "Más sobre los planes."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Restablezca su contraseña",
+      "description": "Ingrese su correo electrónico a continuación para restablecer su contraseña."
+    },
+    "password": {
+      "title": "Restablezca su contraseña",
+      "description": "Ingrese su nueva contraseña a continuación para completar el restablecimiento."
+    }
+  },
   "toast": {
     "footer": {
       "success": "El mensaje ha sido enviado con éxito.",
@@ -388,11 +398,11 @@
       "depositFunds": {
         "success": "Los fondos han sido depositados en su cuenta con éxito.",
         "error": "Se produjo un error al depositar los fondos."
-      },
-      "signUp": {
-        "success": "Registro completado con éxito.",
-        "error": "Registro rechazado, el correo electrónico ya existe."
       }
+    },
+    "signUp": {
+      "success": "Registro completado con éxito.",
+      "error": "Registro rechazado, el correo electrónico ya existe."
     },
     "settings": {
       "profile": {

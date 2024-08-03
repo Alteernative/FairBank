@@ -50,7 +50,7 @@
     "lastName": "Nachname",
     "email": "E-Mail",
     "password": "Passwort",
-    "confirm": "Bestätigen",
+    "re_password": "Bestätigen",
     "recipient": "empfänger@email.com",
     "fundsAmount": "Betrag",
     "fundsEmail": "E-Mail",
@@ -371,6 +371,16 @@
       "more": "Mehr über die Pläne."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Setzen Sie Ihr Passwort zurück",
+      "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen."
+    },
+    "password": {
+      "title": "Setzen Sie Ihr Passwort zurück",
+      "description": "Geben Sie unten Ihr neues Passwort ein, um den Reset abzuschließen."
+    }
+  },
   "toast": {
     "footer": {
       "success": "Die Nachricht wurde erfolgreich gesendet.",
@@ -388,11 +398,11 @@
       "depositFunds": {
         "success": "Die Gelder wurden erfolgreich auf Ihr Konto eingezahlt.",
         "error": "Beim Einzahlen der Gelder ist ein Fehler aufgetreten."
-      },
-      "signUp": {
-        "success": "Die Anmeldung wurde erfolgreich abgeschlossen.",
-        "error": "Anmeldung abgelehnt, die E-Mail existiert bereits."
       }
+    },
+    "signUp": {
+      "success": "Die Anmeldung wurde erfolgreich abgeschlossen.",
+      "error": "Anmeldung abgelehnt, die E-Mail existiert bereits."
     },
     "settings": {
       "profile": {

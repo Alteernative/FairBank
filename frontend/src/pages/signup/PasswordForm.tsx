@@ -67,7 +67,7 @@ export default function PasswordForm() {
             type={passwordType}
             id="re_password"
             autoComplete="off"
-            label={t("input.confirm")}
+            label={t("input.re_password")}
             {...register("re_password")}
             className="h-12 pr-11"
             onChange={() => clearErrors("re_password")}

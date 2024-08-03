@@ -55,7 +55,7 @@
     "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
-    "confirm": "Confirm",
+    "re_password": "Confirm",
     "recipient": "recipient@email.com",
     "fundsAmount": "Amount",
     "fundsEmail": "Email",
@@ -393,7 +393,16 @@
       "more": "More about the plans."
     }
   },
-
+  "password-reset": {
+    "email": {
+      "title": "Reset Your Password",
+      "description": "Enter your email below to reset your password."
+    },
+    "password": {
+      "title": "Reset Your Password",
+      "description": "Enter your new password below to complete the reset."
+    }
+  },
   "toast": {
     "footer": {
       "success": "The message has been sent successfully.",
@@ -411,11 +420,11 @@
       "depositFunds": {
         "success": "Funds have been deposited into your account successfully.",
         "error": "An error occurred while depositing the funds."
-      },
-      "signUp": {
-        "success": "Sign-up completed successfully.",
-        "error": "Sign-up declined, email already exists."
       }
+    },
+    "signUp": {
+      "success": "Sign-up completed successfully.",
+      "error": "Sign-up declined, email already exists."
     },
     "settings": {
       "profile": {
