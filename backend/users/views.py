@@ -546,7 +546,7 @@ class AdminViewset(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def list_all_users(self, request):
-        users = User.objects.all()
+        users = User.objects.filter(is_staff=False)
         serializer = self.serializer_class(users, many=True)
         return Response(serializer.data)
 
