@@ -50,7 +50,7 @@
     "lastName": "Apellido",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "confirm": "Confirmar",
+    "re_password": "Confirmar",
     "recipient": "destinatario@correo.com",
     "fundsAmount": "Cantidad",
     "fundsEmail": "Correo electrónico",

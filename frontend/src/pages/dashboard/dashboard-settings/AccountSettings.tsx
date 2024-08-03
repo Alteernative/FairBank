@@ -230,7 +230,7 @@ export default function AccountSettings() {
                 type={passwordType}
                 id="re_password"
                 autoComplete="off"
-                label={t("input.confirm")}
+                label={t("input.re_password")}
                 className="h-12"
                 {...registerPassword("re_password")}
                 onChange={() => clearErrorsPassword("re_password")}

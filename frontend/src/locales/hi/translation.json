@@ -50,7 +50,7 @@
     "lastName": "अंतिम नाम",
     "email": "ईमेल",
     "password": "पासवर्ड",
-    "confirm": "पुष्टि करें",
+    "re_password": "पुष्टि करें",
     "recipient": "recipient@email.com",
     "fundsAmount": "राशि",
     "fundsEmail": "ईमेल",

@@ -55,7 +55,7 @@
     "lastName": "Nom",
     "email": "Courriel",
     "password": "Mot de passe",
-    "confirm": "Confirmer",
+    "re_password": "Confirmer",
     "recipient": "destinataire@courriel.com",
     "fundsAmount": "Montant",
     "fundsEmail": "Courriel",

@@ -50,7 +50,7 @@
     "lastName": "Фамилия",
     "email": "Электронная почта",
     "password": "Пароль",
-    "confirm": "Подтвердить",
+    "re_password": "Подтвердить",
     "recipient": "получатель@email.com",
     "fundsAmount": "Сумма",
     "fundsEmail": "Электронная почта",

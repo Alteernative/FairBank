@@ -55,7 +55,7 @@
     "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
-    "confirm": "Confirm",
+    "re_password": "Confirm",
     "recipient": "recipient@email.com",
     "fundsAmount": "Amount",
     "fundsEmail": "Email",

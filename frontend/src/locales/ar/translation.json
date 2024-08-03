@@ -50,7 +50,7 @@
     "lastName": "الاسم الأخير",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
-    "confirm": "تأكيد",
+    "re_password": "تأكيد",
     "recipient": "recipient@email.com",
     "fundsAmount": "المبلغ",
     "fundsEmail": "البريد الإلكتروني",

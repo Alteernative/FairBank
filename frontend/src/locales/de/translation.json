@@ -50,7 +50,7 @@
     "lastName": "Nachname",
     "email": "E-Mail",
     "password": "Passwort",
-    "confirm": "Bestätigen",
+    "re_password": "Bestätigen",
     "recipient": "empfänger@email.com",
     "fundsAmount": "Betrag",
     "fundsEmail": "E-Mail",

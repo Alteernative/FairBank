@@ -50,7 +50,7 @@
     "lastName": "姓",
     "email": "メール",
     "password": "パスワード",
-    "confirm": "確認",
+    "re_password": "確認",
     "recipient": "recipient@email.com",
     "fundsAmount": "金額",
     "fundsEmail": "メール",

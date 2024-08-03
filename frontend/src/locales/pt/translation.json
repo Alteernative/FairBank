@@ -50,7 +50,7 @@
     "lastName": "Sobrenome",
     "email": "E-mail",
     "password": "Senha",
-    "confirm": "Confirmar",
+    "re_password": "Confirmar",
     "recipient": "destinatario@email.com",
     "fundsAmount": "Quantia",
     "fundsEmail": "E-mail",

@@ -50,7 +50,7 @@
     "lastName": "姓氏",
     "email": "邮箱",
     "password": "密码",
-    "confirm": "确认",
+    "re_password": "确认",
     "recipient": "recipient@email.com",
     "fundsAmount": "金额",
     "fundsEmail": "邮箱",

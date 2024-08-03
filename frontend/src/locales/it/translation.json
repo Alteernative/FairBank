@@ -50,7 +50,7 @@
     "lastName": "Cognome",
     "email": "Email",
     "password": "Password",
-    "confirm": "Conferma",
+    "re_password": "Conferma",
     "recipient": "destinatario@email.com",
     "fundsAmount": "Importo",
     "fundsEmail": "Email",
