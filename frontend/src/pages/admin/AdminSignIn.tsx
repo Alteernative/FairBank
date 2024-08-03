@@ -68,21 +68,19 @@ export default function AdminSignIn() {
     } catch (error: any) {
       console.log("Sign in error:", error);
       if (error.response) {
-        const responseErrorData = error.response.data;
+        const errorResponseData = error.response.data;
         console.error("Error status:", error.response.status);
-        console.error("Errors data:", responseErrorData);
+        console.error("Errors data:", errorResponseData);
 
-        if (responseErrorData.error) {
-          if (
-            responseErrorData.error ===
-            "Invalid credentials or user is not an admin"
-          ) {
-            const errorMessage = `${t("zod.signIn.root.message")}`;
-            setError("root", {
-              type: "server",
-              message: errorMessage,
-            });
-          }
+        if (
+          errorResponseData.error ===
+          "Invalid credentials or user is not an admin"
+        ) {
+          const errorMessage = `${t("zod.signIn.root.message")}`;
+          setError("root", {
+            type: "server",
+            message: errorMessage,
+          });
         }
       }
     }
