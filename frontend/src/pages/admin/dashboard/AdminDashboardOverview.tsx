@@ -17,7 +17,7 @@ export default function AdminDashboardOverview() {
           <AdminUserPlansChart />
         </div>
 
-        <div className="col-span-1 row-span-2 rounded-lg shadow">
+        <div className="col-span-1 row-span-1 rounded-lg shadow">
           <AdminNewsletterSend />
           <AdminVisitorsChart />
         </div>
