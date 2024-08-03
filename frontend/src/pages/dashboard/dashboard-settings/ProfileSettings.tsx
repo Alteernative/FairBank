@@ -96,9 +96,26 @@ export default function ProfileSettings() {
 
       console.log("Name change request successful:", response.data);
       toast.success(`${t("toast.settings.profile.name.success")}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating user:", error);
       toast.error(`${t("toast.settings.profile.name.error")}`);
+
+      // Option 2:
+      // const errorResponseData = error.response.data;
+      // console.error("errorResponseData: ", errorResponseData.error);
+      // if (
+      //   errorResponseData.error ===
+      //   "Temporary names and current names are identical"
+      // ) {
+      //   toast.error(`${t("toast.settings.profile.name.error.identical")}`);
+      // } else {
+      //   toast.error(`${t("toast.settings.profile.name.error.all")}`);
+      // }
+      // TODO: Add to translation files
+      // "error": {
+      //   "all": "Une erreur est survenue lors de la demande de modification de votre courriel.",
+      //   "identical": "Le courriel vous avez saisi est identique à votre courriel actuelle."
+      // }
     }
   };
 

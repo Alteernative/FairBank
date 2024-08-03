@@ -78,9 +78,24 @@ export default function AccountSettings() {
       );
       console.log("Update successful:", response.data);
       toast.success(`${t("toast.settings.account.email.success")}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating user:", error);
       toast.error(`${t("toast.settings.account.email.error")}`);
+
+      // Option 2:
+      // const errorResponseData = error.response.data;
+      // if (
+      //   errorResponseData.error ===
+      //   "Temporary names and current names are identical"
+      // ) {
+      //   toast.error(`${t("toast.settings.account.email.error.identical")}`);
+      // } else {
+      // }
+      // TODO: Add to translation files
+      // "error": {
+      //     "all": "Une erreur est survenue lors de la demande de modification de votre nom.",
+      //   "identical": "Le prénom et le nom que vous avez saisis sont identiques à vos valeurs actuelles."
+      // }
     }
   };
 
