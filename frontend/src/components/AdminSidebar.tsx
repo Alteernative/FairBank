@@ -134,7 +134,9 @@ export default function AdminSidebar() {
             <div className="flex flex-col items-center gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <AdminSettingsDialog />
+                  <div>
+                    <AdminSettingsDialog />
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent></TooltipContent>
               </Tooltip>
