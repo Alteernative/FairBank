@@ -371,6 +371,16 @@
       "more": "Más sobre los planes."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Restablezca su contraseña",
+      "description": "Ingrese su correo electrónico a continuación para restablecer su contraseña."
+    },
+    "password": {
+      "title": "Restablezca su contraseña",
+      "description": "Ingrese su nueva contraseña a continuación para completar el restablecimiento."
+    }
+  },
   "toast": {
     "footer": {
       "success": "El mensaje ha sido enviado con éxito.",

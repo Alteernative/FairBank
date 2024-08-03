@@ -371,6 +371,16 @@
       "more": "Mehr über die Pläne."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Setzen Sie Ihr Passwort zurück",
+      "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen."
+    },
+    "password": {
+      "title": "Setzen Sie Ihr Passwort zurück",
+      "description": "Geben Sie unten Ihr neues Passwort ein, um den Reset abzuschließen."
+    }
+  },
   "toast": {
     "footer": {
       "success": "Die Nachricht wurde erfolgreich gesendet.",

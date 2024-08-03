@@ -372,6 +372,16 @@
       "more": "了解更多关于计划的信息。"
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "重置您的密码",
+      "description": "在下方输入您的电子邮件以重置您的密码。"
+    },
+    "password": {
+      "title": "重置您的密码",
+      "description": "在下方输入您的新密码以完成重置。"
+    }
+  },
   "toast": {
     "footer": {
       "success": "消息已成功发送。",

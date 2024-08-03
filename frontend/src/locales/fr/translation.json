@@ -397,6 +397,16 @@
       "more": "Plus d'infos sur les plans."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre courriel ci-dessous pour réinitialiser votre mot de passe."
+    },
+    "password": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre nouveau mot de passe ci-dessous pour compléter la réinitialisation."
+    }
+  },
 
   "toast": {
     "footer": {

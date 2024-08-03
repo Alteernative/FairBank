@@ -371,6 +371,16 @@
       "more": "Maggiori informazioni sui piani."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Reimposta la tua password",
+      "description": "Inserisci la tua email qui sotto per reimpostare la tua password."
+    },
+    "password": {
+      "title": "Reimposta la tua password",
+      "description": "Inserisci la tua nuova password qui sotto per completare il reset."
+    }
+  },
   "toast": {
     "footer": {
       "success": "Il messaggio è stato inviato con successo.",
