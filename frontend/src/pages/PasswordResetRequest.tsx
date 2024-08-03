@@ -22,6 +22,7 @@ import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
 const PasswordFields = () => {
+  const { t } = useTranslation();
   const {
     register,
     formState: { errors },
@@ -40,7 +41,7 @@ const PasswordFields = () => {
         <FloatingLabelInput
           type="email"
           id="email"
-          label="Courriel"
+          label={t("input.email")}
           {...register("email")}
           className="h-12"
           autoFocus
