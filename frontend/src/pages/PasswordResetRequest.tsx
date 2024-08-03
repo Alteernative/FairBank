@@ -1,6 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import { useState } from "react";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -50,21 +55,20 @@ const PasswordReset = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const onSubmit = (data) => {
-    console.log(data.email);
-    AxiosInstance.post(`api/password_reset/`, {
-      email: data.email,
-    })
-
-      .then(() => {
-        toast.success(`${t("toast.passwordRequestReset.success")}`);
-        setTimeout(() => {
-          navigate("/");
-        }, 2500);
-      })
-      .catch(() => {
-        toast.error(`${t("toast.passwordRequestReset.error")}`);
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      console.log(data.email);
+      AxiosInstance.post(`api/password_reset/`, {
+        email: data.email,
       });
+
+      toast.success(`${t("toast.passwordRequestReset.success")}`);
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
+    } catch (error) {
+      toast.error(`${t("toast.passwordRequestReset.error")}`);
+    }
   };
 
   return (
