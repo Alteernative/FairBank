@@ -13,20 +13,20 @@ export default function AdminDashboardOverview() {
         {t("dashboard.overview.welcome")} Admin!
       </h1>
       <section className="grid grid-cols-3 grid-rows-5 gap-4">
-        <div className="col-span-2 row-span-1 rounded-lg shadow">
+        <div className="col-span-2 row-span-1 rounded-lg">
           <AdminUserPlansChart />
         </div>
 
-        <div className="col-span-1 row-span-1 rounded-lg shadow">
+        <div className="col-span-1 row-span-1 rounded-lg">
           <AdminNewsletterSend />
           <AdminVisitorsChart />
         </div>
 
-        <div className="col-span-3 row-span-1 rounded-lg shadow">
+        <div className="col-span-3 row-span-1 rounded-lg">
           <AdminTransactionsChart />
         </div>
 
-        <div className="col-span-3 row-span-1 rounded-lg shadow">
+        <div className="col-span-3 row-span-1 rounded-lg">
           <AdminForeignCurrencyChart />
         </div>
       </section>
