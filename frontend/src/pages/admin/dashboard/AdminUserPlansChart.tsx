@@ -100,7 +100,7 @@ const AccountTypesChart: React.FC = () => {
       <CardHeader>
         <CardTitle>Plans des Utilisateurs</CardTitle>
         <CardDescription>
-          Types des plans des utilisateurs actifs actuellement
+          Types des plans des utilisateurs actifs
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -125,9 +125,7 @@ const AccountTypesChart: React.FC = () => {
                   tickLine={false}
                   tickMargin={10}
                   axisLine={true}
-                  tickFormatter={(value) =>
-                    chartConfig[value as keyof typeof chartConfig]?.label
-                  }
+                  tickFormatter={(value) => chartConfig[value]?.label}
                 />
                 <XAxis
                   dataKey="Utilisateurs"
@@ -146,14 +144,6 @@ const AccountTypesChart: React.FC = () => {
           </ResponsiveContainer>
         </div>
       </CardContent>
-      {/*<CardFooter className="flex-col items-start gap-2 text-sm">*/}
-      {/*  <div className="flex gap-2 font-medium leading-none">*/}
-      {/*    Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />*/}
-      {/*  </div>*/}
-      {/*  <div className="leading-none text-muted-foreground">*/}
-      {/*    Showing total visitors for the last 6 months*/}
-      {/*  </div>*/}
-      {/*</CardFooter>*/}
     </Card>
   );
 };

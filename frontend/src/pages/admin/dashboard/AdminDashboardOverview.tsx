@@ -13,7 +13,6 @@ export default function AdminDashboardOverview() {
                 {t("dashboard.overview.welcome")} Admin!
             </h1>
             <section className="grid grid-cols-3 grid-rows-1 gap-4">
-
                 <div className="col-span-2 row-span-1 rounded-lg">
                     <AdminUserPlansChart/>
                 </div>

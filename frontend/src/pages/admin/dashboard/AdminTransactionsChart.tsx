@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import axios from "axios";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import formatCurrency from "@/utils/formatCurrency";
 
@@ -53,6 +52,7 @@ const AdminTransactionsChart = () => {
   const transformData = (data) => {
     const transactionsPerDay = {};
 
+    // Sum daily user transaction amounts
     data.forEach((user) => {
       user.received_transactions.forEach((transaction) => {
         const date = new Date(transaction.date).toISOString().split("T")[0];
@@ -63,7 +63,7 @@ const AdminTransactionsChart = () => {
       });
     });
 
-    // Sort par date
+    // Sort daily totals by date
     return Object.values(transactionsPerDay).sort(
       (a, b) => new Date(a.date) - new Date(b.date)
     );
@@ -74,7 +74,7 @@ const AdminTransactionsChart = () => {
     [chartData]
   );
 
-  // Format date  YYYY-MM-DD
+  // Format date YYYY-MM-DD
   const today = new Date().toISOString().split("T")[0];
   const currentDayTotal = React.useMemo(() => {
     const todayData = chartData.find((data) => data.date === today);
@@ -87,7 +87,7 @@ const AdminTransactionsChart = () => {
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Graphe Transactions Quotidiennes</CardTitle>
           <CardDescription>
-            Visualisant le montant transactionné quotidiennement
+            Visualisant le montant transactionné quotidiennement par les utilisateurs
           </CardDescription>
         </div>
         <div className="flex">

@@ -49,7 +49,7 @@ export default function DashboardExchangeRates() {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // API KEY apilayer.com
+  // API KEY from apilayer.com
   const apiKey = "9PjsviRD106mo1VyTg79UwJkaMNFFNXW";
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
@@ -68,10 +68,6 @@ export default function DashboardExchangeRates() {
         console.error("Error updating balance:", error);
       });
   };
-  // const currency = "eur"; // Replace with the currency you want to update
-  // const amount = 10.0; // Replace with the amount you want to add
-  // console.log(currency, amount);
-  // updateCurrencyBalance(currency, amount);
 
   // Fetch exchange rates compared to the CAD
   const fetchExchangeRates = async () => {
@@ -159,14 +155,6 @@ export default function DashboardExchangeRates() {
       if (response.data && response.data.result) {
         const convertedAmount = response.data.result;
         setConvertedAmount(convertedAmount);
-
-        // Update user's balance with the converted amount
-        // setUser((prevUser) => ({
-        //   ...prevUser,
-        //   balance: prevUser.balance + convertedAmount,
-        // }));
-
-        // Update the backend with both the original and converted amounts
         updateCurrencyBalance(selectedCurrency, amount, convertedAmount);
       } else {
         console.error("Error converting currency");
