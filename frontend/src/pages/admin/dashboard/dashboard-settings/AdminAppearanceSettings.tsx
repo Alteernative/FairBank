@@ -20,7 +20,7 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
 // FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
-export default function AppearanceSettings() {
+export default function AdminAppearanceSettings() {
   const { t } = useTranslation();
   const [currentFont, setCurrentFont] = useState("Inter");
   const handleFontChange = (value: string) => {
@@ -29,8 +29,8 @@ export default function AppearanceSettings() {
   };
 
   return (
-    <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
-      <Card className="w-full sm:w-10/12">
+    <main className="flex w-full flex-col gap-4 rounded-md bg-muted/20 p-4">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card1.title")}</CardTitle>
           <CardDescription>
@@ -47,13 +47,15 @@ export default function AppearanceSettings() {
                 <SelectItem value="Inter">Inter</SelectItem>
                 <SelectItem value="Montserrat">Montserrat</SelectItem>
                 <SelectItem value="Roboto">Roboto</SelectItem>
-                <SelectItem value="Satoshi">Satoshi</SelectItem>
+                <SelectItem value="Satoshi" className="font-satoshi">
+                  Satoshi
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </CardContent>
       </Card>
-      <Card className="w-full sm:w-10/12">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card2.title")}</CardTitle>
           <CardDescription>
@@ -64,7 +66,7 @@ export default function AppearanceSettings() {
           <LanguageToggle />
         </CardContent>
       </Card>
-      <Card className="w-full sm:w-10/12">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card3.title")}</CardTitle>
           <CardDescription>
@@ -77,7 +79,7 @@ export default function AppearanceSettings() {
       </Card>
 
       {/* TODO: À implémenter */}
-      <Card className="w-full sm:w-10/12">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card4.title")}</CardTitle>
           <CardDescription>
