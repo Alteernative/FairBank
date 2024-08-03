@@ -2,7 +2,11 @@ import { UserContextProvider } from "@/contexts/UserContext";
 import SettingsSidebar from "@/components/SettingsSidebar";
 import { Toaster } from "sonner";
 
-export default function Settings({ children }: { children: React.ReactNode }) {
+export default function AdminSettings({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <section className="flex h-full w-full">
       <UserContextProvider>
