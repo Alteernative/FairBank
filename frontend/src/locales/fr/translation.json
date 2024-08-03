@@ -55,7 +55,7 @@
     "lastName": "Nom",
     "email": "Courriel",
     "password": "Mot de passe",
-    "confirm": "Confirmer",
+    "re_password": "Confirmer",
     "recipient": "destinataire@courriel.com",
     "fundsAmount": "Montant",
     "fundsEmail": "Courriel",
@@ -397,6 +397,16 @@
       "more": "Plus d'infos sur les plans."
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre courriel ci-dessous pour réinitialiser votre mot de passe."
+    },
+    "password": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre nouveau mot de passe ci-dessous pour compléter la réinitialisation."
+    }
+  },
 
   "toast": {
     "footer": {
@@ -415,11 +425,11 @@
       "depositFunds": {
         "success": "Les fonds ont été déposés dans votre compte avec succès.",
         "error": "Une erreur est survenue lors du dépôt des fonds."
-      },
-      "signUp": {
-        "success": "Inscription complétée avec succès.",
-        "error": "Inscription refusée, le courriel existe déjà."
       }
+    },
+    "signUp": {
+      "success": "Inscription complétée avec succès.",
+      "error": "Inscription refusée, le courriel existe déjà."
     },
     "settings": {
       "profile": {

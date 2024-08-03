@@ -50,7 +50,7 @@
     "lastName": "姓",
     "email": "メール",
     "password": "パスワード",
-    "confirm": "確認",
+    "re_password": "確認",
     "recipient": "recipient@email.com",
     "fundsAmount": "金額",
     "fundsEmail": "メール",
@@ -371,6 +371,16 @@
       "more": "プランの詳細。"
     }
   },
+  "password-reset": {
+    "email": {
+      "title": "パスワードをリセットする",
+      "description": "パスワードをリセットするには、以下にメールアドレスを入力してください。"
+    },
+    "password": {
+      "title": "パスワードをリセットする",
+      "description": "リセットを完了するには、以下に新しいパスワードを入力してください。"
+    }
+  },
   "toast": {
     "footer": {
       "success": "メッセージが正常に送信されました。",
@@ -388,11 +398,11 @@
       "depositFunds": {
         "success": "資金が正常にあなたのアカウントに入金されました。",
         "error": "資金の入金中にエラーが発生しました。"
-      },
-      "signUp": {
-        "success": "登録が正常に完了しました。",
-        "error": "登録が拒否されました。メールが既に存在します。"
       }
+    },
+    "signUp": {
+      "success": "登録が正常に完了しました。",
+      "error": "登録が拒否されました。メールが既に存在します。"
     },
     "settings": {
       "profile": {
