@@ -3,10 +3,31 @@ import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 
+type ContactUs = {
+  id: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  message: string;
+};
 export default function AdminDashBoardDemands() {
   const [updateRequests, setUpdateRequests] = useState([]);
   const [deleteRequests, setDeleteRequests] = useState([]);
+  const [contactUs, setUser] = useState<ContactUs | null>(null);
 
+  useEffect(() => {
+    axiosInstance
+      .get("dashboard_admin/list_all_contactUs/")
+      .then((res) => {
+        setUser(res.data);
+        console.log("THE Contact us are ", res.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
+
+  console.log(contactUs);
   useEffect(() => {
     axiosInstance
       .get("dashboard_admin/list_all_requests/")

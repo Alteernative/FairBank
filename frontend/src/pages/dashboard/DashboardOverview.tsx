@@ -73,7 +73,7 @@ export default function DashboardOverview() {
         {user.first_name}!
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-5">
-        <div className="rounded-lg border bg-background p-4 shadow lg:col-span-2 lg:row-span-1 ">
+        <div className="rounded-lg border bg-background p-4 lg:col-span-2 lg:row-span-1 ">
           <h2 className="mb-3 font-bold">{t("dashboard.overview.balance")}</h2>
           <CountUp
             start={0}
@@ -86,7 +86,7 @@ export default function DashboardOverview() {
         </div>
 
         {/* TRANSACTION LIMIT */}
-        <div className="col-span-1 row-span-1 rounded-lg border bg-background p-4 shadow">
+        <div className="col-span-1 row-span-1 rounded-lg border bg-background p-4">
           <h2 className="mb-3 font-bold">Limite quotidienne</h2>
           <Progress value={progress} className="w-[100%]" />
           <p className="mt-4 font-jomhuria text-3xl">
@@ -95,11 +95,11 @@ export default function DashboardOverview() {
         </div>
 
         {/* BALANCE GRAPH */}
-        <div className="rounded-lg shadow lg:col-span-3 lg:row-span-3">
+        <div className="rounded-lg lg:col-span-3 lg:row-span-3">
           <DashboardGraph />
         </div>
 
-        <div className="rounded-lg border bg-background p-4 shadow lg:col-span-3 lg:row-span-1">
+        <div className="rounded-lg border bg-background p-4 lg:col-span-3 lg:row-span-1">
           <h2 className="mb-3 font-bold">
             {t("dashboard.overview.exchangeRate")}
           </h2>
