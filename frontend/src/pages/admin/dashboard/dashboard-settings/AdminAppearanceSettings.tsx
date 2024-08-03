@@ -94,8 +94,9 @@ export default function AdminAppearanceSettings() {
         </CardContent>
       </Card>
 
-      {/* TODO: À implémenter */}
-      <Card className="w-full">
+      {/* TODO: À implémenter; remove hidden */}
+      <Card className="hidden w-full">
+        {/* <Card className="w-full"> */}
         <CardHeader>
           <CardTitle>{t("settings.appearance.card4.title")}</CardTitle>
           <CardDescription>
