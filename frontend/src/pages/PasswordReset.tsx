@@ -20,16 +20,19 @@ import {
   CardTitle,
 } from "@/components/ui/card.tsx";
 import { toast, Toaster } from "sonner";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 import { ModeToggle } from "../components/ModeToggle";
 import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
 
 const PasswordFields = () => {
   const { t } = useTranslation();
   const [passwordType, setPasswordType] = useState("password");
   const {
     register,
+    clearErrors,
     formState: { errors },
   } = useFormContext();
 
@@ -50,6 +53,7 @@ const PasswordFields = () => {
           {...register("password")}
           autoFocus
           className="h-12 pr-12"
+          onChange={() => clearErrors("password")}
         />
         <span className="absolute right-3 top-0 flex h-full items-center justify-center">
           <Button
@@ -81,6 +85,7 @@ const PasswordFields = () => {
           label={t("input.re_password")}
           {...register("re_password")}
           className="h-12 pr-12"
+          onChange={() => clearErrors("re_password")}
         />
         <span className="absolute right-3 top-0 flex h-full items-center justify-center">
           <Button
@@ -109,7 +114,9 @@ const PasswordFields = () => {
 };
 
 export default function PasswordReset() {
-  const methods = useForm();
+  const methods = useForm({
+    resolver: zodResolver(ModifyPasswordSchema()),
+  });
   const { token } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -157,11 +164,10 @@ export default function PasswordReset() {
         <Card className="h-[25rem] w-96 border-none shadow-none">
           <CardHeader>
             <CardTitle className="ml-1 text-center text-2xl">
-              Réinitialisez votre mot de passe
+              {t("password-reset.password.title")}
             </CardTitle>
             <CardDescription className="text-center">
-              Entrez votre nouveau mot de passe ci-dessous pour compléter la
-              réinitialisation.
+              {t("password-reset.password.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -169,8 +175,16 @@ export default function PasswordReset() {
               <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-4">
                   <PasswordFields />
-                  <Button type="submit" className="mt-2 select-none">
-                    {"Soumettre"}
+                  <Button
+                    type="submit"
+                    disabled={methods.formState.isSubmitting}
+                    className="mt-2 select-none"
+                  >
+                    {methods.formState.isSubmitting ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      `${t("buttons.submit")}`
+                    )}
                   </Button>
                 </div>
               </form>
