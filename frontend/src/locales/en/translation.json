@@ -411,11 +411,11 @@
       "depositFunds": {
         "success": "Funds have been deposited into your account successfully.",
         "error": "An error occurred while depositing the funds."
-      },
-      "signUp": {
-        "success": "Sign-up completed successfully.",
-        "error": "Sign-up declined, email already exists."
       }
+    },
+    "signUp": {
+      "success": "Sign-up completed successfully.",
+      "error": "Sign-up declined, email already exists."
     },
     "settings": {
       "profile": {

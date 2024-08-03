@@ -388,11 +388,11 @@
       "depositFunds": {
         "success": "Los fondos han sido depositados en su cuenta con éxito.",
         "error": "Se produjo un error al depositar los fondos."
-      },
-      "signUp": {
-        "success": "Registro completado con éxito.",
-        "error": "Registro rechazado, el correo electrónico ya existe."
       }
+    },
+    "signUp": {
+      "success": "Registro completado con éxito.",
+      "error": "Registro rechazado, el correo electrónico ya existe."
     },
     "settings": {
       "profile": {

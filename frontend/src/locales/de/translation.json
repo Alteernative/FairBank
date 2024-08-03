@@ -388,11 +388,11 @@
       "depositFunds": {
         "success": "Die Gelder wurden erfolgreich auf Ihr Konto eingezahlt.",
         "error": "Beim Einzahlen der Gelder ist ein Fehler aufgetreten."
-      },
-      "signUp": {
-        "success": "Die Anmeldung wurde erfolgreich abgeschlossen.",
-        "error": "Anmeldung abgelehnt, die E-Mail existiert bereits."
       }
+    },
+    "signUp": {
+      "success": "Die Anmeldung wurde erfolgreich abgeschlossen.",
+      "error": "Anmeldung abgelehnt, die E-Mail existiert bereits."
     },
     "settings": {
       "profile": {

@@ -388,11 +388,11 @@
       "depositFunds": {
         "success": "I fondi sono stati depositati nel tuo conto con successo.",
         "error": "Si è verificato un errore durante il deposito dei fondi."
-      },
-      "signUp": {
-        "success": "Iscrizione completata con successo.",
-        "error": "Iscrizione rifiutata, l'email esiste già."
       }
+    },
+    "signUp": {
+      "success": "Iscrizione completata con successo.",
+      "error": "Iscrizione rifiutata, l'email esiste già."
     },
     "settings": {
       "profile": {

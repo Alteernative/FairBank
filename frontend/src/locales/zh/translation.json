@@ -389,11 +389,11 @@
       "depositFunds": {
         "success": "资金已成功存入您的账户。",
         "error": "存入资金时发生错误。"
-      },
-      "signUp": {
-        "success": "注册已成功完成。",
-        "error": "注册被拒绝，电子邮件已存在。"
       }
+    },
+    "signUp": {
+      "success": "注册已成功完成。",
+      "error": "注册被拒绝，电子邮件已存在。"
     },
     "settings": {
       "profile": {
