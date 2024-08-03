@@ -19,7 +19,7 @@ import Settings from "./pages/dashboard/dashboard-settings/Settings";
 import { UserContextProvider } from "@/contexts/UserContext";
 import { TransactionContextProvider } from "@/contexts/TransactionContext";
 import { ThemeProvider } from "@/provider/ThemeProvider";
-import { LanguageProvider } from "./provider/LanguageProvider";
+import { LanguageProvider } from "@/provider/LanguageProvider";
 import PasswordReset from "./pages/PasswordReset";
 import PasswordResetRequest from "./pages/PasswordResetRequest";
 import ProfileSettings from "./pages/dashboard/dashboard-settings/ProfileSettings";
@@ -32,14 +32,10 @@ import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview";
 import AdminDashboardDemands from "@/pages/admin/dashboard/AdminDashboardDemands";
 import Unsubscribe from "@/pages/Unsubscribe";
-import AdminProtectedRoute from "@/pages/admin/AdminProtectedRoute";
-import ProtectedRoute from "./pages/dashboard/ProtectedRoute";
 import "./fonts.css";
 import "./utils/i8n.ts";
-import { LanguageProvider } from "./provider/LanguageProvider.tsx";
 import AdminProtectedRoute from "@/components/AdminProtectedRoute.tsx";
 import ProtectedRoute from "@/components/ProtectedRoute.tsx";
-
 
 export default function App() {
   return (
