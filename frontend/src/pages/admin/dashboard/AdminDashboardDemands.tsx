@@ -10,8 +10,19 @@ type ContactUs = {
   email: string;
   message: string;
 };
+
+type UpdateRequest = {
+  user: number;
+  email: string;
+  current_nom: string;
+  current_prenom: string;
+  tmp_nom: string;
+  tmp_prenom: string;
+  tmp_email: string;
+};
+
 export default function AdminDashBoardDemands() {
-  const [updateRequests, setUpdateRequests] = useState([]);
+  const [updateRequests, setUpdateRequests] = useState<UpdateRequest[]>([]);
   const [deleteRequests, setDeleteRequests] = useState([]);
   const [contactUs, setUser] = useState<ContactUs | null>(null);
 
@@ -116,27 +127,27 @@ export default function AdminDashBoardDemands() {
   return (
     // <section className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
     <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
-      <h1 className="mb-10 font-jomhuria text-6xl">Requests</h1>
+      <h1 className="mb-10 font-jomhuria text-6xl">Requêtes</h1>
       <section className="flex flex-col items-start gap-10">
         <div>
-          <h2 className="mb-4 text-xl font-bold">Pending User Updates</h2>
+          <h2 className="mb-4 text-xl font-bold">Mises à Jour Utilisateur En Attente</h2>
           {updateRequests.length > 0 ? (
             <ul className="space-y-4">
               {updateRequests.map((request) => (
                 <li key={request.user} className="rounded border p-4 shadow">
                   <p>
-                    <strong>User ID:</strong> {request.user}
+                    <strong>ID Utilisateur:</strong> {request.user}
                   </p>
                   <p>
-                    <strong>Email:</strong> {request.email}
+                    <strong>Courriel:</strong> {request.email}
                   </p>
                   <p>
-                    <strong>Current Name:</strong> {request.current_nom}
+                    <strong>Nom actuel:</strong> {request.current_nom}
                     {", "}
                     {request.current_prenom}
                   </p>
                   <p>
-                    <strong>Requested Name:</strong> {request.tmp_nom}
+                    <strong>Nom demandé:</strong> {request.tmp_nom}
                     {", "}
                     {request.tmp_prenom}
                   </p>
@@ -159,24 +170,24 @@ export default function AdminDashBoardDemands() {
               ))}
             </ul>
           ) : (
-            <p>No pending updates</p>
+            <p>Pas de mise à jour en attente</p>
           )}
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-bold">Pending Delete Requests</h2>
+          <h2 className="mb-4 text-xl font-bold">Demandes de Suppression En Attente</h2>
           {deleteRequests.length > 0 ? (
             <ul className="space-y-4">
               {deleteRequests.map((request) => (
                 <li key={request.id} className="rounded border p-4 shadow">
                   <p>
-                    <strong>User ID:</strong> {request.id}
+                    <strong>ID Utilisateur:</strong> {request.id}
                   </p>
                   <p>
-                    <strong>Email:</strong> {request.user_email}
+                    <strong>Courriel:</strong> {request.user_email}
                   </p>
                   <p>
-                    <strong>Name:</strong> {request.user_first_name}{" "}
+                    <strong>Nom actuel:</strong> {request.user_first_name}{" "}
                     {request.user_last_name}
                   </p>
                   <div className="mt-4">
@@ -197,7 +208,7 @@ export default function AdminDashBoardDemands() {
               ))}
             </ul>
           ) : (
-            <p>No pending delete requests</p>
+            <p>Aucune demande de suppression en attente</p>
           )}
         </div>
       </section>
