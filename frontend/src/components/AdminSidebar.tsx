@@ -120,6 +120,8 @@ const AdminSettingsDialog = () => {
           <h1 className="font-jomhuria text-6xl">{t("settings.h1")}</h1>
         </DialogHeader>
         <AdminAppearanceSettings />
+        {/* TODO: Option 2: Use cn className on AppearanceSettings instead of creating AdminAppearanceSettings */}
+        {/* <AdminAppearanceSettings className="m-0 min-w-full rounded-md bg-muted/20 p-4" /> */}
       </DialogContent>
     </Dialog>
   );

@@ -18,8 +18,16 @@ import {
 } from "@/components/ui/select";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslation } from "react-i18next";
+// import { cn } from "@/lib/utils";
+
+// type AdminAppearanceSettingsProps = {
+//   className?: string;
+// };
 
 // FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
+// export default function AdminAppearanceSettings({
+//   className,
+// }: AdminAppearanceSettingsProps) {
 export default function AdminAppearanceSettings() {
   const { t } = useTranslation();
   const [currentFont, setCurrentFont] = useState("Inter");
@@ -30,6 +38,14 @@ export default function AdminAppearanceSettings() {
 
   return (
     <main className="flex w-full flex-col gap-4 rounded-md bg-muted/20 p-4">
+      {/* <main
+      className={
+        (cn(
+          "ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52"
+        ),
+        className)
+      }
+    > */}
       <Card className="w-full">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card1.title")}</CardTitle>
