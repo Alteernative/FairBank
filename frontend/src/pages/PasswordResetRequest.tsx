@@ -98,7 +98,7 @@ export default function PasswordReset() {
               <LanguageToggle />
               <ModeToggle />
               <Button asChild variant={"ghost"} className="ml-2">
-                <Link to={"/signup"}>Devenir membre</Link>
+                <Link to={"/signup"}>{t("buttons.signUp")}</Link>
               </Button>
             </span>
           </div>
