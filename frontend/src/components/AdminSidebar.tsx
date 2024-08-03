@@ -7,7 +7,9 @@ import AdminAppearanceSettings from "@/pages/admin/dashboard/dashboard-settings/
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
 import {
@@ -132,7 +134,9 @@ export default function AdminSidebar() {
             <div className="flex flex-col items-center gap-10">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <AdminSettingsDialog />
+                  <div>
+                    <AdminSettingsDialog />
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent></TooltipContent>
               </Tooltip>
@@ -186,7 +190,9 @@ const AdminSettingsDialog = () => {
   const dialogContent = () => {
     return (
       <DialogContent className="w-11/12 gap-0 overflow-scroll rounded-xl border-b p-0">
-        <DialogHeader className="border-b px-4 pt-2">
+        <DialogHeader className="border-b px-4">
+          <DialogTitle className="hidden"></DialogTitle>
+          <DialogDescription className="hidden"></DialogDescription>
           <h1 className="font-jomhuria text-6xl">{t("settings.h1")}</h1>
         </DialogHeader>
         <AdminAppearanceSettings />
