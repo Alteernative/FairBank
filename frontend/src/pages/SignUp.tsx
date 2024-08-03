@@ -85,12 +85,12 @@ export default function SignUp() {
         if (error.response) {
           console.error("Error response:", error.response);
           console.error("Error status:", error.response.status);
-          const responseErrorData = error.response.data;
-          console.error("Errors data:", responseErrorData);
+          const errorResponseData = error.response.data;
+          console.error("Errors data:", errorResponseData);
 
           if (
             error.response.status === 400 &&
-            responseErrorData.error === "User already exists and is active"
+            errorResponseData.error === "User already exists and is active"
           ) {
             toast.error(`${t("toast.signUp.error")}`);
             setTimeout(() => {
