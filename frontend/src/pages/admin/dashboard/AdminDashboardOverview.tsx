@@ -3,6 +3,7 @@ import AdminVisitorsChart from "@/pages/admin/dashboard/AdminVisitorsChart.tsx";
 import AdminUserPlansChart from "@/pages/admin/dashboard/AdminUserPlansChart.tsx";
 import AdminForeignCurrencyChart from "@/pages/admin/dashboard/AdminForeignCurrencyChart.tsx";
 import { useTranslation } from "react-i18next";
+import AdminNewsLetterSend from "@/pages/admin/dashboard/AdminNewsLetterSend.tsx";
 
 export default function AdminDashboardOverview() {
   const { t } = useTranslation();
@@ -16,7 +17,8 @@ export default function AdminDashboardOverview() {
           <AdminUserPlansChart />
         </div>
 
-        <div className="col-span-1 row-span-1 rounded-lg shadow">
+        <div className="col-span-1 row-span-2 rounded-lg shadow">
+          <AdminNewsLetterSend />
           <AdminVisitorsChart />
         </div>
 
