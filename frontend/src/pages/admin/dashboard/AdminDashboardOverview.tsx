@@ -1,8 +1,9 @@
+import { useTranslation } from "react-i18next";
 import AdminTransactionsChart from "@/pages/admin/dashboard/AdminTransactionsChart.tsx";
 import AdminVisitorsChart from "@/pages/admin/dashboard/AdminVisitorsChart.tsx";
 import AdminUserPlansChart from "@/pages/admin/dashboard/AdminUserPlansChart.tsx";
 import AdminForeignCurrencyChart from "@/pages/admin/dashboard/AdminForeignCurrencyChart.tsx";
-import { useTranslation } from "react-i18next";
+import AdminNewsletterSend from "@/pages/admin/dashboard/AdminNewsLetterSend";
 
 export default function AdminDashboardOverview() {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ export default function AdminDashboardOverview() {
         </div>
 
         <div className="col-span-1 row-span-1 rounded-lg shadow">
+          <AdminNewsletterSend />
           <AdminVisitorsChart />
         </div>
 

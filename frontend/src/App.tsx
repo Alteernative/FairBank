@@ -36,6 +36,10 @@ import AdminProtectedRoute from "@/pages/admin/AdminProtectedRoute";
 import ProtectedRoute from "./pages/dashboard/ProtectedRoute";
 import "./fonts.css";
 import "./utils/i8n.ts";
+import { LanguageProvider } from "./provider/LanguageProvider.tsx";
+import AdminProtectedRoute from "@/components/AdminProtectedRoute.tsx";
+import ProtectedRoute from "@/components/ProtectedRoute.tsx";
+
 
 export default function App() {
   return (
