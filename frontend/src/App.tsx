@@ -28,8 +28,8 @@ import AppearanceSettings from "./pages/dashboard/dashboard-settings/AppearanceS
 import NotificationsSettings from "./pages/dashboard/dashboard-settings/NotificationsSettings";
 import SecuritySettings from "./pages/dashboard/dashboard-settings/SecuritySettings";
 import AdminSignIn from "./pages/admin/AdminSignIn";
-import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
+import AdminDashboardOverview from "./pages/admin/dashboard/AdminDashboardOverview";
 import AdminDashboardDemands from "@/pages/admin/dashboard/AdminDashboardDemands";
 import Unsubscribe from "@/pages/Unsubscribe";
 import AdminProtectedRoute from "@/pages/admin/AdminProtectedRoute";
@@ -93,6 +93,7 @@ export default function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/dashboard"
               element={
@@ -206,11 +207,12 @@ export default function App() {
               }
             />
 
-            <Route path="/password-reset/:token" element={<PasswordReset />} />
             <Route
               path="/request/password-reset/"
               element={<PasswordResetRequest />}
             />
+            <Route path="/password-reset/:token" element={<PasswordReset />} />
+
             <Route path="/admin/signin" element={<AdminSignIn />} />
             <Route
               path="/admin"
