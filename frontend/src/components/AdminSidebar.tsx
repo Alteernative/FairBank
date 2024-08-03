@@ -12,6 +12,18 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { useTranslation } from "react-i18next";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import AdminAppearanceSettings from "@/pages/admin/dashboard/dashboard-settings/AdminAppearanceSettings";
+import { Separator } from "./ui/separator";
 
 export default function AdminSidebar() {
   const location = useLocation();
@@ -68,16 +80,7 @@ export default function AdminSidebar() {
 
           {/* Bottom nav*/}
           <div className="flex flex-col gap-5">
-            <Button
-              asChild
-              variant={isActive("/admin/settings") ? "default" : "ghost"}
-              className={`flex w-full items-center justify-start gap-2 ${isActive("/admin/settings") ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline"}`}
-            >
-              <Link to={"/admin/settings"}>
-                <Settings size={20} />
-                {t("settings.h1")}
-              </Link>
-            </Button>
+            <AdminSettingsDialog />
             <Button
               variant={"destructive"}
               onClick={handleLogout}
@@ -92,3 +95,32 @@ export default function AdminSidebar() {
     </aside>
   );
 }
+
+const AdminSettingsDialog = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          asChild
+          variant="ghost"
+          className={
+            "flex w-full items-center justify-start gap-2 hover:bg-transparent hover:underline"
+          }
+        >
+          <span className="cursor-pointer">
+            <Settings size={20} />
+            {t("settings.h1")}
+          </span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="gap-0 border-b p-0">
+        <DialogHeader className="border-b px-4 pt-2">
+          <h1 className="font-jomhuria text-6xl">{t("settings.h1")}</h1>
+        </DialogHeader>
+        <AdminAppearanceSettings />
+      </DialogContent>
+    </Dialog>
+  );
+};
