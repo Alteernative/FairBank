@@ -144,7 +144,7 @@ const AdminTransactionsChart = () => {
                   }}
                 />
                 <YAxis />
-                <Tooltip />
+                <Tooltip cursor={false} />
                 <Legend />
                 <Bar dataKey={activeChart} fill="hsl(var(--chart-1))" />
               </BarChart>
