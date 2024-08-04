@@ -1,16 +1,13 @@
-import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button.tsx";
 
-const AdminNewsLetterSend: React.FC = () => {
-  const [error, setError] = useState<string | null>(null);
-
+const AdminNewsLetterSend = () => {
   const envoyerCourriels = async () => {
     try {
       await AxiosInstance.get("dashboard_admin/send_newsLetter/");
-    } catch (err) {
-      setError("Error fetching data: " + err.message);
+    } catch (err: any) {
+      console.error("Error fetching data: " + err.message);
     }
   };
 
