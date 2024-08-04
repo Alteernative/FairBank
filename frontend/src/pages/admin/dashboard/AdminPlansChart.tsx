@@ -105,13 +105,7 @@ const AccountPlansChart = () => {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart
-            data={chartData}
-            layout="vertical"
-            margin={{
-              left: 5,
-            }}
-          >
+          <BarChart accessibilityLayer data={chartData} layout="vertical">
             <YAxis
               dataKey="plan"
               type="category"
