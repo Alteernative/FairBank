@@ -4,7 +4,6 @@ import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button.tsx";
 
 const AdminNewsLetterSend: React.FC = () => {
-  const [activeCount, setActiveCount] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
   const envoyerCourriels = async () => {
