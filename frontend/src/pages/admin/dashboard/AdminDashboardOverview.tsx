@@ -8,7 +8,6 @@ import AdminNewsletterSend from "@/pages/admin/dashboard/AdminNewsLetterSend";
 export default function AdminDashboardOverview() {
   const { t } = useTranslation();
   return (
-    // <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
     <main className="ml-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">
         {t("dashboard.overview.welcome")} Admin!
