@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 type ContactUs = {
   id: number;
@@ -123,13 +124,18 @@ export default function AdminDashBoardDemands() {
           {updateRequests.length > 0 ? (
             <ul className="space-y-4">
               {updateRequests.map((request) => (
-                <li key={request.user} className="rounded border p-4 shadow">
+                <li key={request.user} className="rounded-lg border p-4 shadow">
                   <p>
                     <strong>User ID:</strong> {request.user}
                   </p>
+                  <Separator className="my-4" />
                   <p>
                     <strong>Email:</strong> {request.email}
                   </p>
+                  <p>
+                    <strong>Requested Email:</strong> {request.tmp_email}
+                  </p>
+                  <Separator className="my-4" />
                   <p>
                     <strong>Current Name:</strong> {request.current_nom}
                     {", "}
@@ -168,10 +174,11 @@ export default function AdminDashBoardDemands() {
           {deleteRequests.length > 0 ? (
             <ul className="space-y-4">
               {deleteRequests.map((request) => (
-                <li key={request.id} className="rounded border p-4 shadow">
+                <li key={request.id} className="rounded-lg border p-4 shadow">
                   <p>
                     <strong>User ID:</strong> {request.id}
                   </p>
+                  <Separator className="my-4" />
                   <p>
                     <strong>Email:</strong> {request.user_email}
                   </p>
@@ -179,19 +186,20 @@ export default function AdminDashBoardDemands() {
                     <strong>Name:</strong> {request.user_first_name}{" "}
                     {request.user_last_name}
                   </p>
-                  <div className="mt-4">
-                    <button
+                  <div className="mt-4 flex gap-4">
+                    <Button
                       onClick={() => handleApproveDelete(request.id)}
-                      className="mr-2 rounded bg-green-500 px-4 py-2 text-white"
+                      className="w-full bg-green-500 text-white shadow-sm hover:bg-green-500/90 dark:bg-green-900 dark:hover:bg-green-900/90"
                     >
-                      Approve
-                    </button>
-                    <button
+                      <Check size={20} />
+                    </Button>
+                    <Button
+                      variant={"destructive"}
                       onClick={() => handleDeclineDelete(request.id)}
-                      className="rounded bg-red-500 px-4 py-2 text-white"
+                      className="w-full"
                     >
-                      Decline
-                    </button>
+                      <X size={20} />
+                    </Button>
                   </div>
                 </li>
               ))}
