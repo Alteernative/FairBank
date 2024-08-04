@@ -15,9 +15,6 @@ import formatCurrency from "@/utils/formatCurrency";
 export default function DashboardOverview() {
   const { user } = useUserContext();
   const { t } = useTranslation();
-  const [balances, setBalances] = useState([
-    { currency: "CAD", amount: user.balance },
-  ]);
   const [dailyTransactionsSum, setDailyTransactionsSum] = useState(0);
 
   useEffect(() => {
