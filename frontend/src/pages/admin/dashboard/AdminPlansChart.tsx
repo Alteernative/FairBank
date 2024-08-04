@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
   Card,
@@ -16,7 +16,7 @@ import {
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { useTranslation } from "react-i18next";
 
-const AccountPlansChart: React.FC = () => {
+const AccountPlansChart = () => {
   const [tier1UserCount, setTier1UserCount] = useState<number>(0);
   const [tier2UserCount, setTier2UserCount] = useState<number>(0);
   const [tier3UserCount, setTier3UserCount] = useState<number>(0);
