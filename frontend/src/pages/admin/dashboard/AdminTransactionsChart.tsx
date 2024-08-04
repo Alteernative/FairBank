@@ -1,6 +1,4 @@
-"use client";
-import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
@@ -72,14 +70,14 @@ const AdminTransactionsChart = () => {
     );
   };
 
-  const total = React.useMemo(
+  const total = useMemo(
     () => chartData.reduce((acc, curr) => acc + curr.montant, 0),
     [chartData]
   );
 
   // Format date  YYYY-MM-DD
   const today = new Date().toISOString().split("T")[0];
-  const currentDayTotal = React.useMemo(() => {
+  const currentDayTotal = useMemo(() => {
     const todayData = chartData.find((data) => data.date === today);
     return todayData ? todayData.montant : 0;
   }, [chartData, today]);
