@@ -17,6 +17,7 @@ import {
   HandCoins,
   DollarSign,
   CircleAlert,
+  Loader,
 } from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
@@ -60,6 +61,7 @@ const activities: Activity[] = [
 
 export default function UserPanel() {
   const { user, setUser } = useUserContext();
+  const { t } = useTranslation();
   const {
     handleSubmit: handleSubmitSend,
     register: registerSend,
@@ -88,7 +90,6 @@ export default function UserPanel() {
     mode: "onSubmit",
   });
   const baseUrl = "http://127.0.0.1:8000";
-  const { t } = useTranslation();
 
   const planTitle: PlanTitle = {
     tier1: t("plans.tier1.name"),
@@ -231,7 +232,15 @@ export default function UserPanel() {
                         autoComplete="off"
                         className="col-span-3"
                         {...registerSend("amount", { required: true })}
+                        onChange={() => clearErrorsSend("amount")}
                       />
+                      {errorsSend.amount && (
+                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsSend.amount.message &&
+                            String(errorsSend.amount.message)}
+                        </span>
+                      )}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="receiver" className="text-right">
@@ -243,13 +252,26 @@ export default function UserPanel() {
                         placeholder={t("input.recipient")}
                         className="col-span-3"
                         {...registerSend("receiver", { required: true })}
+                        onChange={() => clearErrorsSend("receiver")}
                       />
+                      {errorsSend.receiver && (
+                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsSend.receiver.message &&
+                            String(errorsSend.receiver.message)}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
+                    {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.sendFunds")}</Button>
-                    </DialogClose>
+                    </DialogClose> */}
+                    {isSubmittingSend ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      <Button type="submit">{t("buttons.sendFunds")}</Button>
+                    )}
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -286,7 +308,15 @@ export default function UserPanel() {
                         autoComplete="off"
                         className="col-span-3"
                         {...registerRequest("amount", { required: true })}
+                        onChange={() => clearErrorsSend("amount")}
                       />
+                      {errorsSend.amount && (
+                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsSend.amount.message &&
+                            String(errorsSend.amount.message)}
+                        </span>
+                      )}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="sender" className="text-right">
@@ -298,13 +328,26 @@ export default function UserPanel() {
                         placeholder={t("input.recipient")}
                         className="col-span-3"
                         {...registerRequest("sender", { required: true })}
+                        onChange={() => clearErrorsRequest("sender")}
                       />
+                      {errorsRequest.sender && (
+                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsRequest.sender.message &&
+                            String(errorsRequest.sender.message)}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
+                    {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.requestFunds")}</Button>
-                    </DialogClose>
+                    </DialogClose> */}
+                    {isSubmittingRequest ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      <Button type="submit">{t("buttons.requestFunds")}</Button>
+                    )}
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -344,7 +387,7 @@ export default function UserPanel() {
                         onChange={() => clearErrorsDeposit("amount")}
                       />
                       {errorsDeposit.amount && (
-                        <span className="mt-2 flex items-center gap-1 text-xs text-destructive">
+                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
                           {errorsDeposit.amount.message &&
                             String(errorsDeposit.amount.message)}
@@ -356,7 +399,13 @@ export default function UserPanel() {
                     {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.depositFunds")}</Button>
                     </DialogClose> */}
-                    <Button type="submit">{t("buttons.depositFunds")}</Button>
+                    <Button type="submit" disabled={isSubmittingDeposit}>
+                      {isSubmittingDeposit ? (
+                        <Loader size={20} className="animate-spin" />
+                      ) : (
+                        `${t("buttons.depositFunds")}`
+                      )}
+                    </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -395,7 +444,6 @@ export default function UserPanel() {
             className="p-3"
           />
         </div>
-
         <div className="mb-5 w-full">
           <h2 className="font-semibold">Activités récentes</h2>
           <div className="space-y-2 rounded-lg border p-2 shadow">
@@ -462,7 +510,15 @@ export default function UserPanel() {
                                 {...registerSend("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsSend("amount")}
                               />
+                              {errorsSend.amount && (
+                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsSend.amount.message &&
+                                    String(errorsSend.amount.message)}
+                                </span>
+                              )}
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                               <Label htmlFor="receiver" className="text-right">
@@ -476,15 +532,28 @@ export default function UserPanel() {
                                 {...registerSend("receiver", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsSend("receiver")}
                               />
+                              {errorsSend.receiver && (
+                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsSend.receiver.message &&
+                                    String(errorsSend.receiver.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* < DialogClose asChild>
+                              <Button type="submit">{t("buttons.sendFunds")}</Button>
+                            </DialogClose> */}
+                            {isSubmittingSend ? (
+                              <Loader size={20} className="animate-spin" />
+                            ) : (
                               <Button type="submit">
                                 {t("buttons.sendFunds")}
                               </Button>
-                            </DialogClose>
+                            )}
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -530,7 +599,15 @@ export default function UserPanel() {
                                 {...registerRequest("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsRequest("amount")}
                               />
+                              {errorsRequest.amount && (
+                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsRequest.amount.message &&
+                                    String(errorsRequest.amount.message)}
+                                </span>
+                              )}
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                               <Label htmlFor="sender" className="text-right">
@@ -544,15 +621,30 @@ export default function UserPanel() {
                                 {...registerRequest("sender", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsRequest("sender")}
                               />
+                              {errorsRequest.sender && (
+                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsRequest.sender.message &&
+                                    String(errorsRequest.sender.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* <DialogClose asChild>
                               <Button type="submit">
                                 {t("requestFundsAction")}
                               </Button>
-                            </DialogClose>
+                            </DialogClose> */}
+                            {isSubmittingSend ? (
+                              <Loader size={20} className="animate-spin" />
+                            ) : (
+                              <Button type="submit">
+                                {t("buttons.sendFunds")}
+                              </Button>
+                            )}
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -598,15 +690,33 @@ export default function UserPanel() {
                                 {...registerDeposit("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsDeposit("amount")}
                               />
+                              {errorsDeposit.amount && (
+                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsDeposit.amount.message &&
+                                    String(errorsDeposit.amount.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* <DialogClose asChild>
                               <Button type="submit">
                                 {t("buttons.depositFunds")}
                               </Button>
-                            </DialogClose>
+                            </DialogClose> */}
+                            <Button
+                              type="submit"
+                              disabled={isSubmittingDeposit}
+                            >
+                              {isSubmittingDeposit ? (
+                                <Loader size={20} className="animate-spin" />
+                              ) : (
+                                `${t("buttons.depositFunds")}`
+                              )}
+                            </Button>
                           </DialogFooter>
                         </form>
                       </DialogContent>
