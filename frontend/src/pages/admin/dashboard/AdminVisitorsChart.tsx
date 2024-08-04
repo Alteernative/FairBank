@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,33 +8,34 @@ import {
 } from "@/components/ui/card";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 
-const ActiveAccountsChart: React.FC = () => {
+const ActiveAccountsChart = () => {
   const [activeCount, setActiveCount] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
-    try {
-      const response = await AxiosInstance.get(
-        "dashboard_admin/list_all_users/"
-      );
-      if (Array.isArray(response.data)) {
-        // Filter only users with is_active tag
-        const activeUsers = response.data.filter((user: any) => user.is_active);
-        setActiveCount(activeUsers.length);
-      } else {
-        setError("Invalid data format: Expected an array");
-      }
-    } catch (err) {
-      setError("Error fetching data: " + err.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await AxiosInstance.get(
+          "dashboard_admin/list_all_users/"
+        );
+        if (Array.isArray(response.data)) {
+          const activeUsers = response.data.filter(
+            (user: any) => user.is_active
+          );
+          setActiveCount(activeUsers.length);
+        } else {
+          setError("Invalid data format: Expected an array");
+        }
+      } catch (err: any) {
+        setError("Error fetching data: " + err.message);
+      }
+    };
+
     fetchData();
   }, []);
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-destructive">{error}</div>;
   }
   return (
     <Card className="h-1/2">
