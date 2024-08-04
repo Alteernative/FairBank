@@ -143,7 +143,10 @@ const AccountTypesChart = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[250px] w-full xl:h-[350px]"
+        >
           <BarChart
             accessibilityLayer
             data={chartData}

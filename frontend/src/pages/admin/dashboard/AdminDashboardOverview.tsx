@@ -12,12 +12,12 @@ export default function AdminDashboardOverview() {
       <h1 className="mb-10 font-jomhuria text-6xl">
         {t("dashboard.overview.welcome")} Admin!
       </h1>
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-5">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-3">
         <div className="rounded-lg lg:col-span-2 lg:row-span-1">
           <AdminPlansChart />
         </div>
 
-        <div className="flex h-full flex-col gap-4 rounded-lg lg:col-span-1 lg:row-span-1">
+        <div className="flex flex-col gap-4 rounded-lg lg:col-span-1 lg:row-span-1">
           <AdminVisitorsChart />
           <AdminNewsletterSend />
         </div>

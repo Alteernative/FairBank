@@ -38,7 +38,8 @@ const ActiveAccountsChart = () => {
     return <div className="text-destructive">{error}</div>;
   }
   return (
-    <Card className="h-1/2">
+    // <Card className="aspect-auto h-[225px] w-full xl:h-[300px]">
+    <Card className="h-full">
       <CardHeader className="text-center">
         <CardTitle>Comptes Actifs</CardTitle>
         <CardDescription>
