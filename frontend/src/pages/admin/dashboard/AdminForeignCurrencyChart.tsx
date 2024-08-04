@@ -145,15 +145,11 @@ const AccountTypesChart: React.FC = () => {
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
-            width={600}
-            height={300}
+            accessibilityLayer
             data={chartData}
             layout="vertical"
             margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+              left: 0,
             }}
           >
             <YAxis
