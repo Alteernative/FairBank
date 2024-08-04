@@ -1,16 +1,7 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -18,14 +9,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import axios from "axios";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import formatCurrency from "@/utils/formatCurrency";
+
+const chartConfig = {
+  montant: {
+    label: "Montant",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;
 
 const AdminTransactionsChart = () => {
   const [chartData, setChartData] = useState([]);
   const [error, setError] = useState(null);
-  const [activeChart, setActiveChart] = useState("montantTotal");
+  const [activeChart, setActiveChart] = useState("montant");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,9 +60,9 @@ const AdminTransactionsChart = () => {
       user.received_transactions.forEach((transaction) => {
         const date = new Date(transaction.date).toISOString().split("T")[0];
         if (!transactionsPerDay[date]) {
-          transactionsPerDay[date] = { date, montantTotal: 0 };
+          transactionsPerDay[date] = { date, montant: 0 };
         }
-        transactionsPerDay[date].montantTotal += parseFloat(transaction.amount);
+        transactionsPerDay[date].montant += parseFloat(transaction.amount);
       });
     });
 
@@ -70,7 +73,7 @@ const AdminTransactionsChart = () => {
   };
 
   const total = React.useMemo(
-    () => chartData.reduce((acc, curr) => acc + curr.montantTotal, 0),
+    () => chartData.reduce((acc, curr) => acc + curr.montant, 0),
     [chartData]
   );
 
@@ -78,23 +81,25 @@ const AdminTransactionsChart = () => {
   const today = new Date().toISOString().split("T")[0];
   const currentDayTotal = React.useMemo(() => {
     const todayData = chartData.find((data) => data.date === today);
-    return todayData ? todayData.montantTotal : 0;
+    return todayData ? todayData.montant : 0;
   }, [chartData, today]);
 
   return (
     <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+      <CardHeader className="flex flex-col space-y-0 border-b p-0 md:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Graphe Transactions Quotidiennes</CardTitle>
+          <CardTitle>Transactions Quotidiennes</CardTitle>
           <CardDescription>
-            Visualisant le montant transactionné quotidiennement
+            Montant transactionné quotidiennement
           </CardDescription>
         </div>
+
+        {/* TODO: Remove buttons */}
         <div className="flex">
           <button
-            data-active={activeChart === "montantTotal"}
+            data-active={activeChart === "montant"}
             className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
-            onClick={() => setActiveChart("montantTotal")}
+            onClick={() => setActiveChart("montant")}
           >
             <span className="text-xs text-muted-foreground">
               Montant Quotidien
@@ -106,10 +111,11 @@ const AdminTransactionsChart = () => {
         </div>
 
         <div className="flex">
+          {/* TODO: Remove buttons */}
           <button
-            data-active={activeChart === "montantTotal"}
+            data-active={activeChart === "montant"}
             className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
-            onClick={() => setActiveChart("montantTotal")}
+            onClick={() => setActiveChart("montant")}
           >
             <span className="text-xs text-muted-foreground">Montant Total</span>
             <p className="font-jomhuria text-5xl">{formatCurrency(total)}</p>
@@ -121,35 +127,36 @@ const AdminTransactionsChart = () => {
         {error ? (
           <div>{error}</div>
         ) : (
-          <div className="h-[200px] w-full">
-            <ResponsiveContainer>
-              <BarChart
-                width={750}
-                height={250}
-                data={chartData}
-                margin={{ left: 12, right: 12 }}
-              >
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                  minTickGap={32}
-                  tickFormatter={(value) => {
-                    const date = new Date(value);
-                    return date.toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    });
-                  }}
-                />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey={activeChart} fill="hsl(var(--chart-1))" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <ChartContainer config={chartConfig}>
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="date"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => {
+                  const date = new Date(value);
+                  return date.toLocaleDateString("en-US", {
+                    // month: "short",
+                    month: "2-digit",
+                    day: "numeric",
+                  });
+                }}
+              />
+              <YAxis />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar
+                // dataKey={activeChart}
+                dataKey="montant"
+                fill="hsl(var(--chart-2))"
+                radius={8}
+              />
+            </BarChart>
+          </ChartContainer>
         )}
       </CardContent>
     </Card>

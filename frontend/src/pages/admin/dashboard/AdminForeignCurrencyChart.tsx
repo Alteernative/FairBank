@@ -1,10 +1,9 @@
-"use client";
 import React, { useEffect, useState } from "react";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -15,7 +14,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
-import { Bar, BarChart, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const AccountTypesChart: React.FC = () => {
   const [balances, setBalances] = useState({
@@ -31,7 +29,9 @@ const AccountTypesChart: React.FC = () => {
   const fetchData = async () => {
     try {
       // Fetch Foreign Currency for all users
-      const response = await AxiosInstance.get("dashboard_admin/list_all_users/");
+      const response = await AxiosInstance.get(
+        "dashboard_admin/list_all_users/"
+      );
       if (Array.isArray(response.data)) {
         const totalBalance = {
           USD: 0,
@@ -138,50 +138,48 @@ const AccountTypesChart: React.FC = () => {
     <Card>
       <CardHeader>
         <CardTitle>Devises Étrangères</CardTitle>
-        <CardDescription>Total des devises étrangères échangées par les utilisateurs actifs</CardDescription>
+        <CardDescription>
+          Total des devises étrangères échangées par les utilisateurs actifs
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <div style={{ width: "100%", height: 200 }}>
-          <ResponsiveContainer>
-            <ChartContainer config={chartConfig}>
-              <BarChart
-                width={600}
-                height={300}
-                data={chartData}
-                layout="vertical"
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <YAxis
-                  dataKey="currency"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={true}
-                  tickFormatter={(value) =>
-                    chartConfig[value as keyof typeof chartConfig]?.label
-                  }
-                />
-                <XAxis
-                  dataKey="Balance"
-                  type="number"
-                  domain={[0, 'dataMax']}
-                  allowDecimals={false}
-                  tickCount={6}
-                />
-                <ChartTooltip
-                  cursor={{ fill: 'rgba(255, 255, 255, 0.5)' }}
-                  content={<ChartTooltipContent />}
-                />
-                <Bar dataKey="Balance" fill="#8884d8" />
-              </BarChart>
-            </ChartContainer>
-          </ResponsiveContainer>
-        </div>
+        <ChartContainer config={chartConfig}>
+          <BarChart
+            width={600}
+            height={300}
+            data={chartData}
+            layout="vertical"
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <YAxis
+              dataKey="currency"
+              type="category"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={true}
+              tickFormatter={(value) =>
+                chartConfig[value as keyof typeof chartConfig]?.label
+              }
+            />
+            <XAxis
+              dataKey="Balance"
+              type="number"
+              domain={[0, "dataMax"]}
+              allowDecimals={false}
+              tickCount={6}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="Balance" layout="horizontal" radius={5} />
+          </BarChart>
+        </ChartContainer>
       </CardContent>
     </Card>
   );

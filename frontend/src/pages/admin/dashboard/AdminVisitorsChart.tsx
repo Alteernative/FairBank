@@ -37,13 +37,17 @@ const ActiveAccountsChart: React.FC = () => {
     return <div>{error}</div>;
   }
   return (
-    <Card>
+    <Card className="h-1/2">
       <CardHeader className="text-center">
         <CardTitle>Comptes Actifs</CardTitle>
-        <CardDescription>Total des utilisateurs actifs de FairBank</CardDescription>
+        <CardDescription>
+          Nombre d'utilisateurs actifs chez FairBank
+        </CardDescription>
       </CardHeader>
-      <CardContent className="flex justify-center items-center h-30">
-        <div className="text-6xl font-bold">{activeCount}</div>
+      <CardContent className="h-30 flex items-center justify-center">
+        <span className="font-jomhuria text-7xl sm:text-8xl md:text-9xl">
+          {activeCount}
+        </span>
       </CardContent>
     </Card>
   );

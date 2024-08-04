@@ -16,11 +16,11 @@ const AdminNewsLetterSend: React.FC = () => {
   };
 
   return (
-    <Card className="mb-2">
+    <Card className="mb-2 h-full lg:h-1/4">
       <CardHeader className="text-center">
         <CardTitle>Envoyer les Newsletter</CardTitle>
       </CardHeader>
-      <CardContent className="flex h-11 items-center justify-center ">
+      <CardContent className="flex flex-1 items-center justify-center ">
         <Button onClick={envoyerCourriels}>Envoyer</Button>
       </CardContent>
     </Card>
