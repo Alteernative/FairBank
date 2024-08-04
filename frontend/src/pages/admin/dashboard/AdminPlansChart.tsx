@@ -61,19 +61,19 @@ const AccountPlansChart = () => {
 
   const chartData = [
     {
-      plan: `${t("plans.tier1.name")}`,
+      plan: "tier1",
       Utilisateurs: tier1UserCount,
-      fill: "var(--color-Régulier)",
+      fill: "var(--color-tier1)",
     },
     {
-      plan: `${t("plans.tier2.name")}`,
+      plan: "tier2",
       Utilisateurs: tier2UserCount,
-      fill: "var(--color-Premium)",
+      fill: "var(--color-tier2)",
     },
     {
-      plan: `${t("plans.tier3.name")}`,
+      plan: "tier3",
       Utilisateurs: tier3UserCount,
-      fill: "var(--color-Ultime)",
+      fill: "var(--color-tier3)",
     },
   ];
 
@@ -81,15 +81,15 @@ const AccountPlansChart = () => {
     Utilisateurs: {
       label: "Client",
     },
-    Régulier: {
+    tier1: {
       label: `${t("plans.tier1.name")}`,
       color: "hsl(142.1 70.6% 45.3%)",
     },
-    Premium: {
+    tier2: {
       label: `${t("plans.tier2.name")}`,
       color: "hsl(220 8.9% 46.1%)",
     },
-    Ultime: {
+    tier3: {
       label: `${t("plans.tier3.name")}`,
       color: "hsl(45.4 93.4% 47.5%)",
     },
