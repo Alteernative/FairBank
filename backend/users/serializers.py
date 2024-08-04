@@ -146,7 +146,7 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
         daily_limit = tier_limits.get(sender.plan)
         today__day = timezone.now().day
         today__month = timezone.now().month
-        all_transactions = Transaction.objects.all()
+        all_transactions = Transaction.objects.filter(sender=sender)
         filtered_transactions = [transaction for transaction in all_transactions
                                  if transaction.date.day == today__day and transaction.date.month == today__month]
         total_today = Decimal('0')
@@ -162,7 +162,6 @@ class CreateTransactionSerializer(serializers.ModelSerializer):
 
         if sender.balance < amount:
             raise serializers.ValidationError("Insufficient balance.")
-
         for transaction in filtered_transactions:
             total_today += transaction.amount
         if total_today + Decimal(amount) > daily_limit:
