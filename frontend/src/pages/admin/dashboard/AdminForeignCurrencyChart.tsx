@@ -145,7 +145,8 @@ const AccountTypesChart = () => {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full xl:h-[350px]"
+          // className="aspect-auto h-[250px] w-full xl:h-[350px]"
+          className="aspect-auto h-[400px] w-full xl:h-[500px]"
         >
           <BarChart
             accessibilityLayer

@@ -13,15 +13,16 @@ const AdminNewsLetterSend = () => {
   };
 
   return (
-    <Card className="aspect-auto h-[125px] w-full xl:h-[150px]">
-      <CardHeader className="text-center">
-        <CardTitle>Envoyer les Newsletters</CardTitle>
+    // <Card className="aspect-auto h-[125px] w-full xl:h-[150px]">
+    <Card className="aspect-auto h-[100px] w-full xl:h-[125px]">
+      <CardHeader className="text-center md:py-4">
+        <CardTitle>Newsletters</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-1 items-center justify-center ">
-        <Button className="w-32" onClick={envoyerCourriels}>
+        <Button className="" onClick={envoyerCourriels}>
           <span className="flex items-center justify-center gap-4">
             <Newspaper size={20} />
-            Envoyer
+            Envoyer Newsletter
           </span>
         </Button>
       </CardContent>

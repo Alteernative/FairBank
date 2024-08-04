@@ -106,8 +106,8 @@ const AccountPlansChart = () => {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          // className="aspect-auto h-[250px] w-full xl:h-[350px]"
-          className="aspect-auto h-[300px] w-full xl:h-[400px]"
+          // className="aspect-auto h-[300px] w-full xl:h-[400px]"
+          className="aspect-auto h-[150px] w-full xl:h-[200px]"
         >
           <BarChart accessibilityLayer data={chartData} layout="vertical">
             <YAxis

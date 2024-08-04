@@ -38,16 +38,16 @@ const ActiveAccountsChart = () => {
     return <div className="text-destructive">{error}</div>;
   }
   return (
-    // <Card className="aspect-auto h-[225px] w-full xl:h-[300px]">
-    <Card className="h-full">
-      <CardHeader className="text-center">
+    // <Card className="h-full">
+    <Card className="aspect-auto h-[150px] w-full xl:h-[175px]">
+      <CardHeader className="py-4 pb-0 text-center xl:pb-4">
         <CardTitle>Comptes Actifs</CardTitle>
         <CardDescription>
           Nombre d'utilisateurs actifs chez FairBank
         </CardDescription>
       </CardHeader>
       <CardContent className="h-30 flex items-center justify-center">
-        <span className="font-jomhuria text-7xl sm:text-8xl md:text-9xl">
+        <span className="font-jomhuria text-6xl md:text-8xl">
           {activeCount}
         </span>
       </CardContent>

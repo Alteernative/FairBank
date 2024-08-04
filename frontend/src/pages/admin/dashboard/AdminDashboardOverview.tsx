@@ -12,7 +12,7 @@ export default function AdminDashboardOverview() {
       <h1 className="mb-10 font-jomhuria text-6xl">
         {t("dashboard.overview.welcome")} Admin!
       </h1>
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-3">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-5">
         <div className="rounded-lg lg:col-span-2 lg:row-span-1">
           <AdminPlansChart />
         </div>
@@ -22,11 +22,11 @@ export default function AdminDashboardOverview() {
           <AdminNewsletterSend />
         </div>
 
-        <div className="rounded-lg lg:col-span-3 lg:row-span-1">
+        <div className="rounded-lg lg:col-span-3 lg:row-span-2">
           <AdminTransactionsChart />
         </div>
 
-        <div className="rounded-lg lg:col-span-3 lg:row-span-1">
+        <div className="rounded-lg lg:col-span-3 lg:row-span-2">
           <AdminForeignCurrencyChart />
         </div>
       </section>
