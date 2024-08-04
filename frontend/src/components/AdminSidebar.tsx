@@ -138,7 +138,7 @@ export default function AdminSidebar() {
                     <AdminSettingsDialog />
                   </div>
                 </TooltipTrigger>
-                <TooltipContent></TooltipContent>
+                <TooltipContent side="right">{t("settings.h1")}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
