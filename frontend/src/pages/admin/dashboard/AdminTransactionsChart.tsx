@@ -121,7 +121,7 @@ const AdminTransactionsChart = () => {
         </div>
       </CardHeader>
 
-      <CardContent className="px-2 sm:p-6">
+      <CardContent className="py-3 sm:p-6">
         {error ? (
           <div>{error}</div>
         ) : (
@@ -145,14 +145,13 @@ const AdminTransactionsChart = () => {
                   });
                 }}
               />
-              <YAxis />
+              <YAxis hide />
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent hideLabel />}
               />
               <Bar
-                // dataKey={activeChart}
-                dataKey="montant"
+                dataKey={activeChart}
                 fill="hsl(var(--chart-2))"
                 radius={8}
               />
