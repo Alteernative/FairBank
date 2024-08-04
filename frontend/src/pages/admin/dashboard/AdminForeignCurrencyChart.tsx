@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
   Card,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 
-const AccountTypesChart: React.FC = () => {
+const AccountTypesChart = () => {
   const [balances, setBalances] = useState({
     USD: 0,
     JPY: 0,
