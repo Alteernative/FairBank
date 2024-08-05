@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export default function ModifyPasswordSchema() {
+export default function PasswordSchema() {
   const { t } = useTranslation();
 
   return z
