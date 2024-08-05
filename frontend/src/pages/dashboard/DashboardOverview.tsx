@@ -15,9 +15,6 @@ import formatCurrency from "@/utils/formatCurrency";
 export default function DashboardOverview() {
   const { user } = useUserContext();
   const { t } = useTranslation();
-  const [balances, setBalances] = useState([
-    { currency: "CAD", amount: user.balance },
-  ]);
   const [dailyTransactionsSum, setDailyTransactionsSum] = useState(0);
 
   useEffect(() => {
@@ -74,27 +71,28 @@ export default function DashboardOverview() {
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-5">
         <div className="rounded-lg border bg-background p-4 lg:col-span-2 lg:row-span-1 ">
-          <h2 className="mb-3 font-bold">{t("dashboard.overview.balance")}</h2>
+          <h2 className="mb-3 font-bold sm:mb-8">
+            {t("dashboard.overview.balance")}
+          </h2>
           <CountUp
             start={0}
             end={user.balance}
             duration={1}
             prefix="$"
             decimals={2}
-            className="font-jomhuria text-6xl"
+            className="font-jomhuria text-6xl xl:text-8xl"
           />
         </div>
 
         {/* TRANSACTION LIMIT */}
         <div className="col-span-1 row-span-1 rounded-lg border bg-background p-4">
-          <h2 className="mb-3 font-bold">Limite quotidienne</h2>
-          <Progress value={progress} className="w-[100%]" />
+          <h2 className="mb-3 font-bold sm:mb-8">Limite quotidienne</h2>
+          <Progress value={progress} className="w-full" />
           <p className="mt-4 font-jomhuria text-3xl">
             {`${formatCurrency(dailyTransactionsSum)} / ${formatCurrency(transactionsLimit)}`}
           </p>
         </div>
 
-        {/* BALANCE GRAPH */}
         <div className="rounded-lg lg:col-span-3 lg:row-span-3">
           <DashboardGraph />
         </div>
@@ -104,7 +102,7 @@ export default function DashboardOverview() {
             {t("dashboard.overview.exchangeRate")}
           </h2>
 
-          <Carousel className="w-full">
+          <Carousel className="mt-8 w-full">
             <CarouselContent>
               {Object.entries(user.currencies).map(([key, value], index) => {
                 const currencyKey = key.replace("balance_", "").toUpperCase();

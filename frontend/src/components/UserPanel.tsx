@@ -11,7 +11,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { CircleUser, Send, HandCoins, DollarSign } from "lucide-react";
+import {
+  CircleUser,
+  Send,
+  HandCoins,
+  DollarSign,
+  CircleAlert,
+  Loader,
+} from "lucide-react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { FieldValues, useForm } from "react-hook-form";
 import { useUserContext } from "@/contexts/UserContext";
@@ -31,6 +38,8 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import CurrencySchema from "@/schemas/CurrencySchema";
 
 type Activity = {
   name: string;
@@ -52,11 +61,35 @@ const activities: Activity[] = [
 
 export default function UserPanel() {
   const { user, setUser } = useUserContext();
-  const sendForm = useForm();
-  const requestForm = useForm();
-  const depositForm = useForm();
-  const baseUrl = "http://127.0.0.1:8000";
   const { t } = useTranslation();
+  const {
+    handleSubmit: handleSubmitSend,
+    register: registerSend,
+    clearErrors: clearErrorsSend,
+    formState: { errors: errorsSend, isSubmitting: isSubmittingSend },
+  } = useForm({
+    resolver: zodResolver(CurrencySchema()),
+    mode: "onSubmit",
+  });
+  const {
+    handleSubmit: handleSubmitRequest,
+    register: registerRequest,
+    clearErrors: clearErrorsRequest,
+    formState: { errors: errorsRequest, isSubmitting: isSubmittingRequest },
+  } = useForm({
+    resolver: zodResolver(CurrencySchema()),
+    mode: "onSubmit",
+  });
+  const {
+    handleSubmit: handleSubmitDeposit,
+    register: registerDeposit,
+    clearErrors: clearErrorsDeposit,
+    formState: { errors: errorsDeposit, isSubmitting: isSubmittingDeposit },
+  } = useForm({
+    resolver: zodResolver(CurrencySchema()),
+    mode: "onSubmit",
+  });
+  const baseUrl = "http://127.0.0.1:8000";
 
   const planTitle: PlanTitle = {
     tier1: t("plans.tier1.name"),
@@ -180,7 +213,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={sendForm.handleSubmit(sendTransaction)}>
+                <form onSubmit={handleSubmitSend(sendTransaction)}>
                   <DialogHeader>
                     <DialogTitle>{t("userPanel.sendFunds.title")}</DialogTitle>
                     <DialogDescription>
@@ -189,35 +222,56 @@ export default function UserPanel() {
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="text-right">
+                      <Label htmlFor="amount" className="text-right">
                         {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
-                        defaultValue=""
+                        type="text"
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
-                        {...sendForm.register("amount", { required: true })}
+                        {...registerSend("amount", { required: true })}
+                        onChange={() => clearErrorsSend("amount")}
                       />
+                      {errorsSend.amount && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsSend.amount.message &&
+                            String(errorsSend.amount.message)}
+                        </span>
+                      )}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="username" className="text-right">
+                      <Label htmlFor="receiver" className="text-right">
                         {t("input.fundsEmail")}
                       </Label>
                       <Input
-                        id="username"
-                        defaultValue=""
+                        id="receiver"
+                        type="text"
                         placeholder={t("input.recipient")}
                         className="col-span-3"
-                        {...sendForm.register("receiver", { required: true })}
+                        {...registerSend("receiver", { required: true })}
+                        onChange={() => clearErrorsSend("receiver")}
                       />
+                      {errorsSend.receiver && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsSend.receiver.message &&
+                            String(errorsSend.receiver.message)}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
+                    {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.sendFunds")}</Button>
-                    </DialogClose>
+                    </DialogClose> */}
+                    {isSubmittingSend ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      <Button type="submit">{t("buttons.sendFunds")}</Button>
+                    )}
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -233,7 +287,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={requestForm.handleSubmit(requestTransaction)}>
+                <form onSubmit={handleSubmitRequest(requestTransaction)}>
                   <DialogHeader>
                     <DialogTitle>
                       {t("userPanel.requestFunds.title")}
@@ -244,35 +298,56 @@ export default function UserPanel() {
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="text-right">
+                      <Label htmlFor="amount" className="text-right">
                         {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
-                        defaultValue=""
+                        type="text"
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
-                        {...requestForm.register("amount", { required: true })}
+                        {...registerRequest("amount", { required: true })}
+                        onChange={() => clearErrorsRequest("amount")}
                       />
+                      {errorsRequest.amount && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsRequest.amount.message &&
+                            String(errorsRequest.amount.message)}
+                        </span>
+                      )}
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="username" className="text-right">
+                      <Label htmlFor="sender" className="text-right">
                         {t("input.fundsEmail")}
                       </Label>
                       <Input
                         id="sender"
-                        defaultValue=""
+                        type="text"
                         placeholder={t("input.recipient")}
                         className="col-span-3"
-                        {...requestForm.register("sender", { required: true })}
+                        {...registerRequest("sender", { required: true })}
+                        onChange={() => clearErrorsRequest("sender")}
                       />
+                      {errorsRequest.sender && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsRequest.sender.message &&
+                            String(errorsRequest.sender.message)}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
+                    {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.requestFunds")}</Button>
-                    </DialogClose>
+                    </DialogClose> */}
+                    {isSubmittingRequest ? (
+                      <Loader size={20} className="animate-spin" />
+                    ) : (
+                      <Button type="submit">{t("buttons.requestFunds")}</Button>
+                    )}
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -288,7 +363,7 @@ export default function UserPanel() {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={depositForm.handleSubmit(depositTransaction)}>
+                <form onSubmit={handleSubmitDeposit(depositTransaction)}>
                   <DialogHeader>
                     <DialogTitle>
                       {t("userPanel.depositFunds.title")}
@@ -299,23 +374,38 @@ export default function UserPanel() {
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="text-right">
+                      <Label htmlFor="amount" className="text-right">
                         {t("input.fundsAmount")}
                       </Label>
                       <Input
                         id="amount"
-                        defaultValue=""
+                        type="text"
                         placeholder="$100.00"
                         autoComplete="off"
                         className="col-span-3"
-                        {...depositForm.register("amount", { required: true })}
+                        {...registerDeposit("amount", { required: true })}
+                        onChange={() => clearErrorsDeposit("amount")}
                       />
+                      {errorsDeposit.amount && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                          <CircleAlert size={20} />
+                          {errorsDeposit.amount.message &&
+                            String(errorsDeposit.amount.message)}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <DialogFooter>
-                    <DialogClose asChild>
+                    {/* <DialogClose asChild>
                       <Button type="submit">{t("buttons.depositFunds")}</Button>
-                    </DialogClose>
+                    </DialogClose> */}
+                    <Button type="submit" disabled={isSubmittingDeposit}>
+                      {isSubmittingDeposit ? (
+                        <Loader size={20} className="animate-spin" />
+                      ) : (
+                        `${t("buttons.depositFunds")}`
+                      )}
+                    </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -354,7 +444,6 @@ export default function UserPanel() {
             className="p-3"
           />
         </div>
-
         <div className="mb-5 w-full">
           <h2 className="font-semibold">Activités récentes</h2>
           <div className="space-y-2 rounded-lg border p-2 shadow">
@@ -398,7 +487,7 @@ export default function UserPanel() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
-                        <form onSubmit={sendForm.handleSubmit(sendTransaction)}>
+                        <form onSubmit={handleSubmitSend(sendTransaction)}>
                           <DialogHeader>
                             <DialogTitle>
                               {t("userPanel.sendFunds.title")}
@@ -409,41 +498,62 @@ export default function UserPanel() {
                           </DialogHeader>
                           <div className="grid gap-4 py-4">
                             <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
+                              <Label htmlFor="amount" className="text-right">
                                 {t("input.fundsAmount")}
                               </Label>
                               <Input
                                 id="amount"
-                                defaultValue=""
+                                type="text"
                                 placeholder="$100.00"
                                 autoComplete="off"
                                 className="col-span-3"
-                                {...sendForm.register("amount", {
+                                {...registerSend("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsSend("amount")}
                               />
+                              {errorsSend.amount && (
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsSend.amount.message &&
+                                    String(errorsSend.amount.message)}
+                                </span>
+                              )}
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="username" className="text-right">
+                              <Label htmlFor="receiver" className="text-right">
                                 {t("input.fundsEmail")}
                               </Label>
                               <Input
-                                id="username"
-                                defaultValue=""
+                                id="receiver"
+                                type="text"
                                 placeholder={t("input.recipient")}
                                 className="col-span-3"
-                                {...sendForm.register("receiver", {
+                                {...registerSend("receiver", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsSend("receiver")}
                               />
+                              {errorsSend.receiver && (
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsSend.receiver.message &&
+                                    String(errorsSend.receiver.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* < DialogClose asChild>
+                              <Button type="submit">{t("buttons.sendFunds")}</Button>
+                            </DialogClose> */}
+                            {isSubmittingSend ? (
+                              <Loader size={20} className="animate-spin" />
+                            ) : (
                               <Button type="submit">
                                 {t("buttons.sendFunds")}
                               </Button>
-                            </DialogClose>
+                            )}
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -465,9 +575,7 @@ export default function UserPanel() {
                       </DialogTrigger>
                       <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                         <form
-                          onSubmit={requestForm.handleSubmit(
-                            requestTransaction
-                          )}
+                          onSubmit={handleSubmitRequest(requestTransaction)}
                         >
                           <DialogHeader>
                             <DialogTitle>
@@ -479,41 +587,64 @@ export default function UserPanel() {
                           </DialogHeader>
                           <div className="grid gap-4 py-4">
                             <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
+                              <Label htmlFor="amount" className="text-right">
                                 {t("input.fundsAmount")}
                               </Label>
                               <Input
                                 id="amount"
-                                defaultValue=""
+                                type="text"
                                 placeholder="$100.00"
                                 autoComplete="off"
                                 className="col-span-3"
-                                {...requestForm.register("amount", {
+                                {...registerRequest("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsRequest("amount")}
                               />
+                              {errorsRequest.amount && (
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsRequest.amount.message &&
+                                    String(errorsRequest.amount.message)}
+                                </span>
+                              )}
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="username" className="text-right">
+                              <Label htmlFor="sender" className="text-right">
                                 {t("input.fundsEmail")}
                               </Label>
                               <Input
                                 id="sender"
-                                defaultValue=""
+                                type="text"
                                 placeholder={t("input.recipient")}
                                 className="col-span-3"
-                                {...requestForm.register("sender", {
+                                {...registerRequest("sender", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsRequest("sender")}
                               />
+                              {errorsRequest.sender && (
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsRequest.sender.message &&
+                                    String(errorsRequest.sender.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* <DialogClose asChild>
                               <Button type="submit">
                                 {t("requestFundsAction")}
                               </Button>
-                            </DialogClose>
+                            </DialogClose> */}
+                            {isSubmittingSend ? (
+                              <Loader size={20} className="animate-spin" />
+                            ) : (
+                              <Button type="submit">
+                                {t("buttons.sendFunds")}
+                              </Button>
+                            )}
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -535,9 +666,7 @@ export default function UserPanel() {
                       </DialogTrigger>
                       <DialogContent className="w-11/12 rounded-xl sm:max-w-[425px]">
                         <form
-                          onSubmit={depositForm.handleSubmit(
-                            depositTransaction
-                          )}
+                          onSubmit={handleSubmitDeposit(depositTransaction)}
                         >
                           <DialogHeader>
                             <DialogTitle>
@@ -549,27 +678,45 @@ export default function UserPanel() {
                           </DialogHeader>
                           <div className="grid gap-4 py-4">
                             <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="name" className="text-right">
+                              <Label htmlFor="amount" className="text-right">
                                 {t("input.fundsAmount")}
                               </Label>
                               <Input
                                 id="amount"
-                                defaultValue=""
+                                type="text"
                                 placeholder="$100.00"
                                 autoComplete="off"
                                 className="col-span-3"
-                                {...depositForm.register("amount", {
+                                {...registerDeposit("amount", {
                                   required: true,
                                 })}
+                                onChange={() => clearErrorsDeposit("amount")}
                               />
+                              {errorsDeposit.amount && (
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
+                                  <CircleAlert size={20} />
+                                  {errorsDeposit.amount.message &&
+                                    String(errorsDeposit.amount.message)}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
-                            <DialogClose asChild>
+                            {/* <DialogClose asChild>
                               <Button type="submit">
                                 {t("buttons.depositFunds")}
                               </Button>
-                            </DialogClose>
+                            </DialogClose> */}
+                            <Button
+                              type="submit"
+                              disabled={isSubmittingDeposit}
+                            >
+                              {isSubmittingDeposit ? (
+                                <Loader size={20} className="animate-spin" />
+                              ) : (
+                                `${t("buttons.depositFunds")}`
+                              )}
+                            </Button>
                           </DialogFooter>
                         </form>
                       </DialogContent>

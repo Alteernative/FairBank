@@ -503,6 +503,11 @@
       "plan": {
         "invalid": "Seleziona un piano."
       }
+    },
+    "amount": {
+      "min": "Importo richiesto.",
+      "max": "Importo troppo alto.",
+      "invalid": "Importo non valido."
     }
   }
 }

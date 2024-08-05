@@ -21,10 +21,8 @@ export default function AboutUs() {
         <div className="flex flex-1 flex-col items-center justify-center gap-5">
           <Card className="max-w-[50rem] border-none">
             <CardHeader>
-              <CardTitle>
-                <h2 className="text-4xl font-semibold tracking-tight">
-                  {t("aboutUs.card1.h2")}
-                </h2>
+              <CardTitle className="text-4xl font-semibold">
+                {t("aboutUs.card1.h2")}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -35,10 +33,8 @@ export default function AboutUs() {
 
           <Card className="max-w-[50rem] border-none">
             <CardHeader>
-              <CardTitle>
-                <h2 className="text-4xl font-semibold tracking-tight">
-                  {t("aboutUs.card2.h2")}
-                </h2>
+              <CardTitle className="text-4xl font-semibold tracking-tight">
+                {t("aboutUs.card2.h2")}
               </CardTitle>
             </CardHeader>
             <CardContent>

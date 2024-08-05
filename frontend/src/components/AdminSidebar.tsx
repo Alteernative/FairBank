@@ -41,7 +41,7 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="fixed left-0 h-screen w-14 border-r py-5 lg:w-52 xl:w-60">
+    <aside className="fixed left-0 h-screen w-14 border-r py-5 lg:w-52">
       <div className="hidden h-full w-full flex-col items-center lg:flex">
         <Link to={"/"}>
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
@@ -138,7 +138,7 @@ export default function AdminSidebar() {
                     <AdminSettingsDialog />
                   </div>
                 </TooltipTrigger>
-                <TooltipContent></TooltipContent>
+                <TooltipContent side="right">{t("settings.h1")}</TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ModeButtons } from "@/components/ModeButtons";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,25 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { FontSelector } from "@/components/FontSelector";
 
-// FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
 export default function AppearanceSettings() {
   const { t } = useTranslation();
-  const [currentFont, setCurrentFont] = useState("Inter");
-  const handleFontChange = (value: string) => {
-    document.documentElement.style.setProperty("--font-family", value);
-    setCurrentFont(value);
-  };
 
   return (
     <main className="ml-14 flex min-h-screen w-full flex-col gap-4 bg-muted/20 px-3 pt-[7rem] sm:px-10 lg:ml-52">
@@ -38,19 +24,7 @@ export default function AppearanceSettings() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Select onValueChange={handleFontChange} value={currentFont}>
-            <SelectTrigger className="max-w-[20rem]">
-              <SelectValue>{currentFont}</SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="Inter">Inter</SelectItem>
-                <SelectItem value="Montserrat">Montserrat</SelectItem>
-                <SelectItem value="Roboto">Roboto</SelectItem>
-                <SelectItem value="Satoshi">Satoshi</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <FontSelector />
         </CardContent>
       </Card>
       <Card className="w-full sm:w-10/12">

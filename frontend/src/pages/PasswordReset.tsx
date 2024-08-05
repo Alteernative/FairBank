@@ -25,7 +25,7 @@ import { ModeToggle } from "../components/ModeToggle";
 import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
+import PasswordSchema from "@/schemas/PasswordSchema";
 
 const PasswordFields = () => {
   const { t } = useTranslation();
@@ -115,7 +115,7 @@ const PasswordFields = () => {
 
 export default function PasswordReset() {
   const methods = useForm({
-    resolver: zodResolver(ModifyPasswordSchema()),
+    resolver: zodResolver(PasswordSchema()),
   });
   const { token } = useParams();
   const navigate = useNavigate();
@@ -140,7 +140,7 @@ export default function PasswordReset() {
 
   return (
     <section className="flex h-screen">
-      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
+      <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-slate-900 lg:flex">
         <Link to={"/"} className="ml-8 mt-7 flex items-center">
           <h1 className="font-jomhuria text-6xl">FairBank</h1>
         </Link>

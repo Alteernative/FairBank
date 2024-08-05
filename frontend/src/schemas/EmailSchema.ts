@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export default function ModifyEmailSchema() {
+export default function EmailSchema() {
   const { t } = useTranslation();
 
   return z.object({

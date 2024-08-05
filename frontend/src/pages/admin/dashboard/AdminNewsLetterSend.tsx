@@ -1,27 +1,29 @@
-import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button.tsx";
+import { Newspaper } from "lucide-react";
 
-const AdminNewsLetterSend: React.FC = () => {
-  const [activeCount, setActiveCount] = useState<number>(0);
-  const [error, setError] = useState<string | null>(null);
-
+const AdminNewsLetterSend = () => {
   const envoyerCourriels = async () => {
     try {
       await AxiosInstance.get("dashboard_admin/send_newsLetter/");
-    } catch (err) {
-      setError("Error fetching data: " + err.message);
+    } catch (err: any) {
+      console.error("Error fetching data: " + err.message);
     }
   };
 
   return (
-    <Card className="mb-2">
-      <CardHeader className="text-center">
-        <CardTitle>Envoyer les Newsletter</CardTitle>
+    <Card className="aspect-auto h-[100px] w-full xl:h-[125px]">
+      <CardHeader className="py-4 text-center">
+        <CardTitle>Newsletters</CardTitle>
       </CardHeader>
-      <CardContent className="flex h-11 items-center justify-center ">
-        <Button onClick={envoyerCourriels}>Envoyer</Button>
+      <CardContent className="flex flex-1 items-center justify-center ">
+        <Button className="" onClick={envoyerCourriels}>
+          <span className="flex items-center justify-center gap-4">
+            <Newspaper size={20} />
+            Envoyer Newsletter
+          </span>
+        </Button>
       </CardContent>
     </Card>
   );

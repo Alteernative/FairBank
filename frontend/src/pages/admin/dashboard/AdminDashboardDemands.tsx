@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 type ContactUs = {
   id: number;
@@ -38,6 +39,7 @@ export default function AdminDashBoardDemands() {
       });
   }, []);
 
+  console.log(contactUs);
   useEffect(() => {
     axiosInstance
       .get("dashboard_admin/list_all_requests/")
@@ -125,27 +127,32 @@ export default function AdminDashBoardDemands() {
 
   return (
     <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
-      <h1 className="mb-10 font-jomhuria text-6xl">Requêtes</h1>
+      <h1 className="mb-10 font-jomhuria text-6xl">Requests</h1>
       <section className="flex flex-col items-start gap-10">
         <div>
-          <h2 className="mb-4 text-xl font-bold">Mises à Jour Utilisateur En Attente</h2>
+          <h2 className="mb-4 text-xl font-bold">Pending User Updates</h2>
           {updateRequests.length > 0 ? (
             <ul className="space-y-4">
               {updateRequests.map((request) => (
-                <li key={request.user} className="rounded border p-4 shadow">
+                <li key={request.user} className="rounded-lg border p-4 shadow">
                   <p>
-                    <strong>ID Utilisateur:</strong> {request.user}
+                    <strong>User ID:</strong> {request.user}
+                  </p>
+                  <Separator className="my-4" />
+                  <p>
+                    <strong>Email:</strong> {request.email}
                   </p>
                   <p>
-                    <strong>Courriel:</strong> {request.email}
+                    <strong>Requested Email:</strong> {request.tmp_email}
                   </p>
+                  <Separator className="my-4" />
                   <p>
-                    <strong>Nom actuel:</strong> {request.current_nom}
+                    <strong>Current Name:</strong> {request.current_nom}
                     {", "}
                     {request.current_prenom}
                   </p>
                   <p>
-                    <strong>Nom demandé:</strong> {request.tmp_nom}
+                    <strong>Requested Name:</strong> {request.tmp_nom}
                     {", "}
                     {request.tmp_prenom}
                   </p>
@@ -168,45 +175,47 @@ export default function AdminDashBoardDemands() {
               ))}
             </ul>
           ) : (
-            <p>Pas de mise à jour en attente</p>
+            <p>No pending updates</p>
           )}
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-bold">Demandes de Suppression En Attente</h2>
+          <h2 className="mb-4 text-xl font-bold">Pending Delete Requests</h2>
           {deleteRequests.length > 0 ? (
             <ul className="space-y-4">
               {deleteRequests.map((request) => (
-                <li key={request.id} className="rounded border p-4 shadow">
+                <li key={request.id} className="rounded-lg border p-4 shadow">
                   <p>
-                    <strong>ID Utilisateur:</strong> {request.id}
+                    <strong>User ID:</strong> {request.id}
+                  </p>
+                  <Separator className="my-4" />
+                  <p>
+                    <strong>Email:</strong> {request.user_email}
                   </p>
                   <p>
-                    <strong>Courriel:</strong> {request.user_email}
-                  </p>
-                  <p>
-                    <strong>Nom actuel:</strong> {request.user_first_name}{" "}
+                    <strong>Name:</strong> {request.user_first_name}{" "}
                     {request.user_last_name}
                   </p>
-                  <div className="mt-4">
-                    <button
+                  <div className="mt-4 flex gap-4">
+                    <Button
                       onClick={() => handleApproveDelete(request.id)}
-                      className="mr-2 rounded bg-green-500 px-4 py-2 text-white"
+                      className="w-full bg-green-500 text-white shadow-sm hover:bg-green-500/90 dark:bg-green-900 dark:hover:bg-green-900/90"
                     >
-                      Approve
-                    </button>
-                    <button
+                      <Check size={20} />
+                    </Button>
+                    <Button
+                      variant={"destructive"}
                       onClick={() => handleDeclineDelete(request.id)}
-                      className="rounded bg-red-500 px-4 py-2 text-white"
+                      className="w-full"
                     >
-                      Decline
-                    </button>
+                      <X size={20} />
+                    </Button>
                   </div>
                 </li>
               ))}
             </ul>
           ) : (
-            <p>Aucune demande de suppression en attente</p>
+            <p>No pending delete requests</p>
           )}
         </div>
       </section>

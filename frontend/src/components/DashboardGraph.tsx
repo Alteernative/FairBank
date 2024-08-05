@@ -119,7 +119,10 @@ export default function DashboardGraph() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[400px] w-full xl:h-[500px]"
+        >
           <AreaChart
             accessibilityLayer
             data={balanceData}
