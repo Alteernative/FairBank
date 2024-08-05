@@ -107,7 +107,14 @@ const AccountPlansChart = () => {
           config={chartConfig}
           className="aspect-auto h-[150px] w-full xl:h-[200px]"
         >
-          <BarChart accessibilityLayer data={chartData} layout="vertical">
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            layout="vertical"
+            margin={{
+              left: 20,
+            }}
+          >
             <YAxis
               dataKey="plan"
               type="category"
