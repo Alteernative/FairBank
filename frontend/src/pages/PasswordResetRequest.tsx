@@ -22,7 +22,7 @@ import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 import { CircleAlert, Loader } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
+import EmailSchema from "@/schemas/EmailSchema";
 
 const PasswordFields = () => {
   const { t } = useTranslation();
@@ -57,7 +57,7 @@ const PasswordFields = () => {
 
 export default function PasswordReset() {
   const methods = useForm({
-    resolver: zodResolver(ModifyEmailSchema()),
+    resolver: zodResolver(EmailSchema()),
   });
   const navigate = useNavigate();
   const { t } = useTranslation();

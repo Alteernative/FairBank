@@ -10,8 +10,8 @@ import {
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Separator } from "@/components/ui/separator";
 import { useUserContext } from "@/contexts/UserContext";
-import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
-import ModifyPasswordSchema from "@/schemas/ModifyPasswordSchema";
+import EmailSchema from "@/schemas/EmailSchema";
+import PasswordSchema from "@/schemas/PasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleAlert, Eye, EyeOff, Loader } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ export default function AccountSettings() {
     clearErrors: clearErrorsEmail,
     formState: { errors: errorsEmail, isSubmitting: isSubmittingEmail },
   } = useForm({
-    resolver: zodResolver(ModifyEmailSchema()),
+    resolver: zodResolver(EmailSchema()),
   });
 
   const {
@@ -42,7 +42,7 @@ export default function AccountSettings() {
     clearErrors: clearErrorsPassword,
     formState: { errors: errorsPassword, isSubmitting: isSubmittingPassword },
   } = useForm({
-    resolver: zodResolver(ModifyPasswordSchema()),
+    resolver: zodResolver(PasswordSchema()),
   });
 
   useEffect(() => {
