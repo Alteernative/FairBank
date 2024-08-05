@@ -11,3 +11,14 @@ export const LANGUAGES = [
   { code: "pt", language: "Português" },
   { code: "hi", language: "हिन्दी" },
 ];
+
+export const FONTS = [
+  { name: "Inter", value: "Inter" },
+  { name: "Roboto", value: "Roboto" },
+  { name: "Poppins", value: "Poppins" },
+  { name: "Montserrat", value: "Montserrat" },
+  { name: "Lato", value: "Lato" },
+  { name: "Open Sans", value: "Open Sans" },
+  { name: "Noto Sans", value: "Noto Sans" },
+  { name: "Satoshi", value: "Satoshi" },
+];
