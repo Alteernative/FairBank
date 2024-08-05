@@ -97,7 +97,7 @@ const AccountPlansChart = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Clients</CardTitle>
+        <CardTitle>Plans Actifs</CardTitle>
         <CardDescription>
           Affiche le nombre de client pour chaque plan.
         </CardDescription>
