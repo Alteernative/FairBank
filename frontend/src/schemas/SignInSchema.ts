@@ -6,7 +6,7 @@ export default function SignInSchema() {
   const { t } = useTranslation();
 
   return z.object({
-    email: EmailSchema(),
+    email: EmailSchema().shape.email,
 
     password: z
       .string()
