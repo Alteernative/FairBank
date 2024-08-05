@@ -105,7 +105,7 @@ export default function SignUp() {
   return (
     <>
       <section className="flex h-screen">
-        <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
+        <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-slate-900 lg:flex">
           <Link to={"/"} className="ml-8 mt-7 flex items-center">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
           </Link>

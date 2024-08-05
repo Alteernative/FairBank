@@ -33,7 +33,7 @@ export default function Home() {
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section className="flex items-center justify-around dark:bg-slate-950 dark:text-white">
+    <section className="flex items-center justify-around">
       <div className="mr-10 flex flex-1 items-start justify-start">
         <div className="flex w-full flex-col gap-5">
           <h1 className="mb-3 text-4xl font-extrabold tracking-tight lg:text-5xl">

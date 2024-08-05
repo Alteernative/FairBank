@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export default function ModifyNameSchema() {
+export default function NameSchema() {
   const { t } = useTranslation();
 
   return z.object({

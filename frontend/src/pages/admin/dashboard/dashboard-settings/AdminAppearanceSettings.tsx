@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ModeButtons } from "@/components/ModeButtons";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,33 +7,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { FontSelector } from "@/components/FontSelector";
 // import { cn } from "@/lib/utils";
 
 // type AdminAppearanceSettingsProps = {
 //   className?: string;
 // };
 
-// FIXME: Font resets to default on refresh; Fonts select check mark resets on page change.
 // export default function AdminAppearanceSettings({
 //   className,
 // }: AdminAppearanceSettingsProps) {
 export default function AdminAppearanceSettings() {
   const { t } = useTranslation();
-  const [currentFont, setCurrentFont] = useState("Inter");
-  const handleFontChange = (value: string) => {
-    document.documentElement.style.setProperty("--font-family", value);
-    setCurrentFont(value);
-  };
 
   return (
     <main className="flex w-full flex-col gap-4 rounded-md bg-muted/20 p-4">
@@ -54,21 +40,7 @@ export default function AdminAppearanceSettings() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Select onValueChange={handleFontChange} value={currentFont}>
-            <SelectTrigger className="max-w-[20rem]">
-              <SelectValue>{currentFont}</SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="Inter">Inter</SelectItem>
-                <SelectItem value="Montserrat">Montserrat</SelectItem>
-                <SelectItem value="Roboto">Roboto</SelectItem>
-                <SelectItem value="Satoshi" className="font-satoshi">
-                  Satoshi
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <FontSelector />
         </CardContent>
       </Card>
       <Card className="w-full">

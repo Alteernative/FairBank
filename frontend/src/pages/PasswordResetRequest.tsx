@@ -22,7 +22,7 @@ import { LanguageToggle } from "../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 import { CircleAlert, Loader } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ModifyEmailSchema from "@/schemas/ModifyEmailSchema";
+import EmailSchema from "@/schemas/EmailSchema";
 
 const PasswordFields = () => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const PasswordFields = () => {
   } = useFormContext();
 
   return (
-    <section className="ml-2 mr-2 flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="relative">
         <FloatingLabelInput
           type="text"
@@ -57,7 +57,7 @@ const PasswordFields = () => {
 
 export default function PasswordReset() {
   const methods = useForm({
-    resolver: zodResolver(ModifyEmailSchema()),
+    resolver: zodResolver(EmailSchema()),
   });
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -81,7 +81,7 @@ export default function PasswordReset() {
   return (
     <>
       <section className="flex h-screen">
-        <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-stone-800 lg:flex">
+        <aside className="hidden w-full flex-1 flex-col bg-[#efeee6] dark:bg-slate-900 lg:flex">
           <Link to={"/"} className="ml-8 mt-7 flex items-center">
             <h1 className="font-jomhuria text-6xl">FairBank</h1>
           </Link>

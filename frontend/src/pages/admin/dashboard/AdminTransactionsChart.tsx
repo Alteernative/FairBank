@@ -127,7 +127,6 @@ const AdminTransactionsChart = () => {
         ) : (
           <ChartContainer
             config={chartConfig}
-            // className="aspect-auto h-[250px] w-full xl:h-[350px]"
             className="aspect-auto h-[400px] w-full xl:h-[500px]"
           >
             <BarChart accessibilityLayer data={chartData}>
@@ -140,7 +139,6 @@ const AdminTransactionsChart = () => {
                 tickFormatter={(value) => {
                   const date = new Date(value);
                   return date.toLocaleDateString("en-US", {
-                    // month: "short",
                     month: "2-digit",
                     day: "numeric",
                   });

@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ModifyNameSchema from "@/schemas/ModifyNameSchema";
+import NameSchema from "@/schemas/NameSchema";
 
 export default function ProfileSettings() {
   const { user } = useUserContext();
@@ -28,7 +28,7 @@ export default function ProfileSettings() {
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(ModifyNameSchema()),
+    resolver: zodResolver(NameSchema()),
     mode: "onSubmit",
   });
   const baseUrl = "http://127.0.0.1:8000";

@@ -1,8 +1,15 @@
-/* Logo font */
+/* Brand font */
 @import url("https://fonts.googleapis.com/css2?family=Jomhuria&display=swap");
 
-/* Body font */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900");
+/* Body fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wdth,wght@62.5..100,100..900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/satoshi");
 
 @tailwind base;
 @tailwind components;
@@ -81,26 +88,8 @@
   }
 }
 
-:root {
-  --font-family: 'Inter', sans-serif;
-}
-
 body {
-  min-height: 100vh; /* Ensure the body covers the full viewport height */
-  margin: 0; /* Remove default margin */
-  font-family: var(--font-family), serif;
-  /* font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif; */
+  font-family: "Inter", sans-serif;
 }
 
 @layer base {

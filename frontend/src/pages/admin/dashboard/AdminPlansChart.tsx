@@ -29,7 +29,6 @@ const AccountPlansChart = () => {
         "dashboard_admin/list_all_users/"
       );
       if (Array.isArray(response.data)) {
-        // Collect user plan plans
         const tier1Users = response.data.filter(
           (user: any) => user.plan === "tier1"
         );
@@ -106,7 +105,6 @@ const AccountPlansChart = () => {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          // className="aspect-auto h-[300px] w-full xl:h-[400px]"
           className="aspect-auto h-[150px] w-full xl:h-[200px]"
         >
           <BarChart accessibilityLayer data={chartData} layout="vertical">

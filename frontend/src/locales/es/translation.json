@@ -503,6 +503,11 @@
       "plan": {
         "invalid": "Selecciona un plan."
       }
+    },
+    "amount": {
+      "min": "Monto requerido.",
+      "max": "Monto demasiado alto.",
+      "invalid": "Monto inválido."
     }
   }
 }

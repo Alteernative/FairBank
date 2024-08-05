@@ -525,6 +525,11 @@
       "plan": {
         "invalid": "Select a plan."
       }
+    },
+    "amount": {
+      "min": "Amount required.",
+      "max": "Amount too high.",
+      "invalid": "Invalid amount."
     }
   }
 }

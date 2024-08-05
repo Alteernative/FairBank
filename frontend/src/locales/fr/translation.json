@@ -531,6 +531,11 @@
       "plan": {
         "invalid": "Choisir un plan."
       }
+    },
+    "amount": {
+      "min": "Montant requis.",
+      "max": "Montant trop élevé.",
+      "invalid": "Montant invalide."
     }
   }
 }
