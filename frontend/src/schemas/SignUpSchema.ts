@@ -10,7 +10,7 @@ export default function SignUpSchema(step: Step) {
   const { t } = useTranslation();
 
   const emailSchema = z.object({
-    email: EmailSchema(),
+    email: EmailSchema().shape.email,
   });
 
   const passwordSchema = PasswordSchema();
