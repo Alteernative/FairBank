@@ -175,7 +175,7 @@ const AccountTypesChart = () => {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent indicator="line" />}
             />
             <Bar dataKey="Balance" layout="horizontal" radius={5} />
           </BarChart>
