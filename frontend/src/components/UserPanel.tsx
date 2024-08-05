@@ -235,7 +235,7 @@ export default function UserPanel() {
                         onChange={() => clearErrorsSend("amount")}
                       />
                       {errorsSend.amount && (
-                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
                           {errorsSend.amount.message &&
                             String(errorsSend.amount.message)}
@@ -255,7 +255,7 @@ export default function UserPanel() {
                         onChange={() => clearErrorsSend("receiver")}
                       />
                       {errorsSend.receiver && (
-                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
                           {errorsSend.receiver.message &&
                             String(errorsSend.receiver.message)}
@@ -308,13 +308,13 @@ export default function UserPanel() {
                         autoComplete="off"
                         className="col-span-3"
                         {...registerRequest("amount", { required: true })}
-                        onChange={() => clearErrorsSend("amount")}
+                        onChange={() => clearErrorsRequest("amount")}
                       />
-                      {errorsSend.amount && (
-                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                      {errorsRequest.amount && (
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
-                          {errorsSend.amount.message &&
-                            String(errorsSend.amount.message)}
+                          {errorsRequest.amount.message &&
+                            String(errorsRequest.amount.message)}
                         </span>
                       )}
                     </div>
@@ -331,7 +331,7 @@ export default function UserPanel() {
                         onChange={() => clearErrorsRequest("sender")}
                       />
                       {errorsRequest.sender && (
-                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
                           {errorsRequest.sender.message &&
                             String(errorsRequest.sender.message)}
@@ -387,7 +387,7 @@ export default function UserPanel() {
                         onChange={() => clearErrorsDeposit("amount")}
                       />
                       {errorsDeposit.amount && (
-                        <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                        <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                           <CircleAlert size={20} />
                           {errorsDeposit.amount.message &&
                             String(errorsDeposit.amount.message)}
@@ -513,7 +513,7 @@ export default function UserPanel() {
                                 onChange={() => clearErrorsSend("amount")}
                               />
                               {errorsSend.amount && (
-                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                                   <CircleAlert size={20} />
                                   {errorsSend.amount.message &&
                                     String(errorsSend.amount.message)}
@@ -535,7 +535,7 @@ export default function UserPanel() {
                                 onChange={() => clearErrorsSend("receiver")}
                               />
                               {errorsSend.receiver && (
-                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                                   <CircleAlert size={20} />
                                   {errorsSend.receiver.message &&
                                     String(errorsSend.receiver.message)}
@@ -602,7 +602,7 @@ export default function UserPanel() {
                                 onChange={() => clearErrorsRequest("amount")}
                               />
                               {errorsRequest.amount && (
-                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                                   <CircleAlert size={20} />
                                   {errorsRequest.amount.message &&
                                     String(errorsRequest.amount.message)}
@@ -624,7 +624,7 @@ export default function UserPanel() {
                                 onChange={() => clearErrorsRequest("sender")}
                               />
                               {errorsRequest.sender && (
-                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                                   <CircleAlert size={20} />
                                   {errorsRequest.sender.message &&
                                     String(errorsRequest.sender.message)}
@@ -693,7 +693,7 @@ export default function UserPanel() {
                                 onChange={() => clearErrorsDeposit("amount")}
                               />
                               {errorsDeposit.amount && (
-                                <span className="col-span-4 mt-2 flex items-center gap-1 text-xs text-destructive">
+                                <span className="col-span-4 flex items-center gap-1 text-xs text-destructive">
                                   <CircleAlert size={20} />
                                   {errorsDeposit.amount.message &&
                                     String(errorsDeposit.amount.message)}

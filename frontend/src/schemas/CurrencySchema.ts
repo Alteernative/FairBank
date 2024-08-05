@@ -10,16 +10,16 @@ export default function CurrencySchema() {
     sender: EmailSchema().shape.email.optional(),
     amount: z
       .string({
-        required_error: `${t("zod.currency.amount.required")}`,
+        required_error: `${t("zod.amount.min")}`,
       })
       .regex(/^\d+(\.\d{1,2})?$/, {
-        message: `${t("zod.currency.amount.invalidFormat")}`,
+        message: `${t("zod.amount.invalid")}`,
       })
       .refine((val) => parseFloat(val) >= 0, {
-        message: `${t("zod.currency.amount.nonNegative")}`,
+        message: `${t("zod.amount.invalid")}`,
       })
       .refine((val) => parseFloat(val) <= 100000, {
-        message: `${t("zod.currency.amount.max")}`,
+        message: `${t("zod.amount.max")}`,
       }),
   });
 }
