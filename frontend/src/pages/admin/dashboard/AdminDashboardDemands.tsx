@@ -11,8 +11,19 @@ type ContactUs = {
   email: string;
   message: string;
 };
+
+type UpdateRequest = {
+  user: number;
+  email: string;
+  current_nom: string;
+  current_prenom: string;
+  tmp_nom: string;
+  tmp_prenom: string;
+  tmp_email: string;
+};
+
 export default function AdminDashBoardDemands() {
-  const [updateRequests, setUpdateRequests] = useState([]);
+  const [updateRequests, setUpdateRequests] = useState<UpdateRequest[]>([]);
   const [deleteRequests, setDeleteRequests] = useState([]);
   const [contactUs, setUser] = useState<ContactUs | null>(null);
 
