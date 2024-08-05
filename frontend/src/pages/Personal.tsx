@@ -60,7 +60,7 @@ export default function Particuliers() {
       <div className="mx-auto grid max-w-sm items-start gap-6 lg:max-w-none lg:grid-cols-3">
         {/* Pricing table 1*/}
 
-        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:bg-muted/20">
           <div className="mb-5">
             <div className="mb-1 font-semibold">{t("plans.tier1.name")}</div>
             <div className="mb-2 inline-flex select-none items-baseline">
@@ -108,7 +108,7 @@ export default function Particuliers() {
 
         {/* Pricing table 2*/}
 
-        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:bg-muted/20">
           <span className="absolute right-0 top-0 -mt-4 mr-6">
             <Badge className="cursor-default rounded-full bg-green-500 text-white hover:bg-green-500">
               Le plus populaire
@@ -171,7 +171,7 @@ export default function Particuliers() {
 
         {/* Pricing table 3*/}
 
-        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:border-slate-900 dark:bg-slate-900">
+        <div className="relative flex h-full flex-col rounded-2xl border p-6 shadow dark:bg-muted/20">
           <div className="mb-5">
             <div className="mb-1 select-none font-semibold text-slate-900 dark:text-slate-200">
               {t("plans.tier3.name")}

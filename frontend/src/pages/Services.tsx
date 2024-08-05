@@ -20,7 +20,7 @@ export default function Services() {
         {t("services.h1")}
       </h1>
       <main className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <Banknote
               size={40}
@@ -35,7 +35,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <Send
               size={40}
@@ -50,7 +50,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <Receipt
               size={40}
@@ -65,7 +65,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <BsCurrencyExchange
               size={40}
@@ -80,7 +80,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <WalletMinimal
               size={40}
@@ -95,7 +95,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <CircleDollarSign
               size={40}
@@ -110,7 +110,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <LayoutDashboard
               size={40}
@@ -125,7 +125,7 @@ export default function Services() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-muted/20">
           <CardHeader>
             <Lock
               size={40}
