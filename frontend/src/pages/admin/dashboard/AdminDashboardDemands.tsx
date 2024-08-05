@@ -115,7 +115,6 @@ export default function AdminDashBoardDemands() {
   };
 
   return (
-    // <section className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
     <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
       <h1 className="mb-10 font-jomhuria text-6xl">Requests</h1>
       <section className="flex flex-col items-start gap-10">

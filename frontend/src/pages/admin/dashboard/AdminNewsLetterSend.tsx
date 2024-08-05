@@ -13,7 +13,6 @@ const AdminNewsLetterSend = () => {
   };
 
   return (
-    // <Card className="aspect-auto h-[125px] w-full xl:h-[150px]">
     <Card className="aspect-auto h-[100px] w-full xl:h-[125px]">
       <CardHeader className="py-4 text-center">
         <CardTitle>Newsletters</CardTitle>
