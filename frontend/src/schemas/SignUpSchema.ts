@@ -1,5 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import EmailSchema from "./EmailSchema";
+import PasswordSchema from "./PasswordSchema";
+import NameSchema from "./NameSchema";
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -7,62 +10,16 @@ export default function SignUpSchema(step: Step) {
   const { t } = useTranslation();
 
   const emailSchema = z.object({
-    email: z
-      .string()
-      .min(1, {
-        message: `${t("zod.signUp.email.min")}`,
-      })
-      .email({
-        message: `${t("zod.signUp.email.invalid")}`,
-      }),
+    email: EmailSchema(),
   });
 
-  const passwordSchema = z
-    .object({
-      password: z
-        .string()
-        .min(8, {
-          // message: "Mot de passe doit contenir au moins 8 caractères.",
-          message: `${t("zod.signUp.password.min")}`,
-        })
-        .regex(/[A-Z]/, {
-          message: `${t("zod.signUp.password.upper")}`,
-        })
-        .regex(/[a-z]/, {
-          message: `${t("zod.signUp.password.lower")}`,
-        })
-        .regex(/[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/, {
-          message: `${t("zod.signUp.password.special")}`,
-        }),
-      re_password: z.string(),
-    })
-    .refine((data) => data.password === data.re_password, {
-      message: `${t("zod.signUp.password.confirm")}`,
-      path: ["re_password"],
-    });
+  const passwordSchema = PasswordSchema();
 
   const imageSchema = z.object({
     image_url: z.any(),
   });
 
-  const nameSchema = z.object({
-    first_name: z
-      .string()
-      .min(1, {
-        message: `${t("zod.signUp.name.firstName.min")}`,
-      })
-      .regex(/^[A-Za-z]+$/, {
-        message: `${t("zod.signUp.name.firstName.invalid")}`,
-      }),
-    last_name: z
-      .string()
-      .min(1, {
-        message: `${t("zod.signUp.name.lastName.min")}`,
-      })
-      .regex(/^[A-Za-z]+$/, {
-        message: `${t("zod.signUp.name.lastName.invalid")}`,
-      }),
-  });
+  const nameSchema = NameSchema();
 
   const birthdaySchema = z.object({
     birth_year: z.coerce

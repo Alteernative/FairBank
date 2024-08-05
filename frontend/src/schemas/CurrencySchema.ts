@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import ModifyEmailSchema from "./ModifyEmailSchema";
+import EmailSchema from "./EmailSchema";
 
 export default function CurrencySchema() {
   const { t } = useTranslation();
 
   return z.object({
-    receiver: ModifyEmailSchema().shape.email.optional(),
-    sender: ModifyEmailSchema().shape.email.optional(),
+    receiver: EmailSchema().shape.email.optional(),
+    sender: EmailSchema().shape.email.optional(),
     amount: z
       .string({
         required_error: `${t("zod.currency.amount.required")}`,
