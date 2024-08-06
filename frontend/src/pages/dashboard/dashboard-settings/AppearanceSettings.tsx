@@ -51,7 +51,7 @@ export default function AppearanceSettings() {
       </Card>
 
       {/* TODO: À implémenter */}
-      <Card className="w-full sm:w-10/12">
+      <Card className="w-full sm:w-10/12 hidden">
         <CardHeader>
           <CardTitle>{t("settings.appearance.card4.title")}</CardTitle>
           <CardDescription>

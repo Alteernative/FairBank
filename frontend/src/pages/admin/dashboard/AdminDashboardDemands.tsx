@@ -3,6 +3,8 @@ import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 type ContactUs = {
   id: number;
@@ -23,6 +25,7 @@ type UpdateRequest = {
 };
 
 export default function AdminDashBoardDemands() {
+  const { t } = useTranslation();
   const [updateRequests, setUpdateRequests] = useState<UpdateRequest[]>([]);
   const [deleteRequests, setDeleteRequests] = useState([]);
   const [contactUs, setUser] = useState<ContactUs | null>(null);
@@ -32,14 +35,13 @@ export default function AdminDashBoardDemands() {
       .get("dashboard_admin/list_all_contactUs/")
       .then((res) => {
         setUser(res.data);
-        console.log("THE Contact us are ", res.data);
+        console.log("The Contact Us messages are ", res.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
   }, []);
 
-  console.log(contactUs);
   useEffect(() => {
     axiosInstance
       .get("dashboard_admin/list_all_requests/")
@@ -48,10 +50,7 @@ export default function AdminDashBoardDemands() {
         setUpdateRequests(res.data);
       })
       .catch((error) => {
-        console.error(
-          "There was an error fetching the update requests!",
-          error
-        );
+        console.error("There was an error fetching the update requests!", error);
       });
 
     axiosInstance
@@ -61,64 +60,52 @@ export default function AdminDashBoardDemands() {
         setDeleteRequests(res.data);
       })
       .catch((error) => {
-        console.error(
-          "There was an error fetching the delete requests!",
-          error
-        );
+        console.error("There was an error fetching the delete requests!", error);
       });
   }, []);
 
-  const handleApproveUpdate = (id) => {
+  const handleApproveUpdate = (id: number) => {
     axiosInstance
       .post(`dashboard_admin/${id}/approve-update/`)
       .then((res) => {
         console.log("Approved update request:", res.data);
-        setUpdateRequests(
-          updateRequests.filter((request) => request.user !== id)
-        );
+        setUpdateRequests(updateRequests.filter((request) => request.user !== id));
       })
       .catch((error) => {
         console.error("Error approving update request:", error);
       });
   };
 
-  const handleDeclineUpdate = (id) => {
+  const handleDeclineUpdate = (id: number) => {
     axiosInstance
       .post(`dashboard_admin/${id}/decline-update/`)
       .then((res) => {
         console.log("Declined update request:", res.data);
-        setUpdateRequests(
-          updateRequests.filter((request) => request.user !== id)
-        );
+        setUpdateRequests(updateRequests.filter((request) => request.user !== id));
       })
       .catch((error) => {
         console.error("Error declining update request:", error);
       });
   };
 
-  const handleApproveDelete = (id) => {
-    console.log("the id to delete is : ", id);
+  const handleApproveDelete = (id: number) => {
     axiosInstance
       .post(`dashboard_admin/${id}/approve-delete/`)
       .then((res) => {
         console.log("Approved delete request:", res.data);
-        setDeleteRequests(
-          deleteRequests.filter((request) => request.id !== id)
-        );
+        setDeleteRequests(deleteRequests.filter((request) => request.id !== id));
       })
       .catch((error) => {
         console.error("Error approving delete request:", error);
       });
   };
 
-  const handleDeclineDelete = (id) => {
+  const handleDeclineDelete = (id: number) => {
     axiosInstance
       .post(`dashboard_admin/${id}/deny-delete/`)
       .then((res) => {
         console.log("Declined delete request:", res.data);
-        setDeleteRequests(
-          deleteRequests.filter((request) => request.id !== id)
-        );
+        setDeleteRequests(deleteRequests.filter((request) => request.id !== id));
       })
       .catch((error) => {
         console.error("Error declining delete request:", error);
@@ -126,99 +113,96 @@ export default function AdminDashBoardDemands() {
   };
 
   return (
-    <main className="h-full min-h-screen w-full bg-muted/20 px-16 py-5 lg:ml-52 lg:px-5 xl:ml-60">
+    <section className="ml-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">Requests</h1>
-      <section className="flex flex-col items-start gap-10">
-        <div>
-          <h2 className="mb-4 text-xl font-bold">Pending User Updates</h2>
-          {updateRequests.length > 0 ? (
-            <ul className="space-y-4">
-              {updateRequests.map((request) => (
-                <li key={request.user} className="rounded-lg border p-4 shadow">
-                  <p>
-                    <strong>User ID:</strong> {request.user}
-                  </p>
-                  <Separator className="my-4" />
-                  <p>
-                    <strong>Email:</strong> {request.email}
-                  </p>
-                  <p>
-                    <strong>Requested Email:</strong> {request.tmp_email}
-                  </p>
-                  <Separator className="my-4" />
-                  <p>
-                    <strong>Current Name:</strong> {request.current_nom}
-                    {", "}
-                    {request.current_prenom}
-                  </p>
-                  <p>
-                    <strong>Requested Name:</strong> {request.tmp_nom}
-                    {", "}
-                    {request.tmp_prenom}
-                  </p>
-                  <div className="mt-4 flex gap-4">
+      <main className="flex flex-col gap-10">
+        <div className="mb-5 w-full">
+          <h2 className="mb-3 text-lg font-semibold tracking-tight">Profile Updates</h2>
+          <div className="space-y-2 rounded-lg border px-5 py-3 shadow bg-background">
+            {updateRequests.length > 0 ? (
+              updateRequests.map((request) => (
+                <div key={request.user} className="flex flex-wrap items-center justify-between gap-4">
+                  {request.email !== request.tmp_email ? (
+                    <>
+                      <div className="flex flex-col">
+                        <p className="text-base "><strong>Current Email :</strong> {request.email}</p>
+                        <p className="text-base "><strong>Requested Email :</strong> {request.tmp_email}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-col">
+                        <p className="text-base"><strong>Current Name :</strong> {request.current_nom} {request.current_prenom}</p>
+                        <p className="text-base"><strong>Requested Name :</strong> {request.tmp_nom} {request.tmp_prenom}</p>
+                      </div>
+                    </>
+                  )}
+                  <div className="flex items-center gap-3">
                     <Button
-                      className="w-full bg-green-500 text-white shadow-sm hover:bg-green-500/90 dark:bg-green-900 dark:hover:bg-green-900/90"
+                      type="button"
+                      size={"icon"}
+                      variant={"outline"}
                       onClick={() => handleApproveUpdate(request.user)}
+                      className="bg-green-500 text-white hover:bg-green-600 hover:text-white"
                     >
-                      <Check size={20} />
+                      <Check />
                     </Button>
                     <Button
-                      variant={"destructive"}
-                      className=" w-full"
+                      type="button"
+                      size={"icon"}
                       onClick={() => handleDeclineUpdate(request.user)}
+                      className="bg-red-500 text-white hover:bg-red-600"
                     >
-                      <X size={20} />
+                      <X />
                     </Button>
                   </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No pending updates</p>
-          )}
+                  <Separator />
+                </div>
+              ))
+            ) : (
+              <p>No Profile Update Requests</p>
+            )}
+          </div>
         </div>
 
-        <div>
-          <h2 className="mb-4 text-xl font-bold">Pending Delete Requests</h2>
-          {deleteRequests.length > 0 ? (
-            <ul className="space-y-4">
-              {deleteRequests.map((request) => (
-                <li key={request.id} className="rounded-lg border p-4 shadow">
-                  <p>
-                    <strong>User ID:</strong> {request.id}
-                  </p>
-                  <Separator className="my-4" />
-                  <p>
-                    <strong>Email:</strong> {request.user_email}
-                  </p>
-                  <p>
-                    <strong>Name:</strong> {request.user_first_name}{" "}
-                    {request.user_last_name}
-                  </p>
-                  <div className="mt-4 flex gap-4">
+        <div className="mb-5 w-full">
+          <h2 className="mb-3 text-lg font-semibold tracking-tight">Deletions</h2>
+          <div className="space-y-2 rounded-lg border px-5 py-3 shadow bg-background">
+            {deleteRequests.length > 0 ? (
+              deleteRequests.map((request) => (
+                <div key={request.id} className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <p className="text-base"><strong>User Id :</strong> {request.id}</p>
+                    <p className="text-base "><strong>Current user email :</strong> {request.user_email}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
                     <Button
+                      type="button"
+                      size={"icon"}
+                      variant={"outline"}
                       onClick={() => handleApproveDelete(request.id)}
-                      className="w-full bg-green-500 text-white shadow-sm hover:bg-green-500/90 dark:bg-green-900 dark:hover:bg-green-900/90"
+                      className="bg-green-500 text-white hover:bg-green-600 hover:text-white"
                     >
-                      <Check size={20} />
+                      <Check />
                     </Button>
                     <Button
-                      variant={"destructive"}
+                      type="button"
+                      size={"icon"}
                       onClick={() => handleDeclineDelete(request.id)}
-                      className="w-full"
+                      className="bg-red-500 text-white hover:bg-red-600"
                     >
-                      <X size={20} />
+                      <X />
                     </Button>
                   </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No pending delete requests</p>
-          )}
+                  <Separator />
+                </div>
+              ))
+            ) : (
+              <p>No Deletion Requests</p>
+            )}
+          </div>
         </div>
-      </section>
-    </main>
+      </main>
+    </section>
   );
 }

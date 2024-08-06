@@ -67,7 +67,7 @@ export default function AdminSidebar() {
             >
               <Link to={"/admin/demands"}>
                 <Inbox size={20} />
-                Demandes
+                Requests
               </Link>
             </Button>
           </div>

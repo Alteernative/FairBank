@@ -130,7 +130,7 @@ const AccountTypesChart = () => {
     },
     INR: {
       label: "INR",
-      color: "hsl(var(--chart-6))",
+      color: "hsl(38,24%,45%)",
     },
   } satisfies ChartConfig;
 
