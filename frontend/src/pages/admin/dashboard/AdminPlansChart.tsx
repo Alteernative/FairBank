@@ -99,7 +99,7 @@ const AccountPlansChart = () => {
       <CardHeader>
         <CardTitle>Plans Actifs</CardTitle>
         <CardDescription>
-          Affiche le nombre de client pour chaque plan.
+          Affichife le nombre total de clients par plan
         </CardDescription>
       </CardHeader>
       <CardContent>
