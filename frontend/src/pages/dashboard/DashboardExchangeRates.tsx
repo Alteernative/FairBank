@@ -50,7 +50,7 @@ export default function DashboardExchangeRates() {
   const { t } = useTranslation();
 
   // API KEY from apilayer.com
-  const apiKey = "9PjsviRD106mo1VyTg79UwJkaMNFFNXW";
+  const apiKey = "Ee7q94aj8Gx56lrGv8RCEquV3IdvLcZz";
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
     AxiosInstance.put(`currencies/update_balance/`, {
@@ -189,7 +189,7 @@ export default function DashboardExchangeRates() {
   }
 
   return (
-    <main className="mx-14 h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
+    <section className="mx-14 h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 w-full font-jomhuria text-6xl">
         {t("dashboard.exchangeRate.h1")}
       </h1>
@@ -197,127 +197,134 @@ export default function DashboardExchangeRates() {
         {t("dashboard.exchangeRate.h2")}
       </h2>
 
-      {Object.keys(chartData).map((currency) => (
-        <Dialog key={currency}>
-          <DialogTrigger asChild>
-            <Button className="mx-2 my-2 h-1/4 w-1/4 rounded-lg px-5 shadow-lg outline md:w-1/4">
-              {exchangeRates[currency] ? (
-                <p className="text-2xl">
-                  {" "}
-                  CAD-{currency} {getFlagEmoji(currency)}
-                  <br /> <br />
-                  {exchangeRates[currency]} {currency}
-                </p>
-              ) : (
-                <p className="text-2xl">
-                  Chargement taux conversion {currency}...
-                </p>
-              )}
-            </Button>
-          </DialogTrigger>
+      <main className="grid grid-cols-1 gap-8 md:grid-cols-2 md:grid-rows-4 xl:grid-cols-3 xl:grid-rows-3">
+        {Object.keys(chartData).map((currency) => (
+          // <div className="md: md:col-span-1 lg:col-span-1">
+          <div>
+            <Dialog key={currency}>
+              <DialogTrigger asChild>
+                {/* <Button className="mx-2 my-2 h-1/4 w-1/4 rounded-lg px-5 shadow-lg outline md:w-1/4"> */}
+                <Button className="h-full w-full">
+                  {exchangeRates[currency] ? (
+                    <p className="text-2xl">
+                      {" "}
+                      CAD-{currency} {getFlagEmoji(currency)}
+                      <br /> <br />
+                      {exchangeRates[currency]} {currency}
+                    </p>
+                  ) : (
+                    <p className="text-2xl">
+                      Chargement taux conversion {currency}...
+                    </p>
+                  )}
+                </Button>
+              </DialogTrigger>
 
-          <DialogContent className="sm:max-w-[825px]">
-            <DialogHeader>
-              <DialogTitle>Graphe de devise </DialogTitle>
-              <DialogDescription>
-                Vous pouvez voir ici plus de détails sur l'état du {currency} et
-                l'ajouter à votre balance.
-              </DialogDescription>
-            </DialogHeader>
+              <DialogContent className="sm:max-w-[825px]">
+                <DialogHeader>
+                  <DialogTitle>Graphe de devise </DialogTitle>
+                  <DialogDescription>
+                    Vous pouvez voir ici plus de détails sur l'état du{" "}
+                    {currency} et l'ajouter à votre balance.
+                  </DialogDescription>
+                </DialogHeader>
 
-            <Card key={currency}>
-              <CardHeader>
-                <CardTitle>CAD - {currency}</CardTitle>
-                <CardDescription>
-                  Valeur du taux de change CAD - {currency} des 6 derniers mois
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ChartContainer config={chartConfig}>
-                  <AreaChart
-                    data={chartData[currency]}
-                    margin={{
-                      left: 12,
-                      right: 12,
-                    }}
-                  >
-                    <CartesianGrid vertical={false} />
-                    <XAxis
-                      dataKey="date"
-                      tickLine={false}
-                      axisLine={false}
-                      tickMargin={8}
-                      tickFormatter={(value) =>
-                        new Date(value).toLocaleDateString()
-                      }
-                    />
-                    <YAxis domain={["auto", "auto"]} />
-                    <ChartTooltip
-                      cursor={false}
-                      content={
-                        <ChartTooltipContent indicator="dot" hideLabel />
-                      }
-                    />
-                    <Area
-                      dataKey="rate"
-                      type="linear"
-                      fill="#8D918D"
-                      fillOpacity={0.2}
-                      stroke="#006400"
-                      strokeWidth={1.5}
-                    />
-                  </AreaChart>
-                </ChartContainer>
-              </CardContent>
-              <CardFooter>
-                <div className="flex w-full items-start gap-2 text-sm">
-                  <div className="grid gap-2">
-                    <div className="flex items-center gap-2 font-medium leading-none">
-                      Croissance de 5.2% ce mois-ci{" "}
-                      <TrendingUp className="h-4 w-4" />
+                <Card key={currency}>
+                  <CardHeader>
+                    <CardTitle>CAD - {currency}</CardTitle>
+                    <CardDescription>
+                      Valeur du taux de change CAD - {currency} des 6 derniers
+                      mois
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ChartContainer config={chartConfig}>
+                      <AreaChart
+                        data={chartData[currency]}
+                        margin={{
+                          left: 12,
+                          right: 12,
+                        }}
+                      >
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                          dataKey="date"
+                          tickLine={false}
+                          axisLine={false}
+                          tickMargin={8}
+                          tickFormatter={(value) =>
+                            new Date(value).toLocaleDateString()
+                          }
+                        />
+                        <YAxis domain={["auto", "auto"]} />
+                        <ChartTooltip
+                          cursor={false}
+                          content={
+                            <ChartTooltipContent indicator="dot" hideLabel />
+                          }
+                        />
+                        <Area
+                          dataKey="rate"
+                          type="linear"
+                          fill="#8D918D"
+                          fillOpacity={0.2}
+                          stroke="#006400"
+                          strokeWidth={1.5}
+                        />
+                      </AreaChart>
+                    </ChartContainer>
+                  </CardContent>
+                  <CardFooter>
+                    <div className="flex w-full items-start gap-2 text-sm">
+                      <div className="grid gap-2">
+                        <div className="flex items-center gap-2 font-medium leading-none">
+                          Croissance de 5.2% ce mois-ci{" "}
+                          <TrendingUp className="h-4 w-4" />
+                        </div>
+                        <div className="flex items-center gap-2 leading-none text-muted-foreground">
+                          Janvier - Juillet 2024
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 leading-none text-muted-foreground">
-                      Janvier - Juillet 2024
-                    </div>
+                  </CardFooter>
+                </Card>
+
+                <DialogFooter className="mt-4 flex items-center justify-between">
+                  <div className="flex space-x-4">
+                    <Button className="flex-1" onClick={() => {}}>
+                      Balance ${user.balance.toPrecision(4)}
+                    </Button>
+                    <Input
+                      className="flex-1"
+                      placeholder="Entrez le montant à convertir"
+                      type="number"
+                      id="amount"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                    />
+                    <Button
+                      className="flex-1"
+                      type="submit"
+                      onClick={() => {
+                        setSelectedCurrency(currency);
+                        handleConversion();
+                      }}
+                    >
+                      Convertir
+                    </Button>
                   </div>
-                </div>
-              </CardFooter>
-            </Card>
 
-            <DialogFooter className="mt-4 flex items-center justify-between">
-              <div className="flex space-x-4">
-                <Button className="flex-1" onClick={() => {}}>
-                  Balance ${user.balance.toPrecision(4)}
-                </Button>
-                <Input
-                  className="flex-1"
-                  placeholder="Entrez le montant à convertir"
-                  type="number"
-                  id="amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-                <Button
-                  className="flex-1"
-                  type="submit"
-                  onClick={() => {
-                    setSelectedCurrency(currency);
-                    handleConversion();
-                  }}
-                >
-                  Convertir
-                </Button>
-              </div>
-
-              <div>
-                <p>
-                  Montant converti: {convertedAmount} {currency}
-                </p>
-              </div>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      ))}
-    </main>
+                  <div>
+                    <p>
+                      Montant converti: {convertedAmount} {currency}
+                    </p>
+                  </div>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        ))}
+      </main>
+    </section>
   );
 }
