@@ -97,90 +97,87 @@ export default function UserPanel() {
     tier3: t("plans.tier3.name"),
   };
 
-  const sendTransaction = (data: FieldValues) => {
-    console.log("Data being sent:", {
-      sender: data.sender,
-      receiver: data.receiver,
-      amount: parseFloat(data.amount),
-    });
-
-    AxiosInstance.post(
-      "transactions/",
-      {
-        sender: user.email,
+  const sendTransaction = async (data: FieldValues) => {
+    try {
+      console.log("Data being sent:", {
+        sender: data.sender,
         receiver: data.receiver,
         amount: parseFloat(data.amount),
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => {
-        const newTransaction = response.data;
-        console.log("Transaction successful:", newTransaction);
-        const updatedUser = {
-          ...user,
-          balance: user.balance - newTransaction.amount,
-          sent_transactions: [...user.sent_transactions, newTransaction],
-        };
-        setUser(updatedUser);
-        toast.success(`${t("toast.userPanel.sendFunds.success")}`);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-        toast.error(`${t("toast.userPanel.sendFunds.error")}`);
       });
+
+      const response = await AxiosInstance.post(
+        "transactions/",
+        {
+          sender: user.email,
+          receiver: data.receiver,
+          amount: parseFloat(data.amount),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const newTransaction = response.data;
+      console.log("Transaction successful:", newTransaction);
+      const updatedUser = {
+        ...user,
+        balance: user.balance - newTransaction.amount,
+        sent_transactions: [...user.sent_transactions, newTransaction],
+      };
+      setUser(updatedUser);
+      toast.success(`${t("toast.userPanel.sendFunds.success")}`);
+    } catch (error: any) {
+      console.error("Error:", error.message);
+      toast.error(`${t("toast.userPanel.sendFunds.error")}`);
+    }
   };
 
-  const requestTransaction = (data: FieldValues) => {
-    AxiosInstance.post(
-      "request/",
-      {
-        sender: data.sender,
-        receiver: user.email,
-        amount: parseFloat(data.amount),
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+  const requestTransaction = async (data: FieldValues) => {
+    try {
+      const response = await AxiosInstance.post(
+        "request/",
+        {
+          sender: data.sender,
+          receiver: user.email,
+          amount: parseFloat(data.amount),
         },
-      }
-    )
-      .then((response) => {
-        console.log("Transaction successful:", response.data);
-        toast.info(`${t("toast.userPanel.requestFunds.success")}`);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-        toast.error(`${t("toast.userPanel.requestFunds.error")}`);
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Transaction successful:", response.data);
+      toast.info(`${t("toast.userPanel.requestFunds.success")}`);
+    } catch (error: any) {
+      console.error("Error:", error.message);
+      toast.error(`${t("toast.userPanel.requestFunds.error")}`);
+    }
   };
 
-  const depositTransaction = (data: FieldValues) => {
-    AxiosInstance.post(
-      `users/add_balance/`,
-      { amount: parseFloat(data.amount) },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    )
-      .then((response) => {
-        console.log("Data amount:" + response.data.amount);
-        const updatedUser = {
-          ...user,
-          balance: user.balance + parseFloat(data.amount),
-        };
-        setUser(updatedUser);
-        toast.success(`${t("toast.userPanel.depositFunds.success")}`);
-      })
-      .catch((error) => {
-        console.error("Error:", error.message);
-        toast.error(`${t("toast.userPanel.depositFunds.error")}`);
-      });
+  const depositTransaction = async (data: FieldValues) => {
+    try {
+      const response = await AxiosInstance.post(
+        `users/add_balance/`,
+        { amount: parseFloat(data.amount) },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Data amount:" + response.data.amount);
+      const updatedUser = {
+        ...user,
+        balance: user.balance + parseFloat(data.amount),
+      };
+      setUser(updatedUser);
+      toast.success(`${t("toast.userPanel.depositFunds.success")}`);
+    } catch (error: any) {
+      console.error("Error:", error.message);
+      toast.error(`${t("toast.userPanel.depositFunds.error")}`);
+    }
   };
 
   return (
@@ -206,7 +203,13 @@ export default function UserPanel() {
             <Dialog>
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
-                  <Button variant={"outline"} className="size-14 rounded-full">
+                  <Button
+                    variant={"outline"}
+                    className="size-14 rounded-full"
+                    onClick={() => {
+                      clearErrorsSend("amount"), clearErrorsSend("receiver");
+                    }}
+                  >
                     <Send size={20} />
                   </Button>
                   <p className="mt-2 text-sm">{t("buttons.sendFunds")}</p>
@@ -265,13 +268,15 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     {/* <DialogClose asChild>
-                      <Button type="submit">{t("buttons.sendFunds")}</Button>
+                      <Button type="submit" >{t("buttons.sendFunds")}</Button>
                     </DialogClose> */}
-                    {isSubmittingSend ? (
-                      <Loader size={20} className="animate-spin" />
-                    ) : (
-                      <Button type="submit">{t("buttons.sendFunds")}</Button>
-                    )}
+                    <Button type="submit" disabled={isSubmittingSend}>
+                      {isSubmittingSend ? (
+                        <Loader size={20} className="animate-spin" />
+                      ) : (
+                        `${t("buttons.sendFunds")}`
+                      )}
+                    </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -280,7 +285,14 @@ export default function UserPanel() {
             <Dialog>
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
-                  <Button variant={"outline"} className="size-14 rounded-full">
+                  <Button
+                    variant={"outline"}
+                    className="size-14 rounded-full"
+                    onClick={() => {
+                      clearErrorsRequest("amount"),
+                        clearErrorsRequest("sender");
+                    }}
+                  >
                     <HandCoins size={20} />
                   </Button>
                   <p className="mt-2 text-sm">{t("buttons.requestFunds")}</p>
@@ -341,13 +353,15 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     {/* <DialogClose asChild>
-                      <Button type="submit">{t("buttons.requestFunds")}</Button>
+                      <Button type="submit" >{t("buttons.requestFunds")}</Button>
                     </DialogClose> */}
-                    {isSubmittingRequest ? (
-                      <Loader size={20} className="animate-spin" />
-                    ) : (
-                      <Button type="submit">{t("buttons.requestFunds")}</Button>
-                    )}
+                    <Button type="submit" disabled={isSubmittingRequest}>
+                      {isSubmittingRequest ? (
+                        <Loader size={20} className="animate-spin" />
+                      ) : (
+                        `${t("buttons.requestFunds")}`
+                      )}
+                    </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -356,7 +370,11 @@ export default function UserPanel() {
             <Dialog>
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
-                  <Button variant={"outline"} className="size-14 rounded-full">
+                  <Button
+                    variant={"outline"}
+                    className="size-14 rounded-full"
+                    onClick={() => clearErrorsDeposit("amount")}
+                  >
                     <DollarSign size={20} />
                   </Button>
                   <p className="mt-2 text-sm">{t("buttons.depositFunds")}</p>
@@ -397,7 +415,7 @@ export default function UserPanel() {
                   </div>
                   <DialogFooter>
                     {/* <DialogClose asChild>
-                      <Button type="submit">{t("buttons.depositFunds")}</Button>
+                      <Button type="submit" >{t("buttons.depositFunds")}</Button>
                     </DialogClose> */}
                     <Button type="submit" disabled={isSubmittingDeposit}>
                       {isSubmittingDeposit ? (
@@ -482,7 +500,14 @@ export default function UserPanel() {
                   <div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
+                        <Button
+                          size={"icon"}
+                          variant={"ghost"}
+                          onClick={() => {
+                            clearErrorsSend("amount"),
+                              clearErrorsSend("receiver");
+                          }}
+                        >
                           <Send size={20} />
                         </Button>
                       </DialogTrigger>
@@ -545,15 +570,16 @@ export default function UserPanel() {
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
                             {/* < DialogClose asChild>
-                              <Button type="submit">{t("buttons.sendFunds")}</Button>
+                              <Button type="submit" >{t("buttons.sendFunds")}</Button>
                             </DialogClose> */}
-                            {isSubmittingSend ? (
-                              <Loader size={20} className="animate-spin" />
-                            ) : (
-                              <Button type="submit">
-                                {t("buttons.sendFunds")}
-                              </Button>
-                            )}
+
+                            <Button type="submit" disabled={isSubmittingSend}>
+                              {isSubmittingSend ? (
+                                <Loader size={20} className="animate-spin" />
+                              ) : (
+                                `${t("buttons.sendFunds")}`
+                              )}
+                            </Button>
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -569,7 +595,14 @@ export default function UserPanel() {
                   <div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
+                        <Button
+                          size={"icon"}
+                          variant={"ghost"}
+                          onClick={() => {
+                            clearErrorsRequest("amount"),
+                              clearErrorsRequest("sender");
+                          }}
+                        >
                           <HandCoins size={20} />
                         </Button>
                       </DialogTrigger>
@@ -634,17 +667,20 @@ export default function UserPanel() {
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
                             {/* <DialogClose asChild>
-                              <Button type="submit">
+                              <Button type="submit" >
                                 {t("requestFundsAction")}
                               </Button>
                             </DialogClose> */}
-                            {isSubmittingSend ? (
-                              <Loader size={20} className="animate-spin" />
-                            ) : (
-                              <Button type="submit">
-                                {t("buttons.sendFunds")}
-                              </Button>
-                            )}
+                            <Button
+                              type="submit"
+                              disabled={isSubmittingRequest}
+                            >
+                              {isSubmittingSend ? (
+                                <Loader size={20} className="animate-spin" />
+                              ) : (
+                                `${t("buttons.sendFunds")}`
+                              )}
+                            </Button>
                           </DialogFooter>
                         </form>
                       </DialogContent>
@@ -660,7 +696,11 @@ export default function UserPanel() {
                   <div>
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
+                        <Button
+                          size={"icon"}
+                          variant={"ghost"}
+                          onClick={() => clearErrorsDeposit("amount")}
+                        >
                           <DollarSign size={20} />
                         </Button>
                       </DialogTrigger>
@@ -703,7 +743,7 @@ export default function UserPanel() {
                           </div>
                           <DialogFooter className="flex flex-row justify-end">
                             {/* <DialogClose asChild>
-                              <Button type="submit">
+                              <Button type="submit" >
                                 {t("buttons.depositFunds")}
                               </Button>
                             </DialogClose> */}
