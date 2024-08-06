@@ -21,6 +21,8 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import AxiosInstance from "@/components/AxiosInstance";
+import { toast } from "sonner";
 
 const FormSchema = z.object({
   newsletter_emails: z.boolean().default(true).optional(),
@@ -38,7 +40,32 @@ export default function NotificationsSettings() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    // TODO: Mardi
+    console.log(data);
+    if (data.newsletter_emails) {
+      AxiosInstance.post("unsubscribe/subscribe/", {
+        id: user.id,
+      })
+        .then((response) => {
+          console.log(response);
+          toast.success(`${t("toast.subscribe.success")}`);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(`${t("toast.subscribe.error")}`);
+        });
+    } else {
+      AxiosInstance.post("unsubscribe/unsubscribe/", {
+        id: user.id,
+      })
+        .then((response) => {
+          console.log(response);
+          toast.success(`${t("toast.unsubscribe.success")}`);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(`${t("toast.unsubscribe.error")}`);
+        });
+    }
   }
 
   return (
