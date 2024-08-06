@@ -40,6 +40,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CurrencySchema from "@/schemas/CurrencySchema";
+import { useState } from "react";
 
 type Activity = {
   name: string;
@@ -62,6 +63,14 @@ const activities: Activity[] = [
 export default function UserPanel() {
   const { user, setUser } = useUserContext();
   const { t } = useTranslation();
+
+  const [sendDialogOpen, setSendDialogOpen] = useState(false);
+  const [requestDialogOpen, setRequestDialogOpen] = useState(false);
+  const [depositDialogOpen, setDepositDialogOpen] = useState(false);
+  const [sendMobileDialogOpen, setSendMobileDialogOpen] = useState(false);
+  const [requestMobileDialogOpen, setRequestMobileDialogOpen] = useState(false);
+  const [depositMobileDialogOpen, setDepositMobileDialogOpen] = useState(false);
+
   const {
     handleSubmit: handleSubmitSend,
     register: registerSend,
@@ -127,6 +136,8 @@ export default function UserPanel() {
       };
       setUser(updatedUser);
       toast.success(`${t("toast.userPanel.sendFunds.success")}`);
+      setSendDialogOpen(false);
+      setSendMobileDialogOpen(false);
     } catch (error: any) {
       console.error("Error:", error.message);
       toast.error(`${t("toast.userPanel.sendFunds.error")}`);
@@ -150,6 +161,8 @@ export default function UserPanel() {
       );
       console.log("Transaction successful:", response.data);
       toast.info(`${t("toast.userPanel.requestFunds.success")}`);
+      setRequestDialogOpen(false);
+      setRequestMobileDialogOpen(false);
     } catch (error: any) {
       console.error("Error:", error.message);
       toast.error(`${t("toast.userPanel.requestFunds.error")}`);
@@ -174,6 +187,8 @@ export default function UserPanel() {
       };
       setUser(updatedUser);
       toast.success(`${t("toast.userPanel.depositFunds.success")}`);
+      setDepositDialogOpen(false);
+      setDepositMobileDialogOpen(false);
     } catch (error: any) {
       console.error("Error:", error.message);
       toast.error(`${t("toast.userPanel.depositFunds.error")}`);
@@ -200,7 +215,7 @@ export default function UserPanel() {
             {planTitle[user.plan]}
           </Badge>
           <div className="mt-7 flex w-full items-center justify-around">
-            <Dialog>
+            <Dialog open={sendDialogOpen} onOpenChange={setSendDialogOpen}>
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button
@@ -282,7 +297,10 @@ export default function UserPanel() {
               </DialogContent>
             </Dialog>
 
-            <Dialog>
+            <Dialog
+              open={requestDialogOpen}
+              onOpenChange={setRequestDialogOpen}
+            >
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button
@@ -367,7 +385,10 @@ export default function UserPanel() {
               </DialogContent>
             </Dialog>
 
-            <Dialog>
+            <Dialog
+              open={depositDialogOpen}
+              onOpenChange={setDepositDialogOpen}
+            >
               <DialogTrigger asChild>
                 <div className="flex flex-col items-center">
                   <Button
@@ -498,7 +519,10 @@ export default function UserPanel() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div>
-                    <Dialog>
+                    <Dialog
+                      open={sendMobileDialogOpen}
+                      onOpenChange={setSendMobileDialogOpen}
+                    >
                       <DialogTrigger asChild>
                         <Button
                           size={"icon"}
@@ -593,7 +617,10 @@ export default function UserPanel() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div>
-                    <Dialog>
+                    <Dialog
+                      open={requestMobileDialogOpen}
+                      onOpenChange={setRequestMobileDialogOpen}
+                    >
                       <DialogTrigger asChild>
                         <Button
                           size={"icon"}
@@ -694,7 +721,10 @@ export default function UserPanel() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div>
-                    <Dialog>
+                    <Dialog
+                      open={depositMobileDialogOpen}
+                      onOpenChange={setDepositMobileDialogOpen}
+                    >
                       <DialogTrigger asChild>
                         <Button
                           size={"icon"}
