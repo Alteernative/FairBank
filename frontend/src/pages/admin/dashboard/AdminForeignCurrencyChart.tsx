@@ -139,7 +139,8 @@ const AccountTypesChart = () => {
       <CardHeader>
         <CardTitle>Devises Étrangères</CardTitle>
         <CardDescription>
-          Total des devises étrangères échangées par les utilisateurs actifs
+          Affiche le montant total des devises étrangères échangées par les
+          clients actifs
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -175,7 +176,7 @@ const AccountTypesChart = () => {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent indicator="line" />}
             />
             <Bar dataKey="Balance" layout="horizontal" radius={5} />
           </BarChart>

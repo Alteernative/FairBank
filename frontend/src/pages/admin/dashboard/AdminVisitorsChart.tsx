@@ -41,9 +41,7 @@ const ActiveAccountsChart = () => {
     <Card className="aspect-auto h-[150px] w-full xl:h-[175px]">
       <CardHeader className="py-4 pb-0 text-center xl:pb-4">
         <CardTitle>Comptes Actifs</CardTitle>
-        <CardDescription>
-          Nombre d'utilisateurs actifs chez FairBank
-        </CardDescription>
+        <CardDescription>Nombre de clients actifs</CardDescription>
       </CardHeader>
       <CardContent className="h-30 flex items-center justify-center">
         <span className="font-jomhuria text-6xl md:text-8xl">

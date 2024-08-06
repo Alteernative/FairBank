@@ -88,7 +88,7 @@ const AdminTransactionsChart = () => {
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Transactions Quotidiennes</CardTitle>
           <CardDescription>
-            Montant transactionné quotidiennement
+            Affiche le montant total des transactions quotidiennes
           </CardDescription>
         </div>
 
@@ -137,7 +137,8 @@ const AdminTransactionsChart = () => {
                 tickMargin={10}
                 axisLine={false}
                 tickFormatter={(value) => {
-                  const date = new Date(value);
+                  const [year, month, day] = value.split("-");
+                  const date = new Date(year, month - 1, day, 12);
                   return date.toLocaleDateString("en-US", {
                     month: "2-digit",
                     day: "numeric",
@@ -147,7 +148,7 @@ const AdminTransactionsChart = () => {
               <YAxis hide />
               <ChartTooltip
                 cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                content={<ChartTooltipContent indicator="line" />}
               />
               <Bar
                 dataKey={activeChart}

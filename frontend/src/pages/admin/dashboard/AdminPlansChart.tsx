@@ -97,9 +97,9 @@ const AccountPlansChart = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Clients</CardTitle>
+        <CardTitle>Plans Actifs</CardTitle>
         <CardDescription>
-          Affiche le nombre de client pour chaque plan.
+          Affichife le nombre total de clients par plan
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -128,7 +128,7 @@ const AccountPlansChart = () => {
             <XAxis dataKey="Utilisateurs" type="number" hide />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent indicator="line" />}
             />
             <Bar dataKey="Utilisateurs" layout="horizontal" radius={5} />
           </BarChart>
