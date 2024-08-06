@@ -460,6 +460,10 @@
       "success": "A reset email has been sent.",
       "error": "An error occurred while requesting a password reset."
     },
+    "subscribe": {
+      "success": "You have been subscribed successfully.",
+      "error": "An error occurred while subscribing."
+    },
     "unsubscribe": {
       "success": "You have been unsubscribed successfully.",
       "error": "An error occurred while unsubscribing."
