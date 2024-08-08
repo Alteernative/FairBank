@@ -126,8 +126,8 @@ FairBank est une application web bancaire transparente et éthique, développée
 
 ## Contributeurs
 
-- [Khalladi, Issam](https://www.linkedin.com/in/issamkhalladi)
-- [Jdaini, Mohammed Ali](https://www.linkedin.com/in/mohammed-ali-jdaini)
+- [Khalladi, Issam](https://www.linkedin.com/in/issamkhalladi/)
+- [Jdaini, Mohammed Ali](https://www.linkedin.com/in/mohammed-ali-jdaini/)
 - [Mihai, Dragomir Emilian](https://www.linkedin.com/in/dragomir-mihai/)
 
 ## Licence
