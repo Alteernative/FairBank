@@ -20,6 +20,7 @@ FairBank est une application web bancaire transparente et éthique, développée
 - **Transactions** : Réalisation de transactions entre utilisateurs.
 - **Historique des transactions** : Suivi des transactions effectuées.
 - **Page administrateur** : Vue des activités globale du site. Gère les demandes des utilisateurs.
+- **Courriels personnalisés** : courriel de bienvenue, courriel de changement de mot de passe, courriel de newsletter, et courriel de confirmation de suppression de compte.
 
 ## Technologies utilisées
 
@@ -38,6 +39,9 @@ FairBank est une application web bancaire transparente et éthique, développée
 - [Django](https://www.djangoproject.com/)
 - [Django REST framework](https://www.django-rest-framework.org/)
 
+### Base de données 
+- Sqlite3
+  
 ## Installation
 
 ### Prérequis
