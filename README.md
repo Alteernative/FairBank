@@ -33,7 +33,6 @@ FairBank est une application web bancaire transparente et éthique, développée
 - [react-hook-form](https://react-hook-form.com/)
 - [zod](https://github.com/colinhacks/zod)
 - [i18n](https://react.i18next.com)
-- 
 
 ### Backend
 - [Django](https://www.djangoproject.com/)
@@ -127,9 +126,9 @@ FairBank est une application web bancaire transparente et éthique, développée
 
 ## Contributeurs
 
-- Issam Khalladi
-- Mohammed Ali Jdaini
-- Dragomir Emilian Mihai
+- [Khalladi, Issam](linkedin.com/in/issamkhalladi)
+- Jdaini, Mohammed Ali
+- Mihai, Dragomir Emilian
 
 ## Licence
 
