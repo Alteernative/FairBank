@@ -2,3 +2,8 @@
 .vscode
 .env
 .idea
+heroku.yml
+frontend/Dockerfile
+backend/.dockerignore
+backend/Dockerfile
+docker-compose.yaml

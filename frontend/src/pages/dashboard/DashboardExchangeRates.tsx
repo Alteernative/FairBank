@@ -50,7 +50,7 @@ export default function DashboardExchangeRates() {
   const { t } = useTranslation();
 
   // API KEY from apilayer.com
-  const apiKey = "Ee7q94aj8Gx56lrGv8RCEquV3IdvLcZz";
+  const apiKey = import.meta.env.VITE_APIKEY;
 
   const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
     AxiosInstance.put(`currencies/update_balance/`, {
