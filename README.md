@@ -1,6 +1,8 @@
 # FairBank
 
-FairBank is a transparent and ethical web banking application, developed as part of the INM5151 course at UQAM. This project aims to offer an innovative and interest-free banking service platform. FairBank provides a range of features, including transaction management, user interface customization, and an administrator page for advanced user and service management.
+FairBank is a transparent web banking application, developed as part of the INM5151 course at UQAM. 
+FairBank offers an innovative and interest-free banking service platform.
+The following documentation shows the features, technologies used as well as a guide for local installation.
 
 ## Demo
 https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
@@ -52,12 +54,9 @@ https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
 - Node.js
 - npm
 - Python
-- pip
-- Modern web browser
 
 ### Instructions
 
-#### Clone the Repository
 
 1. Clone the repository:
    ```bash
@@ -65,15 +64,11 @@ https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
    cd fairbank
    ```
 
-#### Install Frontend Dependencies
-
 2. Install the frontend dependencies :
    ```bash
    cd frontend
    npm install
    ```
-
-#### Install Backend Dependencies
 
 3. Install the backend dependencies :
 
@@ -95,14 +90,11 @@ https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
    pip install -r requirements.txt
    ```
 
-#### Configure the Database
-
 4. Configure the database :
    ```bash
    python manage.py migrate
    ```
 
-#### Start Development Servers
 
 5. Start the development servers:
 
