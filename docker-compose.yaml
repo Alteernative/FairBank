@@ -1,16 +1,18 @@
-  services:
-    api:
-      build: ./backend
-      ports:
-        - "8000:8000"
-      volumes:
-        - ./backend:/backend
-      command: python manage.py runserver 0.0.0.0:8000
+version: '3.8'
 
-    web:
-      build: ./frontend
-      ports:
-        - "5173:5173"  # Map port 5173 in the container to port 3000 on the host
-      volumes:
-        - ./frontend:/frontend
-      command: npm run dev
+services:
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend
+    command: python manage.py runserver 0.0.0.0:8000
+
+  web:
+    build: ./frontend
+    ports:
+      - "5173:5173"  # Correct port mapping
+    volumes:
+      - ./frontend:/frontend
+    command: npm run dev
