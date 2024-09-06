@@ -6,7 +6,12 @@ import { Link } from "react-router-dom";
 import { CircleAlert, Wallet, Award, Crown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export default function PlanForm({ isLastStep, isSubmitting }) {
+interface PlanFormProps {
+  isLastStep: boolean;
+  isSubmitting: boolean;
+}
+
+export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
   const { t } = useTranslation();
   const {
     register,

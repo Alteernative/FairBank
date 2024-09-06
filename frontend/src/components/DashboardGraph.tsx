@@ -1,5 +1,4 @@
 "use client";
-import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
@@ -17,7 +16,6 @@ import {
 } from "@/components/ui/chart";
 import { useUserContext } from "@/contexts/UserContext";
 import { useEffect, useState } from "react";
-import { CSVLink } from "react-csv";
 import { FaFileDownload } from "react-icons/fa";
 
 const chartConfig = {
@@ -157,26 +155,12 @@ export default function DashboardGraph() {
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <div className="flex flex-row justify-end">
-          <CSVLink
-            filename={"Historiquetransactions.csv"}
-            data={JsonObj}
-            className="flex size-7 items-center justify-center rounded-md bg-green-500 text-white transition-colors duration-300 hover:bg-green-600"
-          >
-            <FaFileDownload />
-          </CSVLink>
-        </div>
-
-        {/* TODO: Faire calcul de l'etat du compte du mois precedent pour afficher tendance croissance ou descendante*/}
-        {/*<div className="flex w-full items-start gap-2 text-sm">*/}
-        {/*  <div className="grid gap-2">*/}
-        {/*    <div className="flex items-center gap-2 font-medium leading-none">*/}
-        {/*      Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />*/}
-        {/*    </div>*/}
-        {/*    <div className="flex items-center gap-2 leading-none text-muted-foreground">*/}
-        {/*      January - June 2024*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
+        {/*TODO: Fix and change posiion downloadable transaction history */}
+        {/*<div className="flex flex-row justify-end">*/}
+        {/*    filename={"Historiquetransactions.csv"}*/}
+        {/*    data={JsonObj}*/}
+        {/*    className="flex size-7 items-center justify-center rounded-md bg-green-500 text-white transition-colors duration-300 hover:bg-green-600"*/}
+        {/*    <FaFileDownload />*/}
         {/*</div>*/}
       </CardFooter>
     </Card>

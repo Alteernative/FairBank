@@ -15,10 +15,10 @@ export default function ImageUpload() {
   } = useFormContext();
 
   const [fileName, setFileName] = useState("");
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
       setValue("image_url", file);
@@ -31,7 +31,7 @@ export default function ImageUpload() {
   const handleRemoveFile = () => {
     setFileName("");
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      fileInputRef.current.value = "";  // Reset input value
       setValue("image_url", null); // Clear the file in the form context
     }
   };

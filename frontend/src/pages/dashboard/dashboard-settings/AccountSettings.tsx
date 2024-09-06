@@ -38,7 +38,6 @@ export default function AccountSettings() {
   const {
     handleSubmit: handlePasswordSubmit,
     register: registerPassword,
-    setError: setErrorPassword,
     clearErrors: clearErrorsPassword,
     formState: { errors: errorsPassword, isSubmitting: isSubmittingPassword },
   } = useForm({

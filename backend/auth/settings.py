@@ -1,5 +1,11 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
+from sqlalchemy import false
+
+# from dotenv import load_dotenv
+#
+# load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,9 +17,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b_*n(q%r99nr9ta^0za2y_2tfld_arqti1i4)qup1bg2!5vn2f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv('DEBUG', 'False') == 'True'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://fairbank-a29c3d2b6931.herokuapp.com/',
+    '127.0.0.1',
+    'localhost'
+
+]
 
 # Application definition
 

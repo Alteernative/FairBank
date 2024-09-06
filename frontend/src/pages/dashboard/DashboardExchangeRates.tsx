@@ -39,9 +39,22 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+interface ExchangeRates {
+  [currency: string]: number;
+}
+
+interface ChartDataEntry {
+  date: string;
+  rate: number;
+}
+
+interface ChartData {
+  [currency: string]: ChartDataEntry[];
+}
+
 export default function DashboardExchangeRates() {
-  const [exchangeRates, setExchangeRates] = useState({});
-  const [chartData, setChartData] = useState([]);
+  const [exchangeRates, setExchangeRates] = useState<ExchangeRates>({});
+  const [chartData, setChartData] = useState<ChartData>({});
   const { user } = useUserContext();
   const [amount, setAmount] = useState(0);
   const [convertedAmount, setConvertedAmount] = useState(0);
@@ -52,13 +65,17 @@ export default function DashboardExchangeRates() {
   // API KEY from apilayer.com
   const apiKey = import.meta.env.VITE_APIKEY;
 
-  const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
+  const updateCurrencyBalance = (
+  currency: string,
+  originalAmount: number,
+  convertedAmount: number
+  ) => {
     AxiosInstance.put(`currencies/update_balance/`, {
       currency: currency,
       original_amount: originalAmount.toString(),
       converted_amount: convertedAmount.toString(),
     })
-      .then((response) => {
+      .then(() => {
         setTimeout(() => {
           navigate("/dashboard");
           window.location.reload();
@@ -169,7 +186,7 @@ export default function DashboardExchangeRates() {
     fetchHistoryExchangeRates();
   }, []);
 
-  function getFlagEmoji(currency) {
+  function getFlagEmoji(currency: string): string {
     switch (currency) {
       case "USD":
         return "🇺🇸";
@@ -300,7 +317,7 @@ export default function DashboardExchangeRates() {
                       type="number"
                       id="amount"
                       value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
+                      onChange={(e) => setAmount(Number(e.target.value))}
                     />
                     <Button
                       className="flex-1"
