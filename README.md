@@ -2,6 +2,9 @@
 
 FairBank is a transparent and ethical web banking application, developed as part of the INM5151 course at UQAM. This project aims to offer an innovative and interest-free banking service platform. FairBank provides a range of features, including transaction management, user interface customization, and an administrator page for advanced user and service management.
 
+## Demo
+https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
+
 ## Table of Contents
 
 - [Features](#features)
