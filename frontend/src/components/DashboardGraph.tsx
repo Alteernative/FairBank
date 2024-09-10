@@ -17,8 +17,12 @@ import {
 } from "@/components/ui/chart";
 import { useUserContext } from "@/contexts/UserContext";
 import { useEffect, useState } from "react";
+<<<<<<< Updated upstream
 import { CSVLink } from "react-csv";
 import { FaFileDownload } from "react-icons/fa";
+=======
+import { Transaction } from "@/contexts/UserContext.tsx";
+>>>>>>> Stashed changes
 
 const chartConfig = {
   balance: {
@@ -27,14 +31,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-type Transaction = {
-  id: number;
-  sender: string;
-  receiver: string;
-  amount: string;
-  date: string;
-  type: "received" | "sent";
-};
+// type Transaction = {
+//   id: number;
+//   sender: string;
+//   receiver: string;
+//   amount: string;
+//   date: string;
+//   type: "received" | "sent";
+// };
 
 export default function DashboardGraph() {
   const { user } = useUserContext();
@@ -46,12 +50,12 @@ export default function DashboardGraph() {
   useEffect(() => {
     if (user) {
       const transactions: Transaction[] = [
-        ...(user.received_transactions ?? []).map((t) => ({
+        ...(user.received_transactions ?? []).map((t: Transaction) => ({
           ...t,
           type: "received" as const,
           date: t.date,
         })),
-        ...(user.sent_transactions ?? []).map((t) => ({
+        ...(user.sent_transactions ?? []).map((t: Transaction) => ({
           ...t,
           type: "sent" as const,
           date: t.date,

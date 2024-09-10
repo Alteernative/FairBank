@@ -3,8 +3,11 @@ import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+<<<<<<< Updated upstream
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
+=======
+>>>>>>> Stashed changes
 
 type ContactUs = {
   id: number;
@@ -24,11 +27,14 @@ type UpdateRequest = {
   tmp_email: string;
 };
 
+type DeleteRequest = {
+  id: number;
+  user_email: string;
+};
 export default function AdminDashBoardDemands() {
-  const { t } = useTranslation();
   const [updateRequests, setUpdateRequests] = useState<UpdateRequest[]>([]);
-  const [deleteRequests, setDeleteRequests] = useState([]);
-  const [contactUs, setUser] = useState<ContactUs | null>(null);
+  const [deleteRequests, setDeleteRequests] = useState<DeleteRequest[]>([]);
+  const [, setUser] = useState<ContactUs | null>(null);
 
   useEffect(() => {
     axiosInstance
@@ -120,7 +126,7 @@ export default function AdminDashBoardDemands() {
           <h2 className="mb-3 text-lg font-semibold tracking-tight">Profile Updates</h2>
           <div className="space-y-2 rounded-lg border px-5 py-3 shadow bg-background">
             {updateRequests.length > 0 ? (
-              updateRequests.map((request) => (
+              updateRequests.map((request: UpdateRequest) => (
                 <div key={request.user} className="flex flex-wrap items-center justify-between gap-4">
                   {request.email !== request.tmp_email ? (
                     <>
@@ -169,7 +175,7 @@ export default function AdminDashBoardDemands() {
           <h2 className="mb-3 text-lg font-semibold tracking-tight">Deletions</h2>
           <div className="space-y-2 rounded-lg border px-5 py-3 shadow bg-background">
             {deleteRequests.length > 0 ? (
-              deleteRequests.map((request) => (
+              deleteRequests.map((request: DeleteRequest) => (
                 <div key={request.id} className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <p className="text-base"><strong>User Id :</strong> {request.id}</p>

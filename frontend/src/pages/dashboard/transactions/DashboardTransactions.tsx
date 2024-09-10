@@ -2,32 +2,30 @@ import { useUserContext } from "@/contexts/UserContext.tsx";
 import { Payment, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { useTranslation } from "react-i18next";
+import { Transaction } from "@/contexts/UserContext.tsx";
 
 export default function DashboardTransactions() {
   const { user } = useUserContext();
   const { t } = useTranslation();
 
-  const sentTransactions: Payment[] = user.sent_transactions.map(
-    (transaction) => ({
+    const sentTransactions: Payment[] = user.sent_transactions.map((transaction: Transaction) => ({
       id: transaction.id.toString(),
       amount: parseFloat(transaction.amount),
       status: `${t("dashboard.history.status.sent")}`,
       email: transaction.receiver,
       date: transaction.date,
       type: "sent",
-    })
-  );
+    }));
 
-  const receivedTransactions: Payment[] = user.received_transactions.map(
-    (transaction) => ({
+    const receivedTransactions: Payment[] = user.received_transactions.map((transaction: Transaction) => ({
       id: transaction.id.toString(),
       amount: parseFloat(transaction.amount),
       status: `${t("dashboard.history.status.received")}`,
       email: transaction.sender,
       date: transaction.date,
       type: "received",
-    })
-  );
+    }));
+
 
   const data: Payment[] = [...sentTransactions, ...receivedTransactions];
 

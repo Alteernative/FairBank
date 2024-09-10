@@ -1,6 +1,5 @@
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -49,12 +48,6 @@ type Activity = {
   isPositive: boolean;
 };
 
-type PlanTitle = {
-  tier1: string;
-  tier2: string;
-  tier3: string;
-};
-
 const activities: Activity[] = [
   { name: "Zara", date: "02/03/24", amount: "-$136.45", isPositive: false },
   { name: "Interac", date: "01/13/24", amount: "$750.00", isPositive: true },
@@ -99,6 +92,10 @@ export default function UserPanel() {
     mode: "onSubmit",
   });
   const baseUrl = "http://127.0.0.1:8000";
+
+  type PlanTitle = {
+    [key: string]: string;
+  };
 
   const planTitle: PlanTitle = {
     tier1: t("plans.tier1.name"),

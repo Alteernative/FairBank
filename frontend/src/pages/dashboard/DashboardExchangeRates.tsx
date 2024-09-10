@@ -115,7 +115,7 @@ export default function DashboardExchangeRates() {
 
       if (response.data && response.data.rates) {
         const data = response.data.rates;
-        const processedData = {};
+        const processedData: ChartData = {};
         Object.keys(data).forEach((date) => {
           Object.keys(data[date]).forEach((currency) => {
             if (!processedData[currency]) {

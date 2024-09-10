@@ -51,7 +51,7 @@ export default function SignUp() {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const allData = { ...formData, ...data };
+    const allData = { ...formData, ...data } as Record<string, any>;
     setFormData(allData);
     console.log(allData);
 
