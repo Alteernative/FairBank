@@ -7,6 +7,7 @@ export type Transaction = {
   date: string;
   sender: string;
   receiver: string;
+  type?: "received" | "sent";  // Add 'type' field as optional
 };
 
 type User = {

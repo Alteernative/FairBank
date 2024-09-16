@@ -32,7 +32,7 @@ export default function ProfileSettings() {
     mode: "onSubmit",
   });
   const baseUrl = "http://127.0.0.1:8000";
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedImage, setSelectedImage] = useState("");
   const { t } = useTranslation();
 
@@ -44,8 +44,8 @@ export default function ProfileSettings() {
     setSelectedImage(user.image_url ? `${baseUrl}${user.image_url}` : "");
   }, [user, setValue]);
 
-  const handleFile = (e) => {
-    const file = e.target.files[0];
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
     }
@@ -53,9 +53,8 @@ export default function ProfileSettings() {
 
   const handleImage = (data: FieldValues) => {
     console.log(data);
-
     const formData = new FormData();
-    if (fileInputRef.current && fileInputRef.current.files[0]) {
+    if (fileInputRef.current?.files?.[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
     }
 

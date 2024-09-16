@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 import { CircleAlert, Wallet, Award, Crown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export default function PlanForm({ isLastStep, isSubmitting }) {
+// Define the prop types
+interface PlanFormProps {
+  isLastStep: boolean;
+  isSubmitting: boolean;
+}
+
+export default function PlanForm({ isLastStep, isSubmitting }: PlanFormProps) {
   const { t } = useTranslation();
   const {
     register,
@@ -48,7 +54,9 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
         {plans.map((plan) => (
           <Card
             key={plan.id}
-            className={`w-full flex-1 shadow-none transition-all duration-200 hover:border-primary ${selectedPlanId === plan.id ? "border-primary" : ""}`}
+            className={`w-full flex-1 shadow-none transition-all duration-200 hover:border-primary ${
+              selectedPlanId === plan.id ? "border-primary" : ""
+            }`}
           >
             <input
               id={`plan-${plan.id}`}
@@ -63,7 +71,9 @@ export default function PlanForm({ isLastStep, isSubmitting }) {
                 <CardTitle className="text-center text-xl">
                   {plan.name}
                 </CardTitle>
-                <span className="content-center font-jomhuria text-3xl">{`${formatCurrency(plan.price)}/mo`}</span>
+                <span className="content-center font-jomhuria text-3xl">{`${formatCurrency(
+                  plan.price
+                )}/mo`}</span>
               </CardHeader>
             </label>
           </Card>

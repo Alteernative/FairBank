@@ -1,11 +1,8 @@
 from pathlib import Path
-<<<<<<< Updated upstream
 import os
-=======
 from dotenv import load_dotenv
 
 load_dotenv()
->>>>>>> Stashed changes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,11 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-<<<<<<< Updated upstream
 DEBUG = True
 
 ALLOWED_HOSTS = []
-=======
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
@@ -29,7 +24,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost'
 ]
->>>>>>> Stashed changes
 
 # Application definition
 

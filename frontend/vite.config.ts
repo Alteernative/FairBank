@@ -9,12 +9,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-<<<<<<< Updated upstream
-})
-=======
   server: {
     host: '0.0.0.0',
     port: process.env.PORT || 3000,
   }
 });
->>>>>>> Stashed changes
