@@ -1,8 +1,9 @@
-FROM python:3.11
+# Stage 1: Build the backend
+FROM python:3.11 AS backend
 
 WORKDIR /backend
 
-COPY requirements.txt .
+COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install gunicorn

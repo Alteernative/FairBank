@@ -21,8 +21,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'fairbank-a29c3d2b6931.herokuapp.com',
+    'localhost',
     '127.0.0.1',
-    'localhost'
 ]
 
 # Application definition
@@ -53,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
+    'http://localhost:5173',  # Local development
+    'https://fairbank-a29c3d2b6931.herokuapp.com',  # Production URL
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
