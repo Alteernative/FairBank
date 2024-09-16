@@ -3,11 +3,8 @@ import axiosInstance from "@/components/AxiosInstance.tsx";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-<<<<<<< Updated upstream
-import { Badge } from "@/components/ui/badge";
-import { useTranslation } from "react-i18next";
-=======
->>>>>>> Stashed changes
+// import { Badge } from "@/components/ui/badge";
+// import { useTranslation } from "react-i18next";
 
 type ContactUs = {
   id: number;
