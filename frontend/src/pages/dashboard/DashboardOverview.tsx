@@ -12,6 +12,11 @@ import { useTranslation } from "react-i18next";
 import { Progress } from "@/components/ui/progress.tsx";
 import formatCurrency from "@/utils/formatCurrency";
 
+type Transaction = {
+  date: string;
+  amount: string;
+};
+
 export default function DashboardOverview() {
   const { user } = useUserContext();
   const { t } = useTranslation();
@@ -20,10 +25,10 @@ export default function DashboardOverview() {
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
 
-    const dailyTransactions = user.sent_transactions.filter((transaction) => {
+    const dailyTransactions = user.sent_transactions.filter((transaction: Transaction) => {
       try {
         const transactionDate = new Date(transaction.date);
-        if (isNaN(transactionDate)) {
+            if (Number.isNaN(transactionDate.getTime())) {
           throw new Error("Invalid date");
         }
         return transactionDate.toISOString().split("T")[0] === today;
@@ -36,15 +41,15 @@ export default function DashboardOverview() {
       }
     });
 
-    const dailySum = dailyTransactions.reduce((sum, transaction) => {
-      const amount = parseFloat(transaction.amount);
-      return sum + amount;
-    }, 0);
+  const dailySum = dailyTransactions.reduce((sum: number, transaction: Transaction) => {
+    const amount = parseFloat(transaction.amount);
+    return sum + amount;
+  }, 0);
 
     setDailyTransactionsSum(dailySum);
   }, [user.sent_transactions]);
 
-  const currencySymbols = {
+  const currencySymbols: Record<string, string> = {
     USD: "$",
     JPY: "¥",
     EUR: "€",
@@ -53,19 +58,18 @@ export default function DashboardOverview() {
     INR: "₹",
   };
 
-  const transactionsLimits = {
+  const transactionsLimits: Record<string, number> = {
     tier1: 5000,
     tier2: 15000,
     tier3: 100000,
   };
   const transactionsLimit = transactionsLimits[user.plan];
+
   const progress = (dailyTransactionsSum / transactionsLimit) * 100;
 
   return (
     <main className="mx-14 min-h-screen w-full bg-muted/20 px-3 py-5 sm:px-10 lg:ml-52 lg:mr-72 lg:px-5">
       <h1 className="mb-10 font-jomhuria text-6xl">
-        {/* TODO: Pass the props to i18n */}
-        {/* Bonjour {user.first_name} */}
         {t("dashboard.overview.welcome")}
         {user.first_name}!
       </h1>
@@ -132,32 +136,6 @@ export default function DashboardOverview() {
             </CarouselContent>
           </Carousel>
         </div>
-        {/* <Carousel className="w-full shadow lg:col-span-3 lg:row-span-1">
-          <CarouselContent className="-ml-1">
-            {Object.entries(user.currencies).map(([key, value], index) => {
-              const currencyKey = key.replace("balance_", "").toUpperCase();
-
-              return (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                  <Card className="flex h-20 flex-col items-center">
-                    <CardHeader className="flex cursor-default flex-col items-center">
-                      <h2>
-                        <CountUp
-                          start={0}
-                          end={parseFloat(value)}
-                          duration={1}
-                          prefix={currencySymbols[currencyKey]}
-                          decimals={2}
-                          className="text-3xl font-extrabold"
-                        />
-                      </h2>
-                    </CardHeader>
-                  </Card>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-        </Carousel> */}
       </div>
     </main>
   );

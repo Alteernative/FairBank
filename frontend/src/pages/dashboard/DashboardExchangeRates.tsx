@@ -39,9 +39,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+type ChartData = {
+  [currency: string]: Array<{ date: string; rate: number }>;
+};
+
 export default function DashboardExchangeRates() {
-  const [exchangeRates, setExchangeRates] = useState({});
-  const [chartData, setChartData] = useState([]);
+  const [exchangeRates, setExchangeRates] = useState<{ [key: string]: number }>({});
+  const [chartData, setChartData] = useState<{ [key: string]: Array<{ date: string; rate: number }> }>({});
   const { user } = useUserContext();
   const [amount, setAmount] = useState(0);
   const [convertedAmount, setConvertedAmount] = useState(0);
@@ -52,13 +56,17 @@ export default function DashboardExchangeRates() {
   // API KEY from apilayer.com
   const apiKey = "Ee7q94aj8Gx56lrGv8RCEquV3IdvLcZz";
 
-  const updateCurrencyBalance = (currency, originalAmount, convertedAmount) => {
+  const updateCurrencyBalance = (
+  currency: string,
+  originalAmount: number,
+  convertedAmount: number
+  ) => {
     AxiosInstance.put(`currencies/update_balance/`, {
       currency: currency,
       original_amount: originalAmount.toString(),
       converted_amount: convertedAmount.toString(),
     })
-      .then((response) => {
+      .then(() => {
         setTimeout(() => {
           navigate("/dashboard");
           window.location.reload();
@@ -115,7 +123,7 @@ export default function DashboardExchangeRates() {
 
       if (response.data && response.data.rates) {
         const data = response.data.rates;
-        const processedData = {};
+        const processedData: ChartData = {};
         Object.keys(data).forEach((date) => {
           Object.keys(data[date]).forEach((currency) => {
             if (!processedData[currency]) {
@@ -169,7 +177,7 @@ export default function DashboardExchangeRates() {
     fetchHistoryExchangeRates();
   }, []);
 
-  function getFlagEmoji(currency) {
+  function getFlagEmoji(currency: string) {
     switch (currency) {
       case "USD":
         return "🇺🇸";
@@ -300,7 +308,7 @@ export default function DashboardExchangeRates() {
                       type="number"
                       id="amount"
                       value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
+                      onChange={(e) => setAmount(Number(e.target.value))}
                     />
                     <Button
                       className="flex-1"

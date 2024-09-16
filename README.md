@@ -1,28 +1,33 @@
 # FairBank
 
-FairBank est une application web bancaire transparente et éthique, développée dans le cadre du cours INM5151 à l'UQAM. Ce projet vise à offrir une plateforme de services bancaires innovante et sans intérêts. FairBank propose une gamme de fonctionnalités, notamment la gestion des transactions, la personnalisation de l'interface utilisateur, et une page dédiée aux administrateurs pour une gestion avancée des utilisateurs et des services.
+FairBank is a transparent web banking application, developed as part of the INM5151 course at UQAM. 
+FairBank offers an innovative and interest-free banking service platform.
+The following documentation shows the features, technologies used as well as a guide for local installation.
 
-## Table des matières
+## Demo
+https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
 
-- [Fonctionnalités](#fonctionnalités)
-- [Technologies utilisées](#technologies-utilisées)
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Structure du projet](#structure-du-projet)
-- [Contributeurs](#contributeurs)
-- [Licence](#licence)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributors](#contributors)
+- [License](#license)
 
-## Fonctionnalités
+## Features
 
-- **Création de compte** : Permet aux utilisateurs de créer un compte bancaire.
-- **Authentification** : Gestion sécurisée de l'authentification des utilisateurs.
-- **Gestion de compte utilisateur** : Vue et modification des informations utilisateur.
-- **Transactions** : Réalisation de transactions entre utilisateurs.
-- **Historique des transactions** : Suivi des transactions effectuées.
-- **Page administrateur** : Vue des activités globale du site. Gère les demandes des utilisateurs.
-- **Courriels personnalisés** : courriel de bienvenue, courriel de changement de mot de passe, courriel de newsletter, et courriel de confirmation de suppression de compte.
+- **Account Creation**: Allows users to create a bank account.
+- **Authentication**: Secure management of user authentication.
+- **User Account Management**: View and modify user information.
+- **Transactions**: Perform transactions between users.
+- **Transaction History**: Track completed transactions.
+- **Administrator Page**: View overall site activities. Manage user requests.
+- **Custom Emails**: Welcome email, password change email, newsletter email, and account deletion confirmation email.
 
-## Technologies utilisées
+## Technologies Used
 
 ### Frontend
 - [React](https://reactjs.org/)
@@ -39,42 +44,35 @@ FairBank est une application web bancaire transparente et éthique, développée
 - [Django](https://www.djangoproject.com/)
 - [Django REST framework](https://www.django-rest-framework.org/)
 
-### Base de données 
+### Database
 - Sqlite3
   
 ## Installation
 
-### Prérequis
+### Prerequisites
 
 - Node.js
 - npm
 - Python
-- pip
-- Fureteur web moderne
 
 ### Instructions
 
-#### Cloner le dépôt
 
-1. Clonez le dépôt :
+1. Clone the repository:
    ```bash
    git clone https://github.com/Alteernative/FairBank.git
    cd fairbank
    ```
 
-#### Installer les dépendances du frontend
-
-2. Installez les dépendances du frontend :
+2. Install the frontend dependencies :
    ```bash
    cd frontend
    npm install
    ```
 
-#### Installer les dépendances du backend
+3. Install the backend dependencies :
 
-3. Installez les dépendances du backend :
-
-##### macOS et Linux
+##### macOS and Linux
 
    ```bash
    cd ../backend
@@ -92,16 +90,13 @@ FairBank est une application web bancaire transparente et éthique, développée
    pip install -r requirements.txt
    ```
 
-#### Configurer la base de données
-
-4. Configurez la base de données :
+4. Configure the database :
    ```bash
    python manage.py migrate
    ```
 
-#### Démarrer les serveurs de développement
 
-5. Démarrez les serveurs de développement :
+5. Start the development servers:
 
 ##### Frontend
 
@@ -117,18 +112,18 @@ FairBank est une application web bancaire transparente et éthique, développée
    python manage.py runserver
    ```
 
-## Utilisation
+## Usage 
 
-1. Ouvrez votre navigateur et accédez à `http://localhost:5173` pour utiliser l'interface utilisateur de l'application.
-2. Utilisez les fonctionnalités disponibles pour créer un compte, effectuer des transactions, modifier l'apparence du site, etc.
+1. Open your browser and go to http://localhost:5173 to use the application's user interface.
+2. Use the available features to create an account, perform transactions, modify the site's appearance, etc
 
-## Structure du projet
+## Project Structure
 
-- `frontend/` : Contient le code source du frontend.
-- `backend/` : Contient le code source du backend.
-- `README.md` : Documentation du projet.
+- `frontend/` : Contains the source code for the frontend.
+- `backend/` : Contains the source code for the backend.
+- `README.md` : Project documentation.
 
-## Contributeurs
+## Contributors
 
 - [Khalladi, Issam](https://www.linkedin.com/in/issamkhalladi/)
 - [Jdaini, Mohammed Ali](https://www.linkedin.com/in/mohammed-ali-jdaini/)
@@ -136,4 +131,4 @@ FairBank est une application web bancaire transparente et éthique, développée
 
 ## Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus d'informations.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.

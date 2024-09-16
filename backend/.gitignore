@@ -48,7 +48,7 @@ target/
 .mypy_cache/
 
 # Environments
-.env
+../frontend/.env
 .venv
 env/
 venv/
@@ -69,7 +69,7 @@ venv.bak/
 venv/
 
 # Environment variables
-.env
+../frontend/.env
 .env.local
 .env.production
 .env.*.local
