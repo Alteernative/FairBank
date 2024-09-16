@@ -12,6 +12,11 @@ import { useTranslation } from "react-i18next";
 import { Progress } from "@/components/ui/progress.tsx";
 import formatCurrency from "@/utils/formatCurrency";
 
+type Transaction = {
+  date: string;
+  amount: string;
+};
+
 export default function DashboardOverview() {
   const { user } = useUserContext();
   const { t } = useTranslation();
@@ -20,10 +25,10 @@ export default function DashboardOverview() {
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
 
-    const dailyTransactions = user.sent_transactions.filter((transaction) => {
+    const dailyTransactions = user.sent_transactions.filter((transaction: Transaction) => {
       try {
         const transactionDate = new Date(transaction.date);
-        if (isNaN(transactionDate)) {
+            if (Number.isNaN(transactionDate.getTime())) {
           throw new Error("Invalid date");
         }
         return transactionDate.toISOString().split("T")[0] === today;
@@ -36,15 +41,15 @@ export default function DashboardOverview() {
       }
     });
 
-    const dailySum = dailyTransactions.reduce((sum, transaction) => {
-      const amount = parseFloat(transaction.amount);
-      return sum + amount;
-    }, 0);
+  const dailySum = dailyTransactions.reduce((sum: number, transaction: Transaction) => {
+    const amount = parseFloat(transaction.amount);
+    return sum + amount;
+  }, 0);
 
     setDailyTransactionsSum(dailySum);
   }, [user.sent_transactions]);
 
-  const currencySymbols = {
+  const currencySymbols: Record<string, string> = {
     USD: "$",
     JPY: "¥",
     EUR: "€",
@@ -53,12 +58,13 @@ export default function DashboardOverview() {
     INR: "₹",
   };
 
-  const transactionsLimits = {
+  const transactionsLimits: Record<string, number> = {
     tier1: 5000,
     tier2: 15000,
     tier3: 100000,
   };
   const transactionsLimit = transactionsLimits[user.plan];
+
   const progress = (dailyTransactionsSum / transactionsLimit) * 100;
 
   return (

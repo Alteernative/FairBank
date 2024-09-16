@@ -1,11 +1,8 @@
-import os
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-from sqlalchemy import false
-
-# from dotenv import load_dotenv
-#
-# load_dotenv()
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,17 +11,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b_*n(q%r99nr9ta^0za2y_2tfld_arqti1i4)qup1bg2!5vn2f'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'fairbank-a29c3d2b6931.herokuapp.com',
     '127.0.0.1',
     'localhost'
-
 ]
 
 # Application definition
@@ -121,8 +119,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = 'admin@fairbank.com'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -138,7 +136,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates', 'mediafiles')

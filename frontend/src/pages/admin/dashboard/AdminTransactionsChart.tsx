@@ -1,18 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartContainer } from "@/components/ui/chart";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 import formatCurrency from "@/utils/formatCurrency";
 
@@ -21,19 +10,17 @@ const chartConfig = {
     label: "Montant",
     color: "hsl(var(--chart-1))",
   },
-} satisfies ChartConfig;
+};
 
 const AdminTransactionsChart = () => {
-  const [chartData, setChartData] = useState([]);
-  const [error, setError] = useState(null);
+  const [chartData, setChartData] = useState<{ date: string; montant: number }[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const [activeChart, setActiveChart] = useState("montant");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await AxiosInstance.get(
-          "dashboard_admin/list_all_users/"
-        );
+        const response = await AxiosInstance.get("dashboard_admin/list_all_users/");
         const data = response.data;
         console.log("Reponse Backend fetch API Users:", data);
         if (Array.isArray(data)) {
@@ -44,15 +31,15 @@ const AdminTransactionsChart = () => {
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError(error.message);
+        setError((error as Error).message);
       }
     };
 
     fetchData();
   }, []);
 
-  const transformData = (data) => {
-    const transactionsPerDay = {};
+  const transformData = (data: { received_transactions: { date: string; amount: string }[] }[]) => {
+    const transactionsPerDay: { [key: string]: { date: string; montant: number } } = {};
 
     data.forEach((user) => {
       user.received_transactions.forEach((transaction) => {
@@ -64,9 +51,9 @@ const AdminTransactionsChart = () => {
       });
     });
 
-    // Sort par date
+    // Sort by date
     return Object.values(transactionsPerDay).sort(
-      (a, b) => new Date(a.date) - new Date(b.date)
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
   };
 
@@ -75,7 +62,7 @@ const AdminTransactionsChart = () => {
     [chartData]
   );
 
-  // Format date  YYYY-MM-DD
+  // Format date YYYY-MM-DD
   const today = new Date().toISOString().split("T")[0];
   const currentDayTotal = useMemo(() => {
     const todayData = chartData.find((data) => data.date === today);
@@ -129,7 +116,7 @@ const AdminTransactionsChart = () => {
             config={chartConfig}
             className="aspect-auto h-[400px] w-full xl:h-[500px]"
           >
-            <BarChart accessibilityLayer data={chartData}>
+            <BarChart data={chartData}>
               <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="date"
@@ -138,23 +125,34 @@ const AdminTransactionsChart = () => {
                 axisLine={false}
                 tickFormatter={(value) => {
                   const [year, month, day] = value.split("-");
-                  const date = new Date(year, month - 1, day, 12);
-                  return date.toLocaleDateString("en-US", {
-                    month: "2-digit",
-                    day: "numeric",
+                  const date = new Date(year, parseInt(month) - 1, parseInt(day));
+                  return date.toLocaleDateString("fr-FR", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
                   });
                 }}
               />
-              <YAxis hide />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent indicator="line" />}
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(value) => formatCurrency(value)}
               />
-              <Bar
-                dataKey={activeChart}
-                fill="hsl(var(--chart-2))"
-                radius={8}
+              <Tooltip
+                content={({ payload}) => {
+                  if (!payload || payload.length === 0) return null;
+                  return (
+                    <div>
+                      {payload.map((entry, index) => (
+                        <div key={`item-${index}`}>
+                          {entry.name}: {formatCurrency(entry.value as number)}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }}
               />
+              <Bar dataKey="montant" fill="hsl(var(--chart-1))" />
             </BarChart>
           </ChartContainer>
         )}

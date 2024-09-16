@@ -34,7 +34,6 @@ export default function DisplaySettings() {
     console.log(user);
     console.log("deleting :", data);
     console.log(data);
-
     AxiosInstance.delete(`users/${user.id}/`)
       .then(() => {
         toast.success(`${t("toast.settings.security.success")}`);

@@ -53,9 +53,8 @@ export default function ProfileSettings() {
 
   const handleImage = (data: FieldValues) => {
     console.log(data);
-
     const formData = new FormData();
-    if (fileInputRef.current && fileInputRef.current.files?.[0]) {
+    if (fileInputRef.current?.files?.[0]) {
       formData.append("image_url", fileInputRef.current.files[0]);
     }
 

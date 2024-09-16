@@ -15,6 +15,13 @@ import { toast, Toaster } from "sonner";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+interface FormValues {
+  prenom: string;
+  nom: string;
+  email: string;
+  message: string;
+}
+
 export default function Footer() {
   const { t } = useTranslation();
 
@@ -167,7 +174,7 @@ export default function Footer() {
                 className="h-24 resize-none"
                 {...register("message")}
               />
-              <Button className="mt-2" onSubmit={handleSubmit}>
+              <Button className="mt-2" type="submit">
                 {t("buttons.submit")}
               </Button>
             </form>

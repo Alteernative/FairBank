@@ -40,7 +40,7 @@ export const columns: ColumnDef<Payment>[] = [
       );
     },
     cell: ({ row }) => {
-      const status = row.getValue("status") as typeof sentStatus | typeof receivedStatus;
+      const status = row.getValue("status") as string;
       return (
         <div className="font-medium ">&nbsp;&nbsp;&nbsp;&nbsp;{status}</div>
       );

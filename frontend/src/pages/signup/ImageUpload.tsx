@@ -15,10 +15,11 @@ export default function ImageUpload() {
   } = useFormContext();
 
   const [fileName, setFileName] = useState("");
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null); // Correctly type the ref
 
+  // Explicitly type the event parameter
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]; // Use optional chaining in case no file is selected
     if (file) {
       setFileName(file.name);
       setValue("image_url", file);
@@ -31,7 +32,7 @@ export default function ImageUpload() {
   const handleRemoveFile = () => {
     setFileName("");
     if (fileInputRef.current) {
-      fileInputRef.current.value = "";  // Reset input value
+      fileInputRef.current.value = ""; // Clear the input value
       setValue("image_url", null); // Clear the file in the form context
     }
   };
@@ -46,7 +47,7 @@ export default function ImageUpload() {
           type="file"
           id="image"
           {...register("image_url", { onChange: handleFileChange })}
-          ref={fileInputRef}
+          ref={fileInputRef} // Attach the ref correctly
           className="hidden"
         />
         <Label

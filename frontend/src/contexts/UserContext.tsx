@@ -1,6 +1,15 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import AxiosInstance from "@/components/AxiosInstance.tsx";
 
+export type Transaction = {
+  id: number;
+  amount: string;
+  date: string;
+  sender: string;
+  receiver: string;
+  type?: "received" | "sent";  // Add 'type' field as optional
+};
+
 type User = {
   image_url: string;
   id: number;
@@ -12,6 +21,8 @@ type User = {
   pending_sender_transactions: [];
   pending_received_transactions: [];
   currencies: [];
+  sent_transactions: Transaction[];  // Added
+  received_transactions: Transaction[];  // Added
 };
 
 type UserContextProps = {
@@ -20,16 +31,20 @@ type UserContextProps = {
 };
 
 const defaultUser: User = {
+  image_url: "",
   id: 0,
   first_name: "",
   last_name: "",
   email: "",
   plan: "",
   balance: 0,
-  sent_transactions: [],
-  received_transactions: [],
+  sent_transactions: [],  // Updated
+  received_transactions: [],  // Updated
   currencies: [],
+  pending_sender_transactions: [],
+  pending_received_transactions: []
 };
+
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
