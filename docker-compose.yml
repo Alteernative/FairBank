@@ -1,18 +1,39 @@
 version: '3.8'
 
 services:
-  api:
-    build: ./backend
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    volumes:
+      - static_volume:/backend/static
+      - db_volume:/backend/db.sqlite3
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend:/backend
-    command: gunicorn auth.wsgi:application --bind 0.0.0.0:8000
+    env_file:
+      - .env
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+    depends_on:
+      - frontend
 
-  web:
-    build: ./frontend
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_API_URL=${REACT_APP_API_URL}
+    container_name: frontend
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/frontend
-    command: serve -s dist -l 5173
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+volumes:
+  static_volume:
+  db_volume:
