@@ -21,8 +21,8 @@ COPY --from=builder /frontend/dist /usr/share/nginx/html
 #RUN npm install -g serve
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 5173
-EXPOSE 80
+# Expose port 90
+EXPOSE 90
 
-# Default to port 80, can be overridden by the PORT environment variable
+# Default to port 90, can be overridden by the PORT environment variable
 CMD ["nginx", "-g", "daemon off;"]
