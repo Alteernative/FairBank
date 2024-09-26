@@ -1,5 +1,5 @@
 # Stage 1: Build the app
-FROM node:21.7.3 AS builder
+FROM node:20.17.0 AS builder
 
 WORKDIR /frontend
 
@@ -9,17 +9,20 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve the app
-FROM node:21.7.3
+# Stage 2: Serve the app with Nginx
+FROM nginx:alpine
 
-WORKDIR /frontend
+# Copy the build output to Nginx's default HTML directory
+COPY --from=build /app/build /usr/share/nginx/html
 
-COPY --from=builder /frontend/dist /frontend/dist
+#WORKDIR /frontend
+#
+#COPY --from=builder /frontend/dist /frontend/dist
 
 RUN npm install -g serve
 
 # Expose port 5173
-EXPOSE 5173
+EXPOSE 90
 
-# Default to port 5173, can be overridden by the PORT environment variable
-CMD ["sh", "-c", "serve -s dist -l ${PORT:-5173}"]
+# Default to port 80, can be overridden by the PORT environment variable
+CMD ["nginx", "-g", "daemon off;"]
