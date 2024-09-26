@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   backend:
@@ -7,30 +7,16 @@ services:
     container_name: backend
     volumes:
       - static_volume:/backend/static
-      - db_volume:/backend/db.sqlite3
+      - db_volume:/backend/db
     ports:
       - "8000:8000"
-    env_file:
-      - .env
-    environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
-    depends_on:
-      - frontend
 
   frontend:
     build:
       context: ./frontend
-      args:
-        - REACT_APP_API_URL=${REACT_APP_API_URL}
     container_name: frontend
     ports:
-      - "3000:80"
-    environment:
-      - REACT_APP_API_URL=${REACT_APP_API_URL}
-    env_file:
-      - .env
+      - "90:80"
     depends_on:
       - backend
 
