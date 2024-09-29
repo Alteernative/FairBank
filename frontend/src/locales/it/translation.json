@@ -465,7 +465,7 @@
       },
       "password": {
         "min": "Password richiesta.",
-        "invalid": "Password non valida.",
+        "invalid": "La password deve contenere almeno 8 caratteri e includere lettere maiuscole, minuscole e caratteri speciali.",
         "upper": "La password deve contenere almeno una lettera maiuscola.",
         "lower": "La password deve contenere almeno una lettera minuscola.",
         "special": "La password deve contenere almeno un carattere speciale.",

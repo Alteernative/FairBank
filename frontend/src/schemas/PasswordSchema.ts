@@ -8,8 +8,11 @@ export default function PasswordSchema() {
     .object({
       password: z
         .string()
-        .min(8, {
+        .min(1, {
           message: `${t("zod.signUp.password.min")}`,
+        })
+        .min(8, {
+          message: `${t("zod.signUp.password.invalid")}`,
         })
         .regex(/[A-Z]/, {
           message: `${t("zod.signUp.password.upper")}`,

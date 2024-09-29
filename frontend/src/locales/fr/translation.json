@@ -493,7 +493,7 @@
       },
       "password": {
         "min": "Mot de passe requis.",
-        "invalid": "Mot de passe invalide.",
+        "invalid": "Le mot de passe doit comporter au moins 8 caractères et inclure des majuscules, des minuscules et des caractères spéciaux.",
         "upper": "Mot de passe doit contenir au moins une majuscule",
         "lower": "Mot de passe doit contenir au moins une minuscule",
         "special": "Mot de passe doit contenir au moins un caractère spécial.",

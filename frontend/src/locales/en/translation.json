@@ -491,7 +491,7 @@
       },
       "password": {
         "min": "Password required.",
-        "invalid": "Invalid password.",
+        "invalid": "Password must be at least 8 characters long and include upper, lower, and special characters.",
         "upper": "Password must contain at least one uppercase letter.",
         "lower": "Password must contain at least one lowercase letter.",
         "special": "Password must contain at least one special character.",
