@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURl =
-  "http://backendfairbank-backend-uebaxj-1a7a55-82-112-240-23.traefik.me";
+  "https://fairbank.anis-bouzahar.dev/";
 
 const AxiosInstance = axios.create({
   baseURL: baseURl,
