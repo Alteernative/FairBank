@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURl =
-  "https://fairbank.anis-bouzahar.dev/";
+  "https://fairbank.jdaini.com/";
 
 const AxiosInstance = axios.create({
   baseURL: baseURl,
