@@ -5,7 +5,7 @@ FairBank offers an innovative and interest-free banking service platform.
 The following documentation shows the features, technologies used as well as a guide for local installation.
 
 ## Demo
-https://github.com/user-attachments/assets/437bb85c-3d37-40f7-95c3-e1b43d1d767b
+https://github.com/user-attachments/assets/b3854a83-d2d5-4073-9143-71c3e45a8806
 
 ## Table of Contents
 
